@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class MakeIntegratedAddressRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (Optional, defaults to primary address) Destination public address.
-	 */
-	#[Json('standard_address', omit_empty: true)]
-	public ?string $standardAddress;
+    /**
+     * (Optional, defaults to primary address) Destination public address.
+     */
+    #[Json('standard_address', omit_empty: true)]
+    public ?string $standardAddress;
 
-	/**
-	 * (Optional, defaults to a random ID) 16 characters hex encoded.
-	 */
-	#[Json('payment_id', omit_empty: true)]
-	public ?string $paymentId;
+    /**
+     * (Optional, defaults to a random ID) 16 characters hex encoded.
+     */
+    #[Json('payment_id', omit_empty: true)]
+    public ?string $paymentId;
 
 
-	public static function create(?string $standardAddress = null, ?string $paymentId = null): RpcRequest
-	{
-		$self = new self();
-		$self->standardAddress = $standardAddress;
-		$self->paymentId = $paymentId;
-		return new RpcRequest('make_integrated_address', $self);
-	}
+    public static function create(?string $standardAddress = null, ?string $paymentId = null): RpcRequest
+    {
+        $self = new self();
+        $self->standardAddress = $standardAddress;
+        $self->paymentId = $paymentId;
+        return new RpcRequest('make_integrated_address', $self);
+    }
 }

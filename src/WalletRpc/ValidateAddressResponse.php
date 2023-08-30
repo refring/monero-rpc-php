@@ -12,7 +12,7 @@ use Square\Pjson\JsonSerialize;
  */
 class ValidateAddressResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
     /**
      * True if the given address is an [integrated address]({{ site.baseurl }}/resources/moneropedia/address.html).
@@ -39,8 +39,8 @@ class ValidateAddressResponse
     public bool $subaddress;
 
     /**
-	 * True if the input address is a valid Monero address.
-	 */
-	#[Json]
-	public bool $valid;
+     * True if the input address is a valid Monero address.
+     */
+    #[Json]
+    public bool $valid;
 }

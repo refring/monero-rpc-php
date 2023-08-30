@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetTxKeyResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * transaction secret key.
-	 */
-	#[Json('tx_key')]
-	public string $txKey;
+    /**
+     * transaction secret key.
+     */
+    #[Json('tx_key')]
+    public string $txKey;
 }

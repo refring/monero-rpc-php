@@ -14,21 +14,21 @@ use Square\Pjson\JsonSerialize;
  */
 class AddAuxPowRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json('blocktemplate_blob')]
-	public string $blocktemplateBlob;
+    #[Json('blocktemplate_blob')]
+    public string $blocktemplateBlob;
 
-	/** @var AuxPow[] */
-	#[Json('aux_pow')]
-	public array $auxPow;
+    /** @var AuxPow[] */
+    #[Json('aux_pow')]
+    public array $auxPow;
 
 
-	public static function create(string $blocktemplateBlob, array $auxPow): RpcRequest
-	{
-		$self = new self();
-		$self->blocktemplateBlob = $blocktemplateBlob;
-		$self->auxPow = $auxPow;
-		return new RpcRequest('add_aux_pow', $self);
-	}
+    public static function create(string $blocktemplateBlob, array $auxPow): RpcRequest
+    {
+        $self = new self();
+        $self->blocktemplateBlob = $blocktemplateBlob;
+        $self->auxPow = $auxPow;
+        return new RpcRequest('add_aux_pow', $self);
+    }
 }

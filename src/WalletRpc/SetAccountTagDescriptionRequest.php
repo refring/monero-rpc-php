@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class SetAccountTagDescriptionRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Set a description for this tag.
-	 */
-	#[Json]
-	public string $tag;
+    /**
+     * Set a description for this tag.
+     */
+    #[Json]
+    public string $tag;
 
-	/**
-	 * Description for the tag.
-	 */
-	#[Json]
-	public string $description;
+    /**
+     * Description for the tag.
+     */
+    #[Json]
+    public string $description;
 
 
-	public static function create(string $tag, string $description): RpcRequest
-	{
-		$self = new self();
-		$self->tag = $tag;
-		$self->description = $description;
-		return new RpcRequest('set_account_tag_description', $self);
-	}
+    public static function create(string $tag, string $description): RpcRequest
+    {
+        $self = new self();
+        $self->tag = $tag;
+        $self->description = $description;
+        return new RpcRequest('set_account_tag_description', $self);
+    }
 }

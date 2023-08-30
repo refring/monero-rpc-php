@@ -17,7 +17,7 @@ trait StringResultTrait
     ) {
     }
 
-    public static function fromJsonData($jd, array|string $path = []) : static
+    public static function fromJsonData($jd, array|string $path = []): static
     {
         return self::traitFromJsonData($jd);
     }

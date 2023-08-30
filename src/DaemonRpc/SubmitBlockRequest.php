@@ -13,12 +13,12 @@ use RefRing\MoneroRpcPhp\Trait\CollectionTrait;
  */
 class SubmitBlockRequest implements ParameterInterface, \IteratorAggregate
 {
-	use CollectionTrait;
+    use CollectionTrait;
 
-	public static function create(array $values): RpcRequest
-	{
-		$self = new self();
-		$self->values = $values;
-		return new RpcRequest('submit_block', $self);
-	}
+    public static function create(array $values): RpcRequest
+    {
+        $self = new self();
+        $self->values = $values;
+        return new RpcRequest('submit_block', $self);
+    }
 }

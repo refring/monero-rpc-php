@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetReserveProofResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * reserve signature.
-	 */
-	#[Json]
-	public string $signature;
+    /**
+     * reserve signature.
+     */
+    #[Json]
+    public string $signature;
 }

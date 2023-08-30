@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class DeleteAddressBookRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The index of the address book entry.
-	 */
-	#[Json]
-	public int $index;
+    /**
+     * The index of the address book entry.
+     */
+    #[Json]
+    public int $index;
 
 
-	public static function create(int $index): RpcRequest
-	{
-		$self = new self();
-		$self->index = $index;
-		return new RpcRequest('delete_address_book', $self);
-	}
+    public static function create(int $index): RpcRequest
+    {
+        $self = new self();
+        $self->index = $index;
+        return new RpcRequest('delete_address_book', $self);
+    }
 }

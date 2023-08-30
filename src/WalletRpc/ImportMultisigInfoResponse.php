@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class ImportMultisigInfoResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Number of outputs signed with those multisig info.
-	 */
-	#[Json('n_outputs')]
-	public int $nOutputs;
+    /**
+     * Number of outputs signed with those multisig info.
+     */
+    #[Json('n_outputs')]
+    public int $nOutputs;
 }

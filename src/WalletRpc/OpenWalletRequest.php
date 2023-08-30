@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class OpenWalletRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * wallet name stored in --wallet-dir.
-	 */
-	#[Json]
-	public string $filename;
+    /**
+     * wallet name stored in --wallet-dir.
+     */
+    #[Json]
+    public string $filename;
 
-	/**
-	 * (Optional) only needed if the wallet has a password defined.
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $password;
+    /**
+     * (Optional) only needed if the wallet has a password defined.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $password;
 
 
-	public static function create(string $filename, ?string $password = null): RpcRequest
-	{
-		$self = new self();
-		$self->filename = $filename;
-		$self->password = $password;
-		return new RpcRequest('open_wallet', $self);
-	}
+    public static function create(string $filename, ?string $password = null): RpcRequest
+    {
+        $self = new self();
+        $self->filename = $filename;
+        $self->password = $password;
+        return new RpcRequest('open_wallet', $self);
+    }
 }

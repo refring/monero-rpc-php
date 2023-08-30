@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class SignRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Anything you need to sign.
-	 */
-	#[Json]
-	public string $data;
+    /**
+     * Anything you need to sign.
+     */
+    #[Json]
+    public string $data;
 
 
-	public static function create(string $data): RpcRequest
-	{
-		$self = new self();
-		$self->data = $data;
-		return new RpcRequest('sign', $self);
-	}
+    public static function create(string $data): RpcRequest
+    {
+        $self = new self();
+        $self->data = $data;
+        return new RpcRequest('sign', $self);
+    }
 }

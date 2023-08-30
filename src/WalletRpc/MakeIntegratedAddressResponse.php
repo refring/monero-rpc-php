@@ -12,17 +12,17 @@ use Square\Pjson\JsonSerialize;
  */
 class MakeIntegratedAddressResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * string
-	 */
-	#[Json('integrated_address')]
-	public string $integratedAddress;
+    /**
+     * string
+     */
+    #[Json('integrated_address')]
+    public string $integratedAddress;
 
-	/**
-	 * hex encoded;
-	 */
-	#[Json('payment_id')]
-	public string $paymentId;
+    /**
+     * hex encoded;
+     */
+    #[Json('payment_id')]
+    public string $paymentId;
 }

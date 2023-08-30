@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GetTransferByTxidRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Transaction ID used to find the transfer.
-	 */
-	#[Json]
-	public string $txid;
+    /**
+     * Transaction ID used to find the transfer.
+     */
+    #[Json]
+    public string $txid;
 
-	/**
-	 * (Optional) Index of the account to query for the transfer.
-	 */
-	#[Json('account_index', omit_empty: true)]
-	public ?int $accountIndex;
+    /**
+     * (Optional) Index of the account to query for the transfer.
+     */
+    #[Json('account_index', omit_empty: true)]
+    public ?int $accountIndex;
 
 
-	public static function create(string $txid, ?int $accountIndex = null): RpcRequest
-	{
-		$self = new self();
-		$self->txid = $txid;
-		$self->accountIndex = $accountIndex;
-		return new RpcRequest('get_transfer_by_txid', $self);
-	}
+    public static function create(string $txid, ?int $accountIndex = null): RpcRequest
+    {
+        $self = new self();
+        $self->txid = $txid;
+        $self->accountIndex = $accountIndex;
+        return new RpcRequest('get_transfer_by_txid', $self);
+    }
 }

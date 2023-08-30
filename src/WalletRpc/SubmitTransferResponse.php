@@ -12,12 +12,12 @@ use Square\Pjson\JsonSerialize;
  */
 class SubmitTransferResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * array of string. The tx hashes of every transaction.
+    /**
+     * array of string. The tx hashes of every transaction.
      * @var string[]
-	 */
-	#[Json('tx_hash_list')]
-	public array $txHashList;
+     */
+    #[Json('tx_hash_list')]
+    public array $txHashList;
 }

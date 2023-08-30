@@ -12,26 +12,26 @@ use Square\Pjson\JsonSerialize;
  */
 class IsMultisigResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * States if the wallet is multisig
-	 */
-	#[Json]
-	public bool $multisig;
+    /**
+     * States if the wallet is multisig
+     */
+    #[Json]
+    public bool $multisig;
 
-	#[Json]
-	public bool $ready;
+    #[Json]
+    public bool $ready;
 
-	/**
-	 * Amount of signature needed to sign a transfer.
-	 */
-	#[Json]
-	public int $threshold;
+    /**
+     * Amount of signature needed to sign a transfer.
+     */
+    #[Json]
+    public int $threshold;
 
-	/**
-	 * Total amount of signature in the multisig wallet.
-	 */
-	#[Json]
-	public int $total;
+    /**
+     * Total amount of signature in the multisig wallet.
+     */
+    #[Json]
+    public int $total;
 }

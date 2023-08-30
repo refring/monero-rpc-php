@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetLanguagesRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_languages');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_languages');
+    }
 }

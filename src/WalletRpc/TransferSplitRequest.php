@@ -26,11 +26,11 @@ class TransferSplitRequest implements ParameterInterface
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
-	/**
-	 * @var int[] (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
-	 */
-	#[Json('subaddr_indices', omit_empty: true)]
-	public ?array $subaddrIndices;
+    /**
+     * @var int[] (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
+     */
+    #[Json('subaddr_indices', omit_empty: true)]
+    public ?array $subaddrIndices;
 
     /**
      * (Optional) Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
@@ -93,8 +93,7 @@ class TransferSplitRequest implements ParameterInterface
         ?bool $doNotRelay = null,
         ?bool $getTxHex = null,
         ?bool $getTxMetadata = null,
-    ): RpcRequest
-    {
+    ): RpcRequest {
         $self = new self();
         $self->destinations = $destinations;
         $self->accountIndex = $accountIndex;

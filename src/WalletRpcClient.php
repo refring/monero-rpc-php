@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp;
 
-use RefRing\MoneroRpcPhp\Model\KeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
-use RefRing\MoneroRpcPhp\Model\TransferDestination;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshRequest;
@@ -192,8 +190,7 @@ class WalletRpcClient extends JsonRpcClient
         bool $sslAllowAnyCert = false,
         string $username = null,
         string $password = null,
-    ): SetDaemonResponse
-    {
+    ): SetDaemonResponse {
         return $this->handleRequest(SetDaemonRequest::create($address, $trusted, $sslSupport, $sslPrivateKeyPath, $sslCertificatePath, $sslCaFile, $sslAllowedFingerprints, $sslAllowAnyCert, $username, $password), SetDaemonResponse::class);
     }
 
@@ -203,8 +200,7 @@ class WalletRpcClient extends JsonRpcClient
         array $addressIndices = null,
         bool $allAccounts = false,
         bool $strict = false,
-    ): GetBalanceResponse
-    {
+    ): GetBalanceResponse {
         return $this->handleRequest(GetBalanceRequest::create($accountIndex, $addressIndices, $allAccounts, $strict), GetBalanceResponse::class);
     }
 
@@ -237,8 +233,7 @@ class WalletRpcClient extends JsonRpcClient
         string $address,
         bool $anyNetType = false,
         bool $allowOpenalias = false,
-    ): ValidateAddressResponse
-    {
+    ): ValidateAddressResponse {
         return $this->handleRequest(ValidateAddressRequest::create($address, $anyNetType, $allowOpenalias), ValidateAddressResponse::class);
     }
 
@@ -247,8 +242,7 @@ class WalletRpcClient extends JsonRpcClient
         string $tag = null,
         bool $regex = false,
         bool $strictBalances = null,
-    ): GetAccountsResponse
-    {
+    ): GetAccountsResponse {
         return $this->handleRequest(GetAccountsRequest::create($tag, $regex, $strictBalances), GetAccountsResponse::class);
     }
 
@@ -307,8 +301,7 @@ class WalletRpcClient extends JsonRpcClient
         bool $doNotRelay = false,
         bool $getTxHex = false,
         bool $getTxMetadata = false,
-    ): TransferResponse
-    {
+    ): TransferResponse {
         return $this->handleRequest(TransferRequest::create($destinations, $accountIndex, $subaddrIndices, $priority, $mixin, $ringSize, $unlockTime, $getTxKey, $doNotRelay, $getTxHex, $getTxMetadata), TransferResponse::class);
     }
 
@@ -325,8 +318,7 @@ class WalletRpcClient extends JsonRpcClient
         bool $doNotRelay = false,
         bool $getTxHex = null,
         bool $getTxMetadata = null,
-    ): TransferSplitResponse
-    {
+    ): TransferSplitResponse {
         return $this->handleRequest(TransferSplitRequest::create($destinations, $accountIndex, $subaddrIndices, $ringSize, $unlockTime, $paymentId, $getTxKeys, $priority, $doNotRelay, $getTxHex, $getTxMetadata), TransferSplitResponse::class);
     }
 
@@ -335,8 +327,7 @@ class WalletRpcClient extends JsonRpcClient
         string $unsignedTxset,
         bool $exportRaw = false,
         bool $getTxKeys = null,
-    ): SignTransferResponse
-    {
+    ): SignTransferResponse {
         return $this->handleRequest(SignTransferRequest::create($unsignedTxset, $exportRaw, $getTxKeys), SignTransferResponse::class);
     }
 
@@ -352,8 +343,7 @@ class WalletRpcClient extends JsonRpcClient
         bool $doNotRelay = false,
         bool $getTxHex = false,
         bool $getTxMetadata = false,
-    ): SweepDustResponse
-    {
+    ): SweepDustResponse {
         return $this->handleRequest(SweepDustRequest::create($getTxKeys, $doNotRelay, $getTxHex, $getTxMetadata), SweepDustResponse::class);
     }
 
@@ -373,8 +363,7 @@ class WalletRpcClient extends JsonRpcClient
         bool $doNotRelay = false,
         bool $getTxHex = false,
         bool $getTxMetadata = false,
-    ): SweepAllResponse
-    {
+    ): SweepAllResponse {
         return $this->handleRequest(SweepAllRequest::create($address, $accountIndex, $subaddrIndices, $subaddrIndicesAll, $priority, $outputs, $ringSize, $unlockTime, $paymentId, $getTxKeys, $belowAmount, $doNotRelay, $getTxHex, $getTxMetadata), SweepAllResponse::class);
     }
 
@@ -391,8 +380,7 @@ class WalletRpcClient extends JsonRpcClient
         bool $doNotRelay = false,
         bool $getTxHex = false,
         bool $getTxMetadata = false,
-    ): SweepSingleResponse
-    {
+    ): SweepSingleResponse {
         return $this->handleRequest(SweepSingleRequest::create($address, $priority, $outputs, $ringSize, $unlockTime, $paymentId, $getTxKey, $keyImage, $doNotRelay, $getTxHex, $getTxMetadata), SweepSingleResponse::class);
     }
 
@@ -425,8 +413,7 @@ class WalletRpcClient extends JsonRpcClient
         string $transferType,
         int $accountIndex = null,
         array $subaddrIndices = null,
-    ): IncomingTransfersResponse
-    {
+    ): IncomingTransfersResponse {
         return $this->handleRequest(IncomingTransfersRequest::create($transferType, $accountIndex, $subaddrIndices), IncomingTransfersResponse::class);
     }
 
@@ -443,8 +430,7 @@ class WalletRpcClient extends JsonRpcClient
     public function makeIntegratedAddress(
         string $standardAddress = null,
         string $paymentId = null,
-    ): MakeIntegratedAddressResponse
-    {
+    ): MakeIntegratedAddressResponse {
         return $this->handleRequest(MakeIntegratedAddressRequest::create($standardAddress, $paymentId), MakeIntegratedAddressResponse::class);
     }
 
@@ -514,8 +500,7 @@ class WalletRpcClient extends JsonRpcClient
         string $address,
         string $message = null,
         string $signature,
-    ): CheckTxProofResponse
-    {
+    ): CheckTxProofResponse {
         return $this->handleRequest(CheckTxProofRequest::create($txid, $address, $message, $signature), CheckTxProofResponse::class);
     }
 
@@ -537,8 +522,7 @@ class WalletRpcClient extends JsonRpcClient
         int $accountIndex,
         int $amount,
         string $message = null,
-    ): GetReserveProofResponse
-    {
+    ): GetReserveProofResponse {
         return $this->handleRequest(GetReserveProofRequest::create($all, $accountIndex, $amount, $message), GetReserveProofResponse::class);
     }
 
@@ -547,8 +531,7 @@ class WalletRpcClient extends JsonRpcClient
         string $address,
         string $message = null,
         string $signature,
-    ): CheckReserveProofResponse
-    {
+    ): CheckReserveProofResponse {
         return $this->handleRequest(CheckReserveProofRequest::create($address, $message, $signature), CheckReserveProofResponse::class);
     }
 
@@ -565,8 +548,7 @@ class WalletRpcClient extends JsonRpcClient
         int $accountIndex = null,
         array $subaddrIndices = [],
         bool $allAccounts = false,
-    ): GetTransfersResponse
-    {
+    ): GetTransfersResponse {
         return $this->handleRequest(GetTransfersRequest::create($in, $out, $pending, $failed, $pool, $filterByHeight, $minHeight, $maxHeight, $accountIndex, $subaddrIndices, $allAccounts), GetTransfersResponse::class);
     }
 
@@ -580,8 +562,7 @@ class WalletRpcClient extends JsonRpcClient
     public function describeTransfer(
         string $unsignedTxset = null,
         string $multisigTxset = null,
-    ): DescribeTransferResponse
-    {
+    ): DescribeTransferResponse {
         return $this->handleRequest(DescribeTransferRequest::create($unsignedTxset, $multisigTxset), DescribeTransferResponse::class);
     }
 
@@ -628,8 +609,7 @@ class WalletRpcClient extends JsonRpcClient
         string $paymentId = null,
         string $recipientName = null,
         string $txDescription = null,
-    ): MakeUriResponse
-    {
+    ): MakeUriResponse {
         return $this->handleRequest(MakeUriRequest::create($address, $amount, $paymentId, $recipientName, $txDescription), MakeUriResponse::class);
     }
 
@@ -650,8 +630,7 @@ class WalletRpcClient extends JsonRpcClient
         string $address,
         string $paymentId = null,
         string $description = null,
-    ): AddAddressBookResponse
-    {
+    ): AddAddressBookResponse {
         return $this->handleRequest(AddAddressBookRequest::create($address, $paymentId, $description), AddAddressBookResponse::class);
     }
 
@@ -664,8 +643,7 @@ class WalletRpcClient extends JsonRpcClient
         string $description = null,
         bool $setPaymentId,
         string $paymentId = null,
-    ): EditAddressBookResponse
-    {
+    ): EditAddressBookResponse {
         return $this->handleRequest(EditAddressBookRequest::create($index, $setAddress, $address, $setDescription, $description, $setPaymentId, $paymentId), EditAddressBookResponse::class);
     }
 
@@ -726,8 +704,7 @@ class WalletRpcClient extends JsonRpcClient
         string $viewkey,
         string $password,
         bool $autosaveCurrent = true,
-    ): GenerateFromKeysResponse
-    {
+    ): GenerateFromKeysResponse {
         return $this->handleRequest(GenerateFromKeysRequest::create($restoreHeight, $filename, $address, $spendkey, $viewkey, $password, $autosaveCurrent), GenerateFromKeysResponse::class);
     }
 
@@ -746,8 +723,7 @@ class WalletRpcClient extends JsonRpcClient
         string $language = null,
         string $seedOffset = null,
         bool $autosaveCurrent = true,
-    ): RestoreDeterministicWalletResponse
-    {
+    ): RestoreDeterministicWalletResponse {
         return $this->handleRequest(RestoreDeterministicWalletRequest::create($filename, $password, $seed, $restoreHeight, $language, $seedOffset, $autosaveCurrent), RestoreDeterministicWalletResponse::class);
     }
 
@@ -761,8 +737,7 @@ class WalletRpcClient extends JsonRpcClient
     public function changeWalletPassword(
         string $oldPassword = null,
         string $newPassword = null,
-    ): ChangeWalletPasswordResponse
-    {
+    ): ChangeWalletPasswordResponse {
         return $this->handleRequest(ChangeWalletPasswordRequest::create($oldPassword, $newPassword), ChangeWalletPasswordResponse::class);
     }
 
@@ -843,8 +818,7 @@ class WalletRpcClient extends JsonRpcClient
         string $password,
         string $multisigInfo,
         bool $forceUpdateUseWithCaution = false,
-    ): ExchangeMultisigKeysResponse
-    {
+    ): ExchangeMultisigKeysResponse {
         return $this->handleRequest(ExchangeMultisigKeysRequest::create($password, $multisigInfo, $forceUpdateUseWithCaution), ExchangeMultisigKeysResponse::class);
     }
 
@@ -854,8 +828,7 @@ class WalletRpcClient extends JsonRpcClient
         int $nOutputs,
         int $ringSize,
         bool $rct,
-    ): EstimateTxSizeAndWeightResponse
-    {
+    ): EstimateTxSizeAndWeightResponse {
         return $this->handleRequest(EstimateTxSizeAndWeightRequest::create($nInputs, $nOutputs, $ringSize, $rct), EstimateTxSizeAndWeightResponse::class);
     }
 }

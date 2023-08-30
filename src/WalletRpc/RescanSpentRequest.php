@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class RescanSpentRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('rescan_spent');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('rescan_spent');
+    }
 }

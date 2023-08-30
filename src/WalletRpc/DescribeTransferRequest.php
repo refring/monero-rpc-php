@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class DescribeTransferRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (Optional) A hexadecimal string representing a set of unsigned transactions (empty for multisig transactions; non-multisig signed transactions are not supported).
-	 */
-	#[Json('unsigned_txset', omit_empty: true)]
-	public ?string $unsignedTxset;
+    /**
+     * (Optional) A hexadecimal string representing a set of unsigned transactions (empty for multisig transactions; non-multisig signed transactions are not supported).
+     */
+    #[Json('unsigned_txset', omit_empty: true)]
+    public ?string $unsignedTxset;
 
-	/**
-	 * (Optional) A hexadecimal string representing the set of signing keys used in a multisig transaction (empty for unsigned transactions; non-multisig signed transactions are not supported).
-	 */
-	#[Json('multisig_txset', omit_empty: true)]
-	public ?string $multisigTxset;
+    /**
+     * (Optional) A hexadecimal string representing the set of signing keys used in a multisig transaction (empty for unsigned transactions; non-multisig signed transactions are not supported).
+     */
+    #[Json('multisig_txset', omit_empty: true)]
+    public ?string $multisigTxset;
 
 
-	public static function create(?string $unsignedTxset = null, ?string $multisigTxset = null): RpcRequest
-	{
-		$self = new self();
-		$self->unsignedTxset = $unsignedTxset;
-		$self->multisigTxset = $multisigTxset;
-		return new RpcRequest('describe_transfer', $self);
-	}
+    public static function create(?string $unsignedTxset = null, ?string $multisigTxset = null): RpcRequest
+    {
+        $self = new self();
+        $self->unsignedTxset = $unsignedTxset;
+        $self->multisigTxset = $multisigTxset;
+        return new RpcRequest('describe_transfer', $self);
+    }
 }

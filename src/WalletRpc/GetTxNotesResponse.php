@@ -12,12 +12,12 @@ use Square\Pjson\JsonSerialize;
  */
 class GetTxNotesResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * notes for the transactions
+    /**
+     * notes for the transactions
      * @var string[]
-	 */
-	#[Json]
-	public array $notes;
+     */
+    #[Json]
+    public array $notes;
 }

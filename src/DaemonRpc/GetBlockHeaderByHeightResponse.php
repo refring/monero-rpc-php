@@ -12,7 +12,7 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBlockHeaderByHeightResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
     /**
      * A structure containing block header information.

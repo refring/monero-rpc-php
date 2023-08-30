@@ -6,7 +6,8 @@ trait CollectionTrait
 {
     public array $values;
 
-    public function getIterator() {
+    public function getIterator()
+    {
         return new \ArrayIterator($this->values);
     }
 }

@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class ImportMultisigInfoRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var string[] List of multisig info in hex format from other participants.
-	 */
-	#[Json]
-	public array $info;
+    /**
+     * @var string[] List of multisig info in hex format from other participants.
+     */
+    #[Json]
+    public array $info;
 
 
-	public static function create(array $info): RpcRequest
-	{
-		$self = new self();
-		$self->info = $info;
-		return new RpcRequest('import_multisig_info', $self);
-	}
+    public static function create(array $info): RpcRequest
+    {
+        $self = new self();
+        $self->info = $info;
+        return new RpcRequest('import_multisig_info', $self);
+    }
 }

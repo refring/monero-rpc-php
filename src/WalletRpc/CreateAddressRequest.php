@@ -14,33 +14,33 @@ use Square\Pjson\JsonSerialize;
  */
 class CreateAddressRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Create a new address for this account.
-	 */
-	#[Json('account_index')]
-	public int $accountIndex;
+    /**
+     * Create a new address for this account.
+     */
+    #[Json('account_index')]
+    public int $accountIndex;
 
-	/**
-	 * (Optional) Label for the new address.
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $label;
+    /**
+     * (Optional) Label for the new address.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $label;
 
-	/**
-	 * (Optional) Number of addresses to create (Defaults to 1).
-	 */
-	#[Json(omit_empty: true)]
-	public ?int $count;
+    /**
+     * (Optional) Number of addresses to create (Defaults to 1).
+     */
+    #[Json(omit_empty: true)]
+    public ?int $count;
 
 
-	public static function create(int $accountIndex, ?string $label = null, ?int $count = 1): RpcRequest
-	{
-		$self = new self();
-		$self->accountIndex = $accountIndex;
-		$self->label = $label;
-		$self->count = $count;
-		return new RpcRequest('create_address', $self);
-	}
+    public static function create(int $accountIndex, ?string $label = null, ?int $count = 1): RpcRequest
+    {
+        $self = new self();
+        $self->accountIndex = $accountIndex;
+        $self->label = $label;
+        $self->count = $count;
+        return new RpcRequest('create_address', $self);
+    }
 }

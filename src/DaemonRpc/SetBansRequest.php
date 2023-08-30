@@ -14,17 +14,17 @@ use Square\Pjson\JsonSerialize;
  */
 class SetBansRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/** @var Node[] */
-	#[Json]
-	public array $bans;
+    /** @var Node[] */
+    #[Json]
+    public array $bans;
 
 
-	public static function create(array $bans): RpcRequest
-	{
-		$self = new self();
-		$self->bans = $bans;
-		return new RpcRequest('set_bans', $self);
-	}
+    public static function create(array $bans): RpcRequest
+    {
+        $self = new self();
+        $self->bans = $bans;
+        return new RpcRequest('set_bans', $self);
+    }
 }

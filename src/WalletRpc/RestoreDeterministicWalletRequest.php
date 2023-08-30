@@ -14,69 +14,68 @@ use Square\Pjson\JsonSerialize;
  */
 class RestoreDeterministicWalletRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Name of the wallet.
-	 */
-	#[Json]
-	public string $filename;
+    /**
+     * Name of the wallet.
+     */
+    #[Json]
+    public string $filename;
 
-	/**
-	 * Password of the wallet.
-	 */
-	#[Json]
-	public string $password;
+    /**
+     * Password of the wallet.
+     */
+    #[Json]
+    public string $password;
 
-	/**
-	 * Mnemonic phrase of the wallet to restore.
-	 */
-	#[Json]
-	public string $seed;
+    /**
+     * Mnemonic phrase of the wallet to restore.
+     */
+    #[Json]
+    public string $seed;
 
-	/**
-	 * (Optional) Block height to restore the wallet from (Defaults to 0).
-	 */
-	#[Json('restore_height', omit_empty: true)]
-	public ?int $restoreHeight;
+    /**
+     * (Optional) Block height to restore the wallet from (Defaults to 0).
+     */
+    #[Json('restore_height', omit_empty: true)]
+    public ?int $restoreHeight;
 
-	/**
-	 * (Optional) Language of the mnemonic phrase in case the old language is invalid.
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $language;
+    /**
+     * (Optional) Language of the mnemonic phrase in case the old language is invalid.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $language;
 
-	/**
-	 * (Optional) Offset used to derive a new seed from the given mnemonic to recover a secret wallet from the mnemonic phrase.
-	 */
-	#[Json('seed_offset', omit_empty: true)]
-	public ?string $seedOffset;
+    /**
+     * (Optional) Offset used to derive a new seed from the given mnemonic to recover a secret wallet from the mnemonic phrase.
+     */
+    #[Json('seed_offset', omit_empty: true)]
+    public ?string $seedOffset;
 
-	/**
-	 * Whether to save the currently open RPC wallet before closing it (Defaults to true).
-	 */
-	#[Json('autosave_current', omit_empty: true)]
-	public ?bool $autosaveCurrent;
+    /**
+     * Whether to save the currently open RPC wallet before closing it (Defaults to true).
+     */
+    #[Json('autosave_current', omit_empty: true)]
+    public ?bool $autosaveCurrent;
 
 
-	public static function create(
-		string $filename,
-		string $password,
-		string $seed,
-		?int $restoreHeight = 0,
-		?string $language = null,
-		?string $seedOffset = null,
-		?bool $autosaveCurrent = true,
-	): RpcRequest
-	{
-		$self = new self();
-		$self->filename = $filename;
-		$self->password = $password;
-		$self->seed = $seed;
-		$self->restoreHeight = $restoreHeight;
-		$self->language = $language;
-		$self->seedOffset = $seedOffset;
-		$self->autosaveCurrent = $autosaveCurrent;
-		return new RpcRequest('restore_deterministic_wallet', $self);
-	}
+    public static function create(
+        string $filename,
+        string $password,
+        string $seed,
+        ?int $restoreHeight = 0,
+        ?string $language = null,
+        ?string $seedOffset = null,
+        ?bool $autosaveCurrent = true,
+    ): RpcRequest {
+        $self = new self();
+        $self->filename = $filename;
+        $self->password = $password;
+        $self->seed = $seed;
+        $self->restoreHeight = $restoreHeight;
+        $self->language = $language;
+        $self->seedOffset = $seedOffset;
+        $self->autosaveCurrent = $autosaveCurrent;
+        return new RpcRequest('restore_deterministic_wallet', $self);
+    }
 }

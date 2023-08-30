@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class AddAddressBookResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The index of the address book entry.
-	 */
-	#[Json]
-	public int $index;
+    /**
+     * The index of the address book entry.
+     */
+    #[Json]
+    public int $index;
 }

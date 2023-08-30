@@ -12,29 +12,29 @@ use Square\Pjson\JsonSerialize;
  */
 class CheckTxProofResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Number of block mined after the one with the transaction.
-	 */
-	#[Json]
-	public int $confirmations;
+    /**
+     * Number of block mined after the one with the transaction.
+     */
+    #[Json]
+    public int $confirmations;
 
-	/**
-	 * States if the inputs proves the transaction.
-	 */
-	#[Json]
-	public bool $good;
+    /**
+     * States if the inputs proves the transaction.
+     */
+    #[Json]
+    public bool $good;
 
-	/**
-	 * States if the transaction is still in pool or has been added to a block.
-	 */
-	#[Json('in_pool')]
-	public bool $inPool;
+    /**
+     * States if the transaction is still in pool or has been added to a block.
+     */
+    #[Json('in_pool')]
+    public bool $inPool;
 
-	/**
-	 * Amount of the transaction.
-	 */
-	#[Json]
-	public int $received;
+    /**
+     * Amount of the transaction.
+     */
+    #[Json]
+    public int $received;
 }

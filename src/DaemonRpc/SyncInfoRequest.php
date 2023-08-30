@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class SyncInfoRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('sync_info');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('sync_info');
+    }
 }

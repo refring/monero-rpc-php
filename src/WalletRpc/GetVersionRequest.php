@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetVersionRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_version');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_version');
+    }
 }

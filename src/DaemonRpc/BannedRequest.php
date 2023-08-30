@@ -14,16 +14,16 @@ use Square\Pjson\JsonSerialize;
  */
 class BannedRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public string $address;
+    #[Json]
+    public string $address;
 
 
-	public static function create(string $address): RpcRequest
-	{
-		$self = new self();
-		$self->address = $address;
-		return new RpcRequest('banned', $self);
-	}
+    public static function create(string $address): RpcRequest
+    {
+        $self = new self();
+        $self->address = $address;
+        return new RpcRequest('banned', $self);
+    }
 }

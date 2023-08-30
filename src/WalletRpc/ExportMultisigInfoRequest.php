@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class ExportMultisigInfoRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('export_multisig_info');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('export_multisig_info');
+    }
 }

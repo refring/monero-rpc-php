@@ -12,23 +12,23 @@ use Square\Pjson\JsonSerialize;
  */
 class CheckReserveProofResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * States if the inputs proves the reserve.
-	 */
-	#[Json]
-	public bool $good;
+    /**
+     * States if the inputs proves the reserve.
+     */
+    #[Json]
+    public bool $good;
 
-	/**
-	 * Amount (in @atomic-units) of the total that has been spent.
-	 */
-	#[Json]
-	public int $spent;
+    /**
+     * Amount (in @atomic-units) of the total that has been spent.
+     */
+    #[Json]
+    public int $spent;
 
-	/**
-	 * Total amount (in @atomic-units) of the reserve that was proven.
-	 */
-	#[Json]
-	public int $total;
+    /**
+     * Total amount (in @atomic-units) of the reserve that was proven.
+     */
+    #[Json]
+    public int $total;
 }

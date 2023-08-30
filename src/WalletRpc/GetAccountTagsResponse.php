@@ -13,9 +13,9 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAccountTagsResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/** @var AccountTagInformation[] */
-	#[Json('account_tags')]
-	public array $accountTags;
+    /** @var AccountTagInformation[] */
+    #[Json('account_tags')]
+    public array $accountTags;
 }

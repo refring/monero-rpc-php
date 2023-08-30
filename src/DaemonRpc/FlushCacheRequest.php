@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class FlushCacheRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Optional (`false` by default).
-	 */
-	#[Json('bad_txs', omit_empty: true)]
-	public ?bool $badTxs;
+    /**
+     * Optional (`false` by default).
+     */
+    #[Json('bad_txs', omit_empty: true)]
+    public ?bool $badTxs;
 
-	/**
-	 * Optional (`false` by default).
-	 */
-	#[Json('bad_blocks', omit_empty: true)]
-	public ?bool $badBlocks;
+    /**
+     * Optional (`false` by default).
+     */
+    #[Json('bad_blocks', omit_empty: true)]
+    public ?bool $badBlocks;
 
 
-	public static function create(?bool $badTxs = null, ?bool $badBlocks = null): RpcRequest
-	{
-		$self = new self();
-		$self->badTxs = $badTxs;
-		$self->badBlocks = $badBlocks;
-		return new RpcRequest('flush_cache', $self);
-	}
+    public static function create(?bool $badTxs = null, ?bool $badBlocks = null): RpcRequest
+    {
+        $self = new self();
+        $self->badTxs = $badTxs;
+        $self->badBlocks = $badBlocks;
+        return new RpcRequest('flush_cache', $self);
+    }
 }

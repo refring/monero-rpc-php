@@ -13,9 +13,9 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAddressBookResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/** @var AddressBookEntry[] */
-	#[Json]
-	public array $entries;
+    /** @var AddressBookEntry[] */
+    #[Json]
+    public array $entries;
 }

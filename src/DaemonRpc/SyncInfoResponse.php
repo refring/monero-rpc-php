@@ -13,48 +13,48 @@ use Square\Pjson\JsonSerialize;
  */
 class SyncInfoResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-	 */
-	#[Json]
-	public int $credits;
+    /**
+     * If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
+     */
+    #[Json]
+    public int $credits;
 
-	#[Json]
-	public int $height;
+    #[Json]
+    public int $height;
 
-	/**
-	 * The next pruning seed needed for pruned sync.
-	 */
-	#[Json('next_needed_pruning_seed')]
-	public int $nextNeededPruningSeed;
+    /**
+     * The next pruning seed needed for pruned sync.
+     */
+    #[Json('next_needed_pruning_seed')]
+    public int $nextNeededPruningSeed;
 
-	/**
-	 * Overview of current block queue where each character in the string represents a block set in the queue. `. = requested but not received`, `o = set received`, `m  = received set that matches the next blocks needed`
-	 */
-	#[Json]
-	public string $overview;
+    /**
+     * Overview of current block queue where each character in the string represents a block set in the queue. `. = requested but not received`, `o = set received`, `m  = received set that matches the next blocks needed`
+     */
+    #[Json]
+    public string $overview;
 
-	/** @var PeerStructure[] */
-	#[Json]
-	public array $peers;
+    /** @var PeerStructure[] */
+    #[Json]
+    public array $peers;
 
-	/** @var SpanStructure[] */
-	#[Json(omit_empty: true)]
-	public array $spans;
+    /** @var SpanStructure[] */
+    #[Json(omit_empty: true)]
+    public array $spans;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 
-	/**
-	 * target height the node is syncing from (will be 0 if node is fully synced)
-	 */
-	#[Json('target_height')]
-	public int $targetHeight;
+    /**
+     * target height the node is syncing from (will be 0 if node is fully synced)
+     */
+    #[Json('target_height')]
+    public int $targetHeight;
 
     /**
      * If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.

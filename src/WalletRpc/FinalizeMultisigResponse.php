@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class FinalizeMultisigResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * multisig wallet address.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * multisig wallet address.
+     */
+    #[Json]
+    public string $address;
 }

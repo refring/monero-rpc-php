@@ -13,23 +13,23 @@ use RefRing\MoneroRpcPhp\Model\SubAddressAccountInformation;
  */
 class GetAccountsResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * array of subaddress account information:
-	 */
-	#[Json('subaddress_accounts', SubAddressAccountInformation::class)]
-	public array $subaddressAccounts;
+    /**
+     * array of subaddress account information:
+     */
+    #[Json('subaddress_accounts', SubAddressAccountInformation::class)]
+    public array $subaddressAccounts;
 
-	/**
-	 * Total balance of the selected accounts (locked or unlocked).
-	 */
-	#[Json('total_balance')]
-	public int $totalBalance;
+    /**
+     * Total balance of the selected accounts (locked or unlocked).
+     */
+    #[Json('total_balance')]
+    public int $totalBalance;
 
-	/**
-	 * Total unlocked balance of the selected accounts.
-	 */
-	#[Json('total_unlocked_balance')]
-	public int $totalUnlockedBalance;
+    /**
+     * Total unlocked balance of the selected accounts.
+     */
+    #[Json('total_unlocked_balance')]
+    public int $totalUnlockedBalance;
 }

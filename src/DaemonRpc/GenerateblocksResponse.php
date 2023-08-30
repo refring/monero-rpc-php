@@ -12,26 +12,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GenerateblocksResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
+    #[Json]
     /**
      * @var string[]
      */
-	public array $blocks;
+    public array $blocks;
 
-	#[Json]
-	public int $height;
+    #[Json]
+    public int $height;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 
-	/**
-	 * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-	 */
-	#[Json]
-	public bool $untrusted;
+    /**
+     * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+     */
+    #[Json]
+    public bool $untrusted;
 }

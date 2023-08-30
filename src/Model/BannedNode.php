@@ -9,31 +9,31 @@ use Square\Pjson\JsonSerialize;
 
 class BannedNode
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Banned host (IP in A.B.C.D form).
-	 */
-	#[Json]
-	public string $host;
+    /**
+     * Banned host (IP in A.B.C.D form).
+     */
+    #[Json]
+    public string $host;
 
-	/**
-	 * Banned IP address, in Int format.
-	 */
-	#[Json]
-	public int $ip;
+    /**
+     * Banned IP address, in Int format.
+     */
+    #[Json]
+    public int $ip;
 
-	/**
-	 * Local Unix time that IP is banned until.
-	 */
-	#[Json]
-	public int $seconds;
+    /**
+     * Local Unix time that IP is banned until.
+     */
+    #[Json]
+    public int $seconds;
 
 
-	public function __construct(string $host, int $ip, int $seconds)
-	{
-		$this->host = $host;
-		$this->ip = $ip;
-		$this->seconds = $seconds;
-	}
+    public function __construct(string $host, int $ip, int $seconds)
+    {
+        $this->host = $host;
+        $this->ip = $ip;
+        $this->seconds = $seconds;
+    }
 }

@@ -13,13 +13,13 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBalanceResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
     /**
-	 * The total balance of the current monero-wallet-rpc in session.
-	 */
-	#[Json]
-	public int $balance;
+     * The total balance of the current monero-wallet-rpc in session.
+     */
+    #[Json]
+    public int $balance;
 
     /**
      * Number of blocks before balance is safe to spend.
@@ -44,8 +44,8 @@ class GetBalanceResponse
     public int $timeToUnlock;
 
     /**
-	 * Unlocked funds are those funds that are sufficiently deep enough in the Monero blockchain to be considered safe to spend.
-	 */
-	#[Json('unlocked_balance')]
-	public int $unlockedBalance;
+     * Unlocked funds are those funds that are sufficiently deep enough in the Monero blockchain to be considered safe to spend.
+     */
+    #[Json('unlocked_balance')]
+    public int $unlockedBalance;
 }

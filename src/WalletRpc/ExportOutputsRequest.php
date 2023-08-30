@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class ExportOutputsRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (optional) If true, export all outputs. Otherwise, export outputs since the last export. (Defaults to false)
-	 */
-	#[Json(omit_empty: true)]
-	public ?bool $all;
+    /**
+     * (optional) If true, export all outputs. Otherwise, export outputs since the last export. (Defaults to false)
+     */
+    #[Json(omit_empty: true)]
+    public ?bool $all;
 
 
-	public static function create(?bool $all = null): RpcRequest
-	{
-		$self = new self();
-		$self->all = $all;
-		return new RpcRequest('export_outputs', $self);
-	}
+    public static function create(?bool $all = null): RpcRequest
+    {
+        $self = new self();
+        $self->all = $all;
+        return new RpcRequest('export_outputs', $self);
+    }
 }

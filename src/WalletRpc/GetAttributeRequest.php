@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAttributeRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * attribute name
-	 */
-	#[Json]
-	public string $key;
+    /**
+     * attribute name
+     */
+    #[Json]
+    public string $key;
 
 
-	public static function create(string $key): RpcRequest
-	{
-		$self = new self();
-		$self->key = $key;
-		return new RpcRequest('get_attribute', $self);
-	}
+    public static function create(string $key): RpcRequest
+    {
+        $self = new self();
+        $self->key = $key;
+        return new RpcRequest('get_attribute', $self);
+    }
 }

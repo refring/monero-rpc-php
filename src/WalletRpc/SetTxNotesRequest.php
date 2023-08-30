@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class SetTxNotesRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var string[] transaction ids
-	 */
-	#[Json]
-	public array $txids;
+    /**
+     * @var string[] transaction ids
+     */
+    #[Json]
+    public array $txids;
 
-	/**
-	 * @var string[] notes for the transactions
-	 */
-	#[Json]
-	public array $notes;
+    /**
+     * @var string[] notes for the transactions
+     */
+    #[Json]
+    public array $notes;
 
 
-	public static function create(array $txids, array $notes): RpcRequest
-	{
-		$self = new self();
-		$self->txids = $txids;
-		$self->notes = $notes;
-		return new RpcRequest('set_tx_notes', $self);
-	}
+    public static function create(array $txids, array $notes): RpcRequest
+    {
+        $self = new self();
+        $self->txids = $txids;
+        $self->notes = $notes;
+        return new RpcRequest('set_tx_notes', $self);
+    }
 }

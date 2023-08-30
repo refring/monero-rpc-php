@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class LabelAccountRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Apply label to account at this index.
-	 */
-	#[Json('account_index')]
-	public int $accountIndex;
+    /**
+     * Apply label to account at this index.
+     */
+    #[Json('account_index')]
+    public int $accountIndex;
 
-	/**
-	 * Label for the account.
-	 */
-	#[Json]
-	public string $label;
+    /**
+     * Label for the account.
+     */
+    #[Json]
+    public string $label;
 
 
-	public static function create(int $accountIndex, string $label): RpcRequest
-	{
-		$self = new self();
-		$self->accountIndex = $accountIndex;
-		$self->label = $label;
-		return new RpcRequest('label_account', $self);
-	}
+    public static function create(int $accountIndex, string $label): RpcRequest
+    {
+        $self = new self();
+        $self->accountIndex = $accountIndex;
+        $self->label = $label;
+        return new RpcRequest('label_account', $self);
+    }
 }

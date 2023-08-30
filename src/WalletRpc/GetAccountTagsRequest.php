@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetAccountTagsRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_account_tags');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_account_tags');
+    }
 }

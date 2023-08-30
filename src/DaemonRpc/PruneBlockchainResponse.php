@@ -12,26 +12,26 @@ use Square\Pjson\JsonSerialize;
  */
 class PruneBlockchainResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public bool $pruned;
+    #[Json]
+    public bool $pruned;
 
-	/**
-	 * Blockheight at which pruning began.
-	 */
-	#[Json('pruning_seed')]
-	public int $pruningSeed;
+    /**
+     * Blockheight at which pruning began.
+     */
+    #[Json('pruning_seed')]
+    public int $pruningSeed;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 
-	/**
-	 * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-	 */
-	#[Json]
-	public bool $untrusted;
+    /**
+     * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+     */
+    #[Json]
+    public bool $untrusted;
 }

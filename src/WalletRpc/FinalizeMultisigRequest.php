@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class FinalizeMultisigRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var string[] List of multisig string from peers.
-	 */
-	#[Json('multisig_info')]
-	public array $multisigInfo;
+    /**
+     * @var string[] List of multisig string from peers.
+     */
+    #[Json('multisig_info')]
+    public array $multisigInfo;
 
-	/**
-	 * (Optional) Wallet password
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $password;
+    /**
+     * (Optional) Wallet password
+     */
+    #[Json(omit_empty: true)]
+    public ?string $password;
 
 
-	public static function create(array $multisigInfo, ?string $password = null): RpcRequest
-	{
-		$self = new self();
-		$self->multisigInfo = $multisigInfo;
-		$self->password = $password;
-		return new RpcRequest('finalize_multisig', $self);
-	}
+    public static function create(array $multisigInfo, ?string $password = null): RpcRequest
+    {
+        $self = new self();
+        $self->multisigInfo = $multisigInfo;
+        $self->password = $password;
+        return new RpcRequest('finalize_multisig', $self);
+    }
 }

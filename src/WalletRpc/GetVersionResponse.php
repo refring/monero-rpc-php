@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetVersionResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * RPC version, formatted with `Major * 2^16 + Minor` (Major encoded over the first 16 bits, and Minor over the last 16 bits).
-	 */
-	#[Json]
-	public int $version;
+    /**
+     * RPC version, formatted with `Major * 2^16 + Minor` (Major encoded over the first 16 bits, and Minor over the last 16 bits).
+     */
+    #[Json]
+    public int $version;
 }

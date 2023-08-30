@@ -35,7 +35,6 @@ use RefRing\MoneroRpcPhp\DaemonRpc\RelayTxRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SetBansRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoRequest;
-use RefRing\MoneroRpcPhp\Model\AddressInformation;
 use RefRing\MoneroRpcPhp\Model\Node;
 
 class DaemonRpcSerializationTest extends TestCase

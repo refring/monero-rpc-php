@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class GetLastBlockHeaderRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (Optional; defaults to `false`) Add PoW hash to block_header response.
-	 */
-	#[Json('fill_pow_hash', omit_empty: true)]
-	public ?bool $fillPowHash;
+    /**
+     * (Optional; defaults to `false`) Add PoW hash to block_header response.
+     */
+    #[Json('fill_pow_hash', omit_empty: true)]
+    public ?bool $fillPowHash;
 
 
-	public static function create(?bool $fillPowHash = null): RpcRequest
-	{
-		$self = new self();
-		$self->fillPowHash = $fillPowHash;
-		return new RpcRequest('get_last_block_header', $self);
-	}
+    public static function create(?bool $fillPowHash = null): RpcRequest
+    {
+        $self = new self();
+        $self->fillPowHash = $fillPowHash;
+        return new RpcRequest('get_last_block_header', $self);
+    }
 }

@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAddressBookRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var int[] indices of the requested address book entries
-	 */
-	#[Json]
-	public array $entries;
+    /**
+     * @var int[] indices of the requested address book entries
+     */
+    #[Json]
+    public array $entries;
 
 
-	public static function create(array $entries): RpcRequest
-	{
-		$self = new self();
-		$self->entries = $entries;
-		return new RpcRequest('get_address_book', $self);
-	}
+    public static function create(array $entries): RpcRequest
+    {
+        $self = new self();
+        $self->entries = $entries;
+        return new RpcRequest('get_address_book', $self);
+    }
 }

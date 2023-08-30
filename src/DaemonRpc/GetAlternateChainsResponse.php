@@ -13,21 +13,21 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAlternateChainsResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/** @var Chain[] */
-	#[Json]
-	public array $chains;
+    /** @var Chain[] */
+    #[Json]
+    public array $chains;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 
-	/**
-	 * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-	 */
-	#[Json]
-	public bool $untrusted;
+    /**
+     * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+     */
+    #[Json]
+    public bool $untrusted;
 }

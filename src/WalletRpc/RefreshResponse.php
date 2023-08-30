@@ -12,17 +12,17 @@ use Square\Pjson\JsonSerialize;
  */
 class RefreshResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Number of new blocks scanned.
-	 */
-	#[Json('blocks_fetched')]
-	public int $blocksFetched;
+    /**
+     * Number of new blocks scanned.
+     */
+    #[Json('blocks_fetched')]
+    public int $blocksFetched;
 
-	/**
-	 * States if transactions to the wallet have been found in the blocks.
-	 */
-	#[Json('received_money')]
-	public bool $receivedMoney;
+    /**
+     * States if transactions to the wallet have been found in the blocks.
+     */
+    #[Json('received_money')]
+    public bool $receivedMoney;
 }

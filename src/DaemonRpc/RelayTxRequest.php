@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class RelayTxRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var string[] list of transaction IDs to relay
-	 */
-	#[Json]
-	public array $txids;
+    /**
+     * @var string[] list of transaction IDs to relay
+     */
+    #[Json]
+    public array $txids;
 
 
-	public static function create(array $txids): RpcRequest
-	{
-		$self = new self();
-		$self->txids = $txids;
-		return new RpcRequest('relay_tx', $self);
-	}
+    public static function create(array $txids): RpcRequest
+    {
+        $self = new self();
+        $self->txids = $txids;
+        return new RpcRequest('relay_tx', $self);
+    }
 }

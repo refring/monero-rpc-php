@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class SubmitBlockResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Block submit status.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * Block submit status.
+     */
+    #[Json]
+    public string $status;
 }

@@ -13,15 +13,15 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBulkPaymentsResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/** @var Payment[] */
-	#[Json]
-	public array $payments;
+    /** @var Payment[] */
+    #[Json]
+    public array $payments;
 
-	/**
-	 * Address receiving the payment; Base58 representation of the public keys.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * Address receiving the payment; Base58 representation of the public keys.
+     */
+    #[Json]
+    public string $address;
 }

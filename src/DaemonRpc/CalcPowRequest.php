@@ -14,31 +14,31 @@ use Square\Pjson\JsonSerialize;
  */
 class CalcPowRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The major version of the monero protocol at this block height.
-	 */
-	#[Json('major_version')]
-	public int $majorVersion;
+    /**
+     * The major version of the monero protocol at this block height.
+     */
+    #[Json('major_version')]
+    public int $majorVersion;
 
-	#[Json]
-	public int $height;
+    #[Json]
+    public int $height;
 
-	#[Json('block_blob')]
-	public string $blockBlob;
+    #[Json('block_blob')]
+    public string $blockBlob;
 
-	#[Json('seed_hash')]
-	public string $seedHash;
+    #[Json('seed_hash')]
+    public string $seedHash;
 
 
-	public static function create(int $majorVersion, int $height, string $blockBlob, string $seedHash): RpcRequest
-	{
-		$self = new self();
-		$self->majorVersion = $majorVersion;
-		$self->height = $height;
-		$self->blockBlob = $blockBlob;
-		$self->seedHash = $seedHash;
-		return new RpcRequest('calc_pow', $self);
-	}
+    public static function create(int $majorVersion, int $height, string $blockBlob, string $seedHash): RpcRequest
+    {
+        $self = new self();
+        $self->majorVersion = $majorVersion;
+        $self->height = $height;
+        $self->blockBlob = $blockBlob;
+        $self->seedHash = $seedHash;
+        return new RpcRequest('calc_pow', $self);
+    }
 }

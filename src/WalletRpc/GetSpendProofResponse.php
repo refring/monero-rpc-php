@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetSpendProofResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * spend signature.
-	 */
-	#[Json]
-	public string $signature;
+    /**
+     * spend signature.
+     */
+    #[Json]
+    public string $signature;
 }

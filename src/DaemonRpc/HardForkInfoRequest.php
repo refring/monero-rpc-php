@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class HardForkInfoRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('hard_fork_info');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('hard_fork_info');
+    }
 }

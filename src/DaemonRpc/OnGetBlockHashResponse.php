@@ -11,5 +11,5 @@ use RefRing\MoneroRpcPhp\Trait\StringResultTrait;
  */
 class OnGetBlockHashResponse
 {
-	use StringResultTrait;
+    use StringResultTrait;
 }

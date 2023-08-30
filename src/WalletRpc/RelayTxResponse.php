@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class RelayTxResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * String for the publically searchable transaction hash.
-	 */
-	#[Json('tx_hash')]
-	public string $txHash;
+    /**
+     * String for the publically searchable transaction hash.
+     */
+    #[Json('tx_hash')]
+    public string $txHash;
 }

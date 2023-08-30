@@ -14,40 +14,40 @@ use Square\Pjson\JsonSerialize;
  */
 class CheckTxProofRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * transaction id.
-	 */
-	#[Json]
-	public string $txid;
+    /**
+     * transaction id.
+     */
+    #[Json]
+    public string $txid;
 
-	/**
-	 * destination public address of the transaction.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * destination public address of the transaction.
+     */
+    #[Json]
+    public string $address;
 
-	/**
-	 * (Optional) Should be the same message used in `get_tx_proof`.
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $message;
+    /**
+     * (Optional) Should be the same message used in `get_tx_proof`.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $message;
 
-	/**
-	 * transaction signature to confirm.
-	 */
-	#[Json]
-	public string $signature;
+    /**
+     * transaction signature to confirm.
+     */
+    #[Json]
+    public string $signature;
 
 
-	public static function create(string $txid, string $address, ?string $message = null, string $signature): RpcRequest
-	{
-		$self = new self();
-		$self->txid = $txid;
-		$self->address = $address;
-		$self->message = $message;
-		$self->signature = $signature;
-		return new RpcRequest('check_tx_proof', $self);
-	}
+    public static function create(string $txid, string $address, ?string $message = null, string $signature): RpcRequest
+    {
+        $self = new self();
+        $self->txid = $txid;
+        $self->address = $address;
+        $self->message = $message;
+        $self->signature = $signature;
+        return new RpcRequest('check_tx_proof', $self);
+    }
 }

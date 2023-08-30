@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class TagAccountsRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Tag for the accounts.
-	 */
-	#[Json]
-	public string $tag;
+    /**
+     * Tag for the accounts.
+     */
+    #[Json]
+    public string $tag;
 
-	/**
-	 * @var int[] Tag this list of accounts.
-	 */
-	#[Json]
-	public array $accounts;
+    /**
+     * @var int[] Tag this list of accounts.
+     */
+    #[Json]
+    public array $accounts;
 
 
-	public static function create(string $tag, array $accounts): RpcRequest
-	{
-		$self = new self();
-		$self->tag = $tag;
-		$self->accounts = $accounts;
-		return new RpcRequest('tag_accounts', $self);
-	}
+    public static function create(string $tag, array $accounts): RpcRequest
+    {
+        $self = new self();
+        $self->tag = $tag;
+        $self->accounts = $accounts;
+        return new RpcRequest('tag_accounts', $self);
+    }
 }

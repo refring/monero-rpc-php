@@ -14,33 +14,33 @@ use Square\Pjson\JsonSerialize;
  */
 class CreateWalletRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Wallet file name.
-	 */
-	#[Json]
-	public string $filename;
+    /**
+     * Wallet file name.
+     */
+    #[Json]
+    public string $filename;
 
-	/**
-	 * (Optional) password to protect the wallet.
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $password;
+    /**
+     * (Optional) password to protect the wallet.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $password;
 
-	/**
-	 * Language for your wallets' seed.
-	 */
-	#[Json]
-	public string $language;
+    /**
+     * Language for your wallets' seed.
+     */
+    #[Json]
+    public string $language;
 
 
-	public static function create(string $filename, ?string $password = null, string $language): RpcRequest
-	{
-		$self = new self();
-		$self->filename = $filename;
-		$self->password = $password;
-		$self->language = $language;
-		return new RpcRequest('create_wallet', $self);
-	}
+    public static function create(string $filename, ?string $password = null, string $language): RpcRequest
+    {
+        $self = new self();
+        $self->filename = $filename;
+        $self->password = $password;
+        $self->language = $language;
+        return new RpcRequest('create_wallet', $self);
+    }
 }

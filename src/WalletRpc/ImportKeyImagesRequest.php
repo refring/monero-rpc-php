@@ -15,24 +15,24 @@ use Square\Pjson\JsonSerialize;
  */
 class ImportKeyImagesRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (optional)
-	 */
-	#[Json(omit_empty: true)]
-	public ?int $offset;
+    /**
+     * (optional)
+     */
+    #[Json(omit_empty: true)]
+    public ?int $offset;
 
-	/** @var KeyImage[] */
-	#[Json('signed_key_images')]
-	public array $signedKeyImages;
+    /** @var KeyImage[] */
+    #[Json('signed_key_images')]
+    public array $signedKeyImages;
 
 
-	public static function create(array $signedKeyImages, ?int $offset = null): RpcRequest
-	{
-		$self = new self();
-		$self->offset = $offset;
-		$self->signedKeyImages = $signedKeyImages;
-		return new RpcRequest('import_key_images', $self);
-	}
+    public static function create(array $signedKeyImages, ?int $offset = null): RpcRequest
+    {
+        $self = new self();
+        $self->offset = $offset;
+        $self->signedKeyImages = $signedKeyImages;
+        return new RpcRequest('import_key_images', $self);
+    }
 }

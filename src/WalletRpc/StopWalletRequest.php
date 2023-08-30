@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class StopWalletRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('stop_wallet');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('stop_wallet');
+    }
 }

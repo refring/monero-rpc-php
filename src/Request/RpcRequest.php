@@ -31,11 +31,11 @@ class RpcRequest
 
         if ($parameters instanceof \Traversable) {
             $this->parameters = $parameters;
-        }
-        elseif ($parameters instanceof ParameterInterface) {
+        } elseif ($parameters instanceof ParameterInterface) {
             // @TODO deserialization is done twice now.. this could be done better
-            if($parameters->toJson() != '[]')
+            if($parameters->toJson() != '[]') {
                 $this->parameters = $parameters;
+            }
         }
     }
 }

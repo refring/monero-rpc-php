@@ -14,33 +14,33 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBlockHeadersRangeRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The starting block's height.
-	 */
-	#[Json('start_height')]
-	public int $startHeight;
+    /**
+     * The starting block's height.
+     */
+    #[Json('start_height')]
+    public int $startHeight;
 
-	/**
-	 * The ending block's height.
-	 */
-	#[Json('end_height')]
-	public int $endHeight;
+    /**
+     * The ending block's height.
+     */
+    #[Json('end_height')]
+    public int $endHeight;
 
-	/**
-	 * (Optional; defaults to `false`) Add PoW hash to block_header response.
-	 */
-	#[Json('fill_pow_hash', omit_empty: true)]
-	public ?bool $fillPowHash;
+    /**
+     * (Optional; defaults to `false`) Add PoW hash to block_header response.
+     */
+    #[Json('fill_pow_hash', omit_empty: true)]
+    public ?bool $fillPowHash;
 
 
-	public static function create(int $startHeight, int $endHeight, ?bool $fillPowHash = null): RpcRequest
-	{
-		$self = new self();
-		$self->startHeight = $startHeight;
-		$self->endHeight = $endHeight;
-		$self->fillPowHash = $fillPowHash;
-		return new RpcRequest('get_block_headers_range', $self);
-	}
+    public static function create(int $startHeight, int $endHeight, ?bool $fillPowHash = null): RpcRequest
+    {
+        $self = new self();
+        $self->startHeight = $startHeight;
+        $self->endHeight = $endHeight;
+        $self->fillPowHash = $fillPowHash;
+        return new RpcRequest('get_block_headers_range', $self);
+    }
 }

@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAddressIndexRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (sub)address to look for.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * (sub)address to look for.
+     */
+    #[Json]
+    public string $address;
 
 
-	public static function create(string $address): RpcRequest
-	{
-		$self = new self();
-		$self->address = $address;
-		return new RpcRequest('get_address_index', $self);
-	}
+    public static function create(string $address): RpcRequest
+    {
+        $self = new self();
+        $self->address = $address;
+        return new RpcRequest('get_address_index', $self);
+    }
 }

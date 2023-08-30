@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAddressIndexResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * JSON object containing the major & minor subaddress index:
-	 */
-	#[Json]
-	public \RefRing\MoneroRpcPhp\Model\SubAddressIndex $index;
+    /**
+     * JSON object containing the major & minor subaddress index:
+     */
+    #[Json]
+    public \RefRing\MoneroRpcPhp\Model\SubAddressIndex $index;
 }

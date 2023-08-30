@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class ChangeWalletPasswordRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (Optional) Current wallet password, if defined.
-	 */
-	#[Json('old_password', omit_empty: true)]
-	public ?string $oldPassword;
+    /**
+     * (Optional) Current wallet password, if defined.
+     */
+    #[Json('old_password', omit_empty: true)]
+    public ?string $oldPassword;
 
-	/**
-	 * (Optional) New wallet password, if not blank.
-	 */
-	#[Json('new_password', omit_empty: true)]
-	public ?string $newPassword;
+    /**
+     * (Optional) New wallet password, if not blank.
+     */
+    #[Json('new_password', omit_empty: true)]
+    public ?string $newPassword;
 
 
-	public static function create(?string $oldPassword = null, ?string $newPassword = null): RpcRequest
-	{
-		$self = new self();
-		$self->oldPassword = $oldPassword;
-		$self->newPassword = $newPassword;
-		return new RpcRequest('change_wallet_password', $self);
-	}
+    public static function create(?string $oldPassword = null, ?string $newPassword = null): RpcRequest
+    {
+        $self = new self();
+        $self->oldPassword = $oldPassword;
+        $self->newPassword = $newPassword;
+        return new RpcRequest('change_wallet_password', $self);
+    }
 }

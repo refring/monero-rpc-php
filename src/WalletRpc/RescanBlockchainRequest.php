@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class RescanBlockchainRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('rescan_blockchain');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('rescan_blockchain');
+    }
 }

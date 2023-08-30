@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class SignMultisigRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Multisig transaction in hex format, as returned by `transfer` under `multisig_txset`.
-	 */
-	#[Json('tx_data_hex')]
-	public string $txDataHex;
+    /**
+     * Multisig transaction in hex format, as returned by `transfer` under `multisig_txset`.
+     */
+    #[Json('tx_data_hex')]
+    public string $txDataHex;
 
 
-	public static function create(string $txDataHex): RpcRequest
-	{
-		$self = new self();
-		$self->txDataHex = $txDataHex;
-		return new RpcRequest('sign_multisig', $self);
-	}
+    public static function create(string $txDataHex): RpcRequest
+    {
+        $self = new self();
+        $self->txDataHex = $txDataHex;
+        return new RpcRequest('sign_multisig', $self);
+    }
 }

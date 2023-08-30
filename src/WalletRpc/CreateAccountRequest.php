@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class CreateAccountRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (Optional) Label for the account.
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $label;
+    /**
+     * (Optional) Label for the account.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $label;
 
 
-	public static function create(?string $label = null): RpcRequest
-	{
-		$self = new self();
-		$self->label = $label;
-		return new RpcRequest('create_account', $self);
-	}
+    public static function create(?string $label = null): RpcRequest
+    {
+        $self = new self();
+        $self->label = $label;
+        return new RpcRequest('create_account', $self);
+    }
 }

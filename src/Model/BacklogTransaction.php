@@ -9,22 +9,22 @@ use Square\Pjson\JsonSerialize;
 
 class BacklogTransaction
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public string $id;
+    #[Json]
+    public string $id;
 
-	#[Json]
-	public int $weight;
+    #[Json]
+    public int $weight;
 
-	#[Json]
-	public int $fee;
+    #[Json]
+    public int $fee;
 
 
-	public function __construct(string $id, int $weight, int $fee)
-	{
-		$this->id = $id;
-		$this->weight = $weight;
-		$this->fee = $fee;
-	}
+    public function __construct(string $id, int $weight, int $fee)
+    {
+        $this->id = $id;
+        $this->weight = $weight;
+        $this->fee = $fee;
+    }
 }

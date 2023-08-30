@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class ImportOutputsRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * wallet outputs in hex format.
-	 */
-	#[Json('outputs_data_hex')]
-	public string $outputsDataHex;
+    /**
+     * wallet outputs in hex format.
+     */
+    #[Json('outputs_data_hex')]
+    public string $outputsDataHex;
 
 
-	public static function create(string $outputsDataHex): RpcRequest
-	{
-		$self = new self();
-		$self->outputsDataHex = $outputsDataHex;
-		return new RpcRequest('import_outputs', $self);
-	}
+    public static function create(string $outputsDataHex): RpcRequest
+    {
+        $self = new self();
+        $self->outputsDataHex = $outputsDataHex;
+        return new RpcRequest('import_outputs', $self);
+    }
 }

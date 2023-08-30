@@ -12,12 +12,12 @@ use Square\Pjson\JsonSerialize;
  */
 class GetLanguagesResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * List of available languages
+    /**
+     * List of available languages
      * @var string[]
-	 */
-	#[Json]
-	public array $languages;
+     */
+    #[Json]
+    public array $languages;
 }

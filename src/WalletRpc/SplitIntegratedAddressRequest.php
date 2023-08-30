@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class SplitIntegratedAddressRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * string
-	 */
-	#[Json('integrated_address')]
-	public string $integratedAddress;
+    /**
+     * string
+     */
+    #[Json('integrated_address')]
+    public string $integratedAddress;
 
 
-	public static function create(string $integratedAddress): RpcRequest
-	{
-		$self = new self();
-		$self->integratedAddress = $integratedAddress;
-		return new RpcRequest('split_integrated_address', $self);
-	}
+    public static function create(string $integratedAddress): RpcRequest
+    {
+        $self = new self();
+        $self->integratedAddress = $integratedAddress;
+        return new RpcRequest('split_integrated_address', $self);
+    }
 }

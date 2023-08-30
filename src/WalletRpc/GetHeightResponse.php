@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetHeightResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The current monero-wallet-rpc's blockchain height. If the wallet has been offline for a long time, it may need to catch up with the daemon.
-	 */
-	#[Json]
-	public int $height;
+    /**
+     * The current monero-wallet-rpc's blockchain height. If the wallet has been offline for a long time, it may need to catch up with the daemon.
+     */
+    #[Json]
+    public int $height;
 }

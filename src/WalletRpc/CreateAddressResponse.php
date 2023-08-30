@@ -12,30 +12,30 @@ use Square\Pjson\JsonSerialize;
  */
 class CreateAddressResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Newly created address. Base58 representation of the public keys.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * Newly created address. Base58 representation of the public keys.
+     */
+    #[Json]
+    public string $address;
 
-	/**
-	 * Index of the new address under the input account.
-	 */
-	#[Json('address_index')]
-	public int $addressIndex;
+    /**
+     * Index of the new address under the input account.
+     */
+    #[Json('address_index')]
+    public int $addressIndex;
 
-	/**
-	 * List of address indices.
-	 */
-	#[Json('address_indices')]
-	public array $addressIndices;
+    /**
+     * List of address indices.
+     */
+    #[Json('address_indices')]
+    public array $addressIndices;
 
-	/**
-	 * list of addresses.
+    /**
+     * list of addresses.
      * @var string[]
-	 */
-	#[Json]
-	public array $addresses;
+     */
+    #[Json]
+    public array $addresses;
 }

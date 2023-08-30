@@ -15,19 +15,19 @@ use Square\Pjson\JsonSerialize;
  */
 class QueryKeyRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Which key to retrieve: "mnemonic" - the mnemonic seed (older wallets do not have one) OR "view_key" - the view key OR "spend_key".
-	 */
-	#[Json('key_type')]
-	public QueryKeyType $keyType;
+    /**
+     * Which key to retrieve: "mnemonic" - the mnemonic seed (older wallets do not have one) OR "view_key" - the view key OR "spend_key".
+     */
+    #[Json('key_type')]
+    public QueryKeyType $keyType;
 
 
-	public static function create(QueryKeyType $keyType): RpcRequest
-	{
-		$self = new self();
-		$self->keyType = $keyType;
-		return new RpcRequest('query_key', $self);
-	}
+    public static function create(QueryKeyType $keyType): RpcRequest
+    {
+        $self = new self();
+        $self->keyType = $keyType;
+        return new RpcRequest('query_key', $self);
+    }
 }

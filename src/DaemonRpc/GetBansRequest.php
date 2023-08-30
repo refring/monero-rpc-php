@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetBansRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_bans');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_bans');
+    }
 }

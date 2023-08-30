@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GetCoinbaseTxSumRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Block height from which getting the amounts
-	 */
-	#[Json]
-	public int $height;
+    /**
+     * Block height from which getting the amounts
+     */
+    #[Json]
+    public int $height;
 
-	/**
-	 * number of blocks to include in the sum
-	 */
-	#[Json]
-	public int $count;
+    /**
+     * number of blocks to include in the sum
+     */
+    #[Json]
+    public int $count;
 
 
-	public static function create(int $height, int $count): RpcRequest
-	{
-		$self = new self();
-		$self->height = $height;
-		$self->count = $count;
-		return new RpcRequest('get_coinbase_tx_sum', $self);
-	}
+    public static function create(int $height, int $count): RpcRequest
+    {
+        $self = new self();
+        $self->height = $height;
+        $self->count = $count;
+        return new RpcRequest('get_coinbase_tx_sum', $self);
+    }
 }

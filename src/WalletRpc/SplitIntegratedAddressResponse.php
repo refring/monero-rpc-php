@@ -12,13 +12,13 @@ use Square\Pjson\JsonSerialize;
  */
 class SplitIntegratedAddressResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * States if the address is a subaddress
-	 */
-	#[Json('is_subaddress')]
-	public bool $isSubaddress;
+    /**
+     * States if the address is a subaddress
+     */
+    #[Json('is_subaddress')]
+    public bool $isSubaddress;
 
     /**
      * string

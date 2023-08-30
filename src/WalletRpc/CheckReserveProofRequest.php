@@ -14,33 +14,33 @@ use Square\Pjson\JsonSerialize;
  */
 class CheckReserveProofRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Public address of the wallet.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * Public address of the wallet.
+     */
+    #[Json]
+    public string $address;
 
-	/**
-	 * If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $message;
+    /**
+     * If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
+     */
+    #[Json(omit_empty: true)]
+    public ?string $message;
 
-	/**
-	 * reserve signature to confirm.
-	 */
-	#[Json]
-	public string $signature;
+    /**
+     * reserve signature to confirm.
+     */
+    #[Json]
+    public string $signature;
 
 
-	public static function create(string $address, ?string $message = null, string $signature): RpcRequest
-	{
-		$self = new self();
-		$self->address = $address;
-		$self->message = $message;
-		$self->signature = $signature;
-		return new RpcRequest('check_reserve_proof', $self);
-	}
+    public static function create(string $address, ?string $message = null, string $signature): RpcRequest
+    {
+        $self = new self();
+        $self->address = $address;
+        $self->message = $message;
+        $self->signature = $signature;
+        return new RpcRequest('check_reserve_proof', $self);
+    }
 }

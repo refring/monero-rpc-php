@@ -303,14 +303,14 @@ class WalletRpcSerializationTest extends TestCase
     }
 
 
-//    public function testSweepSingle()
-//    {
-//        $expected = '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_key":true}}';
-//        $request = SweepSingleRequest::create($address, $priority, $outputs, $ringSize, $unlockTime, $paymentId, $getTxKey, $keyImage, $doNotRelay, $getTxHex, $getTxMetadata);
-//        $this->assertSame($expected, $request->toJson());
-//    }
-//
-//
+    //    public function testSweepSingle()
+    //    {
+    //        $expected = '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_key":true}}';
+    //        $request = SweepSingleRequest::create($address, $priority, $outputs, $ringSize, $unlockTime, $paymentId, $getTxKey, $keyImage, $doNotRelay, $getTxHex, $getTxMetadata);
+    //        $this->assertSame($expected, $request->toJson());
+    //    }
+    //
+    //
     public function testRelayTx()
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"hex":"...tx_metadata..."}}';

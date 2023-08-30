@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class CheckSpendProofResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * States if the inputs proves the spend.
-	 */
-	#[Json]
-	public bool $good;
+    /**
+     * States if the inputs proves the spend.
+     */
+    #[Json]
+    public bool $good;
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
@@ -12,5 +11,5 @@ use Square\Pjson\JsonSerialize;
  */
 class SetDaemonResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 }

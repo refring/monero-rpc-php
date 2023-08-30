@@ -12,7 +12,7 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBlockHeaderByHashResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
     /**
      * A structure containing block header information.
@@ -26,11 +26,11 @@ class GetBlockHeaderByHashResponse
     #[Json]
     public int $credits;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 
     /**
      * If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.

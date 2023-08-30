@@ -40,11 +40,11 @@ abstract class JsonRpcClient
     protected function handleRequest(RpcRequest $rpcRequest, string $className): mixed
     {
         $requestBody = $rpcRequest->toJson();
-//        echo $requestBody;
+        //        echo $requestBody;
         $request = $this->createRequest($requestBody);
         $response = $this->httpClient->sendRequest($request);
         $body = $response->getBody()->__toString();
-//        var_dump($body);
+        //        var_dump($body);
 
         if ($e = $this->getExceptionForInvalidResponse($body)) {
             throw $e;

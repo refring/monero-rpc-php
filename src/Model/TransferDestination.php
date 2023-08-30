@@ -9,7 +9,7 @@ use Square\Pjson\JsonSerialize;
 
 class TransferDestination
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
     /**
      * Amount to send to each destination, in @atomic-units.
@@ -17,15 +17,15 @@ class TransferDestination
     #[Json]
     public int $amount;
 
-	/**
-	 * The public address of the recipient.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * The public address of the recipient.
+     */
+    #[Json]
+    public string $address;
 
-	public function __construct(string $address, int $amount)
-	{
-		$this->address = $address;
-		$this->amount = $amount;
-	}
+    public function __construct(string $address, int $amount)
+    {
+        $this->address = $address;
+        $this->amount = $amount;
+    }
 }

@@ -12,8 +12,8 @@ use Square\Pjson\JsonSerialize;
  */
 class VerifyResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public bool $good;
+    #[Json]
+    public bool $good;
 }

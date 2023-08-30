@@ -12,23 +12,23 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBlockCountResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Number of blocks in longest chain seen by the node.
-	 */
-	#[Json]
-	public int $count;
+    /**
+     * Number of blocks in longest chain seen by the node.
+     */
+    #[Json]
+    public int $count;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 
-	/**
-	 * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-	 */
-	#[Json]
-	public bool $untrusted;
+    /**
+     * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
+     */
+    #[Json]
+    public bool $untrusted;
 }

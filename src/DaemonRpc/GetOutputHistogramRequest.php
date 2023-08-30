@@ -14,53 +14,52 @@ use Square\Pjson\JsonSerialize;
  */
 class GetOutputHistogramRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var int[] list of unsigned int
-	 */
-	#[Json]
-	public array $amounts;
+    /**
+     * @var int[] list of unsigned int
+     */
+    #[Json]
+    public array $amounts;
 
-	/**
-	 * (Optional)
-	 */
-	#[Json('min_count', omit_empty: true)]
-	public ?int $minCount;
+    /**
+     * (Optional)
+     */
+    #[Json('min_count', omit_empty: true)]
+    public ?int $minCount;
 
-	/**
-	 * (Optional)
-	 */
-	#[Json('max_count', omit_empty: true)]
-	public ?int $maxCount;
+    /**
+     * (Optional)
+     */
+    #[Json('max_count', omit_empty: true)]
+    public ?int $maxCount;
 
-	/**
-	 * (Optional)
-	 */
-	#[Json(omit_empty: true)]
-	public ?bool $unlocked;
+    /**
+     * (Optional)
+     */
+    #[Json(omit_empty: true)]
+    public ?bool $unlocked;
 
-	/**
-	 * (Optional)
-	 */
-	#[Json('recent_cutoff', omit_empty: true)]
-	public ?int $recentCutoff;
+    /**
+     * (Optional)
+     */
+    #[Json('recent_cutoff', omit_empty: true)]
+    public ?int $recentCutoff;
 
 
-	public static function create(
-		array $amounts,
-		?int $minCount = null,
-		?int $maxCount = null,
-		?bool $unlocked = null,
-		?int $recentCutoff = null,
-	): RpcRequest
-	{
-		$self = new self();
-		$self->amounts = $amounts;
-		$self->minCount = $minCount;
-		$self->maxCount = $maxCount;
-		$self->unlocked = $unlocked;
-		$self->recentCutoff = $recentCutoff;
-		return new RpcRequest('get_output_histogram', $self);
-	}
+    public static function create(
+        array $amounts,
+        ?int $minCount = null,
+        ?int $maxCount = null,
+        ?bool $unlocked = null,
+        ?int $recentCutoff = null,
+    ): RpcRequest {
+        $self = new self();
+        $self->amounts = $amounts;
+        $self->minCount = $minCount;
+        $self->maxCount = $maxCount;
+        $self->unlocked = $unlocked;
+        $self->recentCutoff = $recentCutoff;
+        return new RpcRequest('get_output_histogram', $self);
+    }
 }

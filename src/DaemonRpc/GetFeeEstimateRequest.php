@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class GetFeeEstimateRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Optional
-	 */
-	#[Json('grace_blocks', omit_empty: true)]
-	public ?int $graceBlocks;
+    /**
+     * Optional
+     */
+    #[Json('grace_blocks', omit_empty: true)]
+    public ?int $graceBlocks;
 
 
-	public static function create(?int $graceBlocks = null): RpcRequest
-	{
-		$self = new self();
-		$self->graceBlocks = $graceBlocks;
-		return new RpcRequest('get_fee_estimate', $self);
-	}
+    public static function create(?int $graceBlocks = null): RpcRequest
+    {
+        $self = new self();
+        $self->graceBlocks = $graceBlocks;
+        return new RpcRequest('get_fee_estimate', $self);
+    }
 }

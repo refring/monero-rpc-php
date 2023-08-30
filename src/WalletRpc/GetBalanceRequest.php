@@ -22,11 +22,11 @@ class GetBalanceRequest implements ParameterInterface
     #[Json('account_index')]
     public int $accountIndex;
 
-	/**
-	 * @var int[] (Optional) Return balance detail for those subaddresses.
-	 */
-	#[Json('address_indices', omit_empty: true)]
-	public ?array $addressIndices;
+    /**
+     * @var int[] (Optional) Return balance detail for those subaddresses.
+     */
+    #[Json('address_indices', omit_empty: true)]
+    public ?array $addressIndices;
 
     /**
      * (Defaults to false)
@@ -46,8 +46,7 @@ class GetBalanceRequest implements ParameterInterface
         ?array $addressIndices = null,
         ?bool $allAccounts = null,
         ?bool $strict = null,
-    ): RpcRequest
-    {
+    ): RpcRequest {
         $self = new self();
         $self->accountIndex = $accountIndex;
         $self->addressIndices = $addressIndices;

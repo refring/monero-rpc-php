@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBlockHeaderByHeightRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The block's height.
-	 */
-	#[Json]
-	public int $height;
+    /**
+     * The block's height.
+     */
+    #[Json]
+    public int $height;
 
-	/**
-	 * (Optional; defaults to `false`) Add PoW hash to block_header response.
-	 */
-	#[Json('fill_pow_hash', omit_empty: true)]
-	public ?bool $fillPowHash;
+    /**
+     * (Optional; defaults to `false`) Add PoW hash to block_header response.
+     */
+    #[Json('fill_pow_hash', omit_empty: true)]
+    public ?bool $fillPowHash;
 
 
-	public static function create(int $height, ?bool $fillPowHash = null): RpcRequest
-	{
-		$self = new self();
-		$self->height = $height;
-		$self->fillPowHash = $fillPowHash;
-		return new RpcRequest('get_block_header_by_height', $self);
-	}
+    public static function create(int $height, ?bool $fillPowHash = null): RpcRequest
+    {
+        $self = new self();
+        $self->height = $height;
+        $self->fillPowHash = $fillPowHash;
+        return new RpcRequest('get_block_header_by_height', $self);
+    }
 }

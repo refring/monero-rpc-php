@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAttributeResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * attribute value
-	 */
-	#[Json]
-	public string $value;
+    /**
+     * attribute value
+     */
+    #[Json]
+    public string $value;
 }

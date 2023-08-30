@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetConnectionsRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_connections');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_connections');
+    }
 }

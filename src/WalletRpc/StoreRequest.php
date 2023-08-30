@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class StoreRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('store');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('store');
+    }
 }

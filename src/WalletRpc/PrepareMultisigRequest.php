@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class PrepareMultisigRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('prepare_multisig');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('prepare_multisig');
+    }
 }

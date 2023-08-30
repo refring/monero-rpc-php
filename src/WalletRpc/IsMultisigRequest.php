@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class IsMultisigRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('is_multisig');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('is_multisig');
+    }
 }

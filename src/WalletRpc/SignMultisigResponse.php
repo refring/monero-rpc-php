@@ -12,18 +12,18 @@ use Square\Pjson\JsonSerialize;
  */
 class SignMultisigResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Multisig transaction in hex format.
-	 */
-	#[Json('tx_data_hex')]
-	public string $txDataHex;
+    /**
+     * Multisig transaction in hex format.
+     */
+    #[Json('tx_data_hex')]
+    public string $txDataHex;
 
-	/**
-	 * List of transaction Hash.
+    /**
+     * List of transaction Hash.
      * @var string[]
-	 */
-	#[Json('tx_hash_list')]
-	public array $txHashList;
+     */
+    #[Json('tx_hash_list')]
+    public array $txHashList;
 }

@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBlockTemplateRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Address of wallet to receive coinbase transactions if block is successfully mined.
-	 */
-	#[Json('wallet_address')]
-	public string $walletAddress;
+    /**
+     * Address of wallet to receive coinbase transactions if block is successfully mined.
+     */
+    #[Json('wallet_address')]
+    public string $walletAddress;
 
-	/**
-	 * Reserve size.
-	 */
-	#[Json('reserve_size')]
-	public int $reserveSize;
+    /**
+     * Reserve size.
+     */
+    #[Json('reserve_size')]
+    public int $reserveSize;
 
 
-	public static function create(string $walletAddress, int $reserveSize): RpcRequest
-	{
-		$self = new self();
-		$self->walletAddress = $walletAddress;
-		$self->reserveSize = $reserveSize;
-		return new RpcRequest('get_block_template', $self);
-	}
+    public static function create(string $walletAddress, int $reserveSize): RpcRequest
+    {
+        $self = new self();
+        $self->walletAddress = $walletAddress;
+        $self->reserveSize = $reserveSize;
+        return new RpcRequest('get_block_template', $self);
+    }
 }

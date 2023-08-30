@@ -9,38 +9,38 @@ use Square\Pjson\JsonSerialize;
 
 class Node
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Host to ban (IP in A.B.C.D form - will support I2P address in the future).
-	 */
-	#[Json]
-	public string $host;
+    /**
+     * Host to ban (IP in A.B.C.D form - will support I2P address in the future).
+     */
+    #[Json]
+    public string $host;
 
-	/**
-	 * IP address to ban, in Int format.
-	 */
-	#[Json]
-	public int $ip;
+    /**
+     * IP address to ban, in Int format.
+     */
+    #[Json]
+    public int $ip;
 
-	/**
-	 * Set `true` to ban.
-	 */
-	#[Json]
-	public bool $ban;
+    /**
+     * Set `true` to ban.
+     */
+    #[Json]
+    public bool $ban;
 
-	/**
-	 * Number of seconds to ban node.
-	 */
-	#[Json]
-	public int $seconds;
+    /**
+     * Number of seconds to ban node.
+     */
+    #[Json]
+    public int $seconds;
 
 
-	public function __construct(string $host, int $ip, bool $ban, int $seconds)
-	{
-		$this->host = $host;
-		$this->ip = $ip;
-		$this->ban = $ban;
-		$this->seconds = $seconds;
-	}
+    public function __construct(string $host, int $ip, bool $ban, int $seconds)
+    {
+        $this->host = $host;
+        $this->ip = $ip;
+        $this->ban = $ban;
+        $this->seconds = $seconds;
+    }
 }

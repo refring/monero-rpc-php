@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class RefreshRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * (Optional) The block height from which to start refreshing. Passing no value or a value less than the last block scanned by the wallet refreshes from the last block scanned.
-	 */
-	#[Json('start_height', omit_empty: true)]
-	public ?int $startHeight;
+    /**
+     * (Optional) The block height from which to start refreshing. Passing no value or a value less than the last block scanned by the wallet refreshes from the last block scanned.
+     */
+    #[Json('start_height', omit_empty: true)]
+    public ?int $startHeight;
 
 
-	public static function create(?int $startHeight = null): RpcRequest
-	{
-		$self = new self();
-		$self->startHeight = $startHeight;
-		return new RpcRequest('refresh', $self);
-	}
+    public static function create(?int $startHeight = null): RpcRequest
+    {
+        $self = new self();
+        $self->startHeight = $startHeight;
+        return new RpcRequest('refresh', $self);
+    }
 }

@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class MakeUriResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * This contains all the payment input information as a properly formatted payment URI
-	 */
-	#[Json]
-	public string $uri;
+    /**
+     * This contains all the payment input information as a properly formatted payment URI
+     */
+    #[Json]
+    public string $uri;
 }

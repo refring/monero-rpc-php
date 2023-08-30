@@ -12,17 +12,17 @@ use Square\Pjson\JsonSerialize;
  */
 class CreateAccountResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Index of the new account.
-	 */
-	#[Json('account_index')]
-	public int $accountIndex;
+    /**
+     * Index of the new account.
+     */
+    #[Json('account_index')]
+    public int $accountIndex;
 
-	/**
-	 * Address for this account. Base58 representation of the public keys.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * Address for this account. Base58 representation of the public keys.
+     */
+    #[Json]
+    public string $address;
 }

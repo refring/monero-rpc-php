@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class RelayTxRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * transaction metadata returned from a `transfer` method with `get_tx_metadata` set to `true`.
-	 */
-	#[Json]
-	public string $hex;
+    /**
+     * transaction metadata returned from a `transfer` method with `get_tx_metadata` set to `true`.
+     */
+    #[Json]
+    public string $hex;
 
 
-	public static function create(string $hex): RpcRequest
-	{
-		$self = new self();
-		$self->hex = $hex;
-		return new RpcRequest('relay_tx', $self);
-	}
+    public static function create(string $hex): RpcRequest
+    {
+        $self = new self();
+        $self->hex = $hex;
+        return new RpcRequest('relay_tx', $self);
+    }
 }

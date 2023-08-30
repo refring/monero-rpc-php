@@ -39,16 +39,16 @@ class SweepAllResponse
     public array $spentKeyImagesList;
 
     /**
-	 * @var string[] The tx hashes of every transaction.
-	 */
-	#[Json('tx_hash_list')]
-	public array $txHashList;
+     * @var string[] The tx hashes of every transaction.
+     */
+    #[Json('tx_hash_list')]
+    public array $txHashList;
 
     /**
-	 * @var string[] The transaction keys for every transaction.
-	 */
-	#[Json('tx_key_list')]
-	public array $txKeyList;
+     * @var string[] The transaction keys for every transaction.
+     */
+    #[Json('tx_key_list')]
+    public array $txKeyList;
 
     /**
      * Set of unsigned tx for cold-signing purposes.
@@ -57,20 +57,20 @@ class SweepAllResponse
     public string $unsignedTxset;
 
     /**
-	 * @var int[] Metric used for adjusting fee.
-	 */
-	#[Json('weight_list')]
-	public array $weightList;
+     * @var int[] Metric used for adjusting fee.
+     */
+    #[Json('weight_list')]
+    public array $weightList;
 
     /**
-	 * @var string[] The tx as hex string for every transaction.
-	 */
-	#[Json('tx_blob_list')]
-	public array $txBlobList;
+     * @var string[] The tx as hex string for every transaction.
+     */
+    #[Json('tx_blob_list')]
+    public array $txBlobList;
 
     /**
-	 * @var string[] List of transaction metadata needed to relay the transactions later.
-	 */
-	#[Json('tx_metadata_list')]
-	public array $txMetadataList;
+     * @var string[] List of transaction metadata needed to relay the transactions later.
+     */
+    #[Json('tx_metadata_list')]
+    public array $txMetadataList;
 }

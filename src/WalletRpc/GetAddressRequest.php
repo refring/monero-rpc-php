@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAddressRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Return subaddresses for this account.
-	 */
-	#[Json('account_index')]
-	public int $accountIndex;
+    /**
+     * Return subaddresses for this account.
+     */
+    #[Json('account_index')]
+    public int $accountIndex;
 
-	/**
-	 * @var int[] (Optional) List of subaddresses to return from an account.
-	 */
-	#[Json('address_index', omit_empty: true)]
-	public ?array $addressIndex;
+    /**
+     * @var int[] (Optional) List of subaddresses to return from an account.
+     */
+    #[Json('address_index', omit_empty: true)]
+    public ?array $addressIndex;
 
 
-	public static function create(int $accountIndex, ?array $addressIndex = null): RpcRequest
-	{
-		$self = new self();
-		$self->accountIndex = $accountIndex;
-		$self->addressIndex = $addressIndex;
-		return new RpcRequest('get_address', $self);
-	}
+    public static function create(int $accountIndex, ?array $addressIndex = null): RpcRequest
+    {
+        $self = new self();
+        $self->accountIndex = $accountIndex;
+        $self->addressIndex = $addressIndex;
+        return new RpcRequest('get_address', $self);
+    }
 }

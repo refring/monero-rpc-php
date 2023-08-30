@@ -9,18 +9,18 @@ use Square\Pjson\JsonSerialize;
 
 class KeyImage
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json('key_image')]
-	public string $keyImage;
+    #[Json('key_image')]
+    public string $keyImage;
 
-	#[Json]
-	public string $signature;
+    #[Json]
+    public string $signature;
 
 
-	public function __construct(string $keyImage, string $signature)
-	{
-		$this->keyImage = $keyImage;
-		$this->signature = $signature;
-	}
+    public function __construct(string $keyImage, string $signature)
+    {
+        $this->keyImage = $keyImage;
+        $this->signature = $signature;
+    }
 }

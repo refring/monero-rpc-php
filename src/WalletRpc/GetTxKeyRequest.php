@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class GetTxKeyRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * transaction id.
-	 */
-	#[Json]
-	public string $txid;
+    /**
+     * transaction id.
+     */
+    #[Json]
+    public string $txid;
 
 
-	public static function create(string $txid): RpcRequest
-	{
-		$self = new self();
-		$self->txid = $txid;
-		return new RpcRequest('get_tx_key', $self);
-	}
+    public static function create(string $txid): RpcRequest
+    {
+        $self = new self();
+        $self->txid = $txid;
+        return new RpcRequest('get_tx_key', $self);
+    }
 }

@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class FlushTxpoolRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var string[] Optional, list of transactions IDs to flush from pool (all tx ids flushed if empty).
-	 */
-	#[Json(omit_empty: true)]
-	public ?array $txids;
+    /**
+     * @var string[] Optional, list of transactions IDs to flush from pool (all tx ids flushed if empty).
+     */
+    #[Json(omit_empty: true)]
+    public ?array $txids;
 
 
-	public static function create(?array $txids = null): RpcRequest
-	{
-		$self = new self();
-		$self->txids = $txids;
-		return new RpcRequest('flush_txpool', $self);
-	}
+    public static function create(?array $txids = null): RpcRequest
+    {
+        $self = new self();
+        $self->txids = $txids;
+        return new RpcRequest('flush_txpool', $self);
+    }
 }

@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetInfoRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_info');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_info');
+    }
 }

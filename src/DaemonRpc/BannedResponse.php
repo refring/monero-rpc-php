@@ -12,7 +12,7 @@ use Square\Pjson\JsonSerialize;
  */
 class BannedResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
     #[Json]
     public bool $banned;
@@ -21,8 +21,8 @@ class BannedResponse
     public int $seconds;
 
     /**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 }

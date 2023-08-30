@@ -15,26 +15,26 @@ use Square\Pjson\JsonSerialize;
  */
 class LabelAddressRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * JSON Object containing the major & minor address index:
-	 */
-	#[Json]
-	public SubAddressIndex $index;
+    /**
+     * JSON Object containing the major & minor address index:
+     */
+    #[Json]
+    public SubAddressIndex $index;
 
-	/**
-	 * Label for the address.
-	 */
-	#[Json]
-	public string $label;
+    /**
+     * Label for the address.
+     */
+    #[Json]
+    public string $label;
 
 
-	public static function create(SubAddressIndex $index, string $label): RpcRequest
-	{
-		$self = new self();
-		$self->index = $index;
-		$self->label = $label;
-		return new RpcRequest('label_address', $self);
-	}
+    public static function create(SubAddressIndex $index, string $label): RpcRequest
+    {
+        $self = new self();
+        $self->index = $index;
+        $self->label = $label;
+        return new RpcRequest('label_address', $self);
+    }
 }

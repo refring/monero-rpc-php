@@ -9,18 +9,18 @@ use Square\Pjson\JsonSerialize;
 
 class AuxPow
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public string $id;
+    #[Json]
+    public string $id;
 
-	#[Json]
-	public string $hash;
+    #[Json]
+    public string $hash;
 
 
-	public function __construct(string $id, string $hash)
-	{
-		$this->id = $id;
-		$this->hash = $hash;
-	}
+    public function __construct(string $id, string $hash)
+    {
+        $this->id = $id;
+        $this->hash = $hash;
+    }
 }

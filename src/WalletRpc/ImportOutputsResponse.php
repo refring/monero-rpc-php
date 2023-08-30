@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class ImportOutputsResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * number of outputs imported.
-	 */
-	#[Json('num_imported')]
-	public int $numImported;
+    /**
+     * number of outputs imported.
+     */
+    #[Json('num_imported')]
+    public int $numImported;
 }

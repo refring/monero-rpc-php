@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class QueryKeyResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The view key will be hex encoded, while the mnemonic will be a string of words.
-	 */
-	#[Json]
-	public string $key;
+    /**
+     * The view key will be hex encoded, while the mnemonic will be a string of words.
+     */
+    #[Json]
+    public string $key;
 }

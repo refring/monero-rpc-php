@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class ExchangeMultisigKeysResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public string $address;
+    #[Json]
+    public string $address;
 
-	#[Json('multisig_info')]
-	public string $multisigInfo;
+    #[Json('multisig_info')]
+    public string $multisigInfo;
 }

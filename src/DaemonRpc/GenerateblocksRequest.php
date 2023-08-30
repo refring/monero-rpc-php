@@ -14,45 +14,44 @@ use Square\Pjson\JsonSerialize;
  */
 class GenerateblocksRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * number of blocks to be generated.
-	 */
-	#[Json('amount_of_blocks')]
-	public int $amountOfBlocks;
+    /**
+     * number of blocks to be generated.
+     */
+    #[Json('amount_of_blocks')]
+    public int $amountOfBlocks;
 
-	/**
-	 * address to receive the coinbase reward.
-	 */
-	#[Json('wallet_address')]
-	public string $walletAddress;
+    /**
+     * address to receive the coinbase reward.
+     */
+    #[Json('wallet_address')]
+    public string $walletAddress;
 
-	/**
-	 * (Optional)
-	 */
-	#[Json('prev_block', omit_empty: true)]
-	public ?string $prevBlock;
+    /**
+     * (Optional)
+     */
+    #[Json('prev_block', omit_empty: true)]
+    public ?string $prevBlock;
 
-	/**
-	 * (Optional) Increased by miner untill it finds a matching result that solves a block.
-	 */
-	#[Json('starting_nonce', omit_empty: true)]
-	public ?int $startingNonce;
+    /**
+     * (Optional) Increased by miner untill it finds a matching result that solves a block.
+     */
+    #[Json('starting_nonce', omit_empty: true)]
+    public ?int $startingNonce;
 
 
-	public static function create(
-		int $amountOfBlocks,
-		string $walletAddress,
-		?string $prevBlock = null,
-		?int $startingNonce = null,
-	): RpcRequest
-	{
-		$self = new self();
-		$self->amountOfBlocks = $amountOfBlocks;
-		$self->walletAddress = $walletAddress;
-		$self->prevBlock = $prevBlock;
-		$self->startingNonce = $startingNonce;
-		return new RpcRequest('generateblocks', $self);
-	}
+    public static function create(
+        int $amountOfBlocks,
+        string $walletAddress,
+        ?string $prevBlock = null,
+        ?int $startingNonce = null,
+    ): RpcRequest {
+        $self = new self();
+        $self->amountOfBlocks = $amountOfBlocks;
+        $self->walletAddress = $walletAddress;
+        $self->prevBlock = $prevBlock;
+        $self->startingNonce = $startingNonce;
+        return new RpcRequest('generateblocks', $self);
+    }
 }

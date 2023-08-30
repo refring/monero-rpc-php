@@ -12,8 +12,8 @@ use Square\Pjson\JsonSerialize;
  */
 class FrozenResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public bool $frozen;
+    #[Json]
+    public bool $frozen;
 }

@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class SubmitTransferRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Set of signed tx returned by "sign_transfer"
-	 */
-	#[Json('tx_data_hex')]
-	public string $txDataHex;
+    /**
+     * Set of signed tx returned by "sign_transfer"
+     */
+    #[Json('tx_data_hex')]
+    public string $txDataHex;
 
 
-	public static function create(string $txDataHex): RpcRequest
-	{
-		$self = new self();
-		$self->txDataHex = $txDataHex;
-		return new RpcRequest('submit_transfer', $self);
-	}
+    public static function create(string $txDataHex): RpcRequest
+    {
+        $self = new self();
+        $self->txDataHex = $txDataHex;
+        return new RpcRequest('submit_transfer', $self);
+    }
 }

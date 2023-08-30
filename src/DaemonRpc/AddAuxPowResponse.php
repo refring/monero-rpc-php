@@ -13,21 +13,21 @@ use Square\Pjson\JsonSerialize;
  */
 class AddAuxPowResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json('blocktemplate_blob')]
-	public string $blocktemplateBlob;
+    #[Json('blocktemplate_blob')]
+    public string $blocktemplateBlob;
 
-	#[Json('blockhashing_blob')]
-	public string $blockhashingBlob;
+    #[Json('blockhashing_blob')]
+    public string $blockhashingBlob;
 
-	#[Json('merkle_root')]
-	public string $merkleRoot;
+    #[Json('merkle_root')]
+    public string $merkleRoot;
 
-	#[Json('merkle_tree_depth')]
-	public int $merkleTreeDepth;
+    #[Json('merkle_tree_depth')]
+    public int $merkleTreeDepth;
 
-	/** @var AuxPow[] */
-	#[Json('aux_pow')]
-	public array $auxPow;
+    /** @var AuxPow[] */
+    #[Json('aux_pow')]
+    public array $auxPow;
 }

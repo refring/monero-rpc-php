@@ -67,8 +67,7 @@ class EditAddressBookRequest implements ParameterInterface
         ?string $description = null,
         bool $setPaymentId = false,
         ?string $paymentId = null,
-    ): RpcRequest
-    {
+    ): RpcRequest {
         $self = new self();
         $self->index = $index;
         $self->setAddress = $setAddress;

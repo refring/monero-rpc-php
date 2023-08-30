@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class ExportMultisigInfoResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Multisig info in hex format for other participants.
-	 */
-	#[Json]
-	public string $info;
+    /**
+     * Multisig info in hex format for other participants.
+     */
+    #[Json]
+    public string $info;
 }

@@ -14,33 +14,33 @@ use Square\Pjson\JsonSerialize;
  */
 class CheckSpendProofRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * transaction id.
-	 */
-	#[Json]
-	public string $txid;
+    /**
+     * transaction id.
+     */
+    #[Json]
+    public string $txid;
 
-	/**
-	 * (Optional) Should be the same message used in `get_spend_proof`.
-	 */
-	#[Json(omit_empty: true)]
-	public ?string $message;
+    /**
+     * (Optional) Should be the same message used in `get_spend_proof`.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $message;
 
-	/**
-	 * spend signature to confirm.
-	 */
-	#[Json]
-	public string $signature;
+    /**
+     * spend signature to confirm.
+     */
+    #[Json]
+    public string $signature;
 
 
-	public static function create(string $txid, ?string $message = null, string $signature): RpcRequest
-	{
-		$self = new self();
-		$self->txid = $txid;
-		$self->message = $message;
-		$self->signature = $signature;
-		return new RpcRequest('check_spend_proof', $self);
-	}
+    public static function create(string $txid, ?string $message = null, string $signature): RpcRequest
+    {
+        $self = new self();
+        $self->txid = $txid;
+        $self->message = $message;
+        $self->signature = $signature;
+        return new RpcRequest('check_spend_proof', $self);
+    }
 }

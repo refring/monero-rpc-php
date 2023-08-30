@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class StopMiningRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('stop_mining');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('stop_mining');
+    }
 }

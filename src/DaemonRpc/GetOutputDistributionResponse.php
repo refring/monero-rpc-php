@@ -13,15 +13,15 @@ use Square\Pjson\JsonSerialize;
  */
 class GetOutputDistributionResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/** @var Distribution[] */
-	#[Json]
-	public array $distributions;
+    /** @var Distribution[] */
+    #[Json]
+    public array $distributions;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 }

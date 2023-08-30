@@ -13,15 +13,15 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAddressResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The 95-character hex address string of the monero-wallet-rpc in session.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * The 95-character hex address string of the monero-wallet-rpc in session.
+     */
+    #[Json]
+    public string $address;
 
-	/** @var AddressInformation[] */
-	#[Json]
-	public array $addresses;
+    /** @var AddressInformation[] */
+    #[Json]
+    public array $addresses;
 }

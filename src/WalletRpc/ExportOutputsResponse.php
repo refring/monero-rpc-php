@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class ExportOutputsResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * wallet outputs in hex format.
-	 */
-	#[Json('outputs_data_hex')]
-	public string $outputsDataHex;
+    /**
+     * wallet outputs in hex format.
+     */
+    #[Json('outputs_data_hex')]
+    public string $outputsDataHex;
 }

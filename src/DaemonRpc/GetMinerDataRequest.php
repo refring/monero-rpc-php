@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetMinerDataRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_miner_data');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_miner_data');
+    }
 }

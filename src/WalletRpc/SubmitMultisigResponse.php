@@ -12,12 +12,12 @@ use Square\Pjson\JsonSerialize;
  */
 class SubmitMultisigResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * List of transaction Hash.
+    /**
+     * List of transaction Hash.
      * @var string[]
-	 */
-	#[Json('tx_hash_list')]
-	public array $txHashList;
+     */
+    #[Json('tx_hash_list')]
+    public array $txHashList;
 }

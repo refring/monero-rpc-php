@@ -13,12 +13,12 @@ use Square\Pjson\JsonSerialize;
  */
 class ExportKeyImagesResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public int $offset;
+    #[Json]
+    public int $offset;
 
-	/** @var KeyImage[] */
-	#[Json('signed_key_images')]
-	public array $signedKeyImages;
+    /** @var KeyImage[] */
+    #[Json('signed_key_images')]
+    public array $signedKeyImages;
 }

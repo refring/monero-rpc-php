@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetTxpoolBacklogRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_txpool_backlog');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_txpool_backlog');
+    }
 }

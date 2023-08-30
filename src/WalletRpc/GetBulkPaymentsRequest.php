@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBulkPaymentsRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * @var string[] Payment IDs used to find the payments (16 characters hex).
-	 */
-	#[Json('payment_ids')]
-	public array $paymentIds;
+    /**
+     * @var string[] Payment IDs used to find the payments (16 characters hex).
+     */
+    #[Json('payment_ids')]
+    public array $paymentIds;
 
-	/**
-	 * The block height at which to start looking for payments.
-	 */
-	#[Json('min_block_height')]
-	public int $minBlockHeight;
+    /**
+     * The block height at which to start looking for payments.
+     */
+    #[Json('min_block_height')]
+    public int $minBlockHeight;
 
 
-	public static function create(array $paymentIds, int $minBlockHeight): RpcRequest
-	{
-		$self = new self();
-		$self->paymentIds = $paymentIds;
-		$self->minBlockHeight = $minBlockHeight;
-		return new RpcRequest('get_bulk_payments', $self);
-	}
+    public static function create(array $paymentIds, int $minBlockHeight): RpcRequest
+    {
+        $self = new self();
+        $self->paymentIds = $paymentIds;
+        $self->minBlockHeight = $minBlockHeight;
+        return new RpcRequest('get_bulk_payments', $self);
+    }
 }

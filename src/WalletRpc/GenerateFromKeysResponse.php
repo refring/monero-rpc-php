@@ -12,17 +12,17 @@ use Square\Pjson\JsonSerialize;
  */
 class GenerateFromKeysResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The wallet's address.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * The wallet's address.
+     */
+    #[Json]
+    public string $address;
 
-	/**
-	 * Verification message indicating that the wallet was generated successfully and whether or not it is a view-only wallet.
-	 */
-	#[Json]
-	public string $info;
+    /**
+     * Verification message indicating that the wallet was generated successfully and whether or not it is a view-only wallet.
+     */
+    #[Json]
+    public string $info;
 }

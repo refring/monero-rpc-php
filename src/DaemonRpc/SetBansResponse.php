@@ -12,13 +12,13 @@ use Square\Pjson\JsonSerialize;
  */
 class SetBansResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * General RPC error code. "OK" means everything looks good.
-	 */
-	#[Json]
-	public string $status;
+    /**
+     * General RPC error code. "OK" means everything looks good.
+     */
+    #[Json]
+    public string $status;
 
     #[Json]
     public bool $untrusted;

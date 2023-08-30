@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class ParseUriResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * JSON object containing payment information:
-	 */
-	#[Json]
-	public \RefRing\MoneroRpcPhp\Model\PaymentUri $uri;
+    /**
+     * JSON object containing payment information:
+     */
+    #[Json]
+    public \RefRing\MoneroRpcPhp\Model\PaymentUri $uri;
 }

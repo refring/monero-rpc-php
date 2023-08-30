@@ -11,5 +11,5 @@ use RefRing\MoneroRpcPhp\Trait\StringResultTrait;
  */
 class CalcPowResponse
 {
-	use StringResultTrait;
+    use StringResultTrait;
 }

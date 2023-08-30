@@ -14,16 +14,16 @@ use Square\Pjson\JsonSerialize;
  */
 class FreezeRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json('key_image')]
-	public string $keyImage;
+    #[Json('key_image')]
+    public string $keyImage;
 
 
-	public static function create(string $keyImage): RpcRequest
-	{
-		$self = new self();
-		$self->keyImage = $keyImage;
-		return new RpcRequest('freeze', $self);
-	}
+    public static function create(string $keyImage): RpcRequest
+    {
+        $self = new self();
+        $self->keyImage = $keyImage;
+        return new RpcRequest('freeze', $self);
+    }
 }

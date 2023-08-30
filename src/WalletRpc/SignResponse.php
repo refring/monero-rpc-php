@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class SignResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Signature generated against the "data" and the account public address.
-	 */
-	#[Json]
-	public string $signature;
+    /**
+     * Signature generated against the "data" and the account public address.
+     */
+    #[Json]
+    public string $signature;
 }

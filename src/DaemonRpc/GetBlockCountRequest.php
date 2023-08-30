@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetBlockCountRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_block_count');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_block_count');
+    }
 }

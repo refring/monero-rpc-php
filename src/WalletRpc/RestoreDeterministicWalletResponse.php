@@ -12,29 +12,29 @@ use Square\Pjson\JsonSerialize;
  */
 class RestoreDeterministicWalletResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * 95-character hexadecimal address of the restored wallet as a string.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * 95-character hexadecimal address of the restored wallet as a string.
+     */
+    #[Json]
+    public string $address;
 
-	/**
-	 * Message describing the success or failure of the attempt to restore the wallet.
-	 */
-	#[Json]
-	public string $info;
+    /**
+     * Message describing the success or failure of the attempt to restore the wallet.
+     */
+    #[Json]
+    public string $info;
 
-	/**
-	 * Mnemonic phrase of the restored wallet, which is updated if the wallet was restored from a deprecated-style mnemonic phrase.
-	 */
-	#[Json]
-	public string $seed;
+    /**
+     * Mnemonic phrase of the restored wallet, which is updated if the wallet was restored from a deprecated-style mnemonic phrase.
+     */
+    #[Json]
+    public string $seed;
 
-	/**
-	 * Indicates if the restored wallet was created from a deprecated-style mnemonic phrase.
-	 */
-	#[Json('was_deprecated')]
-	public bool $wasDeprecated;
+    /**
+     * Indicates if the restored wallet was created from a deprecated-style mnemonic phrase.
+     */
+    #[Json('was_deprecated')]
+    public bool $wasDeprecated;
 }

@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class ParseUriRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * This contains all the payment input information as a properly formatted payment URI
-	 */
-	#[Json]
-	public string $uri;
+    /**
+     * This contains all the payment input information as a properly formatted payment URI
+     */
+    #[Json]
+    public string $uri;
 
 
-	public static function create(string $uri): RpcRequest
-	{
-		$self = new self();
-		$self->uri = $uri;
-		return new RpcRequest('parse_uri', $self);
-	}
+    public static function create(string $uri): RpcRequest
+    {
+        $self = new self();
+        $self->uri = $uri;
+        return new RpcRequest('parse_uri', $self);
+    }
 }

@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class EstimateTxSizeAndWeightResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public int $size;
+    #[Json]
+    public int $size;
 
-	#[Json]
-	public int $weight;
+    #[Json]
+    public int $weight;
 }

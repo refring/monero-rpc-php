@@ -14,26 +14,26 @@ use Square\Pjson\JsonSerialize;
  */
 class GetBlockHeaderByHashRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The block's sha256 hash.
-	 */
-	#[Json]
-	public string $hash;
+    /**
+     * The block's sha256 hash.
+     */
+    #[Json]
+    public string $hash;
 
-	/**
-	 * (Optional; defaults to `false`) Add PoW hash to block_header response.
-	 */
-	#[Json('fill_pow_hash', omit_empty: true)]
-	public ?bool $fillPowHash;
+    /**
+     * (Optional; defaults to `false`) Add PoW hash to block_header response.
+     */
+    #[Json('fill_pow_hash', omit_empty: true)]
+    public ?bool $fillPowHash;
 
 
-	public static function create(string $hash, ?bool $fillPowHash = null): RpcRequest
-	{
-		$self = new self();
-		$self->hash = $hash;
-		$self->fillPowHash = $fillPowHash;
-		return new RpcRequest('get_block_header_by_hash', $self);
-	}
+    public static function create(string $hash, ?bool $fillPowHash = null): RpcRequest
+    {
+        $self = new self();
+        $self->hash = $hash;
+        $self->fillPowHash = $fillPowHash;
+        return new RpcRequest('get_block_header_by_hash', $self);
+    }
 }

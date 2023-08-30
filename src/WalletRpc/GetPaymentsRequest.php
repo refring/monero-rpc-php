@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class GetPaymentsRequest implements ParameterInterface
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * Payment ID used to find the payments (16 characters hex).
-	 */
-	#[Json('payment_id')]
-	public string $paymentId;
+    /**
+     * Payment ID used to find the payments (16 characters hex).
+     */
+    #[Json('payment_id')]
+    public string $paymentId;
 
 
-	public static function create(string $paymentId): RpcRequest
-	{
-		$self = new self();
-		$self->paymentId = $paymentId;
-		return new RpcRequest('get_payments', $self);
-	}
+    public static function create(string $paymentId): RpcRequest
+    {
+        $self = new self();
+        $self->paymentId = $paymentId;
+        return new RpcRequest('get_payments', $self);
+    }
 }

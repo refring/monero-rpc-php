@@ -9,38 +9,38 @@ use Square\Pjson\JsonSerialize;
 
 class Distribution
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * unsigned int
-	 */
-	#[Json]
-	public int $amount;
+    /**
+     * unsigned int
+     */
+    #[Json]
+    public int $amount;
 
-	/**
-	 * unsigned int
-	 */
-	#[Json]
-	public int $base;
+    /**
+     * unsigned int
+     */
+    #[Json]
+    public int $base;
 
-	/**
-	 * array of unsigned int
-	 */
-	#[Json]
-	public array $distribution;
+    /**
+     * array of unsigned int
+     */
+    #[Json]
+    public array $distribution;
 
-	/**
-	 * unsigned int
-	 */
-	#[Json('start_height')]
-	public int $startHeight;
+    /**
+     * unsigned int
+     */
+    #[Json('start_height')]
+    public int $startHeight;
 
 
-	public function __construct(int $amount, int $base, array $distribution, int $startHeight)
-	{
-		$this->amount = $amount;
-		$this->base = $base;
-		$this->distribution = $distribution;
-		$this->startHeight = $startHeight;
-	}
+    public function __construct(int $amount, int $base, array $distribution, int $startHeight)
+    {
+        $this->amount = $amount;
+        $this->base = $base;
+        $this->distribution = $distribution;
+        $this->startHeight = $startHeight;
+    }
 }

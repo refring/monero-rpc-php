@@ -12,11 +12,11 @@ use Square\Pjson\JsonSerialize;
  */
 class GetTxProofResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * transaction signature.
-	 */
-	#[Json]
-	public string $signature;
+    /**
+     * transaction signature.
+     */
+    #[Json]
+    public string $signature;
 }

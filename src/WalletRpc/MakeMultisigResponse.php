@@ -12,17 +12,17 @@ use Square\Pjson\JsonSerialize;
  */
 class MakeMultisigResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * multisig wallet address.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * multisig wallet address.
+     */
+    #[Json]
+    public string $address;
 
-	/**
-	 * Multisig string to share with peers to create the multisig wallet (extra step for N-1/N wallets).
-	 */
-	#[Json('multisig_info')]
-	public string $multisigInfo;
+    /**
+     * Multisig string to share with peers to create the multisig wallet (extra step for N-1/N wallets).
+     */
+    #[Json('multisig_info')]
+    public string $multisigInfo;
 }

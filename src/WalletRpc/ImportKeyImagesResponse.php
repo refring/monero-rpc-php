@@ -12,20 +12,20 @@ use Square\Pjson\JsonSerialize;
  */
 class ImportKeyImagesResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	#[Json]
-	public int $height;
+    #[Json]
+    public int $height;
 
-	/**
-	 * Amount (in @atomic-units) spent from those key images.
-	 */
-	#[Json]
-	public int $spent;
+    /**
+     * Amount (in @atomic-units) spent from those key images.
+     */
+    #[Json]
+    public int $spent;
 
-	/**
-	 * Amount (in @atomic-units) still available from those key images.
-	 */
-	#[Json]
-	public int $unspent;
+    /**
+     * Amount (in @atomic-units) still available from those key images.
+     */
+    #[Json]
+    public int $unspent;
 }

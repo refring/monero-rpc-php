@@ -9,38 +9,38 @@ use Square\Pjson\JsonSerialize;
 
 class AddressInformation
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/**
-	 * The 95-character hex (sub)address string.
-	 */
-	#[Json]
-	public string $address;
+    /**
+     * The 95-character hex (sub)address string.
+     */
+    #[Json]
+    public string $address;
 
-	/**
-	 * Label of the (sub)address
-	 */
-	#[Json]
-	public string $label;
+    /**
+     * Label of the (sub)address
+     */
+    #[Json]
+    public string $label;
 
-	/**
-	 * index of the subaddress
-	 */
-	#[Json('address_index')]
-	public int $addressIndex;
+    /**
+     * index of the subaddress
+     */
+    #[Json('address_index')]
+    public int $addressIndex;
 
-	/**
-	 * states if the (sub)address has already received funds
-	 */
-	#[Json]
-	public bool $used;
+    /**
+     * states if the (sub)address has already received funds
+     */
+    #[Json]
+    public bool $used;
 
 
-	public function __construct(string $address, string $label, int $addressIndex, bool $used)
-	{
-		$this->address = $address;
-		$this->label = $label;
-		$this->addressIndex = $addressIndex;
-		$this->used = $used;
-	}
+    public function __construct(string $address, string $label, int $addressIndex, bool $used)
+    {
+        $this->address = $address;
+        $this->label = $label;
+        $this->addressIndex = $addressIndex;
+        $this->used = $used;
+    }
 }

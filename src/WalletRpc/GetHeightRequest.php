@@ -11,8 +11,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
  */
 class GetHeightRequest
 {
-	public static function create(): RpcRequest
-	{
-		return new RpcRequest('get_height');
-	}
+    public static function create(): RpcRequest
+    {
+        return new RpcRequest('get_height');
+    }
 }

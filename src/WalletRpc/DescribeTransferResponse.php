@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use RefRing\MoneroRpcPhp\Model\TransferDescription;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -13,57 +12,57 @@ use Square\Pjson\JsonSerialize;
  */
 class DescribeTransferResponse
 {
-	use JsonSerialize;
+    use JsonSerialize;
 
-	/** @var TransferDestination[] */
-	#[Json]
-	public array $desc;
+    /** @var TransferDestination[] */
+    #[Json]
+    public array $desc;
 
-	/**
-	 * The address of the change recipient.
-	 */
-	#[Json('change_address')]
-	public string $changeAddress;
+    /**
+     * The address of the change recipient.
+     */
+    #[Json('change_address')]
+    public string $changeAddress;
 
-	/**
-	 * The amount sent to the change address in @atomic-units.
-	 */
-	#[Json('change_amount')]
-	public int $changeAmount;
+    /**
+     * The amount sent to the change address in @atomic-units.
+     */
+    #[Json('change_amount')]
+    public int $changeAmount;
 
-	/**
-	 * The fee charged for the transaction in @atomic-units.
-	 */
-	#[Json]
-	public int $fee;
+    /**
+     * The fee charged for the transaction in @atomic-units.
+     */
+    #[Json]
+    public int $fee;
 
-	/**
-	 * payment ID for this transfer.
-	 */
-	#[Json('payment_id')]
-	public string $paymentId;
+    /**
+     * payment ID for this transfer.
+     */
+    #[Json('payment_id')]
+    public string $paymentId;
 
-	/**
-	 * The number of inputs in the ring (1 real output + the number of decoys from the blockchain) (Unless dealing with pre rct outputs, this field is ignored on mainnet).
-	 */
-	#[Json('ring_size')]
-	public int $ringSize;
+    /**
+     * The number of inputs in the ring (1 real output + the number of decoys from the blockchain) (Unless dealing with pre rct outputs, this field is ignored on mainnet).
+     */
+    #[Json('ring_size')]
+    public int $ringSize;
 
-	/**
-	 * The number of blocks before the monero can be spent (0 for no lock).
-	 */
-	#[Json('unlock_time')]
-	public int $unlockTime;
+    /**
+     * The number of blocks before the monero can be spent (0 for no lock).
+     */
+    #[Json('unlock_time')]
+    public int $unlockTime;
 
-	/**
-	 * The number of fake outputs added to single-output transactions.  Fake outputs have 0 amount and are sent to a random address.
-	 */
-	#[Json('dummy_outputs')]
-	public int $dummyOutputs;
+    /**
+     * The number of fake outputs added to single-output transactions.  Fake outputs have 0 amount and are sent to a random address.
+     */
+    #[Json('dummy_outputs')]
+    public int $dummyOutputs;
 
-	/**
-	 * Arbitrary transaction data in hexadecimal format.
-	 */
-	#[Json]
-	public string $extra;
+    /**
+     * Arbitrary transaction data in hexadecimal format.
+     */
+    #[Json]
+    public string $extra;
 }
