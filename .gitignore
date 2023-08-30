@@ -1,0 +1,10 @@
+/.phpunit.cache
+/.php-cs-fixer.cache
+/.php-cs-fixer.php
+/phpunit.xml
+/vendor/
+/var/
+*.swp
+*.swo
+playground/*
+.idea
