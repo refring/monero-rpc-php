@@ -22,11 +22,11 @@ class GetBalanceRequest implements ParameterInterface
     #[Json('account_index')]
     public int $accountIndex;
 
-    /**
-     * (Optional) Return balance detail for those subaddresses.
-     */
-    #[Json('address_indices', omit_empty: true)]
-    public ?array $addressIndices;
+	/**
+	 * @var int[] (Optional) Return balance detail for those subaddresses.
+	 */
+	#[Json('address_indices', omit_empty: true)]
+	public ?array $addressIndices;
 
     /**
      * (Defaults to false)

@@ -28,11 +28,11 @@ class SweepAllRequest implements ParameterInterface
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
-    /**
-     * (Optional) Sweep from this set of subaddresses in the account.
-     */
-    #[Json('subaddr_indices', omit_empty: true)]
-    public ?array $subaddrIndices;
+	/**
+	 * @var int[] (Optional) Sweep from this set of subaddresses in the account.
+	 */
+	#[Json('subaddr_indices', omit_empty: true)]
+	public ?array $subaddrIndices;
 
     /**
      * (Optional) use outputs in all subaddresses within an account (Defaults to false).

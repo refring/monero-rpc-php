@@ -23,7 +23,7 @@ class TagAccountsRequest implements ParameterInterface
 	public string $tag;
 
 	/**
-	 * Tag this list of accounts.
+	 * @var int[] Tag this list of accounts.
 	 */
 	#[Json]
 	public array $accounts;

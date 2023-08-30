@@ -26,11 +26,11 @@ class TransferRequest implements ParameterInterface
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
-    /**
-     * (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
-     */
-    #[Json('subaddr_indices', omit_empty: true)]
-    public ?array $subaddrIndices;
+	/**
+	 * @var int[] (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
+	 */
+	#[Json('subaddr_indices', omit_empty: true)]
+	public ?array $subaddrIndices;
 
     /**
      * (Optional) Set a priority for the transaction. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.

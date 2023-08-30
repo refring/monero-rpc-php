@@ -17,7 +17,7 @@ class GetOutputHistogramRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * list of unsigned int
+	 * @var int[] list of unsigned int
 	 */
 	#[Json]
 	public array $amounts;

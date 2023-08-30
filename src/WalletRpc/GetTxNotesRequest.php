@@ -17,7 +17,7 @@ class GetTxNotesRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * transaction ids
+	 * @var string[] transaction ids
 	 */
 	#[Json]
 	public array $txids;

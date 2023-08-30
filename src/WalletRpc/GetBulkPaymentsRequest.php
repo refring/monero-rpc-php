@@ -17,7 +17,7 @@ class GetBulkPaymentsRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * Payment IDs used to find the payments (16 characters hex).
+	 * @var string[] Payment IDs used to find the payments (16 characters hex).
 	 */
 	#[Json('payment_ids')]
 	public array $paymentIds;

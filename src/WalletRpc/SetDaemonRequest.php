@@ -53,7 +53,7 @@ class SetDaemonRequest implements ParameterInterface
 	public ?string $sslCaFile;
 
 	/**
-	 * (Optional) The SHA1 fingerprints accepted by the SSL certificate.
+	 * @var string[] (Optional) The SHA1 fingerprints accepted by the SSL certificate.
 	 */
 	#[Json('ssl_allowed_fingerprints', omit_empty: true)]
 	public ?array $sslAllowedFingerprints;
@@ -76,8 +76,7 @@ class SetDaemonRequest implements ParameterInterface
 	#[Json(omit_empty: true)]
 	public ?string $password;
 
-
-	public static function create(
+    public static function create(
 		?string $address = '',
 		?bool $trusted = false,
 		?string $sslSupport = 'autodetect',

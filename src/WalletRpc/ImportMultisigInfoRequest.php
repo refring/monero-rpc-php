@@ -17,7 +17,7 @@ class ImportMultisigInfoRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * List of multisig info in hex format from other participants.
+	 * @var string[] List of multisig info in hex format from other participants.
 	 */
 	#[Json]
 	public array $info;

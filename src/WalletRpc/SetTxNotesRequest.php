@@ -17,13 +17,13 @@ class SetTxNotesRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * transaction ids
+	 * @var string[] transaction ids
 	 */
 	#[Json]
 	public array $txids;
 
 	/**
-	 * notes for the transactions
+	 * @var string[] notes for the transactions
 	 */
 	#[Json]
 	public array $notes;

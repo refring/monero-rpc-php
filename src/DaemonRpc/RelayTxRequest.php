@@ -17,7 +17,7 @@ class RelayTxRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * list of transaction IDs to relay
+	 * @var string[] list of transaction IDs to relay
 	 */
 	#[Json]
 	public array $txids;

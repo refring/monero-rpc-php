@@ -30,7 +30,7 @@ class IncomingTransfersRequest implements ParameterInterface
 	public ?int $accountIndex;
 
 	/**
-	 * (Optional) Return transfers sent to these subaddresses.
+	 * @var int[] (Optional) Return transfers sent to these subaddresses.
 	 */
 	#[Json('subaddr_indices', omit_empty: true)]
 	public ?array $subaddrIndices;

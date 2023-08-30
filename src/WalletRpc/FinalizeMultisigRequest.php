@@ -17,7 +17,7 @@ class FinalizeMultisigRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * List of multisig string from peers.
+	 * @var string[] List of multisig string from peers.
 	 */
 	#[Json('multisig_info')]
 	public array $multisigInfo;

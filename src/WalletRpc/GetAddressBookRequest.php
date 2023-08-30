@@ -14,11 +14,10 @@ use Square\Pjson\JsonSerialize;
  */
 class GetAddressBookRequest implements ParameterInterface
 {
-    use JsonSerialize;
+	use JsonSerialize;
 
 	/**
-	 * indices of the requested address book entries
-     * @var int[] $entries
+	 * @var int[] indices of the requested address book entries
 	 */
 	#[Json]
 	public array $entries;

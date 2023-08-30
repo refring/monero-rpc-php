@@ -23,7 +23,7 @@ class GetAddressRequest implements ParameterInterface
 	public int $accountIndex;
 
 	/**
-	 * (Optional) List of subaddresses to return from an account.
+	 * @var int[] (Optional) List of subaddresses to return from an account.
 	 */
 	#[Json('address_index', omit_empty: true)]
 	public ?array $addressIndex;

@@ -17,7 +17,7 @@ class GetOutputDistributionRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * amounts to look for
+	 * @var int[] amounts to look for
 	 */
 	#[Json]
 	public array $amounts;

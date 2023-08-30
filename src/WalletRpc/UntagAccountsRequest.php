@@ -14,19 +14,19 @@ use Square\Pjson\JsonSerialize;
  */
 class UntagAccountsRequest implements ParameterInterface
 {
-    use JsonSerialize;
+	use JsonSerialize;
 
-    /**
-     * Remove tag from this list of accounts.
-     */
-    #[Json]
-    public array $accounts;
+	/**
+	 * @var int[] Remove tag from this list of accounts.
+	 */
+	#[Json]
+	public array $accounts;
 
 
-    public static function create(array $accounts): RpcRequest
-    {
-        $self = new self();
-        $self->accounts = $accounts;
-        return new RpcRequest('untag_accounts', $self);
-    }
+	public static function create(array $accounts): RpcRequest
+	{
+		$self = new self();
+		$self->accounts = $accounts;
+		return new RpcRequest('untag_accounts', $self);
+	}
 }

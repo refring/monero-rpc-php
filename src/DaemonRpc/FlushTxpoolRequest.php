@@ -17,7 +17,7 @@ class FlushTxpoolRequest implements ParameterInterface
 	use JsonSerialize;
 
 	/**
-	 * Optional, list of transactions IDs to flush from pool (all tx ids flushed if empty).
+	 * @var string[] Optional, list of transactions IDs to flush from pool (all tx ids flushed if empty).
 	 */
 	#[Json(omit_empty: true)]
 	public ?array $txids;

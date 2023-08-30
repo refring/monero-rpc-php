@@ -71,7 +71,7 @@ class GetTransfersRequest implements ParameterInterface
 	public ?int $accountIndex;
 
 	/**
-	 * (Optional) List of subaddress indices to query for transfers. (Defaults to empty - all indices).
+	 * @var int[] (Optional) List of subaddress indices to query for transfers. (Defaults to empty - all indices).
 	 */
 	#[Json('subaddr_indices', omit_empty: true)]
 	public ?array $subaddrIndices;
@@ -94,7 +94,7 @@ class GetTransfersRequest implements ParameterInterface
 		?int $maxHeight = null,
 		?int $accountIndex = null,
 		?array $subaddrIndices = [],
-		?bool $allAccounts = false,
+		?bool $allAccounts = null,
 	): RpcRequest
 	{
 		$self = new self();
