@@ -15,10 +15,10 @@ class OnGetBlockHashRequest implements ParameterInterface, \IteratorAggregate
 {
     use CollectionTrait;
 
-    public static function create(array $values): RpcRequest
+    public static function create(int $blockHeight): RpcRequest
     {
         $self = new self();
-        $self->values = $values;
+        $self->values = [$blockHeight];
         return new RpcRequest('on_get_block_hash', $self);
     }
 }

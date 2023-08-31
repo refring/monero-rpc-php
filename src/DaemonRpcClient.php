@@ -73,9 +73,9 @@ class DaemonRpcClient extends JsonRpcClient
     }
 
 
-    public function onGetBlockHash(array $values): OnGetBlockHashResponse
+    public function onGetBlockHash(int $blockHeight): OnGetBlockHashResponse
     {
-        return $this->handleRequest(OnGetBlockHashRequest::create($values), OnGetBlockHashResponse::class);
+        return $this->handleRequest(OnGetBlockHashRequest::create($blockHeight), OnGetBlockHashResponse::class);
     }
 
 
