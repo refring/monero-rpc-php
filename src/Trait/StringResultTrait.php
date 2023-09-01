@@ -13,7 +13,7 @@ trait StringResultTrait
 
     public function __construct(
         #[Json(['result'])]
-        protected string $value,
+        public string $value,
     ) {
     }
 
@@ -24,6 +24,10 @@ trait StringResultTrait
 
     public function toJsonData(): string
     {
+        return $this->value;
+    }
+
+    public function __toString() : string{
         return $this->value;
     }
 }
