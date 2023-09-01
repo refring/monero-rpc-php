@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp;
 use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
 
-class RegtestRpcClient extends JsonRpcClient
+class RegtestRpcClient extends DaemonRpcClient
 {
     public function generateblocks(
         int $amountOfBlocks,

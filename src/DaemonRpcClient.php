@@ -64,6 +64,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoResponse;
+use RefRing\MoneroRpcPhp\Enum\ErrorCode;
 
 class DaemonRpcClient extends JsonRpcClient
 {
@@ -75,7 +76,11 @@ class DaemonRpcClient extends JsonRpcClient
 
     public function onGetBlockHash(int $blockHeight): OnGetBlockHashResponse
     {
-        return $this->handleRequest(OnGetBlockHashRequest::create($blockHeight), OnGetBlockHashResponse::class);
+        $result = $this->handleRequest(OnGetBlockHashRequest::create($blockHeight), OnGetBlockHashResponse::class);
+        if ((string) $result === '0000000000000000000000000000000000000000000000000000000000000000') {
+            throw ErrorCode::InvalidBlockHeight->toException($blockHeight);
+        }
+        return $result;
     }
 
 
