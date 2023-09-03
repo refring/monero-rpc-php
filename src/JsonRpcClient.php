@@ -67,7 +67,7 @@ abstract class JsonRpcClient
             return null;
         }
 
-        $errorCode = ErrorCode::tryFrom($json['error']['message']);
+        $errorCode = ErrorCode::getErrorCodeFromString($json['error']['message']);
         if ($errorCode !== null) {
             return $errorCode->toException();
         }
