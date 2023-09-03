@@ -22,7 +22,7 @@ class GetBlockHeadersRangeResponse
     public int $credits;
 
     /** @var BlockHeader[] (a structure containing block header information. See [get_last_block_header](#get_last_block_header)). */
-    #[Json]
+    #[Json(type: BlockHeader::class)]
     public array $headers;
 
     /**
