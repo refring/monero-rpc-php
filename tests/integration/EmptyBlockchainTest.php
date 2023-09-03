@@ -16,6 +16,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Model\BlockHeader;
 use RefRing\MoneroRpcPhp\RegtestRpcClient;
+use RefRing\MoneroRpcPhp\Tests\AddressHelper;
 
 final class EmptyBlockchainTest extends TestCase
 {
@@ -50,7 +51,7 @@ final class EmptyBlockchainTest extends TestCase
 
     public function testGetBlockTemplate(): void
     {
-        $address = '44GBHzv6ZyQdJkjqZje6KLZ3xSyN1hBSFAnLP6EAqJtCRVzMzZmeXTC2AHKDS9aEDTRKmo6a6o9r9j86pYfhCWDkKjbtcns';
+        $address = AddressHelper::MAINNET_ADDRESS;
 
         $expectedBlockTemplate = new GetBlockTemplateResponse();
         $expectedBlockTemplate->difficulty = 1;
@@ -81,7 +82,7 @@ final class EmptyBlockchainTest extends TestCase
     public function testBlockTemplateErrorInvalidSize(): void
     {
         $this->expectException(InvalidReservedSizeException::class);
-        $address = '44GBHzv6ZyQdJkjqZje6KLZ3xSyN1hBSFAnLP6EAqJtCRVzMzZmeXTC2AHKDS9aEDTRKmo6a6o9r9j86pYfhCWDkKjbtcns';
+        $address = AddressHelper::MAINNET_ADDRESS;
         self::$regtestRpcClient->getBlockTemplate($address, 256);
     }
 
