@@ -16,7 +16,7 @@ class GenerateblocksResponse
 
     #[Json]
     /**
-     * @var string[]
+     * @var OnGetBlockHashResponse[]
      */
     public array $blocks;
 
