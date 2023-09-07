@@ -16,13 +16,11 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Model\BlockHeader;
 use RefRing\MoneroRpcPhp\RegtestRpcClient;
-use RefRing\MoneroRpcPhp\Tests\AddressHelper;
+use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class EmptyBlockchainTest extends TestCase
 {
     private static RegtestRpcClient $regtestRpcClient;
-
-    const GENESIS_BLOCK_HASH= '418015bb9ae982a1975da7d79277c2705727a56894ba0fb246adaabb1f4632e3';
 
     public static function setUpBeforeClass(): void
     {
@@ -46,22 +44,22 @@ final class EmptyBlockchainTest extends TestCase
     public function testGenesisHash(): void
     {
         $blockHash = self::$regtestRpcClient->onGetBlockHash(0);
-        $this->assertSame(self::GENESIS_BLOCK_HASH, (string) $blockHash);
+        $this->assertSame(TestHelper::GENESIS_BLOCK_HASH, (string) $blockHash);
     }
 
     public function testGetBlockTemplate(): void
     {
-        $address = AddressHelper::MAINNET_ADDRESS;
+        $address = TestHelper::MAINNET_ADDRESS;
 
         $expectedBlockTemplate = new GetBlockTemplateResponse();
         $expectedBlockTemplate->difficulty = 1;
         $expectedBlockTemplate->height = 1;
         $expectedBlockTemplate->expectedReward = 35184338534400;
-        $expectedBlockTemplate->prevHash = self::GENESIS_BLOCK_HASH;
+        $expectedBlockTemplate->prevHash = TestHelper::GENESIS_BLOCK_HASH;
         $expectedBlockTemplate->untrusted = false;
         $expectedBlockTemplate->difficultyTop64 = 0;
         $expectedBlockTemplate->nextSeedHash = '';
-        $expectedBlockTemplate->seedHash = self::GENESIS_BLOCK_HASH;
+        $expectedBlockTemplate->seedHash = TestHelper::GENESIS_BLOCK_HASH;
         $expectedBlockTemplate->seedHeight = 0;
         $expectedBlockTemplate->status = 'OK';
         $expectedBlockTemplate->wideDifficulty = '0x1';
@@ -82,7 +80,7 @@ final class EmptyBlockchainTest extends TestCase
     public function testBlockTemplateErrorInvalidSize(): void
     {
         $this->expectException(InvalidReservedSizeException::class);
-        $address = AddressHelper::MAINNET_ADDRESS;
+        $address = TestHelper::MAINNET_ADDRESS;
         self::$regtestRpcClient->getBlockTemplate($address, 256);
     }
 
@@ -96,7 +94,7 @@ final class EmptyBlockchainTest extends TestCase
     private function getGenesisBlockHeader(): BlockHeader
     {
         return new BlockHeader(80,80, 1, 0, 0,
-            1, 0, self::GENESIS_BLOCK_HASH, 0, 80, 1, 'c88ce9783b4f11190d7b9c17a69c1c52200f9faaee8e98dd07e6811175177139',
+            1, 0, TestHelper::GENESIS_BLOCK_HASH, 0, 80, 1, 'c88ce9783b4f11190d7b9c17a69c1c52200f9faaee8e98dd07e6811175177139',
             0, 10000, 0, false, '', '0000000000000000000000000000000000000000000000000000000000000000',
             17592186044415, 0, '0x1', '0x1');
     }
@@ -123,7 +121,7 @@ final class EmptyBlockchainTest extends TestCase
         $expected->status = 'OK';
         $expected->blockHeader = $this->getGenesisBlockHeader();
 
-        $blockHeader = self::$regtestRpcClient->getBlockHeaderByHash(self::GENESIS_BLOCK_HASH);
+        $blockHeader = self::$regtestRpcClient->getBlockHeaderByHash(TestHelper::GENESIS_BLOCK_HASH);
         $this->assertEquals($expected, $blockHeader);
     }
 
