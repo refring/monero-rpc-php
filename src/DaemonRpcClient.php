@@ -65,6 +65,8 @@ use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoResponse;
 use RefRing\MoneroRpcPhp\Enum\ErrorCode;
+use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
+use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 
 class DaemonRpcClient extends JsonRpcClient
 {
@@ -90,6 +92,12 @@ class DaemonRpcClient extends JsonRpcClient
     }
 
 
+    /**
+    * @param string[] $values
+    * @return SubmitBlockResponse
+    * @throws BlockNotAcceptedException
+     * @throws InvalidBlockTemplateBlobException
+     */
     public function submitBlock(array $values): SubmitBlockResponse
     {
         return $this->handleRequest(SubmitBlockRequest::create($values), SubmitBlockResponse::class);

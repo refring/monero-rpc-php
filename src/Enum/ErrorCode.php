@@ -4,11 +4,13 @@ namespace RefRing\MoneroRpcPhp\Enum;
 
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
+use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHashException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
+use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 
@@ -21,6 +23,8 @@ enum ErrorCode: string
     case InvalidAddress = "Failed to parse wallet address";
     case InvalidBlockHash = "Invalid block hash";
     case InvalidBlockHeightRange = "Invalid start/end heights.";
+    case InvalidBlockTemplateBlob = "Wrong block blob";
+    case BlockNotAccepted = "Block not accepted";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -68,6 +72,8 @@ enum ErrorCode: string
             self::InvalidAddress => new InvalidAddressException($message),
             self::InvalidBlockHash => new InvalidBlockHashException($message),
             self::InvalidBlockHeightRange => new InvalidBlockHeightRangeException($message),
+            self::InvalidBlockTemplateBlob => new InvalidBlockTemplateBlobException($message),
+            self::BlockNotAccepted => new BlockNotAcceptedException($message),
         };
 
         return $exception;
