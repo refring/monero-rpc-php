@@ -28,7 +28,8 @@
         "phpstan/phpstan": "^1.10.25",
         "phpunit/phpunit": "^10",
         "rector/rector": "^0.16.0",
-        "symfony/var-dumper": "^6.3.1"
+        "symfony/var-dumper": "^6.3.1",
+        "monero-integrations/monerophp": "dev-master"
     },
     "autoload": {
         "psr-4": {
