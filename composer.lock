@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dd1e6015d3a38093d165c79c388fe54",
+    "content-hash": "aa07d57d61fb434f0d5269c819af9775",
     "packages": [
         {
             "name": "php-http/discovery",
@@ -762,13 +762,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/monero-integrations/monerophp.git",
-                "reference": "099c2fef2ecce4142c56725f302cc36e01d362c2"
+                "url": "https://github.com/refactor-ring/monerophp.git",
+                "reference": "9a4a643ff2bf7a58b18645ce167d72883aa28ccf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monero-integrations/monerophp/zipball/099c2fef2ecce4142c56725f302cc36e01d362c2",
-                "reference": "099c2fef2ecce4142c56725f302cc36e01d362c2",
+                "url": "https://api.github.com/repos/refactor-ring/monerophp/zipball/9a4a643ff2bf7a58b18645ce167d72883aa28ccf",
+                "reference": "9a4a643ff2bf7a58b18645ce167d72883aa28ccf",
                 "shasum": ""
             },
             "require": {
@@ -787,7 +787,6 @@
                     "MoneroIntegrations\\MoneroPhp\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -808,20 +807,19 @@
             "description": "A Monero library written in PHP by the Monero-Integrations team.",
             "homepage": "https://github.com/monero-integrations/monerophp",
             "keywords": [
+                "JSON-RPC",
+                "JSONRPC",
                 "Monero",
                 "XMR",
                 "cryptocurrency",
                 "cryptonote",
-                "json-rpc",
-                "jsonrpc",
                 "monero-wallet-rpc",
                 "monerod"
             ],
             "support": {
-                "issues": "https://github.com/monero-integrations/monerophp/issues",
-                "source": "https://github.com/monero-integrations/monerophp/tree/master"
+                "source": "https://github.com/refactor-ring/monerophp/tree/master"
             },
-            "time": "2023-08-20T08:33:54+00:00"
+            "time": "2023-09-07T12:06:20+00:00"
         },
         {
             "name": "myclabs/deep-copy",
