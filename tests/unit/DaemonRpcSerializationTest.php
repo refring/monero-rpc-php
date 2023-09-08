@@ -35,6 +35,8 @@ use RefRing\MoneroRpcPhp\DaemonRpc\RelayTxRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SetBansRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoRequest;
+use RefRing\MoneroRpcPhp\Model\BlockHash;
+use RefRing\MoneroRpcPhp\Model\BlockHeight;
 use RefRing\MoneroRpcPhp\Model\Node;
 
 class DaemonRpcSerializationTest extends TestCase
@@ -50,7 +52,7 @@ class DaemonRpcSerializationTest extends TestCase
     public function testOnGetBlockHash()
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"on_get_block_hash","params":[912345]}';
-        $values = [912345];
+        $values = 912345;
         $request = OnGetBlockHashRequest::create($values);
         $this->assertSame($expected, $request->toJson());
     }
@@ -122,14 +124,19 @@ class DaemonRpcSerializationTest extends TestCase
     }
 
 
-    public function testGetBlock()
+    public function testGetBlockWithHeight()
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"height":2751506}}';
-        $height = 2751506;
-        $request = GetBlockRequest::create($height, '');
+        $request = GetBlockRequest::create(new BlockHeight(2751506));
         $this->assertSame($expected, $request->toJson());
     }
 
+    public function testGetBlockWithHash()
+    {
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"get_block","params":{"hash":"dd4998cfe92a959a5a0e4ed72432cf23d7dfc4179cbea871ee2a705d71fb5e25"}}';
+        $request = GetBlockRequest::create(new BlockHash('dd4998cfe92a959a5a0e4ed72432cf23d7dfc4179cbea871ee2a705d71fb5e25'));
+        $this->assertSame($expected, $request->toJson());
+    }
 
     public function testGetConnections()
     {

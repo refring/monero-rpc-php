@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
+use RefRing\MoneroRpcPhp\Model\BlockHash;
+use RefRing\MoneroRpcPhp\Model\BlockHeight;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -19,14 +21,14 @@ class GetBlockRequest implements ParameterInterface
     /**
      * The block's height.
      */
-    #[Json]
-    public int $height;
+    #[Json(omit_empty: true)]
+    public ?int $height;
 
     /**
      * The block's hash.
      */
-    #[Json]
-    public string $hash;
+    #[Json(omit_empty: true)]
+    public ?string $hash;
 
     /**
      * (Optional; Default false) Add PoW hash to block_header response.
@@ -35,11 +37,14 @@ class GetBlockRequest implements ParameterInterface
     public ?bool $fillPowHash;
 
 
-    public static function create(int $height, string $hash, ?bool $fillPowHash = null): RpcRequest
+    public static function create(BlockHash|BlockHeight $blockHashOrHeight, ?bool $fillPowHash = null): RpcRequest
     {
         $self = new self();
-        $self->height = $height;
-        $self->hash = $hash;
+        if ($blockHashOrHeight instanceof BlockHeight) {
+            $self->height = $blockHashOrHeight->value;
+        } else{
+            $self->hash = $blockHashOrHeight->value;
+        }
         $self->fillPowHash = $fillPowHash;
         return new RpcRequest('get_block', $self);
     }
