@@ -6,6 +6,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Model\BacklogTransaction;
+use RefRing\MoneroRpcPhp\Model\HexDifficulty;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -17,16 +18,34 @@ class GetMinerDataResponse
     use JsonSerialize;
 
     /**
+     * coins mined by the network so far.
+     */
+    #[Json('already_generated_coins')]
+    public int $alreadyGeneratedCoins;
+
+
+    /**
+     * network. difficulty.
+     */
+    #[Json]
+    public HexDifficulty $difficulty;
+    /**
+     * current blockheight.
+     */
+    #[Json]
+    public int $height;
+
+    /**
      * major fork version.
      */
     #[Json('major_version')]
     public int $majorVersion;
 
     /**
-     * current blockheight.
+     * median block weight.
      */
-    #[Json]
-    public int $height;
+    #[Json('median_weight')]
+    public int $medianWeight;
 
     /**
      * previous block id.
@@ -39,24 +58,6 @@ class GetMinerDataResponse
      */
     #[Json('seed_hash')]
     public string $seedHash;
-
-    /**
-     * network. difficulty.
-     */
-    #[Json]
-    public int $difficulty;
-
-    /**
-     * median block weight.
-     */
-    #[Json('median_weight')]
-    public int $medianWeight;
-
-    /**
-     * coins mined by the network so far.
-     */
-    #[Json('already_generated_coins')]
-    public int $alreadyGeneratedCoins;
 
     /**
      * General RPC error code. "OK" means everything looks good.
