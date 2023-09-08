@@ -34,18 +34,12 @@
     "autoload": {
         "psr-4": {
             "RefRing\\MoneroRpcPhp\\": "src/"
-        },
-        "files": [
-            "src/MoneroRpc.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "RefRing\\MoneroRpcPhp\\Tests\\": "tests/"
-        },
-        "files": [
-            "src/Util/functions.php"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -63,7 +57,8 @@
         "test:lint": "pint --preset psr12 --test -v",
         "test:refactor": "rector --dry-run",
         "test:types": "phpstan analyse --ansi",
-        "test:unit": "phpunit tests",
+        "test:unit": "phpunit --testsuite unit",
+        "test:integration": "phpunit --testsuite integration",
         "test": [
             "@test:lint",
             "@test:refactor",
