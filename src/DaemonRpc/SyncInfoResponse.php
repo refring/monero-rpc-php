@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
+use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Model\PeerStructure;
+use RefRing\MoneroRpcPhp\Model\SpanStructure;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -48,7 +50,7 @@ class SyncInfoResponse
      * General RPC error code. "OK" means everything looks good.
      */
     #[Json]
-    public string $status;
+    public ResponseStatus $status;
 
     /**
      * target height the node is syncing from (will be 0 if node is fully synced)

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
+use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -174,7 +175,7 @@ class GetInfoResponse
      * General RPC error code. "OK" means everything looks good.
      */
     #[Json]
-    public string $status;
+    public ResponseStatus $status;
 
     /**
      * States if the node is synchronized (`true`) or not (`false`).
