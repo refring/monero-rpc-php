@@ -84,11 +84,11 @@ class GetTransfersRequest implements ParameterInterface
 
 
     public static function create(
-        bool $in,
-        bool $out,
-        bool $pending,
-        bool $failed,
-        bool $pool,
+        bool $in = false,
+        bool $out = false,
+        bool $pending = false,
+        bool $failed = false,
+        bool $pool = false,
         ?bool $filterByHeight = null,
         ?int $minHeight = null,
         ?int $maxHeight = null,

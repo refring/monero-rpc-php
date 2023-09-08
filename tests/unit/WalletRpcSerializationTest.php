@@ -511,8 +511,8 @@ class WalletRpcSerializationTest extends TestCase
 
     public function testGetTransfers()
     {
-        $expected = '{"jsonrpc":"2.0","id":"0","method":"get_transfers","params":{"in":true,"account_index":1}}';
-        $request = GetTransfersRequest::create($in, $out, $pending, $failed, $pool, $filterByHeight, $minHeight, $maxHeight, $accountIndex, $subaddrIndices, $allAccounts);
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"get_transfers","params":{"in":true,"out":false,"pending":false,"failed":false,"pool":false,"account_index":1}}';
+        $request = GetTransfersRequest::create(in: true, accountIndex: 1);
         $this->assertSame($expected, $request->toJson());
     }
 
