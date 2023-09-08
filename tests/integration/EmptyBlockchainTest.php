@@ -38,7 +38,7 @@ final class EmptyBlockchainTest extends TestCase
     public function testGetBlockHashInvalidHeight(): void
     {
         $this->expectException(InvalidBlockHeightException::class);
-//        $this->expectExceptionMessage('Invalid height 10 supplied');
+        //        $this->expectExceptionMessage('Invalid height 10 supplied');
         self::$regtestRpcClient->onGetBlockHash(10);
     }
 
@@ -94,10 +94,30 @@ final class EmptyBlockchainTest extends TestCase
 
     private function getGenesisBlockHeader(): BlockHeader
     {
-        return new BlockHeader(80,80, 1, 0, 0,
-            1, 0, TestHelper::GENESIS_BLOCK_HASH, 0, 80, 1, 'c88ce9783b4f11190d7b9c17a69c1c52200f9faaee8e98dd07e6811175177139',
-            0, 10000, 0, false, '', '0000000000000000000000000000000000000000000000000000000000000000',
-            17592186044415, 0, '0x1', '0x1');
+        return new BlockHeader(
+            80,
+            80,
+            1,
+            0,
+            0,
+            1,
+            0,
+            TestHelper::GENESIS_BLOCK_HASH,
+            0,
+            80,
+            1,
+            'c88ce9783b4f11190d7b9c17a69c1c52200f9faaee8e98dd07e6811175177139',
+            0,
+            10000,
+            0,
+            false,
+            '',
+            '0000000000000000000000000000000000000000000000000000000000000000',
+            17592186044415,
+            0,
+            '0x1',
+            '0x1'
+        );
     }
 
     public function testLastBlockHeader(): void
@@ -159,20 +179,19 @@ final class EmptyBlockchainTest extends TestCase
 
     public function testGetBlockHeaderRange(): void
     {
-        $blockHeaderList = self::$regtestRpcClient->getBlockHeadersRange(0,0);
+        $blockHeaderList = self::$regtestRpcClient->getBlockHeadersRange(0, 0);
         $this->assertEquals([$this->getGenesisBlockHeader()], $blockHeaderList->headers);
     }
 
     public function testGetBlockHeaderRangeError(): void
     {
         $this->expectException(InvalidBlockHeightRangeException::class);
-        self::$regtestRpcClient->getBlockHeadersRange(0,10);
+        self::$regtestRpcClient->getBlockHeadersRange(0, 10);
     }
 
     public function testGetBlockHeaderRangeErrorNonZero(): void
     {
         $this->expectException(InvalidBlockHeightRangeException::class);
-        self::$regtestRpcClient->getBlockHeadersRange(10,20);
+        self::$regtestRpcClient->getBlockHeadersRange(10, 20);
     }
 }
-

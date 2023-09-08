@@ -42,7 +42,7 @@ class GetBlockRequest implements ParameterInterface
         $self = new self();
         if ($blockHashOrHeight instanceof BlockHeight) {
             $self->height = $blockHashOrHeight->value;
-        } else{
+        } else {
             $self->hash = $blockHashOrHeight->value;
         }
         $self->fillPowHash = $fillPowHash;

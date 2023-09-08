@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Tests\integration;
 
-
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
 use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
@@ -22,7 +21,7 @@ use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class NonEmptyBlockchainTest extends TestCase
 {
-    const BLOCKS_TO_GENERATE = 10;
+    public const BLOCKS_TO_GENERATE = 10;
     private static RegtestRpcClient $regtestRpcClient;
 
 
@@ -57,7 +56,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $this->assertNotEmpty($result->blocks);
 
         $finalBlockCount = self::$regtestRpcClient->getBlockCount();
-        $this->assertSame($startingBlockCount->count+self::BLOCKS_TO_GENERATE, $finalBlockCount->count);
+        $this->assertSame($startingBlockCount->count + self::BLOCKS_TO_GENERATE, $finalBlockCount->count);
 
         return $result;
     }
@@ -67,7 +66,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         // Try and get the block hash for the returned height + 1 (should give an error)
         $this->expectException(InvalidBlockHeightException::class);
-        self::$regtestRpcClient->onGetBlockHash($result->height+1);
+        self::$regtestRpcClient->onGetBlockHash($result->height + 1);
     }
 
     #[Depends('testGenerateBlocks')]
@@ -84,7 +83,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
-        $blockHeight = self::$regtestRpcClient->getBlockCount()->count -1;
+        $blockHeight = self::$regtestRpcClient->getBlockCount()->count - 1;
         $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
 
         $expected = new GetLastBlockHeaderResponse();
@@ -108,7 +107,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
-        $blockHeight = self::$regtestRpcClient->getBlockCount()->count -1;
+        $blockHeight = self::$regtestRpcClient->getBlockCount()->count - 1;
         $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
 
         $expected = new GetBlockHeaderByHashResponse();
@@ -132,7 +131,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
-        $blockHeight = self::$regtestRpcClient->getBlockCount()->count -1;
+        $blockHeight = self::$regtestRpcClient->getBlockCount()->count - 1;
         $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
 
         $expected = new GetBlockHeaderByHeightResponse();
@@ -153,10 +152,10 @@ final class NonEmptyBlockchainTest extends TestCase
 
     public function testGeneratedBlocksByRange(): void
     {
-        $blockHeadersByRange = self::$regtestRpcClient->getBlockHeadersRange(self::BLOCKS_TO_GENERATE-1, self::BLOCKS_TO_GENERATE);
+        $blockHeadersByRange = self::$regtestRpcClient->getBlockHeadersRange(self::BLOCKS_TO_GENERATE - 1, self::BLOCKS_TO_GENERATE);
 
         $lastBlockHeaderByHeight = self::$regtestRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE);
-        $secondLastBlockHeaderByHeight = self::$regtestRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE-1);
+        $secondLastBlockHeaderByHeight = self::$regtestRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE - 1);
 
         $this->assertEquals($blockHeadersByRange->headers, [$secondLastBlockHeaderByHeight->blockHeader, $lastBlockHeaderByHeight->blockHeader]);
     }
@@ -170,7 +169,7 @@ final class NonEmptyBlockchainTest extends TestCase
 
         $this->assertSame(ResponseStatus::OK, $result->status);
 
-        $this->assertSame($startBlockCount+1, self::$regtestRpcClient->getBlockCount()->count);
+        $this->assertSame($startBlockCount + 1, self::$regtestRpcClient->getBlockCount()->count);
     }
 
     public function testSubmitBlockErrorWrongBlockBlob(): void
@@ -195,12 +194,31 @@ final class NonEmptyBlockchainTest extends TestCase
         return $height + $amountOfBlocks;
     }
 
-    private function getLastBlockHeaderMock(string $lastBlockHashResult, int $blockHeight, string $secondLastBlockHash):  BlockHeader
+    private function getLastBlockHeaderMock(string $lastBlockHashResult, int $blockHeight, string $secondLastBlockHash): BlockHeader
     {
-        return new BlockHeader(85,85, 11, 0, 0,
-            1, 0, $lastBlockHashResult, $blockHeight, 176470, 16, '',
-            16, 0, 0, false, '', $secondLastBlockHash,
-            35183734559807, 0, '0xb', '0x1');
+        return new BlockHeader(
+            85,
+            85,
+            11,
+            0,
+            0,
+            1,
+            0,
+            $lastBlockHashResult,
+            $blockHeight,
+            176470,
+            16,
+            '',
+            16,
+            0,
+            0,
+            false,
+            '',
+            $secondLastBlockHash,
+            35183734559807,
+            0,
+            '0xb',
+            '0x1'
+        );
     }
 }
-

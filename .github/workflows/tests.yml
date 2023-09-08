@@ -46,3 +46,6 @@ jobs:
 
       - name: Integration Tests
         run: composer test:integration
+
+      - name: Integration Tests
+        run: composer test:lint

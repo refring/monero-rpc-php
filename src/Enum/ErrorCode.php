@@ -45,7 +45,7 @@ enum ErrorCode: string
         // If an exact match was not found try to find a partial match
         $errorCode = current(array_filter(
             $errorMessages,
-            fn(string $errorMessage) => str_contains($error, $errorMessage),
+            fn (string $errorMessage) => str_contains($error, $errorMessage),
             ARRAY_FILTER_USE_KEY
         ));
 

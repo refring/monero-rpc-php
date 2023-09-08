@@ -11,7 +11,7 @@ class BlockHash implements JsonDataSerializable
     ) {
     }
 
-    public static function fromJsonData($jd, array|string $path = []) : static
+    public static function fromJsonData($jd, array|string $path = []): static
     {
         return new BlockHash($jd);
     }
