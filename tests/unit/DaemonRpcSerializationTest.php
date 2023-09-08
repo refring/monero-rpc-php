@@ -166,7 +166,7 @@ class DaemonRpcSerializationTest extends TestCase
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"set_bans","params":{"bans":[{"host":"192.168.1.51","ban":true,"seconds":30}]}}';
 
-        $node = new Node('192.168.1.51', 0, true, 30);
+        $node = new Node('192.168.1.51', null, true, 30);
 
         $request = SetBansRequest::create([$node]);
         $this->assertSame($expected, $request->toJson());

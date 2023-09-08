@@ -14,14 +14,14 @@ class Node
     /**
      * Host to ban (IP in A.B.C.D form - will support I2P address in the future).
      */
-    #[Json]
-    public string $host;
+    #[Json(omit_empty: true)]
+    public ?string $host;
 
     /**
      * IP address to ban, in Int format.
      */
-    #[Json]
-    public int $ip;
+    #[Json(omit_empty: true)]
+    public ?int $ip;
 
     /**
      * Set `true` to ban.
@@ -36,7 +36,7 @@ class Node
     public int $seconds;
 
 
-    public function __construct(string $host, int $ip, bool $ban, int $seconds)
+    public function __construct(?string $host, ?int $ip, bool $ban, int $seconds)
     {
         $this->host = $host;
         $this->ip = $ip;
