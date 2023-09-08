@@ -36,7 +36,10 @@ class GetBlockResponse
      * JSON formatted block details:
      */
     #[Json]
-    public $json;
+    public string $json;
+
+    #[Json('miner_tx_hash')]
+    public string $minerTxHash;
 
     /**
      * General RPC error code. "OK" means everything looks good.

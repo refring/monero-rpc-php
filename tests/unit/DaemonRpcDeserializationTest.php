@@ -67,7 +67,7 @@ class DaemonRpcDeserializationTest extends TestCase
 
     public function testSubmitBlock()
     {
-        $jsonResponse = '{"error":{"code":-7,"message":"Block not accepted"},"id":"0","jsonrpc":"2.0"}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"count":12,"status":"OK","untrusted":false}}';
         $response = SubmitBlockResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
