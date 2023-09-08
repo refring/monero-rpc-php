@@ -11,6 +11,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderResponse;
+use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
@@ -90,7 +91,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';
-        $expected->status = 'OK';
+        $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $blockHeader;
 
         $lastBlockHeader = self::$regtestRpcClient->getLastBlockHeader();
@@ -114,7 +115,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';
-        $expected->status = 'OK';
+        $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $blockHeader;
 
         $lastBlockHeaderByHash = self::$regtestRpcClient->getBlockHeaderByHash((string)$lastBlockHashResult);
@@ -138,7 +139,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';
-        $expected->status = 'OK';
+        $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $blockHeader;
 
         $lastBlockHeaderByHeight = self::$regtestRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE);
@@ -167,7 +168,7 @@ final class NonEmptyBlockchainTest extends TestCase
 
         $result = self::$regtestRpcClient->submitBlock([$blockTemplate->blocktemplateBlob]);
 
-        $this->assertSame('OK', $result->status);
+        $this->assertSame(ResponseStatus::OK, $result->status);
 
         $this->assertSame($startBlockCount+1, self::$regtestRpcClient->getBlockCount()->count);
     }

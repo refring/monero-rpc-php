@@ -15,22 +15,16 @@ class SweepSingleResponse
     use JsonSerialize;
 
     /**
-     * array of string. The tx hashes of every transaction.
-     */
-    #[Json('tx_hasht')]
-    public string $txHasht;
-
-    /**
-     * array of string. The transaction keys for every transaction.
-     */
-    #[Json('tx_key')]
-    public string $txKey;
-
-    /**
      * array of integer. The amount transferred for every transaction.
      */
     #[Json]
     public int $amount;
+
+    /**
+     * @var string[] Key images of spent outputs.
+     */
+    #[Json('spent_key_images')]
+    public array $spentKeyImages;
 
     /**
      * array of integer. The amount of fees paid for every transaction.
@@ -38,11 +32,13 @@ class SweepSingleResponse
     #[Json]
     public int $fee;
 
+
     /**
-     * Metric used to calculate transaction fee.
+     * string. The set of signing keys used in a multisig transaction (empty for non-multisig).
      */
-    #[Json]
-    public int $weight;
+    #[Json('multisig_txset')]
+    public string $multisigTxset;
+
 
     /**
      * array of string. The tx as hex string for every transaction.
@@ -51,16 +47,22 @@ class SweepSingleResponse
     public string $txBlob;
 
     /**
+     * array of string. The tx hashes of every transaction.
+     */
+    #[Json('tx_hash')]
+    public string $txHash;
+
+    /**
+     * array of string. The transaction keys for every transaction.
+     */
+    #[Json('tx_key')]
+    public string $txKey;
+
+    /**
      * string. Transaction metadata needed to relay the transactions later.
      */
     #[Json('tx_metadata')]
     public string $txMetadata;
-
-    /**
-     * string. The set of signing keys used in a multisig transaction (empty for non-multisig).
-     */
-    #[Json('multisig_txset')]
-    public string $multisigTxset;
 
     /**
      * string. Set of unsigned tx for cold-signing purposes.
@@ -69,8 +71,8 @@ class SweepSingleResponse
     public string $unsignedTxset;
 
     /**
-     * array of string. Key images of spent outputs.
+     * Metric used to calculate transaction fee.
      */
-    #[Json('spent_key_images')]
-    public string $spentKeyImages;
+    #[Json]
+    public int $weight;
 }

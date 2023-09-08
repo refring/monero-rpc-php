@@ -239,7 +239,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testTransferSplit()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[3000000000000],"fee_list":[473710000],"weight_list":51456,"multisig_txset":"","tx_hash_list":["4adcdc1af3f665770cdf8fb7a380887cd07ac53c2b771bd18df5ca375d5e7540"],"tx_key_list":["5b455c0f97168be652a2c03c5c68a064bb84cdae4ddef01b5c48d73a0bbb27075fb714f2ca19ea6c8ff592417e606addea6deb1d6530e2969f75681ffcbfc4075677b94a8c9197963ae38fa6f543ee68f0a4c4bbda4c453f39538f00b28e980ea08509730b51c004960101ba2f3adbc34cbbdff0d5af9dba061b523090debd06"],"unsigned_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[3000000000000],"fee_list":[473710000],"weight_list":[51456],"multisig_txset":"","tx_hash_list":["4adcdc1af3f665770cdf8fb7a380887cd07ac53c2b771bd18df5ca375d5e7540"],"tx_key_list":["5b455c0f97168be652a2c03c5c68a064bb84cdae4ddef01b5c48d73a0bbb27075fb714f2ca19ea6c8ff592417e606addea6deb1d6530e2969f75681ffcbfc4075677b94a8c9197963ae38fa6f543ee68f0a4c4bbda4c453f39538f00b28e980ea08509730b51c004960101ba2f3adbc34cbbdff0d5af9dba061b523090debd06"],"unsigned_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}]}}';
         $response = TransferSplitResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
@@ -248,7 +248,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testSignTransfer()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount":1000000000000,"fee":15202740000,"multisig_txset":"","tx_blob":"...long_hex...","tx_hash":"c648ba0a049e5ce4ec21361dbf6e4b21eac0f828eea9090215de86c76b31d0a4","tx_key":"","tx_metadata":"","unsigned_txset":"...long_hex..."}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"signed_txset":"...long_hex...","tx_hash_list":["ff2e2d49fbfb1c9a55754f786576e171c8bf21b463a74438df604b7fa6cebc6d"]}}';
         $response = SignTransferResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
@@ -491,7 +491,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testGetTransfers()
     {
-        $jsonResponse = 'null';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"in":[{"address":"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp","amount":200000000000,"amounts":[200000000000],"confirmations":1,"double_spend_seen":false,"fee":21650200000,"height":153624,"locked":false,"note":"","payment_id":"0000000000000000","subaddr_index":{"major":1,"minor":0},"subaddr_indices":[{"major":1,"minor":0}],"suggested_confirmations_threshold":1,"timestamp":1535918400,"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a","type":"in","unlock_time":0}]}}';
         $response = GetTransfersResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());

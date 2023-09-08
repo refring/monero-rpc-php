@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockTemplateResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderResponse;
+use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHashException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
@@ -61,7 +62,7 @@ final class EmptyBlockchainTest extends TestCase
         $expectedBlockTemplate->nextSeedHash = '';
         $expectedBlockTemplate->seedHash = TestHelper::GENESIS_BLOCK_HASH;
         $expectedBlockTemplate->seedHeight = 0;
-        $expectedBlockTemplate->status = 'OK';
+        $expectedBlockTemplate->status = ResponseStatus::OK;
         $expectedBlockTemplate->wideDifficulty = '0x1';
         $expectedBlockTemplate->blockhashingBlob = '';
         $expectedBlockTemplate->blocktemplateBlob = '';
@@ -105,7 +106,7 @@ final class EmptyBlockchainTest extends TestCase
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';
-        $expected->status = 'OK';
+        $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $this->getGenesisBlockHeader();
 
         $blockHeader = self::$regtestRpcClient->getLastBlockHeader();
@@ -118,7 +119,7 @@ final class EmptyBlockchainTest extends TestCase
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';
-        $expected->status = 'OK';
+        $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $this->getGenesisBlockHeader();
 
         $blockHeader = self::$regtestRpcClient->getBlockHeaderByHash(TestHelper::GENESIS_BLOCK_HASH);
@@ -143,7 +144,7 @@ final class EmptyBlockchainTest extends TestCase
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';
-        $expected->status = 'OK';
+        $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $this->getGenesisBlockHeader();
 
         $blockHeader = self::$regtestRpcClient->getBlockHeaderByHeight(0);

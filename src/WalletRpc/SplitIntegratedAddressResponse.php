@@ -21,14 +21,14 @@ class SplitIntegratedAddressResponse
     public bool $isSubaddress;
 
     /**
+     * hex encoded
+     */
+    #[Json('payment_id')]
+    public string $paymentId;
+
+    /**
      * string
      */
     #[Json('standard_address')]
     public string $standardAddress;
-
-    /**
-     * hex encoded
-     */
-    #[Json]
-    public string $payment;
 }

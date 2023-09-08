@@ -15,26 +15,15 @@ class SignTransferResponse
     use JsonSerialize;
 
     /**
-     * string. Set of signed tx to be used for submitting transfer.
+     * Set of signed tx to be used for submitting transfer.
      */
     #[Json('signed_txset')]
     public string $signedTxset;
 
     /**
-     * array of string. The tx hashes of every transaction.
+     * @var string[] The tx hashes of every transaction.
+     *
      */
     #[Json('tx_hash_list')]
-    public string $txHashList;
-
-    /**
-     * array of string. The tx raw data of every transaction.
-     */
-    #[Json('tx_raw_list')]
-    public string $txRawList;
-
-    /**
-     * array of string.
-     */
-    #[Json('tx_key_list')]
-    public string $txKeyList;
+    public array $txHashList;
 }

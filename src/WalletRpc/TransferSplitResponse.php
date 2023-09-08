@@ -15,20 +15,6 @@ class TransferSplitResponse
     use JsonSerialize;
 
     /**
-     * array of string. The tx hashes of every transaction.
-     * @var string[]
-     */
-    #[Json('tx_hash_list')]
-    public array $txHashList;
-
-    /**
-     * array of string. The transaction keys for every transaction.
-     * @var string[]
-     */
-    #[Json('tx_key_list')]
-    public array $txKeyList;
-
-    /**
      * array of integer. The amount transferred for every transaction.
      * @var int[]
      */
@@ -50,6 +36,26 @@ class TransferSplitResponse
     public array $weightList;
 
     /**
+     * string. The set of signing keys used in a multisig transaction (empty for non-multisig).
+     */
+    #[Json('multisig_txset')]
+    public string $multisigTxset;
+
+    /**
+     * array of string. The tx hashes of every transaction.
+     * @var string[]
+     */
+    #[Json('tx_hash_list')]
+    public array $txHashList;
+
+    /**
+     * array of string. The transaction keys for every transaction.
+     * @var string[]
+     */
+    #[Json('tx_key_list')]
+    public array $txKeyList;
+
+    /**
      * array of string. The tx as hex string for every transaction.
      * @var string[]
      */
@@ -64,12 +70,6 @@ class TransferSplitResponse
     public array $txMetadataList;
 
     /**
-     * string. The set of signing keys used in a multisig transaction (empty for non-multisig).
-     */
-    #[Json('multisig_txset')]
-    public string $multisigTxset;
-
-    /**
      * string. Set of unsigned tx for cold-signing purposes.
      */
     #[Json('unsigned_txset')]
@@ -79,5 +79,5 @@ class TransferSplitResponse
      * array of string. Key images of spent outputs.
      */
     #[Json('spent_key_images_list')]
-    public string $spentKeyImagesList;
+    public array $spentKeyImagesList;
 }
