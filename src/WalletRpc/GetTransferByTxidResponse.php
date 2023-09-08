@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use RefRing\MoneroRpcPhp\Model\Transfer;
 use RefRing\MoneroRpcPhp\Model\TransferByTxId;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
