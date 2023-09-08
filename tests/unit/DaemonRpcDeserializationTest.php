@@ -274,7 +274,7 @@ class DaemonRpcDeserializationTest extends TestCase
 
     public function testGetMinerData()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"already_generated_coins":1.818602284359596e+19,"difficulty":"0x48afae42de","height":2731375,"major_version":16,"median_weight":300000,"prev_id":"78d50c5894d187c4946d54410990ca59a75017628174a9e8c7055fa4ca5c7c6d","seed_hash":"a6b869d50eca3a43ec26fe4c369859cf36ae37ce6ecb76457d31ffeb8a6ca8a6","status":"OK","tx_backlog":[{"fee":30700000,"id":"9868490d6bb9207fdd9cf17ca1f6c791b92ca97de0365855ea5c089f67c22208","weight":1535},{"fee":44280000,"id":"b6000b02bbec71e18ad704bcae09fb6e5ae86d897ced14a718753e76e86c0a0a","weight":2214}],"untrusted":false}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"already_generated_coins":100,"difficulty":"0x48afae42de","height":2731375,"major_version":16,"median_weight":300000,"prev_id":"78d50c5894d187c4946d54410990ca59a75017628174a9e8c7055fa4ca5c7c6d","seed_hash":"a6b869d50eca3a43ec26fe4c369859cf36ae37ce6ecb76457d31ffeb8a6ca8a6","status":"OK","tx_backlog":[{"fee":30700000,"id":"9868490d6bb9207fdd9cf17ca1f6c791b92ca97de0365855ea5c089f67c22208","weight":1535},{"fee":44280000,"id":"b6000b02bbec71e18ad704bcae09fb6e5ae86d897ced14a718753e76e86c0a0a","weight":2214}],"untrusted":false}}';
         $response = GetMinerDataResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
