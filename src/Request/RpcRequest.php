@@ -21,7 +21,7 @@ class RpcRequest
     private readonly string $method;
 
     #[Json('params', omit_empty: true)]
-    private readonly ?ParameterInterface $parameters;
+    private ?ParameterInterface $parameters;
 
     public function __construct(string $method, ParameterInterface $parameters = null)
     {
@@ -31,7 +31,7 @@ class RpcRequest
 
         if ($parameters instanceof \Traversable) {
             $this->parameters = $parameters;
-        } elseif ($parameters instanceof ParameterInterface) {
+        } elseif ($parameters !== null && method_exists($parameters, 'toJson')) {
             // @TODO deserialization is done twice now.. this could be done better
             if($parameters->toJson() != '[]') {
                 $this->parameters = $parameters;

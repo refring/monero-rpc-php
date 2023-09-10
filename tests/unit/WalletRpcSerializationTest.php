@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
+use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Model\KeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
@@ -238,7 +239,7 @@ class WalletRpcSerializationTest extends TestCase
         ];
         $accountIndex = 0;
         $subaddrIndices = [0];
-        $priority = 0;
+        $priority = TransferPriority::DEFAULT;
         $ringSize = 7;
         $getTxKey = true;
 
@@ -257,7 +258,7 @@ class WalletRpcSerializationTest extends TestCase
         ];
         $accountIndex = 0;
         $subaddrIndices = [0];
-        $priority = 0;
+        $priority = TransferPriority::DEFAULT;
         $ringSize = 7;
         $getTxKey = true;
 

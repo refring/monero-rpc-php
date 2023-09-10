@@ -23,6 +23,9 @@ class UntagAccountsRequest implements ParameterInterface
     public array $accounts;
 
 
+    /**
+     * @param int[] $accounts
+     */
     public static function create(array $accounts): RpcRequest
     {
         $self = new self();

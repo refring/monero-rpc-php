@@ -16,7 +16,7 @@ class GetAccountsResponse
     use JsonSerialize;
 
     /**
-     * array of subaddress account information:
+     * @var SubAddressAccountInformation[] subaddress account information:
      */
     #[Json('subaddress_accounts', SubAddressAccountInformation::class)]
     public array $subaddressAccounts;

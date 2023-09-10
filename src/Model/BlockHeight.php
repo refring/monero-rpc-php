@@ -4,16 +4,20 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\JsonDataSerializable;
 
-class BlockHeight implements JsonDataSerializable
+final class BlockHeight implements JsonDataSerializable
 {
     public function __construct(
         public int $value,
     ) {
     }
 
+    /**
+     * @param int $jd
+     * @param mixed[]|string $path
+     */
     public static function fromJsonData($jd, array|string $path = []): static
     {
-        return new BlockHeight($jd);
+        return new static($jd);
     }
 
     public function toJsonData()

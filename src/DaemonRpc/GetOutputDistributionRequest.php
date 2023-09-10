@@ -41,6 +41,9 @@ class GetOutputDistributionRequest implements ParameterInterface
     public ?int $toHeight;
 
 
+    /**
+     * @param int[] $amounts
+     */
     public static function create(
         array $amounts,
         ?bool $cumulative = null,

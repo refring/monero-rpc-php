@@ -47,6 +47,9 @@ class GetOutputHistogramRequest implements ParameterInterface
     public ?int $recentCutoff;
 
 
+    /**
+     * @param int[] $amounts
+     */
     public static function create(
         array $amounts,
         ?int $minCount = null,

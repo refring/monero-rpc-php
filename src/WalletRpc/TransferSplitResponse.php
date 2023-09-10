@@ -76,7 +76,7 @@ class TransferSplitResponse
     public string $unsignedTxset;
 
     /**
-     * array of string. Key images of spent outputs.
+     * @var string[] Key images of spent outputs.
      */
     #[Json('spent_key_images_list')]
     public array $spentKeyImagesList;

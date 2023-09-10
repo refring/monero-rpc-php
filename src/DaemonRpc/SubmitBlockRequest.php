@@ -9,12 +9,16 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use RefRing\MoneroRpcPhp\Trait\CollectionTrait;
 
 /**
- * Submit a mined block to the network.Alias: *submitblock*.
+ * Submit a mined block to the network.
+ * @implements \IteratorAggregate<string>
  */
 class SubmitBlockRequest implements ParameterInterface, \IteratorAggregate
 {
     use CollectionTrait;
 
+    /**
+     * @param string[] $values
+     */
     public static function create(array $values): RpcRequest
     {
         $self = new self();

@@ -41,6 +41,9 @@ class GetBalanceRequest implements ParameterInterface
     public ?bool $strict;
 
 
+    /**
+     * @param ?int[] $addressIndices
+     */
     public static function create(
         int $accountIndex,
         ?array $addressIndices = null,

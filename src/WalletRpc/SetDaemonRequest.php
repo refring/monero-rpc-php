@@ -76,6 +76,9 @@ class SetDaemonRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $password;
 
+    /**
+     * @param ?string[] $sslAllowedFingerprints
+     */
     public static function create(
         ?string $address = '',
         ?bool $trusted = false,

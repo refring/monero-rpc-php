@@ -29,6 +29,9 @@ class GetBulkPaymentsRequest implements ParameterInterface
     public int $minBlockHeight;
 
 
+    /**
+     * @param string[] $paymentIds
+     */
     public static function create(array $paymentIds, int $minBlockHeight): RpcRequest
     {
         $self = new self();

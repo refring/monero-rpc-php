@@ -25,6 +25,9 @@ class AddAuxPowRequest implements ParameterInterface
     public array $auxPow;
 
 
+    /**
+     * @param AuxPow[] $auxPow
+     */
     public static function create(string $blocktemplateBlob, array $auxPow): RpcRequest
     {
         $self = new self();

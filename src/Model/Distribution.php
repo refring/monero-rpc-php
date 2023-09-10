@@ -24,7 +24,7 @@ class Distribution
     public int $base;
 
     /**
-     * array of unsigned int
+     * @var int[]
      */
     #[Json]
     public array $distribution;
@@ -36,6 +36,9 @@ class Distribution
     public int $startHeight;
 
 
+    /**
+     * @param int[] $distribution
+     */
     public function __construct(int $amount, int $base, array $distribution, int $startHeight)
     {
         $this->amount = $amount;

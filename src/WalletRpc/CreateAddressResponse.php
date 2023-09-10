@@ -27,7 +27,7 @@ class CreateAddressResponse
     public int $addressIndex;
 
     /**
-     * List of address indices.
+     * @var int[] List of address indices.
      */
     #[Json('address_indices')]
     public array $addressIndices;

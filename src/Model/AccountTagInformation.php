@@ -24,12 +24,15 @@ class AccountTagInformation
     public string $label;
 
     /**
-     * List of tagged account indices.
+     * @var int[] List of tagged account indices.
      */
     #[Json]
     public array $accounts;
 
 
+    /**
+     * @param int[] $accounts
+     */
     public function __construct(string $tag, string $label, array $accounts)
     {
         $this->tag = $tag;

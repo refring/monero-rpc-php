@@ -36,6 +36,9 @@ class IncomingTransfersRequest implements ParameterInterface
     public ?array $subaddrIndices;
 
 
+    /**
+     * @param ?int[] $subaddrIndices
+     */
     public static function create(
         TransferType $transferType,
         ?int $accountIndex = null,

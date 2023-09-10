@@ -4,16 +4,20 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\JsonDataSerializable;
 
-class HexDifficulty implements JsonDataSerializable
+final class HexDifficulty implements JsonDataSerializable
 {
     public function __construct(
         protected int $value,
     ) {
     }
 
+    /**
+     * @param string $jd
+     * @param mixed[]|string $path
+     */
     public static function fromJsonData($jd, array|string $path = []): static
     {
-        return new HexDifficulty(hexdec($jd));
+        return new static(hexdec($jd));
     }
 
     public function toJsonData(): string

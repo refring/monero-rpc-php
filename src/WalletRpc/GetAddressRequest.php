@@ -23,12 +23,15 @@ class GetAddressRequest implements ParameterInterface
     public int $accountIndex;
 
     /**
-     * @var int[] (Optional) List of subaddresses to return from an account.
+     * @var ?int[] List of subaddresses to return from an account.
      */
     #[Json('address_index', omit_empty: true)]
     public ?array $addressIndex;
 
 
+    /**
+     * @param ?int[] $addressIndex
+     */
     public static function create(int $accountIndex, ?array $addressIndex = null): RpcRequest
     {
         $self = new self();

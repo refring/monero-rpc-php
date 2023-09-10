@@ -28,6 +28,9 @@ class TransferDescription
     public array $recipients;
 
 
+    /**
+     * @param TransferDestination[] $recipients
+     */
     public function __construct(int $amountIn, int $amountOut, array $recipients)
     {
         $this->amountIn = $amountIn;

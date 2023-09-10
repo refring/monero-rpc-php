@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Enum\TransferPriority;
+use RefRing\MoneroRpcPhp\Model\TransferDestination;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -36,7 +38,7 @@ class TransferRequest implements ParameterInterface
      * (Optional) Set a priority for the transaction. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
      */
     #[Json(omit_empty: true)]
-    public ?int $priority;
+    public ?TransferPriority $priority;
 
     /**
      * (Optional) Number of outputs from the blockchain to mix with (0 means no mixing).
@@ -81,11 +83,15 @@ class TransferRequest implements ParameterInterface
     public ?bool $getTxMetadata;
 
 
+    /**
+     * @param TransferDestination[] $destinations
+     * @param ?int[] $subaddrIndices
+     */
     public static function create(
         array $destinations,
         ?int $accountIndex = 0,
         ?array $subaddrIndices = [],
-        ?int $priority = null,
+        ?TransferPriority $priority = null,
         ?int $mixin = null,
         ?int $ringSize = null,
         ?int $unlockTime = null,

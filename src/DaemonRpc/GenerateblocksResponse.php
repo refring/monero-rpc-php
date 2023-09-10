@@ -15,10 +15,10 @@ class GenerateblocksResponse
 {
     use JsonSerialize;
 
-    #[Json]
     /**
      * @var OnGetBlockHashResponse[]
      */
+    #[Json]
     public array $blocks;
 
     #[Json]

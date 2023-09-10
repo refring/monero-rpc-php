@@ -35,6 +35,9 @@ class MakeMultisigRequest implements ParameterInterface
     public ?string $password;
 
 
+    /**
+     * @param string[] $multisigInfo
+     */
     public static function create(array $multisigInfo, int $threshold, ?string $password = null): RpcRequest
     {
         $self = new self();

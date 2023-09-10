@@ -12,10 +12,10 @@ class PeerStructure
     use JsonSerialize;
 
     /**
-     * As defined in [get_connections](#get_connections)
+     * As defined in get_connections
      */
     #[Json]
-    public $info;
+    public Connection $info;
 
 
     public function __construct(Connection $info)

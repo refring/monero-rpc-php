@@ -56,7 +56,7 @@ enum ErrorCode: string
         return $errorCode;
     }
 
-    public function toException(...$placeHolders): MoneroRpcException
+    public function toException(mixed ...$placeHolders): MoneroRpcException
     {
         $message = $this->value;
 

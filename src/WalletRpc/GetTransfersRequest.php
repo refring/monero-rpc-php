@@ -83,6 +83,9 @@ class GetTransfersRequest implements ParameterInterface
     public ?bool $allAccounts;
 
 
+    /**
+     * @param ?int[] $subaddrIndices
+     */
     public static function create(
         bool $in = false,
         bool $out = false,

@@ -9,7 +9,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use RefRing\MoneroRpcPhp\Trait\CollectionTrait;
 
 /**
- * Look up a block's hash by its height.Alias: *on_getblockhash*.
+ * Look up a block's hash by its height.
+ * @implements \IteratorAggregate<int>
  */
 class OnGetBlockHashRequest implements ParameterInterface, \IteratorAggregate
 {

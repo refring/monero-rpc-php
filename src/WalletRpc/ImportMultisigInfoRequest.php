@@ -23,6 +23,9 @@ class ImportMultisigInfoRequest implements ParameterInterface
     public array $info;
 
 
+    /**
+     * @param string[] $info
+     */
     public static function create(array $info): RpcRequest
     {
         $self = new self();

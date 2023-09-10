@@ -22,6 +22,9 @@ class SetBansRequest implements ParameterInterface
     public array $bans;
 
 
+    /**
+     * @param Node[] $bans
+     */
     public static function create(array $bans): RpcRequest
     {
         $self = new self();

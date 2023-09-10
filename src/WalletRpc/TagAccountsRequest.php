@@ -29,6 +29,9 @@ class TagAccountsRequest implements ParameterInterface
     public array $accounts;
 
 
+    /**
+     * @param int[] $accounts
+     */
     public static function create(string $tag, array $accounts): RpcRequest
     {
         $self = new self();

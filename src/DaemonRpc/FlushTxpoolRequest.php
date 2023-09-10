@@ -23,6 +23,9 @@ class FlushTxpoolRequest implements ParameterInterface
     public ?array $txids;
 
 
+    /**
+     * @param ?string[] $txids
+     */
     public static function create(?array $txids = null): RpcRequest
     {
         $self = new self();

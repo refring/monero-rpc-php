@@ -29,6 +29,9 @@ class FinalizeMultisigRequest implements ParameterInterface
     public ?string $password;
 
 
+    /**
+     * @param string[] $multisigInfo
+     */
     public static function create(array $multisigInfo, ?string $password = null): RpcRequest
     {
         $self = new self();

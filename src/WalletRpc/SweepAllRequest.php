@@ -49,20 +49,20 @@ class SweepAllRequest implements ParameterInterface
     /**
      * specify the number of separate outputs of smaller denomination that will be created by sweep operation.
      */
-    #[Json]
-    public int $outputs;
+    #[Json(omit_empty: true)]
+    public ?int $outputs;
 
     /**
      * Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
      */
-    #[Json('ring_size')]
-    public int $ringSize;
+    #[Json('ring_size', omit_empty: true)]
+    public ?int $ringSize;
 
     /**
      * Number of blocks before the monero can be spent (0 to not add a lock).
      */
-    #[Json('unlock_time')]
-    public int $unlockTime;
+    #[Json('unlock_time', omit_empty: true)]
+    public ?int $unlockTime;
 
     /**
      * (Optional, defaults to a random ID) 16 characters hex encoded.
@@ -101,15 +101,18 @@ class SweepAllRequest implements ParameterInterface
     public ?bool $getTxMetadata;
 
 
+    /**
+     * @param int[] $subaddrIndices
+     */
     public static function create(
         string $address,
         ?int $accountIndex = null,
         ?array $subaddrIndices = null,
         ?bool $subaddrIndicesAll = null,
         ?int $priority = null,
-        int $outputs,
-        int $ringSize,
-        int $unlockTime,
+        ?int $outputs = null,
+        ?int $ringSize = null,
+        ?int $unlockTime = null,
         ?string $paymentId = null,
         ?bool $getTxKeys = null,
         ?int $belowAmount = null,

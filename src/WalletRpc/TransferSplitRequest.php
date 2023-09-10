@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Enum\TransferPriority;
+use RefRing\MoneroRpcPhp\Model\TransferDestination;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -27,7 +29,7 @@ class TransferSplitRequest implements ParameterInterface
     public ?int $accountIndex;
 
     /**
-     * @var int[] (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
+     * @var ?int[] (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
      */
     #[Json('subaddr_indices', omit_empty: true)]
     public ?array $subaddrIndices;
@@ -60,7 +62,7 @@ class TransferSplitRequest implements ParameterInterface
      * (Optional) Set a priority for the transactions. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
      */
     #[Json(omit_empty: true)]
-    public ?int $priority;
+    public ?TransferPriority $priority;
 
     /**
      * (Optional) If true, the newly created transaction will not be relayed to the monero network. (Defaults to false)
@@ -81,6 +83,10 @@ class TransferSplitRequest implements ParameterInterface
     public ?bool $getTxMetadata;
 
 
+    /**
+     * @param TransferDestination[] $destinations
+     * @param ?int[] $subaddrIndices
+     */
     public static function create(
         array $destinations,
         ?int $accountIndex = 0,
@@ -89,7 +95,7 @@ class TransferSplitRequest implements ParameterInterface
         ?int $unlockTime = null,
         ?string $paymentId = null,
         ?bool $getTxKeys = null,
-        ?int $priority = null,
+        ?TransferPriority $priority = null,
         ?bool $doNotRelay = null,
         ?bool $getTxHex = null,
         ?bool $getTxMetadata = null,

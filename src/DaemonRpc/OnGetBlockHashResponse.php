@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Trait\StringResultTrait;
 
 /**
- * Look up a block's hash by its height.Alias: *on_getblockhash*.
+ * Look up a block's hash by its height.
  */
 class OnGetBlockHashResponse
 {

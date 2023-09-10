@@ -23,6 +23,9 @@ class GetTxNotesRequest implements ParameterInterface
     public array $txids;
 
 
+    /**
+     * @param string[] $txids
+     */
     public static function create(array $txids): RpcRequest
     {
         $self = new self();

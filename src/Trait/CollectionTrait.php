@@ -4,9 +4,13 @@ namespace RefRing\MoneroRpcPhp\Trait;
 
 trait CollectionTrait
 {
+    /**
+     * @var array<int, mixed>
+     */
     public array $values;
 
-    public function getIterator()
+    /** @return \ArrayIterator<int, mixed> */
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->values);
     }

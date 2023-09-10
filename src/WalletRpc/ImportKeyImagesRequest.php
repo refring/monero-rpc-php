@@ -28,6 +28,9 @@ class ImportKeyImagesRequest implements ParameterInterface
     public array $signedKeyImages;
 
 
+    /**
+     * @param KeyImage[] $signedKeyImages
+     */
     public static function create(array $signedKeyImages, ?int $offset = null): RpcRequest
     {
         $self = new self();

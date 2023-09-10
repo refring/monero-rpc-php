@@ -23,6 +23,9 @@ class GetAddressBookRequest implements ParameterInterface
     public array $entries;
 
 
+    /**
+     * @param int[] $entries
+     */
     public static function create(array $entries): RpcRequest
     {
         $self = new self();
