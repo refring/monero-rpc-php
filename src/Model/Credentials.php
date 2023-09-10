@@ -6,7 +6,7 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 class Credentials
 {
-    public function __construct(private string $username, private string $password)
+    public function __construct(public string $username, public string $password)
     {
 
     }

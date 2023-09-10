@@ -8,7 +8,6 @@ use Http\Discovery\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use RefRing\MoneroRpcPhp\Enum\ErrorCode;
-use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
@@ -57,7 +56,7 @@ abstract class JsonRpcClient
     protected function getExceptionForInvalidResponse(string $responseBody): ?MoneroRpcException
     {
         $json = json_decode($responseBody, true);
-        if ($json === null) {
+        if (!is_array($json)) {
             $json = [
                 'error' => ['message' => $responseBody],
             ];

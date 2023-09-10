@@ -177,8 +177,7 @@ class DaemonRpcClient extends JsonRpcClient
         int $startHeight,
         int $endHeight,
         ?bool $fillPowHash = null,
-    ): GetBlockHeadersRangeResponse
-    {
+    ): GetBlockHeadersRangeResponse {
         return $this->handleRequest(GetBlockHeadersRangeRequest::create($startHeight, $endHeight, $fillPowHash), GetBlockHeadersRangeResponse::class);
     }
 
@@ -283,8 +282,7 @@ class DaemonRpcClient extends JsonRpcClient
         ?int $maxCount = null,
         ?bool $unlocked = null,
         ?int $recentCutoff = null,
-    ): GetOutputHistogramResponse
-    {
+    ): GetOutputHistogramResponse {
         return $this->handleRequest(GetOutputHistogramRequest::create($amounts, $minCount, $maxCount, $unlocked, $recentCutoff), GetOutputHistogramResponse::class);
     }
 
@@ -374,8 +372,7 @@ class DaemonRpcClient extends JsonRpcClient
         ?bool $cumulative = null,
         ?int $fromHeight = null,
         ?int $toHeight = null,
-    ): GetOutputDistributionResponse
-    {
+    ): GetOutputDistributionResponse {
         return $this->handleRequest(GetOutputDistributionRequest::create($amounts, $cumulative, $fromHeight, $toHeight), GetOutputDistributionResponse::class);
     }
 

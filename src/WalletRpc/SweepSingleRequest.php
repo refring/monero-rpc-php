@@ -32,19 +32,19 @@ class SweepSingleRequest implements ParameterInterface
      * specify the number of separate outputs of smaller denomination that will be created by sweep operation.
      */
     #[Json]
-    public int $outputs;
+    public ?int $outputs;
 
     /**
      * Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
      */
     #[Json('ring_size')]
-    public int $ringSize;
+    public ?int $ringSize;
 
     /**
      * Number of blocks before the monero can be spent (0 to not add a lock).
      */
     #[Json('unlock_time')]
-    public int $unlockTime;
+    public ?int $unlockTime;
 
     /**
      * (Optional, defaults to a random ID) 16 characters hex encoded.
@@ -86,9 +86,9 @@ class SweepSingleRequest implements ParameterInterface
     public static function create(
         string $address,
         ?int $priority = null,
-        int $outputs,
-        int $ringSize,
-        int $unlockTime,
+        ?int $outputs,
+        ?int $ringSize,
+        ?int $unlockTime,
         ?string $paymentId = null,
         ?bool $getTxKey = null,
         string $keyImage,

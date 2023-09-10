@@ -24,8 +24,7 @@ class RegtestRpcClient extends DaemonRpcClient
         string $walletAddress,
         ?string $prevBlock = null,
         ?int $startingNonce = null,
-    ): GenerateblocksResponse
-    {
+    ): GenerateblocksResponse {
         return $this->handleRequest(GenerateblocksRequest::create($amountOfBlocks, $walletAddress, $prevBlock, $startingNonce), GenerateblocksResponse::class);
     }
 }

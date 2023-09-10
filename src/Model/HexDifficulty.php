@@ -17,7 +17,7 @@ final class HexDifficulty implements JsonDataSerializable
      */
     public static function fromJsonData($jd, array|string $path = []): static
     {
-        return new static(hexdec($jd));
+        return new static((int)hexdec($jd));
     }
 
     public function toJsonData(): string

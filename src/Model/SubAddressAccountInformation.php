@@ -33,13 +33,13 @@ class SubAddressAccountInformation
      * (Optional) Label of the account.
      */
     #[Json(omit_empty: true)]
-    public string $label;
+    public ?string $label;
 
     /**
      * (Optional) Tag for filtering accounts.
      */
     #[Json(omit_empty: true)]
-    public string $tag;
+    public ?string $tag;
 
     /**
      * Unlocked balance for the account.

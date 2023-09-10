@@ -27,7 +27,7 @@ class PaymentUri
      * (Optional, defaults to a random ID) 16 characters hex encoded.
      */
     #[Json('payment_id', omit_empty: true)]
-    public string $paymentId;
+    public ?string $paymentId;
 
     /**
      * Name of the payment recipient (empty if not provided)
