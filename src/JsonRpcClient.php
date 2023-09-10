@@ -9,10 +9,22 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use RefRing\MoneroRpcPhp\Enum\ErrorCode;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
+use RefRing\MoneroRpcPhp\Http\DigestAuthentication;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 abstract class JsonRpcClient
 {
+    /**
+     * The HTTP headers for the requests.
+     *
+     * @var array<string, string>
+     */
+    private array $headers = [];
+
+    private string $username = '';
+
+    private string $password = '';
+
     public function __construct(private readonly ClientInterface $httpClient, private readonly string $url)
     {
 
@@ -25,6 +37,10 @@ abstract class JsonRpcClient
         $body = $psr17Factory->createStream($json);
 
         $request = $psr17Factory->createRequest('POST', $this->url);
+
+        foreach ($this->headers as $name => $value) {
+            $request->withHeader($name, $value);
+        }
 
         $request = $request->withBody($body);
 
@@ -41,7 +57,19 @@ abstract class JsonRpcClient
         $requestBody = $rpcRequest->toJson();
         //                echo $requestBody;
         $request = $this->createRequest($requestBody);
+
+
         $response = $this->httpClient->sendRequest($request);
+
+        if ($response->hasHeader('www-authenticate')) {
+            $uri = (string) $request->getUri()->getPath();
+            $digestAuthenticator = new DigestAuthentication($this->username, $this->password, $uri, 'POST');
+            $digest = $digestAuthenticator->getDigestResponse($response->getHeader('www-authenticate')[0]);
+
+            $request = $request->withAddedHeader('Authorization', $digest);
+            $response = $this->httpClient->sendRequest($request);
+        }
+
         $body = $response->getBody()->__toString();
         //                var_dump($body);
 
@@ -69,4 +97,19 @@ abstract class JsonRpcClient
         $errorCode = ErrorCode::getErrorCodeFromString($json['error']['message']);
         return $errorCode->toException();
     }
+
+    /**
+     * @param string[] $headers
+     */
+    public function setHeaders(array $headers): void
+    {
+        $this->headers = $headers;
+    }
+
+    public function setCredentials(string $username, string $password): void
+    {
+        $this->username = $username;
+        $this->password = $password;
+    }
+
 }

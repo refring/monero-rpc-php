@@ -4,6 +4,7 @@ namespace RefRing\MoneroRpcPhp\Enum;
 
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
+use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
@@ -26,6 +27,8 @@ enum ErrorCode: string
     case InvalidBlockTemplateBlob = "Wrong block blob";
     case BlockNotAccepted = "Block not accepted";
 
+    case AuthenticationFailure = "Authentication failed";
+
     public static function getErrorCodeFromString(string $error): self
     {
         // First try to just find an exact match for the error message
@@ -40,6 +43,7 @@ enum ErrorCode: string
             "Internal error: can't get block by hash. Hash =" =>  self::InvalidBlockHash,
             // Requested block height: 10 greater than current top block height: 0
             'greater than current top block height' => self::InvalidBlockHeight,
+            '401 Unauthorized' => self::AuthenticationFailure,
         ];
 
         // If an exact match was not found try to find a partial match
@@ -74,6 +78,7 @@ enum ErrorCode: string
             self::InvalidBlockHeightRange => new InvalidBlockHeightRangeException($message),
             self::InvalidBlockTemplateBlob => new InvalidBlockTemplateBlobException($message),
             self::BlockNotAccepted => new BlockNotAcceptedException($message),
+            self::AuthenticationFailure => new AuthenticationException($message),
         };
 
         return $exception;
