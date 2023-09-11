@@ -1,3 +1,5 @@
+name: "Tests"
+
 on:
   pull_request:
   push:
@@ -5,14 +7,18 @@ on:
       - main
 
 jobs:
-  test:
+  tests:
     runs-on: ${{ matrix.os }}
+
+    env:
+      PHP_EXTENSIONS: none, bcmath, curl, dom, json, mbstring, opcache, simplexml, tokenizer, xml, xmlwriter
+      PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
 
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        monero: [ 0.18.0.0, 0.18.1.2 ]
+        monero: [ 0.18.1.2 ]
         php: [8.1, 8.2]
         dependency-version: [prefer-lowest, prefer-stable]
 
@@ -36,13 +42,43 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: none
+          coverage: ${{ matrix.coverage-driver }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: ${{ env.PHP_INI_VALUES }}
 
       - name: Install Composer dependencies
-        run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+        run: composer update --${{ matrix.dependency-version }} --no-ansi --no-interaction --no-progress --prefer-dist
 
-      - name: Unit Tests
-        run: composer test:unit
+      - name: Run tests with PHPUnit
+        run: vendor/bin/phpunit
 
-      - name: Integration Tests
-        run: composer test:integration
+  codecoverage:
+    runs-on: ubuntu-latest
+    name: "Code coverage report"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Spin up containers
+        run: docker-compose -f tests/docker-compose.yml up -d
+        env:
+          MONERO_VERSION: "0.18.1.2"
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: none, bcmath, curl, dom, json, mbstring, opcache, simplexml, tokenizer, xml, xmlwriter
+          coverage: xdebug3
+          tools: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-ansi --no-interaction --no-progress --prefer-dist
+
+      - name: Run tests with PHPUnit
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+      - name: Send code coverage report to Codecov.io
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
