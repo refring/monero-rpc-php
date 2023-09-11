@@ -6,6 +6,7 @@ namespace RefRing\MoneroRpcPhp;
 
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
+use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
@@ -1206,6 +1207,7 @@ class WalletRpcClient extends JsonRpcClient
      * @param ?string $password password to protect the wallet.
      * @param string $language Language for your wallets' seed.
      * @throws MoneroRpcException
+     * @throws WalletExistsException
      */
     public function createWallet(string $filename, ?string $password = null, string $language): CreateWalletResponse
     {
