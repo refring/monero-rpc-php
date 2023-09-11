@@ -12,6 +12,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHashException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
+use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
@@ -30,6 +31,7 @@ enum ErrorCode: string
 
     case AuthenticationFailure = "Authentication failed";
     case WalletAlreadyExists = "Cannot create wallet. Already exists.";
+    case InvalidLanguage = "Unknown language supplied";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -46,6 +48,7 @@ enum ErrorCode: string
             // Requested block height: 10 greater than current top block height: 0
             'greater than current top block height' => self::InvalidBlockHeight,
             '401 Unauthorized' => self::AuthenticationFailure,
+            'Unknown language:' => self::InvalidLanguage,
         ];
 
         // If an exact match was not found try to find a partial match
@@ -82,6 +85,7 @@ enum ErrorCode: string
             self::BlockNotAccepted => new BlockNotAcceptedException($message),
             self::AuthenticationFailure => new AuthenticationException($message),
             self::WalletAlreadyExists => new WalletExistsException($message),
+            self::InvalidLanguage => new InvalidLanguageException($message),
         };
 
         return $exception;
