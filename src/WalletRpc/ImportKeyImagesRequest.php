@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use RefRing\MoneroRpcPhp\Model\KeyImage;
+use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -23,13 +23,13 @@ class ImportKeyImagesRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?int $offset;
 
-    /** @var KeyImage[] */
+    /** @var SignedKeyImage[] */
     #[Json('signed_key_images')]
     public array $signedKeyImages;
 
 
     /**
-     * @param KeyImage[] $signedKeyImages
+     * @param SignedKeyImage[] $signedKeyImages
      */
     public static function create(array $signedKeyImages, ?int $offset = null): RpcRequest
     {

@@ -6,7 +6,7 @@ namespace RefRing\MoneroRpcPhp;
 
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
-use RefRing\MoneroRpcPhp\Model\KeyImage;
+use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\Model\TransferDestination;
@@ -1019,7 +1019,7 @@ class WalletRpcClient extends JsonRpcClient
      * Import signed key images list and verify their spent status.
      *
      * @param ?int $offset (optional)
-     * @param KeyImage[] $signedKeyImages List of signed key images:
+     * @param SignedKeyImage[] $signedKeyImages List of signed key images:
      * @throws MoneroRpcException
      */
     public function importKeyImages(?int $offset = null, array $signedKeyImages): ImportKeyImagesResponse

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
-use RefRing\MoneroRpcPhp\Model\KeyImage;
+use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\Model\TransferDestination;
@@ -581,8 +581,8 @@ class WalletRpcSerializationTest extends TestCase
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"import_key_images","params":{"signed_key_images":[{"key_image":"cd35239b72a35e26a57ed17400c0b66944a55de9d5bda0f21190fed17f8ea876","signature":"c9d736869355da2538ab4af188279f84138c958edbae3c5caf388a63cd8e780b8c5a1aed850bd79657df659422c463608ea4e0c730ba9b662c906ae933816d00"},{"key_image":"65158a8ee5a3b32009b85a307d85b375175870e560e08de313531c7dbbe6fc19","signature":"c96e40d09dfc45cfc5ed0b76bfd7ca793469588bb0cf2b4d7b45ef23d40fd4036057b397828062e31700dc0c2da364f50cd142295a8405b9fe97418b4b745d0c"}]}}';
         $signedKeyImages = [
-            new KeyImage('cd35239b72a35e26a57ed17400c0b66944a55de9d5bda0f21190fed17f8ea876', 'c9d736869355da2538ab4af188279f84138c958edbae3c5caf388a63cd8e780b8c5a1aed850bd79657df659422c463608ea4e0c730ba9b662c906ae933816d00'),
-            new KeyImage('65158a8ee5a3b32009b85a307d85b375175870e560e08de313531c7dbbe6fc19', 'c96e40d09dfc45cfc5ed0b76bfd7ca793469588bb0cf2b4d7b45ef23d40fd4036057b397828062e31700dc0c2da364f50cd142295a8405b9fe97418b4b745d0c')
+            new SignedKeyImage('cd35239b72a35e26a57ed17400c0b66944a55de9d5bda0f21190fed17f8ea876', 'c9d736869355da2538ab4af188279f84138c958edbae3c5caf388a63cd8e780b8c5a1aed850bd79657df659422c463608ea4e0c730ba9b662c906ae933816d00'),
+            new SignedKeyImage('65158a8ee5a3b32009b85a307d85b375175870e560e08de313531c7dbbe6fc19', 'c96e40d09dfc45cfc5ed0b76bfd7ca793469588bb0cf2b4d7b45ef23d40fd4036057b397828062e31700dc0c2da364f50cd142295a8405b9fe97418b4b745d0c')
         ];
         $request = ImportKeyImagesRequest::create($signedKeyImages);
         $this->assertSame($expected, $request->toJson());

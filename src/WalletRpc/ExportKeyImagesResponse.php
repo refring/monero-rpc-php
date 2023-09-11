@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use RefRing\MoneroRpcPhp\Model\KeyImage;
+use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -18,7 +18,7 @@ class ExportKeyImagesResponse
     #[Json]
     public int $offset;
 
-    /** @var KeyImage[] */
+    /** @var SignedKeyImage[] */
     #[Json('signed_key_images')]
     public array $signedKeyImages;
 }
