@@ -1,6 +1,10 @@
 # Monero Daemon & Wallet RPC
+[![Latest Stable Version](http://poser.pugx.org/refactor_ring/monero-rpc-php/v)](https://packagist.org/packages/refactor_ring/monero-rpc-php)
+[![Tests](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml)
+[![PHPStan](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml)
+[![codecov](https://codecov.io/gh/refactor-ring/monero-rpc-php/graph/badge.svg?token=P8K26M8W6N)](https://codecov.io/gh/refactor-ring/monero-rpc-php)
 
-Monero daemon and wallet RPC written in PHP.
+Monero daemon and wallet RPC client library written in modern PHP.
 
 **WARNING:** The API might still undergo significant changes so use at own risk
 
@@ -58,6 +62,14 @@ If you have the docker stack installed, go to the `tests` folder and run `docker
 After that, run `composer test:integration`
 
 Also, you can run `docker compose down` to stop and remove the containers started by `docker compose up`.
+
+## Roadmap
+- [ ] More wallet-rpc integration tests
+- [ ] Fix strong-typed model classes for certain responses:
+  - [ ] BlockHash in some places
+  - [ ] Introduce a Address class maybe
+- [ ] More thorough error handling
+- [ ] Decide on giving the different get_blockheader* methods the same response
 
 ##  Contributing
 
