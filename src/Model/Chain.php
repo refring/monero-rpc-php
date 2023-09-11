@@ -15,12 +15,12 @@ class Chain
      * the block hash of the first diverging block of this alternative chain.
      */
     #[Json('block_hash')]
-    public string $blockHash;
+    public BlockHash $blockHash;
 
     /**
-     * @var string[] An array of all block hashes in the alternative chain that are not in the main chain.
+     * @var BlockHash[] An array of all block hashes in the alternative chain that are not in the main chain.
      */
-    #[Json('block_hashes')]
+    #[Json('block_hashes', type: BlockHash::class)]
     public array $blockHashes;
 
     /**
