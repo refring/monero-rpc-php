@@ -61,10 +61,10 @@ class Chain
 
 
     /**
-     * @param string[] $blockHashes
+     * @param BlockHash[] $blockHashes
      */
     public function __construct(
-        string $blockHash,
+        BlockHash $blockHash,
         array $blockHashes,
         int $difficulty,
         int $difficultyTop64,
