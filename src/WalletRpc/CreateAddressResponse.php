@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -18,7 +19,7 @@ class CreateAddressResponse
      * Newly created address. Base58 representation of the public keys.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * Index of the new address under the input account.
@@ -34,8 +35,8 @@ class CreateAddressResponse
 
     /**
      * list of addresses.
-     * @var string[]
+     * @var Address[]
      */
-    #[Json]
+    #[Json(type: Address::class)]
     public array $addresses;
 }

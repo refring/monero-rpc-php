@@ -8,6 +8,7 @@ use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
@@ -252,10 +253,10 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Get account and address indexes from a specific (sub)address
      *
-     * @param string $address (sub)address to look for.
+     * @param Address $address (sub)address to look for.
      * @throws MoneroRpcException
      */
-    public function getAddressIndex(string $address): GetAddressIndexResponse
+    public function getAddressIndex(Address $address): GetAddressIndexResponse
     {
         return $this->handleRequest(GetAddressIndexRequest::create($address), GetAddressIndexResponse::class);
     }
@@ -418,9 +419,9 @@ class WalletRpcClient extends JsonRpcClient
      * @param ?int $ringSize Number of outputs to mix in the transaction (this output + N decoys from the blockchain). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
      * @param ?int $unlockTime Number of blocks before the monero can be spent (0 to not add a lock).
      * @param bool $getTxKey Return the transaction key after sending.
-     * @param bool $doNotRelay If true, the newly created transaction will not be relayed to the monero network. (
-     * @param bool $getTxHex Return the transaction as hex string after sending (
-     * @param bool $getTxMetadata Return the metadata needed to relay the transaction. (
+     * @param bool $doNotRelay If true, the newly created transaction will not be relayed to the monero network.
+     * @param bool $getTxHex Return the transaction as hex string after sending
+     * @param bool $getTxMetadata Return the metadata needed to relay the transaction.
      * @throws MoneroRpcException
      */
     public function transfer(
