@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Tests\integration;
 
+use Http\Discovery\Psr18ClientDiscovery;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
 use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
@@ -31,7 +32,7 @@ final class NonEmptyBlockchainTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        $httpClient = new \GuzzleHttp\Client();
+        $httpClient = Psr18ClientDiscovery::find();
         self::$regtestRpcClient = new RegtestRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
     }
 
