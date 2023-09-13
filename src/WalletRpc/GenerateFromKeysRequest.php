@@ -61,12 +61,12 @@ class GenerateFromKeysRequest implements ParameterInterface
 
 
     public static function create(
-        ?int $restoreHeight = null,
         string $filename,
         Address $address,
-        ?string $spendkey = null,
         string $viewkey,
         string $password,
+        ?int $restoreHeight = null,
+        ?string $spendkey = null,
         ?bool $autosaveCurrent = true,
     ): RpcRequest {
         $self = new self();

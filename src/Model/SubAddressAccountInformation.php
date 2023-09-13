@@ -52,9 +52,9 @@ class SubAddressAccountInformation
         int $accountIndex,
         int $balance,
         string $baseAddress,
+        int $unlockedBalance,
         ?string $label = null,
         ?string $tag = null,
-        int $unlockedBalance,
     ) {
         $this->accountIndex = $accountIndex;
         $this->balance = $balance;

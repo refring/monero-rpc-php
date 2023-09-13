@@ -30,39 +30,39 @@ class BasicWalletTest extends TestCase
     public function testCreateWallet(): void
     {
         $this->expectNotToPerformAssertions();
-        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), null, 'English');
+        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'English', null);
     }
 
     public function testCreateWalletWithEmptyPassword(): void
     {
         $this->expectNotToPerformAssertions();
-        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), '', 'English');
+        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'English', '');
     }
 
     public function testCreateWalletWithPassword(): void
     {
         $this->expectNotToPerformAssertions();
-        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), TestHelper::WALLET_PWD_1, 'English');
+        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'English', TestHelper::WALLET_PWD_1);
     }
 
     public function testCreateWalletErrorAlreadyExists(): void
     {
         $this->expectException(WalletExistsException::class);
         $walletName = TestHelper::getRandomWalletName();
-        self::$rpcClient->createWallet($walletName, null, 'English');
-        self::$rpcClient->createWallet($walletName, null, 'English');
+        self::$rpcClient->createWallet($walletName, 'English', null);
+        self::$rpcClient->createWallet($walletName, 'English', null);
     }
 
     public function testCreateWalletErrorInvalidLanguage(): void
     {
         $this->expectException(InvalidLanguageException::class);
-        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), null, 'Barolo');
+        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'Barolo', null);
     }
 
     public function testGetAddressIndex(): void
     {
         $walletName = TestHelper::getRandomWalletName();
-        self::$rpcClient->createWallet($walletName, '', 'English');
+        self::$rpcClient->createWallet($walletName, 'English', '');
         self::$rpcClient->openWallet($walletName);
 
         $address = self::$rpcClient->getAddress(0)->address;
@@ -74,7 +74,7 @@ class BasicWalletTest extends TestCase
     public function testCreateAddress(): void
     {
         $walletName = TestHelper::getRandomWalletName();
-        self::$rpcClient->createWallet($walletName, '', 'English');
+        self::$rpcClient->createWallet($walletName, 'English', '');
         self::$rpcClient->openWallet($walletName);
 
         $createAddress = self::$rpcClient->createAddress(0);
@@ -86,7 +86,7 @@ class BasicWalletTest extends TestCase
     public function testCreateAddressMultiple(): void
     {
         $walletName = TestHelper::getRandomWalletName();
-        self::$rpcClient->createWallet($walletName, '', 'English');
+        self::$rpcClient->createWallet($walletName, 'English', '');
         self::$rpcClient->openWallet($walletName);
 
         $createAddress = self::$rpcClient->createAddress(0, null, 2);

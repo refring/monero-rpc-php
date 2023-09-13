@@ -566,13 +566,13 @@ class WalletRpcClient extends JsonRpcClient
      * Send all of a specific unlocked output to an address.
      *
      * @param Address $address Destination public address.
+     * @param string $keyImage Key image of specific output to sweep.
      * @param ?int $priority Priority for sending the sweep transfer, partially determines fee.
      * @param ?int $outputs specify the number of separate outputs of smaller denomination that will be created by sweep operation.
      * @param ?int $ringSize Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
      * @param ?int $unlockTime Number of blocks before the monero can be spent (0 to not add a lock).
      * @param ?string $paymentId defaults to a random ID) 16 characters hex encoded.
      * @param bool $getTxKey Return the transaction keys after sending.
-     * @param string $keyImage Key image of specific output to sweep.
      * @param bool $doNotRelay If true, do not relay this sweep transfer. (
      * @param bool $getTxHex return the transactions as hex encoded string. (
      * @param bool $getTxMetadata return the transaction metadata as a string. (
@@ -580,18 +580,18 @@ class WalletRpcClient extends JsonRpcClient
      */
     public function sweepSingle(
         Address $address,
+        string $keyImage,
         ?int $priority = null,
         ?int $outputs = null,
         ?int $ringSize = null,
         ?int $unlockTime = null,
         ?string $paymentId = null,
         ?bool $getTxKey = null,
-        string $keyImage,
         ?bool $doNotRelay = false,
         ?bool $getTxHex = false,
         ?bool $getTxMetadata = false,
     ): SweepSingleResponse {
-        return $this->handleRequest(SweepSingleRequest::create($address, $priority, $outputs, $ringSize, $unlockTime, $paymentId, $getTxKey, $keyImage, $doNotRelay, $getTxHex, $getTxMetadata), SweepSingleResponse::class);
+        return $this->handleRequest(SweepSingleRequest::create($address, $keyImage, $priority, $outputs, $ringSize, $unlockTime, $paymentId, $getTxKey, $doNotRelay, $getTxHex, $getTxMetadata), SweepSingleResponse::class);
     }
 
 
@@ -817,17 +817,17 @@ class WalletRpcClient extends JsonRpcClient
      *
      * @param string $txid transaction id.
      * @param Address $address destination public address of the transaction.
-     * @param ?string $message Should be the same message used in `get_tx_proof`.
      * @param string $signature transaction signature to confirm.
+     * @param ?string $message Should be the same message used in `get_tx_proof`.
      * @throws MoneroRpcException
      */
     public function checkTxProof(
         string $txid,
         Address $address,
-        ?string $message = null,
         string $signature,
+        ?string $message = null,
     ): CheckTxProofResponse {
-        return $this->handleRequest(CheckTxProofRequest::create($txid, $address, $message, $signature), CheckTxProofResponse::class);
+        return $this->handleRequest(CheckTxProofRequest::create($txid, $address, $signature, $message), CheckTxProofResponse::class);
     }
 
 
@@ -848,13 +848,13 @@ class WalletRpcClient extends JsonRpcClient
      * Prove a spend using a signature. Unlike proving a transaction, it does not requires the destination public address.
      *
      * @param string $txid transaction id.
-     * @param ?string $message Should be the same message used in `get_spend_proof`.
      * @param string $signature spend signature to confirm.
+     * @param ?string $message Should be the same message used in `get_spend_proof`.
      * @throws MoneroRpcException
      */
-    public function checkSpendProof(string $txid, ?string $message = null, string $signature): CheckSpendProofResponse
+    public function checkSpendProof(string $txid, string $signature, ?string $message = null): CheckSpendProofResponse
     {
-        return $this->handleRequest(CheckSpendProofRequest::create($txid, $message, $signature), CheckSpendProofResponse::class);
+        return $this->handleRequest(CheckSpendProofRequest::create($txid, $signature, $message), CheckSpendProofResponse::class);
     }
 
 
@@ -881,16 +881,16 @@ class WalletRpcClient extends JsonRpcClient
      * Proves a wallet has a disposable reserve using a signature.
      *
      * @param Address $address Public address of the wallet.
-     * @param ?string $message If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
      * @param string $signature reserve signature to confirm.
+     * @param ?string $message If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
      * @throws MoneroRpcException
      */
     public function checkReserveProof(
         Address $address,
-        ?string $message = null,
         string $signature,
+        ?string $message = null,
     ): CheckReserveProofResponse {
-        return $this->handleRequest(CheckReserveProofRequest::create($address, $message, $signature), CheckReserveProofResponse::class);
+        return $this->handleRequest(CheckReserveProofRequest::create($address, $signature, $message), CheckReserveProofResponse::class);
     }
 
 
@@ -1021,11 +1021,11 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Import signed key images list and verify their spent status.
      *
-     * @param ?int $offset (optional)
      * @param SignedKeyImage[] $signedKeyImages List of signed key images:
+     * @param ?int $offset (optional)
      * @throws MoneroRpcException
      */
-    public function importKeyImages(?int $offset = null, array $signedKeyImages): ImportKeyImagesResponse
+    public function importKeyImages(array $signedKeyImages, ?int $offset = null): ImportKeyImagesResponse
     {
         return $this->handleRequest(ImportKeyImagesRequest::create($signedKeyImages, $offset), ImportKeyImagesResponse::class);
     }
@@ -1206,40 +1206,40 @@ class WalletRpcClient extends JsonRpcClient
      * Create a new wallet. You need to have set the argument "--wallet-dir" when launching monero-wallet-rpc to make this work.
      *
      * @param string $filename Wallet file name.
-     * @param ?string $password password to protect the wallet.
      * @param string $language Language for your wallets' seed.
+     * @param ?string $password password to protect the wallet.
      * @throws MoneroRpcException
      * @throws WalletExistsException
      * @throws InvalidLanguageException
      */
-    public function createWallet(string $filename, ?string $password = null, string $language): CreateWalletResponse
+    public function createWallet(string $filename, string $language, ?string $password = null): CreateWalletResponse
     {
-        return $this->handleRequest(CreateWalletRequest::create($filename, $password, $language), CreateWalletResponse::class);
+        return $this->handleRequest(CreateWalletRequest::create($filename, $language, $password), CreateWalletResponse::class);
     }
 
 
     /**
      * Restores a wallet from a given wallet address, view key, and optional spend key.
      *
-     * @param ?int $restoreHeight defaults to 0) The block height to restore the wallet from.
      * @param string $filename The wallet's file name on the RPC server.
      * @param Address $address The wallet's primary address.
-     * @param ?string $spendkey omit to create a view-only wallet) The wallet's private spend key.
      * @param string $viewkey The wallet's private view key.
      * @param string $password The wallet's password.
+     * @param ?int $restoreHeight defaults to 0) The block height to restore the wallet from.
+     * @param ?string $spendkey omit to create a view-only wallet) The wallet's private spend key.
      * @param bool $autosaveCurrent (Defaults to true) If true, save the current wallet before generating the new wallet.
      * @throws MoneroRpcException
      */
     public function generateFromKeys(
-        ?int $restoreHeight = null,
         string $filename,
         Address $address,
-        ?string $spendkey = null,
         string $viewkey,
         string $password,
+        ?int $restoreHeight = null,
+        ?string $spendkey = null,
         ?bool $autosaveCurrent = true,
     ): GenerateFromKeysResponse {
-        return $this->handleRequest(GenerateFromKeysRequest::create($restoreHeight, $filename, $address, $spendkey, $viewkey, $password, $autosaveCurrent), GenerateFromKeysResponse::class);
+        return $this->handleRequest(GenerateFromKeysRequest::create($filename, $address, $viewkey, $password, $restoreHeight, $spendkey, $autosaveCurrent), GenerateFromKeysResponse::class);
     }
 
 

@@ -86,13 +86,13 @@ class SweepSingleRequest implements ParameterInterface
 
     public static function create(
         Address $address,
+        string $keyImage,
         ?int $priority = null,
-        ?int $outputs,
-        ?int $ringSize,
-        ?int $unlockTime,
+        ?int $outputs = null,
+        ?int $ringSize = null,
+        ?int $unlockTime = null,
         ?string $paymentId = null,
         ?bool $getTxKey = null,
-        string $keyImage,
         ?bool $doNotRelay = false,
         ?bool $getTxHex = false,
         ?bool $getTxMetadata = false,

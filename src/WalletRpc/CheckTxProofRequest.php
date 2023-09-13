@@ -42,7 +42,7 @@ class CheckTxProofRequest implements ParameterInterface
     public string $signature;
 
 
-    public static function create(string $txid, Address $address, ?string $message = null, string $signature): RpcRequest
+    public static function create(string $txid, Address $address, string $signature, ?string $message = null): RpcRequest
     {
         $self = new self();
         $self->txid = $txid;

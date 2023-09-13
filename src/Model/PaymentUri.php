@@ -45,9 +45,9 @@ class PaymentUri
     public function __construct(
         string $address,
         int $amount,
-        ?string $paymentId = null,
         string $recipientName,
         string $txDescription,
+        ?string $paymentId = null,
     ) {
         $this->address = $address;
         $this->amount = $amount;
