@@ -73,7 +73,7 @@ abstract class JsonRpcClient
         $body = $response->getBody()->__toString();
         //                var_dump($body);
 
-        if ($e = $this->getExceptionForInvalidResponse($body)) {
+        if (($e = $this->getExceptionForInvalidResponse($body)) !== null) {
             throw $e;
         }
 

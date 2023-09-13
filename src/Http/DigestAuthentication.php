@@ -26,7 +26,7 @@ class DigestAuthentication
     private function analyzeWwwAuthenticateHeader(string $header): array
     {
         // WWW-authenticate: Digest qop="auth",algorithm=MD5-sess,realm="monero-rpc",nonce="RuNBBhFd01EjzYvZY/S0GQ==",stale=false
-        $strippedHeader = preg_replace("/^Digest/i", "", $header);
+        $strippedHeader = preg_replace("#^Digest#i", "", $header);
         $headerParts = explode(',', (string) $strippedHeader);
 
         $authPieces = array();
@@ -44,11 +44,11 @@ class DigestAuthentication
     {
         $nonceCount = str_pad('1', 8, '0', STR_PAD_LEFT);
         $cnonce = uniqid();
-        $a1 = hash('md5', "{$username}:{$realm}:{$password}");
-        $a2 = hash('md5', "{$method}:{$uri}");
+        $a1 = hash('md5', sprintf('%s:%s:%s', $username, $realm, $password));
+        $a2 = hash('md5', sprintf('%s:%s', $method, $uri));
 
         // Digest username="foo", realm="monero-rpc", nonce="MabGPXDFZAfFXcRkSr+RnQ==", uri="/json_rpc", algorithm=MD5-sess, response="7c14eda67b93d7f10e86130c20e1fc70", qop=auth, nc=00000002, cnonce="1d5d394033061298"
-        $response = hash('md5', "$a1:{$nonce}:{$nonceCount}:{$cnonce}:{$qop}:$a2");
+        $response = hash('md5', sprintf('%s:%s:%s:%s:%s:%s', $a1, $nonce, $nonceCount, $cnonce, $qop, $a2));
 
         $format = 'Digest username="%s", realm="%s", nonce="%s", uri="%s", algorithm="%s", response="%s", qop=%s, nc=%s, cnonce="%s"';
 

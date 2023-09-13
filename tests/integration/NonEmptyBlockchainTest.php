@@ -21,7 +21,11 @@ use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class NonEmptyBlockchainTest extends TestCase
 {
+    /**
+     * @var int
+     */
     public const BLOCKS_TO_GENERATE = 10;
+
     private static RegtestRpcClient $regtestRpcClient;
 
 

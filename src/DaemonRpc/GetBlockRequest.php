@@ -45,6 +45,7 @@ class GetBlockRequest implements ParameterInterface
         } else {
             $self->hash = $blockHashOrHeight->value;
         }
+
         $self->fillPowHash = $fillPowHash;
         return new RpcRequest('get_block', $self);
     }

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -12,8 +11,14 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__.'/tests',
     ]);
 
-    $rectorConfig->phpVersion(\Rector\Core\ValueObject\PhpVersion::PHP_81);
+    $rectorConfig->phpVersion(\Rector\Core\ValueObject\PhpVersion::PHP_82);
     $rectorConfig->sets([
-        SetList::PHP_81,
+        SetList::PHP_82,
+//        SetList::CODING_STYLE
+    ]);
+
+    $rectorConfig->skip([
+        \Rector\CodingStyle\Rector\Class_\AddArrayDefaultToArrayPropertyRector::class,
+        \Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector::class
     ]);
 };

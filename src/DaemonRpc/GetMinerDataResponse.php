@@ -29,6 +29,7 @@ class GetMinerDataResponse
      */
     #[Json]
     public HexDifficulty $difficulty;
+
     /**
      * current blockheight.
      */

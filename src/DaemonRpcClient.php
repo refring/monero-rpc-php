@@ -100,6 +100,7 @@ class DaemonRpcClient extends JsonRpcClient
         if ((string) $result === '0000000000000000000000000000000000000000000000000000000000000000') {
             throw ErrorCode::InvalidBlockHeight->toException($blockHeight);
         }
+
         return $result;
     }
 

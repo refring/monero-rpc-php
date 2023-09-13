@@ -9,7 +9,14 @@ use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 
 class RpcAuthenticationTest extends TestCase
 {
+    /**
+     * @var string
+     */
     final public const WALLET_RPC_URL = 'http://127.0.0.1:18084/json_rpc';
+
+    /**
+     * @var string
+     */
     final public const DAEMON_RPC_URL = 'http://127.0.0.1:18085/json_rpc';
 
     public function testConnectionError(): void
@@ -21,6 +28,7 @@ class RpcAuthenticationTest extends TestCase
         $this->expectException(ClientExceptionInterface::class);
         $client->getVersion();
     }
+
     public function testWalletAuthFailure(): void
     {
         $client = (new Builder(self::WALLET_RPC_URL))
@@ -66,6 +74,7 @@ class RpcAuthenticationTest extends TestCase
         if ($socket === false) {
             throw new \Exception("Could not create open socket.");
         }
+
         socket_getsockname($socket, $addr, $port);
         socket_close($socket);
 

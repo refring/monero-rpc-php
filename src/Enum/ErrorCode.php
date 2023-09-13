@@ -54,7 +54,7 @@ enum ErrorCode: string
         // If an exact match was not found try to find a partial match
         $errorCode = current(array_filter(
             $errorMessages,
-            fn (string $errorMessage) => str_contains($error, $errorMessage),
+            static fn (string $errorMessage) => str_contains($error, $errorMessage),
             ARRAY_FILTER_USE_KEY
         ));
 
@@ -69,7 +69,7 @@ enum ErrorCode: string
     {
         $message = $this->value;
 
-        if (count($placeHolders) > 0) {
+        if ($placeHolders !== []) {
             $message = sprintf($message, ...$placeHolders);
         }
 
