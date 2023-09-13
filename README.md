@@ -1,4 +1,4 @@
-# Monero Daemon & Wallet RPC
+# Monero Daemon & Wallet RPC client
 [![Latest Stable Version](http://poser.pugx.org/refactor_ring/monero-rpc-php/v)](https://packagist.org/packages/refactor_ring/monero-rpc-php)
 [![Tests](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml)
 [![PHPStan](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml)

@@ -1,6 +1,6 @@
 {
     "name": "refactor_ring/monero-rpc-php",
-    "description": "monero-rpc-php is a wrapper for using the monero-daemon rpc and monero-wallet rpc APIs",
+    "description": "A modern fully strong-typed library for using the Monero daemon rpc and wallet rpc APIs",
     "keywords": ["monero", "monero-wallet-rpc", "monero daemon","sdk", "api", "client"],
     "license": "MIT",
     "authors": [
