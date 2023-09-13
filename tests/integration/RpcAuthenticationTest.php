@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RefRing\MoneroRpcPhp\Tests\integration;
 
 use PHPUnit\Framework\TestCase;

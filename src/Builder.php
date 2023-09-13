@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RefRing\MoneroRpcPhp;
 
 use Http\Discovery\Psr18ClientDiscovery;

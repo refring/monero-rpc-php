@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RefRing\MoneroRpcPhp\Enum;
 
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
