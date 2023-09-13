@@ -43,6 +43,6 @@ class TestHelper
 
     public static function getRandomWalletName(): string
     {
-        return hash('sha256', random_int(0, PHP_INT_MAX));
+        return hash('sha256', (string) random_int(0, PHP_INT_MAX));
     }
 }
