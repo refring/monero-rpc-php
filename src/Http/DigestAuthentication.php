@@ -9,7 +9,7 @@ namespace RefRing\MoneroRpcPhp\Http;
  */
 class DigestAuthentication
 {
-    public function __construct(private string $username, private string $password, private string $uri, private string $method)
+    public function __construct(private readonly string $username, private readonly string $password, private readonly string $uri, private readonly string $method)
     {
 
     }

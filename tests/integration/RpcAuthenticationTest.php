@@ -9,8 +9,8 @@ use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 
 class RpcAuthenticationTest extends TestCase
 {
-    public const WALLET_RPC_URL = 'http://127.0.0.1:18084/json_rpc';
-    public const DAEMON_RPC_URL = 'http://127.0.0.1:18085/json_rpc';
+    final public const WALLET_RPC_URL = 'http://127.0.0.1:18084/json_rpc';
+    final public const DAEMON_RPC_URL = 'http://127.0.0.1:18085/json_rpc';
 
     public function testConnectionError(): void
     {

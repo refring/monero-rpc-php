@@ -10,7 +10,7 @@ final class Builder
 {
     private ?ClientInterface $httpClient = null;
 
-    private string $url;
+    private readonly string $url;
 
     /**
      * The HTTP headers for the requests.
