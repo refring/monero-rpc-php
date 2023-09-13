@@ -13,6 +13,7 @@ Monero daemon and wallet RPC client library written in modern PHP.
 * Implements Monero wallet and daemon json-rpc methods
 * Support authentication for the wallet and daemon rpc servers
 * Completely strong-typed
+* Minimal dependencies
 * PSR-18 compatible, so different http client libraries can be used
 
 <a name="installation"></a>
@@ -24,7 +25,10 @@ You can install the package with Composer:
 composer require refactor_ring/monero-rpc-php
 ```
 
-## http client
+When your project does not have a http client available yet, you should require one as well.
+
+Different http clients can be used:
+
 ### guzzle
 ```bash 
 composer require guzzlehttp/guzzle
@@ -50,8 +54,6 @@ composer php-http/curl-client
 </details>
 
 ## Usage
-
-First make sure to have http client library like guzzlehttp/guzzle or symfony/http-client installed.
 
 For the wallet rpc client:
 ```php
