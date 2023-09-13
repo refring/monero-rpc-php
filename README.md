@@ -3,6 +3,7 @@
 [![Tests](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml)
 [![PHPStan](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml)
 [![codecov](https://codecov.io/gh/refactor-ring/monero-rpc-php/graph/badge.svg?token=P8K26M8W6N)](https://codecov.io/gh/refactor-ring/monero-rpc-php)
+[![PHP Version Require](http://poser.pugx.org/refactor_ring/monero-rpc-php/require/php)](https://packagist.org/packages/refactor_ring/monero-rpc-php)
 
 Monero daemon and wallet RPC client library written in modern PHP.
 
@@ -22,6 +23,31 @@ You can install the package with Composer:
 ```bash
 composer require refactor_ring/monero-rpc-php
 ```
+
+## http client
+### guzzle
+```bash 
+composer require guzzlehttp/guzzle
+```
+
+<details>
+<summary>Other http clients</summary>
+
+### symfony http client
+```bash
+composer require symfony/http-client psr/http-client nyholm/psr7
+```
+
+### buzz
+```bash
+composer require kriswallsmith/buzz nyholm/psr7
+```
+
+### php-http/curl-client
+```bash
+composer php-http/curl-client
+```
+</details>
 
 ## Usage
 
