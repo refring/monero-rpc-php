@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientExceptionInterface;
 use RefRing\MoneroRpcPhp\Builder;
 use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
-use Symfony\Component\HttpClient\HttpClient;
 
 class RpcAuthenticationTest extends TestCase
 {

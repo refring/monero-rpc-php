@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -20,7 +21,7 @@ class SweepSingleRequest implements ParameterInterface
      * Destination public address.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * (Optional) Priority for sending the sweep transfer, partially determines fee.
@@ -84,7 +85,7 @@ class SweepSingleRequest implements ParameterInterface
 
 
     public static function create(
-        string $address,
+        Address $address,
         ?int $priority = null,
         ?int $outputs,
         ?int $ringSize,

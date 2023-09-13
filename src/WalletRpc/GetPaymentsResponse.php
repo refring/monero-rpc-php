@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\Payment;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
@@ -23,5 +24,5 @@ class GetPaymentsResponse
      * Address receiving the payment; Base58 representation of the public keys.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 }

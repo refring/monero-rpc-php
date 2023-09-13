@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -18,7 +19,7 @@ class GenerateFromKeysResponse
      * The wallet's address.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * Verification message indicating that the wallet was generated successfully and whether or not it is a view-only wallet.

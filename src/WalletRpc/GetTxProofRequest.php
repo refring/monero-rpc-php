@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -26,7 +27,7 @@ class GetTxProofRequest implements ParameterInterface
      * destination public address of the transaction.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * (Optional) add a message to the signature to further authenticate the prooving process.
@@ -35,7 +36,7 @@ class GetTxProofRequest implements ParameterInterface
     public ?string $message;
 
 
-    public static function create(string $txid, string $address, ?string $message = null): RpcRequest
+    public static function create(string $txid, Address $address, ?string $message = null): RpcRequest
     {
         $self = new self();
         $self->txid = $txid;

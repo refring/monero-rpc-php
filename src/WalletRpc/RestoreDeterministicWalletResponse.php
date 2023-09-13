@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -18,7 +19,7 @@ class RestoreDeterministicWalletResponse
      * 95-character hexadecimal address of the restored wallet as a string.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * Message describing the success or failure of the attempt to restore the wallet.

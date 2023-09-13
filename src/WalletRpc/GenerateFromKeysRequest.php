@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -32,7 +33,7 @@ class GenerateFromKeysRequest implements ParameterInterface
      * The wallet's primary address.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * (Optional, omit to create a view-only wallet) The wallet's private spend key.
@@ -62,7 +63,7 @@ class GenerateFromKeysRequest implements ParameterInterface
     public static function create(
         ?int $restoreHeight = null,
         string $filename,
-        string $address,
+        Address $address,
         ?string $spendkey = null,
         string $viewkey,
         string $password,

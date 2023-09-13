@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -20,7 +21,7 @@ class CheckReserveProofRequest implements ParameterInterface
      * Public address of the wallet.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
@@ -35,7 +36,7 @@ class CheckReserveProofRequest implements ParameterInterface
     public string $signature;
 
 
-    public static function create(string $address, ?string $message = null, string $signature): RpcRequest
+    public static function create(Address $address, ?string $message = null, string $signature): RpcRequest
     {
         $self = new self();
         $self->address = $address;

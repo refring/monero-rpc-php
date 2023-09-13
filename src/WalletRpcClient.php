@@ -292,13 +292,13 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Analyzes a string to determine whether it is a valid monero wallet address and returns the result and the address specifications.
      *
-     * @param string $address The address to validate.
+     * @param Address $address The address to validate.
      * @param bool $anyNetType If true, consider addresses belonging to any of the three Monero networks (mainnet, stagenet, and testnet) valid. Otherwise, only consider an address valid if it belongs to the network on which the rpc-wallet's current daemon is running (.
      * @param bool $allowOpenalias If true, consider OpenAlias-formatted addresses valid
      * @throws MoneroRpcException
      */
     public function validateAddress(
-        string $address,
+        Address $address,
         ?bool $anyNetType = false,
         ?bool $allowOpenalias = false,
     ): ValidateAddressResponse {
@@ -526,7 +526,7 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Send all unlocked balance to an address.
      *
-     * @param string $address Destination public address.
+     * @param Address $address Destination public address.
      * @param ?int $accountIndex Sweep transactions from this account.
      * @param ?int[] $subaddrIndices Sweep from this set of subaddresses in the account.
      * @param bool $subaddrIndicesAll use outputs in all subaddresses within an account (.
@@ -543,7 +543,7 @@ class WalletRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      */
     public function sweepAll(
-        string $address,
+        Address $address,
         ?int $accountIndex = null,
         ?array $subaddrIndices = null,
         ?bool $subaddrIndicesAll = false,
@@ -565,7 +565,7 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Send all of a specific unlocked output to an address.
      *
-     * @param string $address Destination public address.
+     * @param Address $address Destination public address.
      * @param ?int $priority Priority for sending the sweep transfer, partially determines fee.
      * @param ?int $outputs specify the number of separate outputs of smaller denomination that will be created by sweep operation.
      * @param ?int $ringSize Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
@@ -579,7 +579,7 @@ class WalletRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      */
     public function sweepSingle(
-        string $address,
+        Address $address,
         ?int $priority = null,
         ?int $outputs = null,
         ?int $ringSize = null,
@@ -789,10 +789,10 @@ class WalletRpcClient extends JsonRpcClient
      *
      * @param string $txid transaction id.
      * @param string $txKey transaction secret key.
-     * @param string $address destination public address of the transaction.
+     * @param Address $address destination public address of the transaction.
      * @throws MoneroRpcException
      */
-    public function checkTxKey(string $txid, string $txKey, string $address): CheckTxKeyResponse
+    public function checkTxKey(string $txid, string $txKey, Address $address): CheckTxKeyResponse
     {
         return $this->handleRequest(CheckTxKeyRequest::create($txid, $txKey, $address), CheckTxKeyResponse::class);
     }
@@ -802,11 +802,11 @@ class WalletRpcClient extends JsonRpcClient
      * Get transaction signature to prove it.
      *
      * @param string $txid transaction id.
-     * @param string $address destination public address of the transaction.
+     * @param Address $address destination public address of the transaction.
      * @param ?string $message add a message to the signature to further authenticate the prooving process.
      * @throws MoneroRpcException
      */
-    public function getTxProof(string $txid, string $address, ?string $message = null): GetTxProofResponse
+    public function getTxProof(string $txid, Address $address, ?string $message = null): GetTxProofResponse
     {
         return $this->handleRequest(GetTxProofRequest::create($txid, $address, $message), GetTxProofResponse::class);
     }
@@ -816,14 +816,14 @@ class WalletRpcClient extends JsonRpcClient
      * Prove a transaction by checking its signature.
      *
      * @param string $txid transaction id.
-     * @param string $address destination public address of the transaction.
+     * @param Address $address destination public address of the transaction.
      * @param ?string $message Should be the same message used in `get_tx_proof`.
      * @param string $signature transaction signature to confirm.
      * @throws MoneroRpcException
      */
     public function checkTxProof(
         string $txid,
-        string $address,
+        Address $address,
         ?string $message = null,
         string $signature,
     ): CheckTxProofResponse {
@@ -880,13 +880,13 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Proves a wallet has a disposable reserve using a signature.
      *
-     * @param string $address Public address of the wallet.
+     * @param Address $address Public address of the wallet.
      * @param ?string $message If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
      * @param string $signature reserve signature to confirm.
      * @throws MoneroRpcException
      */
     public function checkReserveProof(
-        string $address,
+        Address $address,
         ?string $message = null,
         string $signature,
     ): CheckReserveProofResponse {
@@ -972,11 +972,11 @@ class WalletRpcClient extends JsonRpcClient
      * Verify a signature on a string.
      *
      * @param string $data What should have been signed.
-     * @param string $address Public address of the wallet used to `sign` the data.
+     * @param Address $address Public address of the wallet used to `sign` the data.
      * @param string $signature signature generated by `sign` method.
      * @throws MoneroRpcException
      */
-    public function verify(string $data, string $address, string $signature): VerifyResponse
+    public function verify(string $data, Address $address, string $signature): VerifyResponse
     {
         return $this->handleRequest(VerifyRequest::create($data, $address, $signature), VerifyResponse::class);
     }
@@ -1034,7 +1034,7 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Create a payment URI using the official URI spec.
      *
-     * @param string $address Wallet address
+     * @param Address $address Wallet address
      * @param ?int $amount (optional) the integer amount to receive, in **@atomic-units**
      * @param ?string $paymentId defaults to a random ID) 16 characters hex encoded.
      * @param ?string $recipientName (optional) name of the payment recipient
@@ -1042,7 +1042,7 @@ class WalletRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      */
     public function makeUri(
-        string $address,
+        Address $address,
         ?int $amount = null,
         ?string $paymentId = null,
         ?string $recipientName = null,
@@ -1079,13 +1079,13 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Add an entry to the address book.
      *
-     * @param string $address
+     * @param Address $address
      * @param ?string $paymentId (defaults to a random ID) 16 characters hex encoded.
      * @param ?string $description defaults to "";
      * @throws MoneroRpcException
      */
     public function addAddressBook(
-        string $address,
+        Address $address,
         ?string $paymentId = null,
         ?string $description = null,
     ): AddAddressBookResponse {
@@ -1098,7 +1098,7 @@ class WalletRpcClient extends JsonRpcClient
      *
      * @param int $index Index of the address book entry to edit.
      * @param bool $setAddress If true, set the address for this entry to the value of "address".
-     * @param ?string $address The 95-character public address to set.
+     * @param ?Address $address The 95-character public address to set.
      * @param bool $setDescription If true, set the description for this entry to the value of "description".
      * @param ?string $description Human-readable description for this entry.
      * @param bool $setPaymentId If true, set the payment ID for this entry to the value of "payment_id".
@@ -1110,7 +1110,7 @@ class WalletRpcClient extends JsonRpcClient
         bool $setAddress,
         bool $setDescription,
         bool $setPaymentId,
-        ?string $address = null,
+        ?Address $address = null,
         ?string $description = null,
         ?string $paymentId = null,
     ): EditAddressBookResponse {
@@ -1223,7 +1223,7 @@ class WalletRpcClient extends JsonRpcClient
      *
      * @param ?int $restoreHeight defaults to 0) The block height to restore the wallet from.
      * @param string $filename The wallet's file name on the RPC server.
-     * @param string $address The wallet's primary address.
+     * @param Address $address The wallet's primary address.
      * @param ?string $spendkey omit to create a view-only wallet) The wallet's private spend key.
      * @param string $viewkey The wallet's private view key.
      * @param string $password The wallet's password.
@@ -1233,7 +1233,7 @@ class WalletRpcClient extends JsonRpcClient
     public function generateFromKeys(
         ?int $restoreHeight = null,
         string $filename,
-        string $address,
+        Address $address,
         ?string $spendkey = null,
         string $viewkey,
         string $password,

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -20,7 +21,7 @@ class SweepAllRequest implements ParameterInterface
      * Destination public address.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * (Optional) Sweep transactions from this account.
@@ -105,7 +106,7 @@ class SweepAllRequest implements ParameterInterface
      * @param int[] $subaddrIndices
      */
     public static function create(
-        string $address,
+        Address $address,
         ?int $accountIndex = null,
         ?array $subaddrIndices = null,
         ?bool $subaddrIndicesAll = null,

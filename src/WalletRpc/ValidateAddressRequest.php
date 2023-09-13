@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -20,7 +21,7 @@ class ValidateAddressRequest implements ParameterInterface
      * The address to validate.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * (Optional); If true, consider addresses belonging to any of the three Monero networks (mainnet, stagenet, and testnet) valid. Otherwise, only consider an address valid if it belongs to the network on which the rpc-wallet's current daemon is running (Defaults to false).
@@ -35,7 +36,7 @@ class ValidateAddressRequest implements ParameterInterface
     public ?bool $allowOpenalias;
 
 
-    public static function create(string $address, ?bool $anyNetType = false, ?bool $allowOpenalias = false): RpcRequest
+    public static function create(Address $address, ?bool $anyNetType = false, ?bool $allowOpenalias = false): RpcRequest
     {
         $self = new self();
         $self->address = $address;

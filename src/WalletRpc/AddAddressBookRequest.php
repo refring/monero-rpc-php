@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -17,7 +18,7 @@ class AddAddressBookRequest implements ParameterInterface
     use JsonSerialize;
 
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * (Optional, defaults to a random ID) 16 characters hex encoded.
@@ -32,7 +33,7 @@ class AddAddressBookRequest implements ParameterInterface
     public ?string $description;
 
 
-    public static function create(string $address, ?string $paymentId = null, ?string $description = null): RpcRequest
+    public static function create(Address $address, ?string $paymentId = null, ?string $description = null): RpcRequest
     {
         $self = new self();
         $self->address = $address;

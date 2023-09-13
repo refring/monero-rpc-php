@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -18,7 +19,7 @@ class MakeMultisigResponse
      * multisig wallet address.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * Multisig string to share with peers to create the multisig wallet (extra step for N-1/N wallets).

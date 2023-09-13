@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -15,7 +16,7 @@ class ExchangeMultisigKeysResponse
     use JsonSerialize;
 
     #[Json]
-    public string $address;
+    public Address $address;
 
     #[Json('multisig_info')]
     public string $multisigInfo;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -32,7 +33,7 @@ class EditAddressBookRequest implements ParameterInterface
      * (Optional) The 95-character public address to set.
      */
     #[Json(omit_empty: true)]
-    public ?string $address;
+    public ?Address $address;
 
     /**
      * If true, set the description for this entry to the value of "description".
@@ -62,7 +63,7 @@ class EditAddressBookRequest implements ParameterInterface
     public static function create(
         int $index,
         bool $setAddress,
-        ?string $address = null,
+        ?Address $address = null,
         bool $setDescription = false,
         ?string $description = null,
         bool $setPaymentId = false,

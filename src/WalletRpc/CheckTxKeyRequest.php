@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -32,10 +33,10 @@ class CheckTxKeyRequest implements ParameterInterface
      * destination public address of the transaction.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
 
-    public static function create(string $txid, string $txKey, string $address): RpcRequest
+    public static function create(string $txid, string $txKey, Address $address): RpcRequest
     {
         $self = new self();
         $self->txid = $txid;
