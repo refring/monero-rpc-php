@@ -2,11 +2,13 @@
 
 namespace RefRing\MoneroRpcPhp\Tests\integration;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\Builder;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
+use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
@@ -15,6 +17,10 @@ use RefRing\MoneroRpcPhp\WalletRpcClient;
 class BasicWalletTest extends TestCase
 {
     private static WalletRpcClient $rpcClient;
+
+    private static string $walletNoPwd;
+    private static string $walletWithEmptyPwd;
+    private static string $walletWithPwd;
 
     public static function setUpBeforeClass(): void
     {
@@ -31,27 +37,28 @@ class BasicWalletTest extends TestCase
     public function testCreateWallet(): void
     {
         $this->expectNotToPerformAssertions();
-        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'English', null);
+        self::$walletNoPwd = TestHelper::getRandomWalletName();
+        self::$rpcClient->createWallet(self::$walletNoPwd, 'English', null);
     }
 
     public function testCreateWalletWithEmptyPassword(): void
     {
         $this->expectNotToPerformAssertions();
-        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'English', '');
+        self::$walletWithEmptyPwd = TestHelper::getRandomWalletName();
+        self::$rpcClient->createWallet(self::$walletWithEmptyPwd, 'English', '');
     }
 
     public function testCreateWalletWithPassword(): void
     {
         $this->expectNotToPerformAssertions();
-        self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'English', TestHelper::WALLET_PWD_1);
+        self::$walletWithPwd = TestHelper::getRandomWalletName();
+        self::$rpcClient->createWallet(self::$walletWithPwd, 'English', TestHelper::WALLET_PWD_1);
     }
 
     public function testCreateWalletErrorAlreadyExists(): void
     {
         $this->expectException(WalletExistsException::class);
-        $walletName = TestHelper::getRandomWalletName();
-        self::$rpcClient->createWallet($walletName, 'English', null);
-        self::$rpcClient->createWallet($walletName, 'English', null);
+        self::$rpcClient->createWallet(self::$walletNoPwd, 'English', null);
     }
 
     public function testCreateWalletErrorInvalidLanguage(): void
@@ -70,6 +77,48 @@ class BasicWalletTest extends TestCase
     {
         $this->expectException(NoWalletFileException::class);
         self::$rpcClient->closeWallet();
+    }
+
+    #[Depends('testCreateWalletWithPassword')]
+    public function testOpenWalletWithPassword(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->openWallet(self::$walletWithPwd, TestHelper::WALLET_PWD_1);
+    }
+
+    #[Depends('testCreateWalletWithEmptyPassword')]
+    public function testOpenWalletWithEmptyPassword(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->openWallet(self::$walletWithEmptyPwd, '');
+    }
+
+    #[Depends('testCreateWallet')]
+    public function testOpenWallet(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->openWallet(self::$walletNoPwd);
+
+        // Try to open it twice
+        self::$rpcClient->openWallet(self::$walletNoPwd);
+    }
+
+    public function testOpenWalletInvalidFilename(): void
+    {
+        $this->expectException(OpenWalletException::class);
+        self::$rpcClient->openWallet(TestHelper::getRandomWalletName());
+    }
+    #[Depends('testCreateWalletWithPassword')]
+    public function testOpenWalletNoPasswordError(): void
+    {
+        $this->expectException(OpenWalletException::class);
+        self::$rpcClient->openWallet(self::$walletWithPwd);
+    }
+    #[Depends('testCreateWalletWithPassword')]
+    public function testOpenWalletInvalidPassword(): void
+    {
+        $this->expectException(OpenWalletException::class);
+        self::$rpcClient->openWallet(self::$walletWithPwd, '');
     }
 
     public function testGetAddressIndex(): void

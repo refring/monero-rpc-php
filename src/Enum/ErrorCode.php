@@ -16,6 +16,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
+use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 
 enum ErrorCode: string
@@ -34,6 +35,7 @@ enum ErrorCode: string
     case WalletAlreadyExists = "Cannot create wallet. Already exists.";
     case InvalidLanguage = "Unknown language supplied";
     case NoWalletFile = "No wallet file";
+    case OpenWalletFailure = "Failed to open wallet";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -89,6 +91,7 @@ enum ErrorCode: string
             self::WalletAlreadyExists => new WalletExistsException($message),
             self::InvalidLanguage => new InvalidLanguageException($message),
             self::NoWalletFile => new NoWalletFileException($message),
+            self::OpenWalletFailure => new OpenWalletException($message),
         };
 
         return $exception;

@@ -8,6 +8,7 @@ use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
+use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
@@ -1250,6 +1251,7 @@ class WalletRpcClient extends JsonRpcClient
      * @param string $filename wallet name stored in --wallet-dir.
      * @param ?string $password only needed if the wallet has a password defined.
      * @throws MoneroRpcException
+     * @throws OpenWalletException
      */
     public function openWallet(string $filename, ?string $password = null): OpenWalletResponse
     {
