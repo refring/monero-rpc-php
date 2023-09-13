@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp;
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
+use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
@@ -1285,6 +1286,7 @@ class WalletRpcClient extends JsonRpcClient
      * Close the currently opened wallet, after trying to save it.
      *
      * @throws MoneroRpcException
+     * @throws NoWalletFileException
      */
     public function closeWallet(): CloseWalletResponse
     {

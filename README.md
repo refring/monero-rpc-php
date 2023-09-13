@@ -91,9 +91,9 @@ Also, you can run `docker compose down` to stop and remove the containers starte
 
 ## Roadmap
 - [ ] More wallet-rpc integration tests
-- [ ] Fix strong-typed model classes for certain responses:
-  - [ ] BlockHash in some places
-  - [ ] Introduce a Address class maybe
+- [x] Fix strong-typed model classes for certain responses:
+  - [x] BlockHash in some places
+  - [x] Introduce a Address class maybe
 - [ ] More thorough error handling
 - [ ] Decide on giving the different get_blockheader* methods the same response
 

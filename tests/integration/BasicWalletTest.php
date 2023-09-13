@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\Builder;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
+use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
@@ -57,6 +58,18 @@ class BasicWalletTest extends TestCase
     {
         $this->expectException(InvalidLanguageException::class);
         self::$rpcClient->createWallet(TestHelper::getRandomWalletName(), 'Barolo', null);
+    }
+
+    public function testCloseWallet(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->closeWallet();
+    }
+
+    public function testCloseWalletError(): void
+    {
+        $this->expectException(NoWalletFileException::class);
+        self::$rpcClient->closeWallet();
     }
 
     public function testGetAddressIndex(): void
