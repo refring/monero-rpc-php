@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^8.1.0",
+        "ext-json": "*",
         "php-http/discovery": "^1.19.0",
         "psr/http-client": "^1.0.2",
         "psr/http-client-implementation": "*",
@@ -24,7 +25,8 @@
         "monero-integrations/monerophp": "dev-master",
         "phpstan/phpstan": "^1.10.25",
         "phpunit/phpunit": "^10.3.3",
-        "rector/rector": "^0.16.0"
+        "rector/rector": "^0.16.0",
+        "ext-sockets": "*"
     },
     "suggest": {
         "guzzlehttp/guzzle": "HTTP client"
