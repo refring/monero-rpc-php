@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use RefRing\MoneroRpcPhp\Model\TransferType;
+use RefRing\MoneroRpcPhp\Model\IncomingTransferType;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -21,7 +21,7 @@ class IncomingTransfersRequest implements ParameterInterface
      * "all": all the transfers, "available": only transfers which are not yet spent, OR "unavailable": only transfers which are already spent.
      */
     #[Json('transfer_type')]
-    public TransferType $transferType;
+    public IncomingTransferType $transferType;
 
     /**
      * (Optional) Return transfers for this account. (defaults to 0)
@@ -40,9 +40,9 @@ class IncomingTransfersRequest implements ParameterInterface
      * @param ?int[] $subaddrIndices
      */
     public static function create(
-        TransferType $transferType,
-        ?int $accountIndex = null,
-        ?array $subaddrIndices = null,
+        IncomingTransferType $transferType,
+        ?int                 $accountIndex = null,
+        ?array               $subaddrIndices = null,
     ): RpcRequest {
         $self = new self();
         $self->transferType = $transferType;
