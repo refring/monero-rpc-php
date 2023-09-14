@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Turn this wallet into a multisig wallet, extra step for N-1/N wallets.Alias: *None*.
+ * Turn this wallet into a multisig wallet, extra step for N-1/N wallets.
  */
 class FinalizeMultisigRequest implements ParameterInterface
 {

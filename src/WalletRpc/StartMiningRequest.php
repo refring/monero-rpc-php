@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Start mining in the Monero daemon.Alias: *None*.
+ * Start mining in the Monero daemon.
  */
 class StartMiningRequest implements ParameterInterface
 {

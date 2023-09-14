@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Submit a previously signed transaction on a read-only wallet (in cold-signing process).Alias: *None*.
+ * Submit a previously signed transaction on a read-only wallet (in cold-signing process).
  */
 class SubmitTransferRequest implements ParameterInterface
 {

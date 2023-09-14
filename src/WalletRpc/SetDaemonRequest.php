@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Connect the RPC server to a Monero daemon.Alias: *None*.
+ * Connect the RPC server to a Monero daemon.
  */
 class SetDaemonRequest implements ParameterInterface
 {

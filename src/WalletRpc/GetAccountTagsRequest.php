@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Get a list of user-defined account tags.Alias: *None*.
+ * Get a list of user-defined account tags.
  */
 class GetAccountTagsRequest
 {

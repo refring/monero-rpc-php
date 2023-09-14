@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Return the spend or view private key.Alias: *None*.
+ * Return the spend or view private key.
  */
 class QueryKeyRequest implements ParameterInterface
 {

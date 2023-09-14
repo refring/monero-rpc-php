@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Make an integrated address from the wallet address and a payment id.Alias: *None*.
+ * Make an integrated address from the wallet address and a payment id.
  */
 class MakeIntegratedAddressRequest implements ParameterInterface
 {

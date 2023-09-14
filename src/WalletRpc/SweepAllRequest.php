@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Send all unlocked balance to an address.Alias: *None*.
+ * Send all unlocked balance to an address.
  */
 class SweepAllRequest implements ParameterInterface
 {

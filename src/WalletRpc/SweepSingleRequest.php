@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Send all of a specific unlocked output to an address.Alias: *None*.
+ * Send all of a specific unlocked output to an address.
  */
 class SweepSingleRequest implements ParameterInterface
 {

@@ -16,6 +16,6 @@ class IncomingTransfersResponse
     use JsonSerialize;
 
     /** @var IncomingTransfer[] */
-    #[Json]
+    #[Json(type: IncomingTransfer::class)]
     public array $transfers;
 }

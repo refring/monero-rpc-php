@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Retrieve the standard address and payment id corresponding to an integrated address.Alias: *None*.
+ * Retrieve the standard address and payment id corresponding to an integrated address.
  */
 class SplitIntegratedAddressResponse
 {

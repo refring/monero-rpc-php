@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get account and address indexes from a specific (sub)addressAlias: *None*.
+ * Get account and address indexes from a specific (sub)address
  */
 class GetAddressIndexResponse
 {
@@ -18,5 +19,5 @@ class GetAddressIndexResponse
      * JSON object containing the major & minor subaddress index:
      */
     #[Json]
-    public \RefRing\MoneroRpcPhp\Model\SubAddressIndex $index;
+    public SubAddressIndex $index;
 }

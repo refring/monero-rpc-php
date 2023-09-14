@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Sign a transaction created on a read-only wallet (in cold-signing process)Alias: *None*.
+ * Sign a transaction created on a read-only wallet (in cold-signing process)
  */
 class SignTransferResponse
 {
@@ -26,4 +26,18 @@ class SignTransferResponse
      */
     #[Json('tx_hash_list')]
     public array $txHashList;
+
+    /**
+     * @var string[] The tx raw data of every transaction.
+     *
+     */
+    #[Json('tx_raw_list')]
+    public array $txRawList;
+
+    /**
+     * @var string[]
+     *
+     */
+    #[Json('tx_key_list')]
+    public array $txKeyList;
 }

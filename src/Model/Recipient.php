@@ -7,12 +7,12 @@ namespace RefRing\MoneroRpcPhp\Model;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-class TransferDestination
+class Recipient
 {
     use JsonSerialize;
 
     /**
-     * Amount to send to each destination, in @atomic-units.
+     * Amount to send to each destination, in piconero.
      */
     #[Json]
     public int $amount;

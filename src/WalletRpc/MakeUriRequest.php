@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Create a payment URI using the official URI spec.Alias: *None*.
+ * Create a payment URI using the official URI spec.
  */
 class MakeUriRequest implements ParameterInterface
 {
@@ -24,7 +24,7 @@ class MakeUriRequest implements ParameterInterface
     public Address $address;
 
     /**
-     * (optional) the integer amount to receive, in **@atomic-units**
+     * (optional) the integer amount to receive, in **piconero**
      */
     #[Json(omit_empty: true)]
     public ?int $amount;

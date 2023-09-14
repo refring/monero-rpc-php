@@ -26,15 +26,10 @@ class AddressBookEntry
     #[Json]
     public int $index;
 
-    #[Json('payment_id')]
-    public string $paymentId;
-
-
-    public function __construct(string $address, string $description, int $index, string $paymentId)
+    public function __construct(string $address, string $description, int $index)
     {
         $this->address = $address;
         $this->description = $description;
         $this->index = $index;
-        $this->paymentId = $paymentId;
     }
 }

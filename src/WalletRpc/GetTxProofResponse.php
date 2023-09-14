@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get transaction signature to prove it.Alias: *None*.
+ * Get transaction signature to prove it.
  */
 class GetTxProofResponse
 {

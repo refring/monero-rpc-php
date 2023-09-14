@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Generate a signature to prove of an available amount in a wallet.Alias: *None*.
+ * Generate a signature to prove of an available amount in a wallet.
  */
 class GetReserveProofRequest implements ParameterInterface
 {
@@ -29,7 +29,7 @@ class GetReserveProofRequest implements ParameterInterface
     public int $accountIndex;
 
     /**
-     * Amount (in @atomic-units) to prove the account has in reserve. (ignored if `all` is set to true)
+     * Amount (in piconero) to prove the account has in reserve. (ignored if `all` is set to true)
      */
     #[Json]
     public int $amount;

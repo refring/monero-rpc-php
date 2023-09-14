@@ -9,13 +9,13 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get a list of user-defined account tags.Alias: *None*.
+ * Get a list of user-defined account tags.
  */
 class GetAccountTagsResponse
 {
     use JsonSerialize;
 
     /** @var AccountTagInformation[] */
-    #[Json('account_tags')]
+    #[Json('account_tags', type:AccountTagInformation::class)]
     public array $accountTags;
 }

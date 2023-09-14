@@ -9,7 +9,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Create and open a wallet on the RPC server from an existing mnemonic phrase and close the currently open wallet.Alias: *None*.
+ * Create and open a wallet on the RPC server from an existing mnemonic phrase and close the currently open wallet.
  */
 class RestoreDeterministicWalletResponse
 {

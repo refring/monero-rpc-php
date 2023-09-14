@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Export multisig info for other participants.Alias: *None*.
+ * Export multisig info for other participants.
  */
 class ExportMultisigInfoResponse
 {

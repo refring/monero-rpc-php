@@ -22,7 +22,7 @@ class GetFeeEstimateResponse
     public int $credits;
 
     /**
-     * Amount of fees estimated per byte in @atomic-units
+     * Amount of fees estimated per byte in piconero
      */
     #[Json]
     public int $fee;

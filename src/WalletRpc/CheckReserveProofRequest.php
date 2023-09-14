@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Proves a wallet has a disposable reserve using a signature.Alias: *None*.
+ * Proves a wallet has a disposable reserve using a signature.
  */
 class CheckReserveProofRequest implements ParameterInterface
 {

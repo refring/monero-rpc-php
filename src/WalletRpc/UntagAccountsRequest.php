@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Remove filtering tag from a list of accounts.Alias: *None*.
+ * Remove filtering tag from a list of accounts.
  */
 class UntagAccountsRequest implements ParameterInterface
 {

@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Import signed key images list and verify their spent status.Alias: *None*.
+ * Import signed key images list and verify their spent status.
  */
 class ImportKeyImagesRequest implements ParameterInterface
 {

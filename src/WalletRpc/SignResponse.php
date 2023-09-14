@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Sign a string.Alias: *None*.
+ * Sign a string.
  */
 class SignResponse
 {

@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Label an address.Alias: *None*.
+ * Label an address.
  */
 class LabelAddressResponse
 {

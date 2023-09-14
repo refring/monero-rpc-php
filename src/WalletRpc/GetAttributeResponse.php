@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get attribute value by name.Alias: *None*.
+ * Get attribute value by name.
  */
 class GetAttributeResponse
 {

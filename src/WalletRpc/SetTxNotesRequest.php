@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Set arbitrary string notes for transactions.Alias: *None*.
+ * Set arbitrary string notes for transactions.
  */
 class SetTxNotesRequest implements ParameterInterface
 {

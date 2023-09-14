@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Create a new account with an optional label.Alias: *None*.
+ * Create a new account with an optional label.
  */
 class CreateAccountRequest implements ParameterInterface
 {

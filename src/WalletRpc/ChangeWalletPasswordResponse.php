@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Change a wallet password.Alias: *None*.
+ * Change a wallet password.
  */
 class ChangeWalletPasswordResponse
 {

@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Rescan the blockchain for spent outputs.Alias: *None*.
+ * Rescan the blockchain for spent outputs.
  */
 class RescanSpentResponse
 {

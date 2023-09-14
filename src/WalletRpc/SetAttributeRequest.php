@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Set arbitrary attribute.Alias: *None*.
+ * Set arbitrary attribute.
  */
 class SetAttributeRequest implements ParameterInterface
 {

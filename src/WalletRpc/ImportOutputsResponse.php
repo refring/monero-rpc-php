@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Import outputs in hex format.Alias: *None*.
+ * Import outputs in hex format.
  */
 class ImportOutputsResponse
 {

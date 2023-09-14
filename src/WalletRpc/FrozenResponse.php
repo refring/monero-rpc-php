@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Checks whether a given output is currently frozen by key imageAlias: *None*.
+ * Checks whether a given output is currently frozen by key image
  */
 class FrozenResponse
 {

@@ -8,11 +8,23 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get transaction secret key from transaction id.Alias: *None*.
+ * Get transaction secret key from transaction id.
  */
 class GetTxKeyResponse
 {
     use JsonSerialize;
+
+    /**
+     * Amount of the transaction.
+     */
+    #[Json]
+    public int $received;
+
+    /**
+     * States if the transaction is still in pool or has been added to a block.
+     */
+    #[Json('in_pool')]
+    public bool $inPool;
 
     /**
      * transaction secret key.

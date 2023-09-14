@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Rescan the blockchain for spent outputs.Alias: *None*.
+ * Rescan the blockchain for spent outputs.
  */
 class RescanSpentRequest
 {

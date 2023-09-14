@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Save the wallet file.Alias: *None*.
+ * Save the wallet file.
  */
 class StoreRequest
 {

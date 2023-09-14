@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get a list of available languages for your wallet's seed.Alias: *None*.
+ * Get a list of available languages for your wallet's seed.
  */
 class GetLanguagesResponse
 {
@@ -20,4 +20,10 @@ class GetLanguagesResponse
      */
     #[Json]
     public array $languages;
+
+    /**
+     * @var string[]
+     */
+    #[Json('languages_local')]
+    public array $languagesLocal;
 }

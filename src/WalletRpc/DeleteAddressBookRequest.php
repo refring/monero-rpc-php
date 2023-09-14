@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Delete an entry from the address book.Alias: *None*.
+ * Delete an entry from the address book.
  */
 class DeleteAddressBookRequest implements ParameterInterface
 {

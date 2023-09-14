@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Generate a signature to prove a spend. Unlike proving a transaction, it does not requires the destination public address.Alias: *None*.
+ * Generate a signature to prove a spend. Unlike proving a transaction, it does not requires the destination public address.
  */
 class GetSpendProofRequest implements ParameterInterface
 {

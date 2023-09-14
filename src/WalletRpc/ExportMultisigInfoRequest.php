@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Export multisig info for other participants.Alias: *None*.
+ * Export multisig info for other participants.
  */
 class ExportMultisigInfoRequest
 {

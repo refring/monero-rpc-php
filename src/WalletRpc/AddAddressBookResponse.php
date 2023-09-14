@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Add an entry to the address book.Alias: *None*.
+ * Add an entry to the address book.
  */
 class AddAddressBookResponse
 {

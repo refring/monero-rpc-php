@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Prepare a wallet for multisig by generating a multisig string to share with peers.Alias: *None*.
+ * Prepare a wallet for multisig by generating a multisig string to share with peers.
  */
 class PrepareMultisigRequest
 {

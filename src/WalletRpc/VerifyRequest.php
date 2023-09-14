@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Verify a signature on a string.Alias: *None*.
+ * Verify a signature on a string.
  */
 class VerifyRequest implements ParameterInterface
 {

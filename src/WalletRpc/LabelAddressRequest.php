@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Label an address.Alias: *None*.
+ * Label an address.
  */
 class LabelAddressRequest implements ParameterInterface
 {

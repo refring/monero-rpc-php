@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Freeze a single output by key image so it will not be usedAlias: *None*.
+ * Freeze a single output by key image so it will not be used
  */
 class FreezeRequest implements ParameterInterface
 {

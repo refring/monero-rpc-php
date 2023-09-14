@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Parse a payment URI to get payment information.Alias: *None*.
+ * Parse a payment URI to get payment information.
  */
 class ParseUriRequest implements ParameterInterface
 {

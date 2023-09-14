@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Get a list of available languages for your wallet's seed.Alias: *None*.
+ * Get a list of available languages for your wallet's seed.
  */
 class GetLanguagesRequest
 {

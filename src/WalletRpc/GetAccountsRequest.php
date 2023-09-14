@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get all accounts for a wallet. Optionally filter accounts by tag.Alias: *None*.
+ * Get all accounts for a wallet. Optionally filter accounts by tag.
  */
 class GetAccountsRequest implements ParameterInterface
 {

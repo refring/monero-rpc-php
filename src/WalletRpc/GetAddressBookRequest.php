@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Retrieves entries from the address book.Alias: *None*.
+ * Retrieves entries from the address book.
  */
 class GetAddressBookRequest implements ParameterInterface
 {

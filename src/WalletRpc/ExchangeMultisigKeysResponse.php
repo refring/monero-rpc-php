@@ -9,7 +9,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Performs extra multisig keys exchange rounds. Needed for arbitrary M/N multisig walletsAlias: *None*.
+ * Performs extra multisig keys exchange rounds. Needed for arbitrary M/N multisig wallets
  */
 class ExchangeMultisigKeysResponse
 {

@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Connect the RPC server to a Monero daemon.Alias: *None*.
+ * Connect the RPC server to a Monero daemon.
  */
 class SetDaemonResponse
 {

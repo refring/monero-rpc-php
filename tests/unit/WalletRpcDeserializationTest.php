@@ -239,7 +239,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testTransferSplit()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[3000000000000],"fee_list":[473710000],"weight_list":[51456],"multisig_txset":"","tx_hash_list":["4adcdc1af3f665770cdf8fb7a380887cd07ac53c2b771bd18df5ca375d5e7540"],"tx_key_list":["5b455c0f97168be652a2c03c5c68a064bb84cdae4ddef01b5c48d73a0bbb27075fb714f2ca19ea6c8ff592417e606addea6deb1d6530e2969f75681ffcbfc4075677b94a8c9197963ae38fa6f543ee68f0a4c4bbda4c453f39538f00b28e980ea08509730b51c004960101ba2f3adbc34cbbdff0d5af9dba061b523090debd06"],"unsigned_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[3000000000000],"fee_list":[473710000],"multisig_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}],"tx_hash_list":["4adcdc1af3f665770cdf8fb7a380887cd07ac53c2b771bd18df5ca375d5e7540"],"tx_key_list":["5b455c0f97168be652a2c03c5c68a064bb84cdae4ddef01b5c48d73a0bbb27075fb714f2ca19ea6c8ff592417e606addea6deb1d6530e2969f75681ffcbfc4075677b94a8c9197963ae38fa6f543ee68f0a4c4bbda4c453f39538f00b28e980ea08509730b51c004960101ba2f3adbc34cbbdff0d5af9dba061b523090debd06"],"unsigned_txset":"","weight_list":[51456]}}';
         $response = TransferSplitResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
@@ -329,7 +329,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testIncomingTransfers()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"transfers":[{"amount":60000000000000,"block_height":2758159,"global_index":122405,"key_image":"768f5144777eb23477ab7acf83562581d690abaf98ca897c03a9d2b900eb479b","spent":true,"subaddr_index":{"major":0,"minor":3},"tx_hash":"f53401f21c6a43e44d5dd7a90eba5cf580012ad0e15d050059136f8a0da34f6b","pubkey":"253c35abc9e88268df40e622376572adedd391f667ef8db9f3d20789f733b35a","frozen":false,"unlocked":false},{"amount":27126892247503,"blockheight":2758161,"global_index":594994,"key_image":"7e561394806afd1be61980cc3431f6ef3569fa9151cd8d234f8ec13aa145695e","spent":false,"subaddr_index":{"major":0,"minor":3},"tx_hash":"106d4391a031e5b735ded555862fec63233e34e5fa4fc7edcfdbe461c275ae5b","pubkey":"c1544f7fe535a643bb2c4bebdcbcfd2b7c16681de298c2f4712d4f67273e9472","frozen":false,"unlocked":true},{"amount":27169374733655,"block_height":2758670,"global_index":594997,"key_image":"e76c0a3bfeaae35e4173712f782eb34011198e26b990225b71aa787c8ba8a157","spent":false,"subaddr_index":{"major":0,"minor":3},"tx_hash":"0bd959b59117ee1254bd8e5aa8e77ec04ef744144a1ffb2d5c1eb9380a719621","pubkey":"99cb6ec639ee514c00758934aab69c965c4ff0dbc136d9199011a683be1e6df1","frozen":false,"unlocked":true}]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"transfers":[{"amount":60000000000000,"global_index":122405,"key_image":"768f5144777eb23477ab7acf83562581d690abaf98ca897c03a9d2b900eb479b","spent":true,"subaddr_index":{"major":0,"minor":3},"tx_hash":"f53401f21c6a43e44d5dd7a90eba5cf580012ad0e15d050059136f8a0da34f6b","frozen":false,"unlocked":false,"block_height":2758159,"pubkey":"253c35abc9e88268df40e622376572adedd391f667ef8db9f3d20789f733b35a"},{"amount":27126892247503,"global_index":594994,"key_image":"7e561394806afd1be61980cc3431f6ef3569fa9151cd8d234f8ec13aa145695e","spent":false,"subaddr_index":{"major":0,"minor":3},"tx_hash":"106d4391a031e5b735ded555862fec63233e34e5fa4fc7edcfdbe461c275ae5b","frozen":false,"unlocked":true,"block_height":2758161,"pubkey":"c1544f7fe535a643bb2c4bebdcbcfd2b7c16681de298c2f4712d4f67273e9472"},{"amount":27169374733655,"global_index":594997,"key_image":"e76c0a3bfeaae35e4173712f782eb34011198e26b990225b71aa787c8ba8a157","spent":false,"subaddr_index":{"major":0,"minor":3},"tx_hash":"0bd959b59117ee1254bd8e5aa8e77ec04ef744144a1ffb2d5c1eb9380a719621","frozen":false,"unlocked":true,"block_height":2758670,"pubkey":"99cb6ec639ee514c00758934aab69c965c4ff0dbc136d9199011a683be1e6df1"}]}}';
         $response = IncomingTransfersResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
@@ -509,7 +509,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testDescribeTransfer()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"desc":[{"amount_in":886489038634812,"amount_out":886455352051344,"change_address":"5BqWeZrK944YesCy5VdmBneWeaSZutEijFVAKjpVHeVd4unsCSM55CjgViQsK9WFNHK1eZgcCuZ3fRqYpzKDokqSUmQfJzvswQs13AAidJ","change_amount":4976287087263,"dummy_outputs":0,"extra":"01b998f16459bcbac9c92074d3128d10724f10b74f5a7b1ec8e5a1e7f1150544020209010000000000000000","fee":33686583468,"payment_id":"0000000000000000000000000000000000000000000000000000000000000000","recipients":[{"address":"0b057f69acc1552014cb157138e5c4dd495347d333f68ff0af70494b979aed10","amount":881479064964081}],"ring_size":11,"unlock_time":0}]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"desc":[{"amount_in":886489038634812,"amount_out":886455352051344,"ring_size":11,"unlock_time":0,"recipients":[{"amount":881479064964081,"address":"0b057f69acc1552014cb157138e5c4dd495347d333f68ff0af70494b979aed10"}],"payment_id":"0000000000000000000000000000000000000000000000000000000000000000","change_amount":4976287087263,"change_address":"5BqWeZrK944YesCy5VdmBneWeaSZutEijFVAKjpVHeVd4unsCSM55CjgViQsK9WFNHK1eZgcCuZ3fRqYpzKDokqSUmQfJzvswQs13AAidJ","fee":33686583468,"dummy_outputs":0,"extra":"01b998f16459bcbac9c92074d3128d10724f10b74f5a7b1ec8e5a1e7f1150544020209010000000000000000"}]}}';
         $response = DescribeTransferResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
@@ -779,7 +779,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testFinalizeMultisig()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"address":"5B9gZUTDuHTcGGuY3nL3t8K2tDnEHeRVHSBQgLZUTQxtFYVLnho5JJjWJyFp5YZgZRQ44RiviJi1sPHgLVMbckRsDqDx1gV"}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":[]}';
         $response = FinalizeMultisigResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());

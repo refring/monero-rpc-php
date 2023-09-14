@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Alias: *None*.
+ *
  */
 class EstimateTxSizeAndWeightResponse
 {

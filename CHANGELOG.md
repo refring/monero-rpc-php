@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.3.0 (2023-09-14)
+### Added
+- Enum NetType
+- Enum SignatureType
+- Enum IncomingTransferType
+- Class KeyImageList
+### Changed
+- Many changes based on wallet_rpc_server_commands_defs.h from the main Monero repo
+- Renamed Tranfer to IncomingTransfer
+- Many wallet-rpc Response classes got changed 
+- Renamed TransferDestination to Recipient
+- Some Response classes now extend other Response classes because they were identical
+
 ## v0.2.0 (2023-09-13)
 ### Added
 - Added Address class for representing base58 addresses

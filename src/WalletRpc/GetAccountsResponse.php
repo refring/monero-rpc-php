@@ -9,7 +9,7 @@ use Square\Pjson\JsonSerialize;
 use RefRing\MoneroRpcPhp\Model\SubAddressAccountInformation;
 
 /**
- * Get all accounts for a wallet. Optionally filter accounts by tag.Alias: *None*.
+ * Get all accounts for a wallet. Optionally filter accounts by tag.
  */
 class GetAccountsResponse
 {

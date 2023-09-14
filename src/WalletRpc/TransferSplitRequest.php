@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
-use RefRing\MoneroRpcPhp\Model\TransferDestination;
+use RefRing\MoneroRpcPhp\Model\Recipient;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Same as transfer, but can split into more than one tx if necessary.Alias: *None*.
+ * Same as transfer, but can split into more than one tx if necessary.
  */
 class TransferSplitRequest implements ParameterInterface
 {
     use JsonSerialize;
 
-    /** @var TransferDestination[] */
+    /** @var Recipient[] */
     #[Json]
     public array $destinations;
 
@@ -84,7 +84,7 @@ class TransferSplitRequest implements ParameterInterface
 
 
     /**
-     * @param TransferDestination[] $destinations
+     * @param Recipient[] $destinations
      * @param ?int[] $subaddrIndices
      */
     public static function create(

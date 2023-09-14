@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Store the current state of any open wallet and exit the monero-wallet-rpc process.Alias: *None*.
+ * Store the current state of any open wallet and exit the monero-wallet-rpc process.
  */
 class StopWalletRequest
 {

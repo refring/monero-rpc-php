@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Start mining in the Monero daemon.Alias: *None*.
+ * Start mining in the Monero daemon.
  */
 class StartMiningResponse
 {

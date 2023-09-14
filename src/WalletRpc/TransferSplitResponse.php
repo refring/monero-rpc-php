@@ -4,36 +4,29 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\KeyImageList;
+use RefRing\MoneroRpcPhp\WalletRpcClient;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Same as transfer, but can split into more than one tx if necessary.Alias: *None*.
+ * Same as @see WalletRpcClient::transfer(), but can split into more than one tx if necessary..
  */
 class TransferSplitResponse
 {
     use JsonSerialize;
 
     /**
-     * array of integer. The amount transferred for every transaction.
-     * @var int[]
+     * @var int[] The amount transferred for every transaction.
      */
     #[Json('amount_list')]
     public array $amountList;
 
     /**
-     * array of integer. The amount of fees paid for every transaction.
-     * @var int[]
+     * @var int[] The amount of fees paid for every transaction.
      */
     #[Json('fee_list')]
     public array $feeList;
-
-    /**
-     * array of integer. Metric used to calculate transaction fee.
-     * @var int[]
-     */
-    #[Json('weight_list')]
-    public array $weightList;
 
     /**
      * string. The set of signing keys used in a multisig transaction (empty for non-multisig).
@@ -42,29 +35,31 @@ class TransferSplitResponse
     public string $multisigTxset;
 
     /**
-     * array of string. The tx hashes of every transaction.
-     * @var string[]
+     * @var KeyImageList[] Key images of spent outputs.
+     */
+    #[Json('spent_key_images_list', type:KeyImageList::class)]
+    public array $spentKeyImagesList;
+
+    /**
+     * @var string[] The tx hashes of every transaction.
      */
     #[Json('tx_hash_list')]
     public array $txHashList;
 
     /**
-     * array of string. The transaction keys for every transaction.
-     * @var string[]
+     * @var string[] The transaction keys for every transaction.
      */
     #[Json('tx_key_list')]
     public array $txKeyList;
 
     /**
-     * array of string. The tx as hex string for every transaction.
-     * @var string[]
+     * @var string[] The tx as hex string for every transaction.
      */
     #[Json('tx_blob_list')]
     public array $txBlobList;
 
     /**
-     * array of string. List of transaction metadata needed to relay the transactions later.
-     * @var string[]
+     * @var string[] List of transaction metadata needed to relay the transactions later.
      */
     #[Json('tx_metadata_list')]
     public array $txMetadataList;
@@ -76,8 +71,8 @@ class TransferSplitResponse
     public string $unsignedTxset;
 
     /**
-     * @var string[] Key images of spent outputs.
+     * @var int[] Metric used to calculate transaction fee.
      */
-    #[Json('spent_key_images_list')]
-    public array $spentKeyImagesList;
+    #[Json('weight_list')]
+    public array $weightList;
 }

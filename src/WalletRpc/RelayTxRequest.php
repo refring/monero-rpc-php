@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Relay a transaction previously created with `"do_not_relay":true`.Alias: *None*.
+ * Relay a transaction previously created with `"do_not_relay":true`.
  */
 class RelayTxRequest implements ParameterInterface
 {

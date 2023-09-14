@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Refresh a wallet after openning.Alias: *None*.
+ * Refresh a wallet after openning.
  */
 class RefreshRequest implements ParameterInterface
 {

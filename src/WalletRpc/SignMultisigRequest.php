@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Sign a transaction in multisig.Alias: *None*.
+ * Sign a transaction in multisig.
  */
 class SignMultisigRequest implements ParameterInterface
 {

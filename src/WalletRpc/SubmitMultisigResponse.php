@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Submit a signed multisig transaction.Alias: *None*.
+ * Submit a signed multisig transaction.
  */
 class SubmitMultisigResponse
 {

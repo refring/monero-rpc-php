@@ -12,7 +12,7 @@ class Histogram
     use JsonSerialize;
 
     /**
-     * Output amount in @atomic-units
+     * Output amount in piconero
      */
     #[Json]
     public int $amount;

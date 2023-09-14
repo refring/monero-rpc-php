@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Check a transaction in the blockchain with its secret key.Alias: *None*.
+ * Check a transaction in the blockchain with its secret key.
  */
 class CheckTxKeyRequest implements ParameterInterface
 {

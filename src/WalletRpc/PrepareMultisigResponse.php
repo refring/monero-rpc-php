@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Prepare a wallet for multisig by generating a multisig string to share with peers.Alias: *None*.
+ * Prepare a wallet for multisig by generating a multisig string to share with peers.
  */
 class PrepareMultisigResponse
 {

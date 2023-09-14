@@ -66,7 +66,7 @@ class Transfer
     public string $note;
 
     /**
-     * @var TransferDestination[]  array of JSON objects containing transfer destinations: (only for outgoing transactions):
+     * @var Recipient[]  array of JSON objects containing transfer destinations: (only for outgoing transactions):
      */
     #[Json]
     public array $destinations;
@@ -125,13 +125,13 @@ class Transfer
     /**
      * @param string $address
      * @param int $amount
-     * @param int $amounts
+     * @param int[] $amounts
      * @param int $confirmations
      * @param bool $doubleSpendSeen
      * @param int $fee
      * @param int $height
      * @param string $note
-     * @param TransferDestination[] $destinations
+     * @param Recipient[] $destinations
      * @param string $paymentId
      * @param SubAddressIndex $subaddrIndex
      * @param SubAddressIndex[] $subaddrIndices
@@ -142,7 +142,7 @@ class Transfer
      * @param bool $locked
      * @param TransferType $type
      */
-    public function __construct(string $address, int $amount, int $amounts, int $confirmations, bool $doubleSpendSeen, int $fee, int $height, string $note, array $destinations, string $paymentId, SubAddressIndex $subaddrIndex, array $subaddrIndices, int $suggestedConfirmationsThreshold, int $timestamp, string $txid, int $unlockTime, bool $locked, TransferType $type)
+    public function __construct(string $address, int $amount, array $amounts, int $confirmations, bool $doubleSpendSeen, int $fee, int $height, string $note, array $destinations, string $paymentId, SubAddressIndex $subaddrIndex, array $subaddrIndices, int $suggestedConfirmationsThreshold, int $timestamp, string $txid, int $unlockTime, bool $locked, TransferType $type)
     {
         $this->address = $address;
         $this->amount = $amount;

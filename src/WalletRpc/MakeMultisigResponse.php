@@ -9,7 +9,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Make a wallet multisig by importing peers multisig string.Alias: *None*.
+ * Make a wallet multisig by importing peers multisig string.
  */
 class MakeMultisigResponse
 {

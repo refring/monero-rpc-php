@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Generate a signature to prove of an available amount in a wallet.Alias: *None*.
+ * Generate a signature to prove of an available amount in a wallet.
  */
 class GetReserveProofResponse
 {

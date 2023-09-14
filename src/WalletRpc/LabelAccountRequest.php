@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Label an account.Alias: *None*.
+ * Label an account.
  */
 class LabelAccountRequest implements ParameterInterface
 {

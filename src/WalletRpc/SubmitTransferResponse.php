@@ -8,15 +8,14 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Submit a previously signed transaction on a read-only wallet (in cold-signing process).Alias: *None*.
+ * Submit a previously signed transaction on a read-only wallet (in cold-signing process).
  */
 class SubmitTransferResponse
 {
     use JsonSerialize;
 
     /**
-     * array of string. The tx hashes of every transaction.
-     * @var string[]
+     * @var string[] The tx hashes of every transaction.
      */
     #[Json('tx_hash_list')]
     public array $txHashList;

@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Check if a wallet is a multisig one.Alias: *None*.
+ * Check if a wallet is a multisig one.
  */
 class IsMultisigResponse
 {

@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Prove a transaction by checking its signature.Alias: *None*.
+ * Prove a transaction by checking its signature.
  */
 class CheckTxProofRequest implements ParameterInterface
 {

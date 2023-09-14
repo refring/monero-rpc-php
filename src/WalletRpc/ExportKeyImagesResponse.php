@@ -9,7 +9,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Export a signed set of key images.Alias: *None*.
+ * Export a signed set of key images.
  */
 class ExportKeyImagesResponse
 {

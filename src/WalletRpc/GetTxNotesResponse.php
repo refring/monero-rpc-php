@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get string notes for transactions.Alias: *None*.
+ * Get string notes for transactions.
  */
 class GetTxNotesResponse
 {

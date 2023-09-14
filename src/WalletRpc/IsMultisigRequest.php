@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Check if a wallet is a multisig one.Alias: *None*.
+ * Check if a wallet is a multisig one.
  */
 class IsMultisigRequest
 {

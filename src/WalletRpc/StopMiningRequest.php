@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Stop mining in the Monero daemon.Alias: *None*.
+ * Stop mining in the Monero daemon.
  */
 class StopMiningRequest
 {

@@ -12,16 +12,10 @@ class Payment
     use JsonSerialize;
 
     /**
-     * Payment ID matching the input parameter.
+     * Address receiving the payment; Base58 representation of the public keys.
      */
-    #[Json('payment_id')]
-    public string $paymentId;
-
-    /**
-     * Transaction hash used as the transaction ID.
-     */
-    #[Json('tx_hash')]
-    public string $txHash;
+    #[Json]
+    public Address $address;
 
     /**
      * Amount for this payment.
@@ -36,6 +30,24 @@ class Payment
     public int $blockHeight;
 
     /**
+     * Payment ID matching the input parameter.
+     */
+    #[Json('payment_id')]
+    public string $paymentId;
+
+    /**
+     * JSON object containing the major & minor subaddress index:
+     */
+    #[Json('subaddr_index')]
+    public SubAddressIndex $subaddrIndex;
+
+    /**
+     * Transaction hash used as the transaction ID.
+     */
+    #[Json('tx_hash')]
+    public string $txHash;
+
+    /**
      * Time (in block height) until this payment is safe to spend.
      */
     #[Json('unlock_time')]
@@ -47,12 +59,6 @@ class Payment
     #[Json]
     public bool $locked;
 
-    /**
-     * JSON object containing the major & minor subaddress index:
-     */
-    #[Json('subaddr_index')]
-    public SubAddressIndex $subaddrIndex;
-
 
     public function __construct(
         string $paymentId,
@@ -62,6 +68,7 @@ class Payment
         int $unlockTime,
         bool $locked,
         SubAddressIndex $subaddrIndex,
+        Address $address
     ) {
         $this->paymentId = $paymentId;
         $this->txHash = $txHash;
@@ -70,5 +77,6 @@ class Payment
         $this->unlockTime = $unlockTime;
         $this->locked = $locked;
         $this->subaddrIndex = $subaddrIndex;
+        $this->address = $address;
     }
 }

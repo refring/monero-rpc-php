@@ -9,7 +9,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Create a new address for an account. Optionally, label the new address.Alias: *None*.
+ * Create a new address for an account. Optionally, label the new address.
  */
 class CreateAddressResponse
 {

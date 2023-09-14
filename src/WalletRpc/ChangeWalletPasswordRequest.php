@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Change a wallet password.Alias: *None*.
+ * Change a wallet password.
  */
 class ChangeWalletPasswordRequest implements ParameterInterface
 {

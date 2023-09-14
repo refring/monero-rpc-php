@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get transaction secret key from transaction id.Alias: *None*.
+ * Get transaction secret key from transaction id.
  */
 class GetTxKeyRequest implements ParameterInterface
 {

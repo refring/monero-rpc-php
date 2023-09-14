@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get account and address indexes from a specific (sub)addressAlias: *None*.
+ * Get account and address indexes from a specific (sub)address
  */
 class GetAddressIndexRequest implements ParameterInterface
 {

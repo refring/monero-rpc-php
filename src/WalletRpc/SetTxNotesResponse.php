@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Set arbitrary string notes for transactions.Alias: *None*.
+ * Set arbitrary string notes for transactions.
  */
 class SetTxNotesResponse
 {

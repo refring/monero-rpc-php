@@ -120,7 +120,7 @@ class BlockHeader
     public string $prevHash;
 
     /**
-     * The amount of new @atomic-units generated in this block and rewarded to the miner. Note: 1 XMR = 1e12 @atomic-units.
+     * The amount of new piconero generated in this block and rewarded to the miner. Note: 1 XMR = 1e12 piconero.
      */
     #[Json]
     public int $reward;

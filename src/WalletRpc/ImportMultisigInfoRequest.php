@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Import multisig info from other participants.Alias: *None*.
+ * Import multisig info from other participants.
  */
 class ImportMultisigInfoRequest implements ParameterInterface
 {

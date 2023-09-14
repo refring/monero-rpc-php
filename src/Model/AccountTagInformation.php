@@ -10,12 +10,11 @@ use Square\Pjson\JsonSerialize;
 class AccountTagInformation
 {
     use JsonSerialize;
-
     /**
-     * Filter tag.
+     * @var int[] List of tagged account indices.
      */
     #[Json]
-    public string $tag;
+    public array $accounts;
 
     /**
      * Label for the tag.
@@ -24,10 +23,10 @@ class AccountTagInformation
     public string $label;
 
     /**
-     * @var int[] List of tagged account indices.
+     * Filter tag.
      */
     #[Json]
-    public array $accounts;
+    public string $tag;
 
 
     /**

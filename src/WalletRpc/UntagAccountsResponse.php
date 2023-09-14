@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Remove filtering tag from a list of accounts.Alias: *None*.
+ * Remove filtering tag from a list of accounts.
  */
 class UntagAccountsResponse
 {

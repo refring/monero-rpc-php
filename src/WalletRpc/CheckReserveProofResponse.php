@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Proves a wallet has a disposable reserve using a signature.Alias: *None*.
+ * Proves a wallet has a disposable reserve using a signature.
  */
 class CheckReserveProofResponse
 {
@@ -21,13 +21,13 @@ class CheckReserveProofResponse
     public bool $good;
 
     /**
-     * Amount (in @atomic-units) of the total that has been spent.
+     * Amount (in piconero) of the total that has been spent.
      */
     #[Json]
     public int $spent;
 
     /**
-     * Total amount (in @atomic-units) of the reserve that was proven.
+     * Total amount (in piconero) of the reserve that was proven.
      */
     #[Json]
     public int $total;

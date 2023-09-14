@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Close the currently opened wallet, after trying to save it.Alias: *None*.
+ * Close the currently opened wallet, after trying to save it.
  */
 class CloseWalletRequest
 {

@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Store the current state of any open wallet and exit the monero-wallet-rpc process.Alias: *None*.
+ * Store the current state of any open wallet and exit the monero-wallet-rpc process.
  */
 class StopWalletResponse
 {

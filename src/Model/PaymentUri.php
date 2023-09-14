@@ -18,7 +18,7 @@ class PaymentUri
     public string $address;
 
     /**
-     * Integer amount to receive, in **@atomic-units** (0 if not provided)
+     * Integer amount to receive, in **piconero** (0 if not provided)
      */
     #[Json]
     public int $amount;

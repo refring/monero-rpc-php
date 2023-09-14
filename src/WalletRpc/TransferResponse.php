@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Model\KeyImageList;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Send monero to a number of recipients.Alias: *None*.
+ * Send monero to a number of recipients.
  */
 class TransferResponse
 {
@@ -21,7 +22,13 @@ class TransferResponse
     public int $amount;
 
     /**
-     * Integer value of the fee charged for the txn.
+     * Key images of spent outputs.
+     */
+    #[Json('spent_key_images')]
+    public KeyImageList $spentKeyImages;
+
+    /**
+     * The amount of fees paid
      */
     #[Json]
     public int $fee;
@@ -39,7 +46,7 @@ class TransferResponse
     public string $txBlob;
 
     /**
-     * String for the publically searchable transaction hash.
+     * String for the publicly searchable transaction hash.
      */
     #[Json('tx_hash')]
     public string $txHash;
@@ -61,4 +68,10 @@ class TransferResponse
      */
     #[Json('unsigned_txset')]
     public string $unsignedTxset;
+
+    /**
+     * Metric used to calculate transaction fee.
+     */
+    #[Json]
+    public int $weight;
 }

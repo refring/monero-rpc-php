@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Get RPC version Major & Minor integer-format, where Major is the first 16 bits and Minor the last 16 bits.Alias: *None*.
+ * Get RPC version Major & Minor integer-format, where Major is the first 16 bits and Minor the last 16 bits.
  */
 class GetVersionRequest
 {
