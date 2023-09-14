@@ -34,7 +34,7 @@ class GetBalanceResponse
     public bool $multisigImportNeeded;
 
     /** @var SubAddressInformation[] */
-    #[Json('per_subaddress')]
+    #[Json('per_subaddress', type: SubAddressInformation::class)]
     public array $perSubaddress;
 
     /**
