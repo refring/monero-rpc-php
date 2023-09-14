@@ -6,18 +6,8 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 enum TransferType: string
 {
-    /**
-     * all the transfers
-     */
-    case ALL = 'all';
-
-    /**
-     * only transfers which are not yet spent
-     */
-    case AVAILABLE = 'available';
-
-    /**
-     * only transfers which are already spent
-     */
-    case UNAVAILABLE = 'unavailable';
+    case INCOMING = 'in';
+    case OUTGOING = 'out';
+    case PENDING = 'pending';
+    case POOL = 'pool';
 }

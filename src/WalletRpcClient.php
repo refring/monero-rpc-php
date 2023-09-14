@@ -15,7 +15,7 @@ use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\Model\TransferDestination;
-use RefRing\MoneroRpcPhp\Model\TransferType;
+use RefRing\MoneroRpcPhp\Model\IncomingTransferType;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshRequest;
@@ -649,15 +649,15 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Return a list of incoming transfers to the wallet.
      *
-     * @param TransferType $transferType "all": all the transfers, "available": only transfers which are not yet spent, OR "unavailable": only transfers which are already spent.
+     * @param IncomingTransferType $transferType "all": all the transfers, "available": only transfers which are not yet spent, OR "unavailable": only transfers which are already spent.
      * @param ?int $accountIndex Return transfers for this account. (defaults to 0)
      * @param ?int[] $subaddrIndices Return transfers sent to these subaddresses.
      * @throws MoneroRpcException
      */
     public function incomingTransfers(
-        TransferType $transferType,
-        ?int $accountIndex = null,
-        ?array $subaddrIndices = null,
+        IncomingTransferType $transferType,
+        ?int                 $accountIndex = null,
+        ?array               $subaddrIndices = null,
     ): IncomingTransfersResponse {
         return $this->handleRequest(IncomingTransfersRequest::create($transferType, $accountIndex, $subaddrIndices), IncomingTransfersResponse::class);
     }

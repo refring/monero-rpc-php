@@ -11,7 +11,7 @@ use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\Model\TransferDestination;
 use PHPUnit\Framework\TestCase;
-use RefRing\MoneroRpcPhp\Model\TransferType;
+use RefRing\MoneroRpcPhp\Model\IncomingTransferType;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshRequest;
@@ -348,7 +348,7 @@ class WalletRpcSerializationTest extends TestCase
     public function testIncomingTransfers()
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"incoming_transfers","params":{"transfer_type":"all","account_index":0,"subaddr_indices":[3]}}';
-        $request = IncomingTransfersRequest::create(TransferType::ALL, 0, [3]);
+        $request = IncomingTransfersRequest::create(IncomingTransferType::ALL, 0, [3]);
         $this->assertSame($expected, $request->toJson());
     }
 
