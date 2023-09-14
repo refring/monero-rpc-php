@@ -18,16 +18,16 @@ class AddressInformation
     public string $address;
 
     /**
-     * Label of the (sub)address
-     */
-    #[Json]
-    public string $label;
-
-    /**
      * index of the subaddress
      */
     #[Json('address_index')]
     public int $addressIndex;
+
+    /**
+     * Label of the (sub)address
+     */
+    #[Json]
+    public string $label;
 
     /**
      * states if the (sub)address has already received funds

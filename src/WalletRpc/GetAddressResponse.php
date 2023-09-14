@@ -23,6 +23,6 @@ class GetAddressResponse
     public Address $address;
 
     /** @var AddressInformation[] */
-    #[Json]
+    #[Json(type: AddressInformation::class)]
     public array $addresses;
 }
