@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.4.0 (2023-09-16)
+### Added
+- DaemonBaseResponse class
+- RpcAccessBaseResponse class
+- HardforkInformation class
+
+### Changed
+- Many changes based on core_rpc_server_commands_defs.h definitions from the main Monero repo from the main Monero repo
+- WalletRpcClient::transfer() now accepts a single Recipient as well as an array of Recipient
+- Connection was renamed to ConnectionInfo
+- Chain was renamed to ChainInformation
+
 ## v0.3.0 (2023-09-14)
 ### Added
 - Enum NetType
