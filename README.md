@@ -57,14 +57,14 @@ composer php-http/curl-client
 
 For the wallet rpc client:
 ```php
-$client = (new Builder('http://127.0.0.1:18081/json_rpc'))
+$client = (new \RefRing\MoneroRpcPhp\Builder('http://127.0.0.1:18081/json_rpc'))
     ->buildWalletClient();
 
 echo $client->getVersion()->version;
 ```
 Daemon rpc client:
 ```php
-$client = (new Builder('http://127.0.0.1:18081/json_rpc'))
+$client = (new \RefRing\MoneroRpcPhp\Builder('http://127.0.0.1:18081/json_rpc'))
     ->buildDaemonClient();
 
 echo $client->getVersion()->version;
@@ -72,7 +72,7 @@ echo $client->getVersion()->version;
 
 With authentication:
 ```php
-$client = (new Builder('http://127.0.0.1:18081/json_rpc'))
+$client = (new \RefRing\MoneroRpcPhp\Builder('http://127.0.0.1:18081/json_rpc'))
     ->withAuthentication('foo', 'bar')
     ->buildDaemonClient();
 
@@ -93,11 +93,8 @@ Also, you can run `docker compose down` to stop and remove the containers starte
 
 ## Roadmap
 - [ ] More wallet-rpc integration tests
-- [x] Fix strong-typed model classes for certain responses:
-  - [x] BlockHash in some places
-  - [x] Introduce a Address class maybe
 - [ ] More thorough error handling
-- [ ] Decide on giving the different get_blockheader* methods the same response
+- [ ] Implement the 'Other Daemon RPC Calls' ?
 
 ##  Contributing
 
