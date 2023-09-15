@@ -413,7 +413,7 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Send monero to a number of recipients.
      *
-     * @param Recipient[] $destinations List of destinations to receive XMR:
+     * @param Recipient[]|Recipient $destinations Recipient OR a list of Recipients to receive XMR
      * @param ?int $accountIndex Transfer from this account index.
      * @param ?int[] $subaddrIndices Transfer from this set of subaddresses. (Defaults to empty - all indices)
      * @param ?TransferPriority $priority Set a priority for the transaction.
@@ -427,7 +427,7 @@ class WalletRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      */
     public function transfer(
-        array $destinations,
+        array|Recipient $destinations,
         ?int $accountIndex = 0,
         ?array $subaddrIndices = [],
         ?TransferPriority $priority = null,
@@ -439,6 +439,9 @@ class WalletRpcClient extends JsonRpcClient
         ?bool $getTxHex = false,
         ?bool $getTxMetadata = false,
     ): TransferResponse {
+        if ($destinations instanceof Recipient) {
+            $destinations = [$destinations];
+        }
         return $this->handleRequest(TransferRequest::create($destinations, $accountIndex, $subaddrIndices, $priority, $mixin, $ringSize, $unlockTime, $getTxKey, $doNotRelay, $getTxHex, $getTxMetadata), TransferResponse::class);
     }
 
