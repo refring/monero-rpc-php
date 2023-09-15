@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get the coinbase amount and the fees amount for n last blocks starting at particular heightAlias: *None*.
+ * Get the coinbase amount and the fees amount for n last blocks starting at particular height
  */
 class GetCoinbaseTxSumRequest implements ParameterInterface
 {

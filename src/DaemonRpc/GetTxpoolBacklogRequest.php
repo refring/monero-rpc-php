@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Get all transaction pool backlogAlias: *None*.
+ * Get all transaction pool backlog
  */
 class GetTxpoolBacklogRequest
 {

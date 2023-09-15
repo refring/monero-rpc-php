@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\Model;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-class Chain
+class ChainInformation
 {
     use JsonSerialize;
 

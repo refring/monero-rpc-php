@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Alias: *None*.
+ *
  */
 class GetOutputDistributionRequest implements ParameterInterface
 {

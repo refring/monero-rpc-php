@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\Model;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-class Connection
+class ConnectionInfo
 {
     use JsonSerialize;
 
@@ -16,6 +16,9 @@ class Connection
      */
     #[Json]
     public string $address;
+
+    #[Json('address_type')]
+    public int $addressType;
 
     /**
      * Average bytes of data downloaded by node.
@@ -101,6 +104,9 @@ class Connection
     #[Json]
     public string $port;
 
+    #[Json('pruning_seed')]
+    public int $pruningSeed;
+
     /**
      * unsigned int
      */
@@ -112,6 +118,12 @@ class Connection
      */
     #[Json('recv_idle_time')]
     public int $recvIdleTime;
+
+    #[Json('rpc_credits_per_hash')]
+    public int $rpcCreditsPerHash;
+
+    #[Json('rpc_port')]
+    public int $rpcPort;
 
     /**
      * unsigned int

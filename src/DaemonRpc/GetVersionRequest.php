@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Give the node current versionAlias: *None*.
+ * Give the node current version
  */
 class GetVersionRequest
 {

@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Flush bad transactions / blocks from the cache.Alias: *None*.
+ * Flush bad transactions / blocks from the cache.
  */
 class FlushCacheRequest implements ParameterInterface
 {

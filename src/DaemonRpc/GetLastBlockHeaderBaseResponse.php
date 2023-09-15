@@ -9,9 +9,9 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Similar to [get_block_header_by_hash](#get_block_header_by_hash) above, this method includes a block's height as an input parameter to retrieve basic information about the block.Alias: *getblockheaderbyheight*.
+ * Block header information for the most recent block is easily retrieved with this method. No inputs are needed.Alias: *getlastblockheader*.
  */
-class GetBlockHeaderByHeightResponse extends RpcAccessBaseResponse
+class GetLastBlockHeaderBaseResponse extends RpcAccessBaseResponse
 {
     use JsonSerialize;
 

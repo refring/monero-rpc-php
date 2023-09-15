@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Display alternative chains seen by the node.Alias: *None*.
+ * Display alternative chains seen by the node.
  */
 class GetAlternateChainsRequest
 {

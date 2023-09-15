@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Relay a list of transaction IDs.Alias: *None*.
+ * Relay a list of transaction IDs.
  */
 class RelayTxRequest implements ParameterInterface
 {

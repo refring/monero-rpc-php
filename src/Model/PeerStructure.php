@@ -15,10 +15,10 @@ class PeerStructure
      * As defined in get_connections
      */
     #[Json]
-    public Connection $info;
+    public ConnectionInfo $info;
 
 
-    public function __construct(Connection $info)
+    public function __construct(ConnectionInfo $info)
     {
         $this->info = $info;
     }

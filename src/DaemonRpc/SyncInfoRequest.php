@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Get synchronisation informationsAlias: *None*.
+ * Get synchronisation informations
  */
 class SyncInfoRequest
 {

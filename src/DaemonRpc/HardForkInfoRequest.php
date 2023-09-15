@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Look up information regarding hard fork voting and readiness.Alias: *None*.
+ * Look up information regarding hard fork voting and readiness.
  */
 class HardForkInfoRequest
 {

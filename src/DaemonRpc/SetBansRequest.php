@@ -11,7 +11,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Ban another node by IP.Alias: *None*.
+ * Ban another node by IP.
  */
 class SetBansRequest implements ParameterInterface
 {

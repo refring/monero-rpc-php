@@ -17,17 +17,17 @@ class Distribution
     #[Json]
     public int $amount;
 
+    #[Json]
+    public bool $binary;
+
     /**
      * unsigned int
      */
     #[Json]
     public int $base;
 
-    /**
-     * @var int[]
-     */
     #[Json]
-    public array $distribution;
+    public string $distribution;
 
     /**
      * unsigned int
@@ -35,11 +35,7 @@ class Distribution
     #[Json('start_height')]
     public int $startHeight;
 
-
-    /**
-     * @param int[] $distribution
-     */
-    public function __construct(int $amount, int $base, array $distribution, int $startHeight)
+    public function __construct(int $amount, int $base, string $distribution, int $startHeight)
     {
         $this->amount = $amount;
         $this->base = $base;

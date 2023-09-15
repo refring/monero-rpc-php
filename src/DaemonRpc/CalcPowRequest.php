@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Calculate PoW hash for a block candidate.Alias: *None*.
+ * Calculate PoW hash for a block candidate.
  */
 class CalcPowRequest implements ParameterInterface
 {

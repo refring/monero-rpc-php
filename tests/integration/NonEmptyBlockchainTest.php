@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\Depends;
 use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHeightResponse;
-use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderBaseResponse;
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
@@ -91,7 +91,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $blockHeight = self::$regtestRpcClient->getBlockCount()->count - 1;
         $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
 
-        $expected = new GetLastBlockHeaderResponse();
+        $expected = new GetLastBlockHeaderBaseResponse();
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';

@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Gives an estimation on fees per byte.Alias: *None*.
+ * Gives an estimation on fees per byte.
  */
 class GetFeeEstimateRequest implements ParameterInterface
 {

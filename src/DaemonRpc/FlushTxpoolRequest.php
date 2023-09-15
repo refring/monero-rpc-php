@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Flush tx ids from transaction poolAlias: *None*.
+ * Flush tx ids from transaction pool
  */
 class FlushTxpoolRequest implements ParameterInterface
 {

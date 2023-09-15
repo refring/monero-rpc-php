@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockTemplateResponse;
-use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderBaseResponse;
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHashException;
@@ -123,7 +123,7 @@ final class EmptyBlockchainTest extends TestCase
 
     public function testLastBlockHeader(): void
     {
-        $expected = new GetLastBlockHeaderResponse();
+        $expected = new GetLastBlockHeaderBaseResponse();
         $expected->untrusted = false;
         $expected->credits = 0;
         $expected->topHash = '';

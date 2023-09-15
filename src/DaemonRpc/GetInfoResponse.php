@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
+use RefRing\MoneroRpcPhp\Enum\NetType;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
  * Retrieve general information about the state of your node and the network.Alias:* * /get_info** * /getinfo*See other RPC Methods [/get_info (not JSON)](#get_info-not-json)
  */
-class GetInfoResponse
+class GetInfoResponse extends RpcAccessBaseResponse
 {
     use JsonSerialize;
 
@@ -62,12 +62,6 @@ class GetInfoResponse
      */
     #[Json('busy_syncing')]
     public bool $busySyncing;
-
-    /**
-     * If payment for RPC is enabled, the number of credits available to the requesting client. Otherwise, 0.
-     */
-    #[Json]
-    public int $credits;
 
     /**
      * Least-significant 64 bits of the 128-bit cumulative difficulty.
@@ -139,7 +133,7 @@ class GetInfoResponse
      * Network type (one of `mainnet`, `stagenet` or `testnet`).
      */
     #[Json]
-    public string $nettype;
+    public NetType $nettype;
 
     /**
      * States if the node is offline (`true`) or online (`false`).
@@ -172,12 +166,6 @@ class GetInfoResponse
     public int $startTime;
 
     /**
-     * General RPC error code. "OK" means everything looks good.
-     */
-    #[Json]
-    public ResponseStatus $status;
-
-    /**
      * States if the node is synchronized (`true`) or not (`false`).
      */
     #[Json]
@@ -208,12 +196,6 @@ class GetInfoResponse
     public string $topBlockHash;
 
     /**
-     * If payment for RPC is enabled, the hash of the highest block in the chain. Otherwise, empty.
-     */
-    #[Json('top_hash')]
-    public string $topHash;
-
-    /**
      * Total number of non-coinbase transaction in the chain.
      */
     #[Json('tx_count')]
@@ -224,12 +206,6 @@ class GetInfoResponse
      */
     #[Json('tx_pool_size')]
     public int $txPoolSize;
-
-    /**
-     * States if the result is obtained using the bootstrap mode, and is therefore not trusted (`true`), or when the daemon is fully synced and thus handles the RPC locally (`false`)
-     */
-    #[Json]
-    public bool $untrusted;
 
     /**
      * States if a newer Monero software version is available.
@@ -266,4 +242,7 @@ class GetInfoResponse
      */
     #[Json('wide_difficulty')]
     public string $wideDifficulty;
+
+    #[Json]
+    public bool $restricted;
 }

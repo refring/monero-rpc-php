@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Trait\StringResultTrait;
 
 /**
- * Calculate PoW hash for a block candidate.Alias: *None*.
+ * Calculate PoW hash for a block candidate.
  */
 class CalcPowResponse
 {

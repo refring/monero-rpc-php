@@ -4,23 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
-use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Ban another node by IP.Alias: *None*.
+ * Ban another node by IP.
  */
-class SetBansResponse
+class SetBansResponse extends DaemonBaseResponse
 {
     use JsonSerialize;
-
-    /**
-     * General RPC error code. "OK" means everything looks good.
-     */
-    #[Json]
-    public ResponseStatus $status;
-
-    #[Json]
-    public bool $untrusted;
 }

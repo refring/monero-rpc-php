@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Retrieve information about incoming and outgoing connections to your node.Alias: *None*.
+ * Retrieve information about incoming and outgoing connections to your node.
  */
 class GetConnectionsRequest
 {
