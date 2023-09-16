@@ -7,13 +7,18 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\Builder;
+use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
+use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
+use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
+use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
+use RefRing\MoneroRpcPhp\WalletRpc\GenerateFromKeysResponse;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 
 class BasicWalletTest extends TestCase
@@ -123,6 +128,76 @@ class BasicWalletTest extends TestCase
         self::$rpcClient->openWallet(self::$walletWithPwd, '');
     }
 
+    public function testGenerateFromKeysWatchOnly(): void
+    {
+        $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_1);
+        $result = self::$rpcClient->generateFromKeys(TestHelper::getRandomWalletName(), new Address($keyPair->getAddress()), $keyPair->getPrivateViewKey(), "");
+
+        $this->assertSame('Watch-only wallet has been generated successfully.', $result->info);
+    }
+
+    /**
+     * Create a second wallet
+     * @return array{0: string, 1: GenerateFromKeysResponse}
+     */
+    public function testGenerateFromKeysWatchOnlyReturn(): array
+    {
+        $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_1);
+        $filename = TestHelper::getRandomWalletName();
+        $result = self::$rpcClient->generateFromKeys($filename, new Address($keyPair->getAddress()), $keyPair->getPrivateViewKey(), "");
+
+        $this->assertSame('Watch-only wallet has been generated successfully.', $result->info);
+        return [$filename, $result];
+    }
+
+    public function testGenerateFromKeysWithSpendKeyAndPassword(): GenerateFromKeysResponse
+    {
+        $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_2);
+        $result = self::$rpcClient->generateFromKeys(TestHelper::getRandomWalletName(), new Address($keyPair->getAddress()), $keyPair->getPrivateViewKey(), TestHelper::WALLET_PWD_1, 0, $keyPair->getPrivateSpendKey(), false);
+
+        $this->assertSame('Wallet has been generated successfully.', $result->info);
+        return $result;
+    }
+
+    public function testGenerateFromKeysWithInvalidAddress(): void
+    {
+        try {
+            $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_3);
+            self::$rpcClient->generateFromKeys(TestHelper::getRandomWalletName(), new Address($keyPair->getTestnetAddress()), $keyPair->getPrivateViewKey(), '');
+        } catch (HttpApiException $e) {
+            $this->assertSame('Failed to parse public address', $e->getMessage());
+        }
+    }
+
+    public function testGetAddressNoWalletFile(): void
+    {
+        $this->expectException(NoWalletFileException::class);
+        self::$rpcClient->closeWallet();
+        self::$rpcClient->getAddress(0);
+    }
+
+    #[Depends('testGenerateFromKeysWatchOnlyReturn')]
+    public function testOpenWalletWithNoOrEmptyPassword(array $generateFromKeysResponse): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->openWallet($generateFromKeysResponse[0]);
+        self::$rpcClient->openWallet($generateFromKeysResponse[0], '');
+    }
+
+    #[Depends('testGenerateFromKeysWatchOnlyReturn')]
+    public function testInvalidAccountIndex(array $generateFromKeysResponse): void
+    {
+        $this->expectException(AccountIndexOutOfBoundException::class);
+        self::$rpcClient->getAddress(10);
+    }
+
+    #[Depends('testGenerateFromKeysWatchOnlyReturn')]
+    public function testInvalidAddressIndex(array $generateFromKeysResponse): void
+    {
+        $this->expectException(AddressIndexOutOfBoundException::class);
+        self::$rpcClient->getAddress(0, [10]);
+    }
+
     public function testGetAddressIndex(): void
     {
         $walletName = TestHelper::getRandomWalletName();
@@ -169,5 +244,24 @@ class BasicWalletTest extends TestCase
     {
         $this->expectException(HttpApiException::class);
         self::$rpcClient->getAddressIndex(new Address('7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o'));
+    }
+
+    public function testGetAttributeError(): void
+    {
+        $this->expectException(AttributeNotFoundException::class);
+        self::$rpcClient->getAttribute('nonexistingattribute');
+    }
+
+    public function testSetAttribute(): void
+    {
+        $this->expectNotToPerformAssertions();
+        $result = self::$rpcClient->setAttribute('attribute_key', 'attribute_value');
+    }
+
+    #[Depends('testSetAttribute')]
+    public function testGetAttribute(): void
+    {
+        $result = self::$rpcClient->getAttribute('attribute_key');
+        $this->assertSame('attribute_value', $result->value);
     }
 }

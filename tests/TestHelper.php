@@ -29,12 +29,32 @@ class TestHelper
     /**
      * @var string
      */
-    final public const PRIVATE_SPEND_KEY_1 = '90b7a822fbd3d06d04f5ad746300601a85c469ffc21b2fd7281cc43227537209';
+    final public const PRIVATE_SPEND_KEY_1 = 'eae5d41a112e14dcd549780a982bb3653c2f86ab1f4e6aa2b13c41f8b893ab04';
 
     /**
      * @var string
      */
-    final public const PRIVATE_VIEW_KEY_1 = '21dbc3b71b900ac5af0d2e1cc3b279ad3b4a66633d1d8f6653b838f11bd14904';
+    final public const PRIVATE_VIEW_KEY_1 = '8ae33e57aee12fa4ad5b42a3ab093d9f3cb7f9be68b112a85f83275bcc5a190b';
+
+    /**
+     * @var string
+     */
+    final public const PRIVATE_SPEND_KEY_2 = '90b7a822fbd3d06d04f5ad746300601a85c469ffc21b2fd7281cc43227537209';
+
+    /**
+     * @var string
+     */
+    final public const PRIVATE_VIEW_KEY_2 = '21dbc3b71b900ac5af0d2e1cc3b279ad3b4a66633d1d8f6653b838f11bd14904';
+
+    /**
+     * @var string
+     */
+    final public const PRIVATE_SPEND_KEY_3 = 'a0967c33a4a1b6fbfdd0fba36f0593fa6627462470f9a58c09a532518415320a';
+
+    /**
+     * @var string
+     */
+    final public const PRIVATE_VIEW_KEY_3 = 'fb2a79386a470d1743cb867505bdf8045e2d44f012155018096740ea2fbca200';
 
     /**
      * @var string
