@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp;
 
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
+use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
+use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
+use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
@@ -245,6 +248,9 @@ class WalletRpcClient extends JsonRpcClient
      * @param int $accountIndex Return subaddresses for this account.
      * @param ?int[] $addressIndex List of subaddresses to return from an account.
      * @throws MoneroRpcException
+     * @throws NoWalletFileException
+     * @throws AccountIndexOutOfBoundException
+     * @throws AddressIndexOutOfBoundException
      */
     public function getAddress(int $accountIndex, ?array $addressIndex = null): GetAddressResponse
     {
@@ -770,6 +776,7 @@ class WalletRpcClient extends JsonRpcClient
      *
      * @param string $key attribute name
      * @throws MoneroRpcException
+     * @throws AttributeNotFoundException
      */
     public function getAttribute(string $key): GetAttributeResponse
     {

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Enum;
 
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
+use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
+use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
@@ -24,6 +26,7 @@ use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 enum ErrorCode: string
 {
     case AccountIndexOutOfBound = 'Account index out of bound';
+    case AddressIndexOutOfBound = 'address index is out of bound';
     case AddressNotInWallet = "Address doesn't belong to the wallet";
     case InvalidBlockHeight = "Invalid block height supplied";
     case InvalidReservedSize = "Too big reserved size, maximum 255";
@@ -38,6 +41,7 @@ enum ErrorCode: string
     case InvalidLanguage = "Unknown language supplied";
     case NoWalletFile = "No wallet file";
     case OpenWalletFailure = "Failed to open wallet";
+    case AttributeNotFound = "Attribute not found.";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -55,6 +59,7 @@ enum ErrorCode: string
             'greater than current top block height' => self::InvalidBlockHeight,
             '401 Unauthorized' => self::AuthenticationFailure,
             'Unknown language:' => self::InvalidLanguage,
+            'account index is out of bound' => self::AccountIndexOutOfBound,
         ];
 
         // If an exact match was not found try to find a partial match
@@ -81,6 +86,7 @@ enum ErrorCode: string
 
         $exception = match ($this) {
             self::AccountIndexOutOfBound => new AccountIndexOutOfBoundException($message),
+            self::AddressIndexOutOfBound => new AddressIndexOutOfBoundException($message),
             self::AddressNotInWallet => new AddressNotInWalletException($message),
             self::InvalidBlockHeight => new InvalidBlockHeightException($message),
             self::InvalidReservedSize => new InvalidReservedSizeException($message),
@@ -94,6 +100,7 @@ enum ErrorCode: string
             self::InvalidLanguage => new InvalidLanguageException($message),
             self::NoWalletFile => new NoWalletFileException($message),
             self::OpenWalletFailure => new OpenWalletException($message),
+            self::AttributeNotFound => new AttributeNotFoundException($message),
         };
 
         return $exception;
