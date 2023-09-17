@@ -36,9 +36,9 @@ class BasicWalletTest extends TestCase
     private static string $walletWithEmptyPwd;
     private static string $walletWithPwd;
 
-    const DEFAULT_ACCOUNT_INDEX = 0;
-    const ACCOUNT_TAG = 'TAG123';
-    const ACCOUNT_TAG_DESCRIPTION = 'TAG123_DESCRIPTION';
+    public const DEFAULT_ACCOUNT_INDEX = 0;
+    public const ACCOUNT_TAG = 'TAG123';
+    public const ACCOUNT_TAG_DESCRIPTION = 'TAG123_DESCRIPTION';
 
     public static function setUpBeforeClass(): void
     {
@@ -418,5 +418,22 @@ class BasicWalletTest extends TestCase
     {
         $result = self::$rpcClient->getAttribute('attribute_key');
         $this->assertSame('attribute_value', $result->value);
+    }
+
+    public function testMakeUri(): void
+    {
+        $expected = 'monero:46FTwA4zSi1Pv6vmDGbfbvTKzNZonqNbuSdf9DzjYcJ9atw2rSWKN91ZFpuZsNicYqVdbSxAwS3T23KxfdW1aByDMmtVHTc?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
+        $result = self::$rpcClient->makeUri(new Address(TestHelper::MAINNET_ADDRESS), 1, null, 'Barolo', 'Nebbiolo');
+        $this->assertSame($expected, $result->uri);
+    }
+
+    public function testParseUri(): void
+    {
+        $uri = 'monero:46FTwA4zSi1Pv6vmDGbfbvTKzNZonqNbuSdf9DzjYcJ9atw2rSWKN91ZFpuZsNicYqVdbSxAwS3T23KxfdW1aByDMmtVHTc?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
+        $result = self::$rpcClient->parseUri($uri);
+        $this->assertSame(TestHelper::MAINNET_ADDRESS, $result->uri->address);
+        $this->assertSame(1, $result->uri->amount);
+        $this->assertSame('Barolo', $result->uri->recipientName);
+        $this->assertSame('Nebbiolo', $result->uri->txDescription);
     }
 }
