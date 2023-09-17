@@ -21,7 +21,7 @@ class ValidateAddressRequest implements ParameterInterface
      * The address to validate.
      */
     #[Json]
-    public Address $address;
+    public Address|string $address;
 
     /**
      * (Optional); If true, consider addresses belonging to any of the three Monero networks (mainnet, stagenet, and testnet) valid. Otherwise, only consider an address valid if it belongs to the network on which the rpc-wallet's current daemon is running (Defaults to false).
@@ -36,7 +36,7 @@ class ValidateAddressRequest implements ParameterInterface
     public ?bool $allowOpenalias;
 
 
-    public static function create(Address $address, ?bool $anyNetType = false, ?bool $allowOpenalias = false): RpcRequest
+    public static function create(Address|string $address, ?bool $anyNetType = false, ?bool $allowOpenalias = false): RpcRequest
     {
         $self = new self();
         $self->address = $address;
