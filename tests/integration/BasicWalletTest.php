@@ -7,17 +7,24 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\Builder;
+use RefRing\MoneroRpcPhp\Enum\NetType;
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
+use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
 use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
+use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
+use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
+use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
+use RefRing\MoneroRpcPhp\WalletRpc\CreateAccountResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\CreateAddressResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GenerateFromKeysResponse;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 
@@ -210,7 +217,22 @@ class BasicWalletTest extends TestCase
         $this->assertSame(0, $addressIndex->major);
     }
 
-    public function testCreateAddress(): void
+    public function testCreateAccount(): CreateAccountResponse
+    {
+        $result = self::$rpcClient->createAccount('accountLabel');
+        $this->assertGreaterThan(0, $result->accountIndex);
+        return $result;
+    }
+
+    #[Depends('testCreateAccount')]
+    public function testGetAccounts(CreateAccountResponse $createAccountResponse): void
+    {
+        $result = self::$rpcClient->getAccounts();
+        $resultAddress = $result->subaddressAccounts[$createAccountResponse->accountIndex]->baseAddress;
+        $this->assertEquals($createAccountResponse->address, $resultAddress);
+    }
+
+    public function testCreateAddress(): CreateAddressResponse
     {
         $walletName = TestHelper::getRandomWalletName();
         self::$rpcClient->createWallet($walletName, 'English', '');
@@ -220,6 +242,8 @@ class BasicWalletTest extends TestCase
 
         $this->assertSame(0, self::$rpcClient->getAddressIndex($createAddress->address)->index->major);
         $this->assertSame(1, self::$rpcClient->getAddressIndex($createAddress->address)->index->minor);
+
+        return $createAddress;
     }
 
     public function testCreateAddressMultiple(): void
@@ -240,10 +264,94 @@ class BasicWalletTest extends TestCase
         $this->assertSame($index2, self::$rpcClient->getAddressIndex($address2)->index->minor);
     }
 
+    public function testCreateAddressInvalidAccountIndex(): void
+    {
+        $this->expectException(AccountIndexOutOfBoundException::class);
+        self::$rpcClient->createAddress(999);
+    }
+
+    public function testGetAddressIndexInvalidAddressException(): void
+    {
+        $this->expectException(InvalidAddressException::class);
+        self::$rpcClient->getAddressIndex(new Address(TestHelper::TESTNET_ADDRESS));
+    }
+
     public function testGetAddressIndexException(): void
     {
-        $this->expectException(HttpApiException::class);
-        self::$rpcClient->getAddressIndex(new Address('7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o'));
+        $this->expectException(AddressNotInWalletException::class);
+        self::$rpcClient->getAddressIndex(new Address(TestHelper::MAINNET_ADDRESS));
+    }
+
+    #[Depends('testCreateAddress')]
+    public function testLabelAddress(CreateAddressResponse $createdAddress): void
+    {
+        $label = 'test label';
+
+        self::$rpcClient->labelAddress(new SubAddressIndex(0, $createdAddress->addressIndex), $label);
+        $this->assertSame($label, self::$rpcClient->getAddress(0, [$createdAddress->addressIndex])->addresses[0]->label);
+    }
+
+    public function testLabelAddressInvalidAccountIndex(): void
+    {
+        $this->expectException(AccountIndexOutOfBoundException::class);
+        self::$rpcClient->labelAddress(new SubAddressIndex(999, 0), '');
+    }
+
+    public function testLabelAddressInvalidAddressIndex(): void
+    {
+        $this->expectException(AddressIndexOutOfBoundException::class);
+        self::$rpcClient->labelAddress(new SubAddressIndex(0, 999), '');
+    }
+
+    public function testValidateAddress(): void
+    {
+        $result = self::$rpcClient->validateAddress(new Address(TestHelper::MAINNET_ADDRESS));
+        $this->assertSame(true, $result->valid);
+        $this->assertSame(NetType::MAINNET, $result->nettype);
+    }
+
+    public function testValidateAddressTestnet(): void
+    {
+        $result = self::$rpcClient->validateAddress(new Address(TestHelper::TESTNET_ADDRESS), true);
+        $this->assertSame(true, $result->valid);
+        $this->assertSame(NetType::TESTNET, $result->nettype);
+    }
+
+    public function testValidateAddressInvalid(): void
+    {
+        $result = self::$rpcClient->validateAddress(new Address(TestHelper::TESTNET_ADDRESS));
+        $this->assertSame(false, $result->valid);
+    }
+
+    /**
+     * @return array{'tag': string, 'account': int}
+     */
+    public function testTagAccounts(): array
+    {
+        $this->expectNotToPerformAssertions();
+        $tag = 'AccountTag';
+        self::$rpcClient->tagAccounts($tag, 0);
+
+        return ['tag' => $tag, 'account' => 0];
+    }
+
+    public function testTagAccountsInvalid(): array
+    {
+        $this->expectException(AccountIndexOutOfBoundException::class);
+        self::$rpcClient->tagAccounts('', 999);
+    }
+
+    public function testGetAccountsByTagFailure(): void
+    {
+        $this->expectException(TagNotFoundException::class);
+        $result = self::$rpcClient->getAccounts('invalidTag');
+    }
+
+    #[Depends('testTagAccounts')]
+    public function testGetAccountsByTag(array $tagInfo): void
+    {
+        $result = self::$rpcClient->getAccounts($tagInfo['tag']);
+        $this->assertSame($tagInfo['account'], $result->subaddressAccounts[0]->accountIndex);
     }
 
     public function testGetAttributeError(): void

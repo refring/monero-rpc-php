@@ -25,7 +25,7 @@ class ValidateAddressResponse
      * Specifies which of the three Monero networks (mainnet, stagenet, and testnet) the address belongs to.
      */
     #[Json]
-    public NetType $nettype;
+    public ?NetType $nettype;
 
     /**
      * Address which the [OpenAlias-formatted address]({{ site.baseurl }}/resources/moneropedia/openalias.html) points to, if given.

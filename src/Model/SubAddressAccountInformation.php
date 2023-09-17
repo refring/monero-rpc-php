@@ -27,7 +27,7 @@ class SubAddressAccountInformation
      * Base64 representation of the first subaddress in the account.
      */
     #[Json('base_address')]
-    public string $baseAddress;
+    public Address $baseAddress;
 
     /**
      * (Optional) Label of the account.
@@ -51,7 +51,7 @@ class SubAddressAccountInformation
     public function __construct(
         int $accountIndex,
         int $balance,
-        string $baseAddress,
+        Address $baseAddress,
         int $unlockedBalance,
         ?string $label = null,
         ?string $tag = null,

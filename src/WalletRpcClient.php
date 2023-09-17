@@ -12,6 +12,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
+use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
@@ -277,6 +278,7 @@ class WalletRpcClient extends JsonRpcClient
      * @param ?string $label Label for the new address.
      * @param ?int $count Number of addresses to create (Defaults to 1).
      * @throws MoneroRpcException
+     * @throws AccountIndexOutOfBoundException
      */
     public function createAddress(int $accountIndex, ?string $label = null, ?int $count = 1): CreateAddressResponse
     {
@@ -371,11 +373,17 @@ class WalletRpcClient extends JsonRpcClient
      * Apply a filtering tag to a list of accounts.
      *
      * @param string $tag Tag for the accounts.
-     * @param int[] $accounts Tag this list of accounts.
+     * @param int[]|int $accounts Tag this list of accounts.
      * @throws MoneroRpcException
+     * @throws AccountIndexOutOfBoundException
+     * @throws TagNotFoundException
      */
-    public function tagAccounts(string $tag, array $accounts): TagAccountsResponse
+    public function tagAccounts(string $tag, array|int $accounts): TagAccountsResponse
     {
+        if (is_int($accounts)) {
+            $accounts = [$accounts];
+        }
+
         return $this->handleRequest(TagAccountsRequest::create($tag, $accounts), TagAccountsResponse::class);
     }
 
