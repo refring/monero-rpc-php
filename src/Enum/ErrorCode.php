@@ -21,6 +21,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
+use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 
 enum ErrorCode: string
@@ -42,6 +43,7 @@ enum ErrorCode: string
     case NoWalletFile = "No wallet file";
     case OpenWalletFailure = "Failed to open wallet";
     case AttributeNotFound = "Attribute not found.";
+    case TagUnregisteredError = "Tag is unregistered.";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -57,9 +59,12 @@ enum ErrorCode: string
             "Internal error: can't get block by hash. Hash =" =>  self::InvalidBlockHash,
             // Requested block height: 10 greater than current top block height: 0
             'greater than current top block height' => self::InvalidBlockHeight,
+            // Tag invalidTag is unregistered
+            ' is unregistered' => self::TagUnregisteredError,
             '401 Unauthorized' => self::AuthenticationFailure,
             'Unknown language:' => self::InvalidLanguage,
             'account index is out of bound' => self::AccountIndexOutOfBound,
+            'Invalid address' => self::InvalidAddress,
         ];
 
         // If an exact match was not found try to find a partial match
@@ -101,6 +106,7 @@ enum ErrorCode: string
             self::NoWalletFile => new NoWalletFileException($message),
             self::OpenWalletFailure => new OpenWalletException($message),
             self::AttributeNotFound => new AttributeNotFoundException($message),
+            self::TagUnregisteredError => new TagNotFoundException($message),
         };
 
         return $exception;
