@@ -351,6 +351,7 @@ class WalletRpcClient extends JsonRpcClient
      * @param int $accountIndex Apply label to account at this index.
      * @param string $label Label for the account.
      * @throws MoneroRpcException
+     * @throws AccountIndexOutOfBoundException
      */
     public function labelAccount(int $accountIndex, string $label): LabelAccountResponse
     {
@@ -391,11 +392,14 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Remove filtering tag from a list of accounts.
      *
-     * @param int[] $accounts Remove tag from this list of accounts.
+     * @param int[]|int $accounts Remove tag from this account or list of accounts.
      * @throws MoneroRpcException
      */
-    public function untagAccounts(array $accounts): UntagAccountsResponse
+    public function untagAccounts(array|int $accounts): UntagAccountsResponse
     {
+        if (is_int($accounts)) {
+            $accounts = [$accounts];
+        }
         return $this->handleRequest(UntagAccountsRequest::create($accounts), UntagAccountsResponse::class);
     }
 

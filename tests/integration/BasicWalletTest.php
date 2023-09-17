@@ -36,6 +36,10 @@ class BasicWalletTest extends TestCase
     private static string $walletWithEmptyPwd;
     private static string $walletWithPwd;
 
+    const DEFAULT_ACCOUNT_INDEX = 0;
+    const ACCOUNT_TAG = 'TAG123';
+    const ACCOUNT_TAG_DESCRIPTION = 'TAG123_DESCRIPTION';
+
     public static function setUpBeforeClass(): void
     {
         self::$rpcClient = (new Builder(TestHelper::WALLET_RPC_URL))
@@ -303,6 +307,20 @@ class BasicWalletTest extends TestCase
         self::$rpcClient->labelAddress(new SubAddressIndex(0, 999), '');
     }
 
+    public function testLabelAccount(): void
+    {
+        $label = 'test account label';
+
+        self::$rpcClient->labelAccount(0, $label);
+        $this->assertSame($label, self::$rpcClient->getAccounts('')->subaddressAccounts[0]->label);
+    }
+
+    public function testLabelAccountInvalidAccountIndex(): void
+    {
+        $this->expectException(AccountIndexOutOfBoundException::class);
+        self::$rpcClient->labelAccount(999, '');
+    }
+
     public function testValidateAddress(): void
     {
         $result = self::$rpcClient->validateAddress(new Address(TestHelper::MAINNET_ADDRESS));
@@ -323,16 +341,10 @@ class BasicWalletTest extends TestCase
         $this->assertSame(false, $result->valid);
     }
 
-    /**
-     * @return array{'tag': string, 'account': int}
-     */
-    public function testTagAccounts(): array
+    public function testTagAccounts(): void
     {
         $this->expectNotToPerformAssertions();
-        $tag = 'AccountTag';
-        self::$rpcClient->tagAccounts($tag, 0);
-
-        return ['tag' => $tag, 'account' => 0];
+        self::$rpcClient->tagAccounts(self::ACCOUNT_TAG, self::DEFAULT_ACCOUNT_INDEX);
     }
 
     public function testTagAccountsInvalid(): array
@@ -344,14 +356,49 @@ class BasicWalletTest extends TestCase
     public function testGetAccountsByTagFailure(): void
     {
         $this->expectException(TagNotFoundException::class);
-        $result = self::$rpcClient->getAccounts('invalidTag');
+        self::$rpcClient->getAccounts('invalidTag');
     }
 
     #[Depends('testTagAccounts')]
-    public function testGetAccountsByTag(array $tagInfo): void
+    public function testSetAccountTagDescription(): void
     {
-        $result = self::$rpcClient->getAccounts($tagInfo['tag']);
-        $this->assertSame($tagInfo['account'], $result->subaddressAccounts[0]->accountIndex);
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->setAccountTagDescription(self::ACCOUNT_TAG, self::ACCOUNT_TAG_DESCRIPTION);
+    }
+
+    #[Depends('testTagAccounts')]
+    public function testGetAccountsByTag(): void
+    {
+        $result = self::$rpcClient->getAccounts(self::ACCOUNT_TAG);
+        $this->assertSame(self::DEFAULT_ACCOUNT_INDEX, $result->subaddressAccounts[0]->accountIndex);
+    }
+
+    #[Depends('testSetAccountTagDescription')]
+    public function testGetAccountTags(): void
+    {
+        $result = self::$rpcClient->getAccountTags();
+        $this->assertSame(self::ACCOUNT_TAG, $result->accountTags[0]->tag);
+        $this->assertSame(self::DEFAULT_ACCOUNT_INDEX, $result->accountTags[0]->accounts[0]);
+        $this->assertSame(self::ACCOUNT_TAG_DESCRIPTION, $result->accountTags[0]->label);
+    }
+
+    #[Depends('testGetAccountTags')]
+    public function testUntagAccounts(): void
+    {
+        self::$rpcClient->untagAccounts(0);
+        $result = self::$rpcClient->getAccountTags();
+        $this->assertTrue(empty($result->accountTags));
+    }
+
+    public function testGetHeight(): void
+    {
+        $this->assertSame(1, self::$rpcClient->getHeight()->height);
+    }
+
+    public function testStore(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->store();
     }
 
     public function testGetAttributeError(): void
