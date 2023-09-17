@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/refactor-ring/monerophp.git",
-                "reference": "64c64191ac6ddf77803dd6bf24b83b191ab5e17b"
+                "reference": "f3889a6e1bb3abcd66520cddfe4a2cd73c9ed3da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/refactor-ring/monerophp/zipball/64c64191ac6ddf77803dd6bf24b83b191ab5e17b",
-                "reference": "64c64191ac6ddf77803dd6bf24b83b191ab5e17b",
+                "url": "https://api.github.com/repos/refactor-ring/monerophp/zipball/f3889a6e1bb3abcd66520cddfe4a2cd73c9ed3da",
+                "reference": "f3889a6e1bb3abcd66520cddfe4a2cd73c9ed3da",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
             "support": {
                 "source": "https://github.com/refactor-ring/monerophp/tree/master"
             },
-            "time": "2023-09-07T12:39:20+00:00"
+            "time": "2023-09-17T09:29:05+00:00"
         },
         {
             "name": "myclabs/deep-copy",
