@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 use Http\Discovery\Psr18ClientDiscovery;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\DaemonOtherClient;
+use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 
 final class DaemonOtherTest extends TestCase
 {
@@ -18,4 +19,10 @@ final class DaemonOtherTest extends TestCase
         self::$rpcClient = new DaemonOtherClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
     }
 
+    public function testGetNetStats(): void
+    {
+        $result = self::$rpcClient->getNetStats();
+        $this->assertSame(ResponseStatus::OK, $result->status);
+        $this->assertGreaterThan(0, $result->startTime);
+    }
 }
