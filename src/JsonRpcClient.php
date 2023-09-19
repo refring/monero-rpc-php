@@ -87,7 +87,7 @@ abstract class JsonRpcClient
 
         if ($this->endPointPath === '/json_rpc') {
             return $className::fromJsonString($body, 'result');
-        } else{
+        } else {
             return $className::fromJsonString($body);
         }
     }

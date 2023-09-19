@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 use Http\Discovery\Psr18ClientDiscovery;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
+use RefRing\MoneroRpcPhp\DaemonOtherClient;
 use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHeightResponse;
@@ -28,12 +29,14 @@ final class NonEmptyBlockchainTest extends TestCase
     public const BLOCKS_TO_GENERATE = 10;
 
     private static RegtestRpcClient $regtestRpcClient;
+    private static DaemonOtherClient $daemonOtherClient;
 
 
     public static function setUpBeforeClass(): void
     {
         $httpClient = Psr18ClientDiscovery::find();
         self::$regtestRpcClient = new RegtestRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
+        self::$daemonOtherClient = new DaemonOtherClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
     }
 
     // STEP 1: we use a testnet address; however,
@@ -225,5 +228,14 @@ final class NonEmptyBlockchainTest extends TestCase
             '0xb',
             '0x1'
         );
+    }
+
+    public function testPopBlocks(): void
+    {
+        $startBlockCount = self::$regtestRpcClient->getBlockCount()->count;
+        $blocksToPop = 2;
+        $result = self::$daemonOtherClient->popBlocks($blocksToPop);
+
+        $this->assertSame($startBlockCount-$blocksToPop, $result->height);
     }
 }
