@@ -10,6 +10,7 @@ use Psr\Http\Message\RequestInterface;
 use RefRing\MoneroRpcPhp\Enum\ErrorCode;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Http\DigestAuthentication;
+use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 abstract class JsonRpcClient
@@ -25,6 +26,8 @@ abstract class JsonRpcClient
 
     private string $password = '';
 
+    protected string $endPointPath = '/json_rpc';
+
     public function __construct(private readonly ClientInterface $httpClient, private readonly string $url)
     {
 
@@ -37,6 +40,11 @@ abstract class JsonRpcClient
         $body = $psr17Factory->createStream($json);
 
         $request = $psr17Factory->createRequest('POST', $this->url);
+
+        if ($request->getUri()->getPath() !== $this->endPointPath) {
+            $newUri = $request->getUri()->withPath($this->endPointPath);
+            $request = $request->withUri($newUri);
+        }
 
         foreach ($this->headers as $name => $value) {
             $request->withHeader($name, $value);
@@ -52,7 +60,7 @@ abstract class JsonRpcClient
      * @param class-string<T> $className
      * @return T
      */
-    protected function handleRequest(RpcRequest $rpcRequest, string $className): mixed
+    protected function handleRequest(RpcRequest|OtherRpcRequest $rpcRequest, string $className): mixed
     {
         $requestBody = $rpcRequest->toJson();
         //                echo $requestBody;
@@ -77,8 +85,11 @@ abstract class JsonRpcClient
             throw $e;
         }
 
-
-        return $className::fromJsonString($body, 'result');
+        if ($this->endPointPath === '/json_rpc') {
+            return $className::fromJsonString($body, 'result');
+        } else{
+            return $className::fromJsonString($body);
+        }
     }
 
     protected function getExceptionForInvalidResponse(string $responseBody): ?MoneroRpcException
