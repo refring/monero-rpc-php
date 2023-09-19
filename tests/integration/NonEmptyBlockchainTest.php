@@ -236,6 +236,6 @@ final class NonEmptyBlockchainTest extends TestCase
         $blocksToPop = 2;
         $result = self::$daemonOtherClient->popBlocks($blocksToPop);
 
-        $this->assertSame($startBlockCount-$blocksToPop, $result->height);
+        $this->assertSame($startBlockCount - $blocksToPop, $result->height);
     }
 }
