@@ -25,4 +25,11 @@ final class DaemonOtherTest extends TestCase
         $this->assertSame(ResponseStatus::OK, $result->status);
         $this->assertGreaterThan(0, $result->startTime);
     }
+
+    public function testGetHeight(): void
+    {
+        $result = self::$rpcClient->getHeight();
+        $this->assertSame(ResponseStatus::OK, $result->status);
+        $this->assertGreaterThan(0, $result->height);
+    }
 }

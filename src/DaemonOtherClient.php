@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp;
 
+use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
@@ -32,5 +34,16 @@ class DaemonOtherClient extends JsonRpcClient
     {
         $this->endPointPath = '/get_net_stats';
         return $this->handleRequest(GetNetStatsRequest::create(), GetNetStatsResponse::class);
+    }
+
+    /**
+     * Get the node's current height.
+     *
+     * @throws MoneroRpcException
+     */
+    public function getHeight(): GetHeightResponse
+    {
+        $this->endPointPath = '/get_height';
+        return $this->handleRequest(GetHeightRequest::create(), GetHeightResponse::class);
     }
 }
