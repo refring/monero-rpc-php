@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.5.0 (2023-09-20)
+### Added
+- Support for the "other" Daemon rpc requests through DaemonOtherClient
+- Support for logging
+- DaemonOtherClient::popBlocks()
+- DaemonOtherClient::getNetStats()
+- AddressIndexOutOfBoundException
+- AttributeNotFoundException
+- TagNotFoundException
+- KeyPairHelper for tests
+- A bunch of integration tests for the wallet
+
+### Changed
+- Renamed Builder to ClientBuilder
+- WalletRpcClient::validateAddress() now also takes a string as $address
+- WalletRpcClient::untagAccounts() now also takes an int as $accounts
+
 ## v0.4.0 (2023-09-16)
 ### Added
 - DaemonBaseResponse class
