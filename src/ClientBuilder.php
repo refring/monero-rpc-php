@@ -6,11 +6,14 @@ namespace RefRing\MoneroRpcPhp;
 
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
+use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use RefRing\MoneroRpcPhp\Enum\RpcClientType;
 
 final class ClientBuilder
 {
+    use LoggerAwareTrait;
+
     private ?ClientInterface $httpClient = null;
 
     private readonly string $url;
@@ -25,8 +28,6 @@ final class ClientBuilder
     private ?string $username = null;
 
     private ?string $password = null;
-
-    private ?LoggerInterface $logger = null;
 
     public function __construct(string $url)
     {
@@ -63,7 +64,7 @@ final class ClientBuilder
 
     public function withLogger(LoggerInterface $logger): self
     {
-        $this->logger = $logger;
+        $this->setLogger($logger);
         return $this;
     }
 
