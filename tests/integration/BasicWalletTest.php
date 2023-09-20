@@ -6,7 +6,7 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
-use RefRing\MoneroRpcPhp\Builder;
+use RefRing\MoneroRpcPhp\ClientBuilder;
 use RefRing\MoneroRpcPhp\Enum\NetType;
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
@@ -42,7 +42,7 @@ class BasicWalletTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$rpcClient = (new Builder(TestHelper::WALLET_RPC_URL))
+        self::$rpcClient = (new ClientBuilder(TestHelper::WALLET_RPC_URL))
             ->buildWalletClient();
     }
 

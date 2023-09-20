@@ -8,7 +8,7 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use RefRing\MoneroRpcPhp\Enum\RpcClientType;
 
-final class Builder
+final class ClientBuilder
 {
     private ?ClientInterface $httpClient = null;
 

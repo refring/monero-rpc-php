@@ -6,7 +6,7 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientExceptionInterface;
-use RefRing\MoneroRpcPhp\Builder;
+use RefRing\MoneroRpcPhp\ClientBuilder;
 use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 
 class RpcAuthenticationTest extends TestCase
@@ -23,7 +23,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testConnectionError(): void
     {
-        $client = (new Builder('http://127.0.0.1:'.$this->findFreePort()))
+        $client = (new ClientBuilder('http://127.0.0.1:'.$this->findFreePort()))
             ->buildWalletClient();
 
         // @TODO Should this exception be wrapped ?
@@ -33,7 +33,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testWalletAuthFailure(): void
     {
-        $client = (new Builder(self::WALLET_RPC_URL))
+        $client = (new ClientBuilder(self::WALLET_RPC_URL))
             ->buildWalletClient();
 
         $this->expectException(AuthenticationException::class);
@@ -42,7 +42,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testWalletAuth(): void
     {
-        $client = (new Builder(self::WALLET_RPC_URL))
+        $client = (new ClientBuilder(self::WALLET_RPC_URL))
             ->withAuthentication('foo', 'bar')
             ->buildWalletClient();
 
@@ -51,7 +51,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testDaemonAuthFailure(): void
     {
-        $client = (new Builder(self::DAEMON_RPC_URL))
+        $client = (new ClientBuilder(self::DAEMON_RPC_URL))
             ->buildDaemonClient();
 
         $this->expectException(AuthenticationException::class);
@@ -60,7 +60,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testDaemonAuth(): void
     {
-        $client = (new Builder(self::DAEMON_RPC_URL))
+        $client = (new ClientBuilder(self::DAEMON_RPC_URL))
             ->withAuthentication('foo', 'bar')
             ->buildDaemonClient();
 

@@ -56,23 +56,26 @@ composer php-http/curl-client
 ## Usage
 
 For the wallet rpc client:
+
 ```php
-$client = (new \RefRing\MoneroRpcPhp\Builder('http://127.0.0.1:18081/json_rpc'))
+$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
     ->buildWalletClient();
 
 echo $client->getVersion()->version;
 ```
 Daemon rpc client:
+
 ```php
-$client = (new \RefRing\MoneroRpcPhp\Builder('http://127.0.0.1:18081/json_rpc'))
+$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
     ->buildDaemonClient();
 
 echo $client->getVersion()->version;
 ```
 
 With authentication:
+
 ```php
-$client = (new \RefRing\MoneroRpcPhp\Builder('http://127.0.0.1:18081/json_rpc'))
+$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
     ->withAuthentication('foo', 'bar')
     ->buildDaemonClient();
 
