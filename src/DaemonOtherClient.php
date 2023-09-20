@@ -24,7 +24,7 @@ class DaemonOtherClient extends JsonRpcClient
     }
 
     /**
-     * Remove blocks from the blockchain
+     * Get some networking information from the daemon
      *
      * @throws MoneroRpcException
      */
