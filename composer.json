@@ -17,12 +17,14 @@
         "psr/http-client-implementation": "*",
         "psr/http-factory-implementation": "*",
         "psr/http-message": "^1.1.0|^2.0.0",
+        "psr/log": "^3.0",
         "square/pjson": "^0.3"
     },
     "require-dev": {
         "ext-sockets": "*",
         "laravel/pint": "^1.10.3",
         "monero-integrations/monerophp": "dev-master",
+        "monolog/monolog": "^3.4",
         "nyholm/psr7": "^1.8",
         "phpstan/phpstan": "^1.10.25",
         "phpunit/phpunit": "^10.3.3",

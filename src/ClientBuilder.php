@@ -6,6 +6,7 @@ namespace RefRing\MoneroRpcPhp;
 
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
+use Psr\Log\LoggerInterface;
 use RefRing\MoneroRpcPhp\Enum\RpcClientType;
 
 final class ClientBuilder
@@ -24,6 +25,8 @@ final class ClientBuilder
     private ?string $username = null;
 
     private ?string $password = null;
+
+    private ?LoggerInterface $logger = null;
 
     public function __construct(string $url)
     {
@@ -58,15 +61,22 @@ final class ClientBuilder
         return $this;
     }
 
-    public function build(RpcClientType $rpcClientType): WalletRpcClient|DaemonRpcClient
+    public function withLogger(LoggerInterface $logger): self
+    {
+        $this->logger = $logger;
+        return $this;
+    }
+
+
+    public function build(RpcClientType $rpcClientType): WalletRpcClient|DaemonRpcClient|DaemonOtherClient
     {
         $httpClient = $this->httpClient ??= Psr18ClientDiscovery::find();
 
-        if ($rpcClientType === RpcClientType::DAEMON) {
-            $jsonRpcClient = new DaemonRpcClient($httpClient, $this->url);
-        } else {
-            $jsonRpcClient = new WalletRpcClient($httpClient, $this->url);
-        }
+        $jsonRpcClient = match($rpcClientType) {
+            RpcClientType::DAEMON => new DaemonRpcClient($httpClient, $this->url, $this->logger),
+            RpcClientType::DAEMON_OTHER => new DaemonOtherClient($httpClient, $this->url, $this->logger),
+            default => new WalletRpcClient($httpClient, $this->url, $this->logger)
+        };
 
         if ($this->username !== null && $this->password !== null) {
             $jsonRpcClient->setCredentials($this->username, $this->password);
@@ -87,5 +97,11 @@ final class ClientBuilder
     {
         /** @phpstan-ignore-next-line  */
         return $this->build(RpcClientType::DAEMON);
+    }
+
+    public function buildDaemonOtherClient(): DaemonOtherClient
+    {
+        /** @phpstan-ignore-next-line  */
+        return $this->build(RpcClientType::DAEMON_OTHER);
     }
 }
