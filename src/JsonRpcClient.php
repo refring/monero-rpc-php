@@ -7,6 +7,8 @@ namespace RefRing\MoneroRpcPhp;
 use Http\Discovery\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use RefRing\MoneroRpcPhp\Enum\ErrorCode;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Http\DigestAuthentication;
@@ -30,9 +32,11 @@ abstract class JsonRpcClient
 
     protected string $endPointPath = self::DEFAULT_ENDPOINT_PATH;
 
-    public function __construct(private readonly ClientInterface $httpClient, private readonly string $url)
-    {
+    protected LoggerInterface $logger;
 
+    public function __construct(private readonly ClientInterface $httpClient, private readonly string $url, ?LoggerInterface $logger = null)
+    {
+        $this->logger = $logger ?? new NullLogger();
     }
 
     public function createRequest(string $json): RequestInterface
@@ -42,7 +46,6 @@ abstract class JsonRpcClient
         $body = $psr17Factory->createStream($json);
 
         $request = $psr17Factory->createRequest('POST', $this->url);
-
         if ($request->getUri()->getPath() !== $this->endPointPath) {
             $newUri = $request->getUri()->withPath($this->endPointPath);
             $request = $request->withUri($newUri);
@@ -67,6 +70,17 @@ abstract class JsonRpcClient
         $requestBody = $rpcRequest->toJson();
         $request = $this->createRequest($requestBody);
 
+
+        $this->logger->debug(
+            'Request',
+            [
+                'method' => $request->getMethod(),
+                'path' => $request->getUri()->getPath(),
+                'request_headers' => $request->getHeaders(),
+                'body' => $requestBody
+            ]
+        );
+
         $response = $this->httpClient->sendRequest($request);
 
         // When the www-authenticate header is present we try to authenticate in an additional request
@@ -80,6 +94,11 @@ abstract class JsonRpcClient
         }
 
         $body = $response->getBody()->__toString();
+
+        $this->logger->debug('Response', [
+            'body' => $body,
+            'response_headers' => $response->getHeaders()
+        ]);
 
         if (($e = $this->getExceptionForInvalidResponse($body)) !== null) {
             throw $e;
