@@ -15,6 +15,8 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 abstract class JsonRpcClient
 {
+    public const DEFAULT_ENDPOINT_PATH = '/json_rpc';
+
     /**
      * The HTTP headers for the requests.
      *
@@ -26,7 +28,7 @@ abstract class JsonRpcClient
 
     private string $password = '';
 
-    protected string $endPointPath = '/json_rpc';
+    protected string $endPointPath = self::DEFAULT_ENDPOINT_PATH;
 
     public function __construct(private readonly ClientInterface $httpClient, private readonly string $url)
     {
@@ -63,12 +65,11 @@ abstract class JsonRpcClient
     protected function handleRequest(RpcRequest|OtherRpcRequest $rpcRequest, string $className): mixed
     {
         $requestBody = $rpcRequest->toJson();
-        //                echo $requestBody;
         $request = $this->createRequest($requestBody);
-
 
         $response = $this->httpClient->sendRequest($request);
 
+        // When the www-authenticate header is present we try to authenticate in an additional request
         if ($response->hasHeader('www-authenticate')) {
             $uri = (string) $request->getUri()->getPath();
             $digestAuthenticator = new DigestAuthentication($this->username, $this->password, $uri, 'POST');
@@ -79,17 +80,20 @@ abstract class JsonRpcClient
         }
 
         $body = $response->getBody()->__toString();
-        //                var_dump($body);
 
         if (($e = $this->getExceptionForInvalidResponse($body)) !== null) {
             throw $e;
         }
 
-        if ($this->endPointPath === '/json_rpc') {
-            return $className::fromJsonString($body, 'result');
-        } else {
-            return $className::fromJsonString($body);
+        // The response for the /json_rpc endpoint is contained in a result property
+        $jsonResultPath = 'result';
+
+        // The 'other' daemon methods are not contained in a result property, so just parse the whole response
+        if ($this->isOtherDaemonMethodRequest()) {
+            $jsonResultPath = [];
         }
+
+        return $className::fromJsonString($body, $jsonResultPath);
     }
 
     protected function getExceptionForInvalidResponse(string $responseBody): ?MoneroRpcException
@@ -123,4 +127,8 @@ abstract class JsonRpcClient
         $this->password = $password;
     }
 
+    private function isOtherDaemonMethodRequest(): bool
+    {
+        return $this->endPointPath !== self::DEFAULT_ENDPOINT_PATH;
+    }
 }
