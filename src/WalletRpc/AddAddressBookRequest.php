@@ -21,23 +21,15 @@ class AddAddressBookRequest implements ParameterInterface
     public Address $address;
 
     /**
-     * 16 characters hex encoded.
-     * When omitted the default value is a random ID
-     */
-    #[Json('payment_id', omit_empty: true)]
-    public ?string $paymentId;
-
-    /**
      * (Optional) defaults to "";
      */
     #[Json(omit_empty: true)]
     public ?string $description;
 
-    public static function create(Address $address, ?string $paymentId = null, ?string $description = null): RpcRequest
+    public static function create(Address $address, ?string $description = null): RpcRequest
     {
         $self = new self();
         $self->address = $address;
-        $self->paymentId = $paymentId;
         $self->description = $description;
         return new RpcRequest('add_address_book', $self);
     }

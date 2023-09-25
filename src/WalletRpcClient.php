@@ -8,6 +8,7 @@ use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
+use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
@@ -1091,10 +1092,11 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Retrieves entries from the address book.
      *
-     * @param int[] $entries indices of the requested address book entries
+     * @param ?int[] $entries indices of the requested address book entries
      * @throws MoneroRpcException
+     * @throws IndexOutOfRangeException
      */
-    public function getAddressBook(array $entries): GetAddressBookResponse
+    public function getAddressBook(?array $entries = null): GetAddressBookResponse
     {
         return $this->handleRequest(GetAddressBookRequest::create($entries), GetAddressBookResponse::class);
     }
@@ -1104,16 +1106,14 @@ class WalletRpcClient extends JsonRpcClient
      * Add an entry to the address book.
      *
      * @param Address $address
-     * @param ?string $paymentId (defaults to a random ID) 16 characters hex encoded.
      * @param ?string $description defaults to "";
      * @throws MoneroRpcException
      */
     public function addAddressBook(
         Address $address,
-        ?string $paymentId = null,
         ?string $description = null,
     ): AddAddressBookResponse {
-        return $this->handleRequest(AddAddressBookRequest::create($address, $paymentId, $description), AddAddressBookResponse::class);
+        return $this->handleRequest(AddAddressBookRequest::create($address, $description), AddAddressBookResponse::class);
     }
 
 
@@ -1125,20 +1125,16 @@ class WalletRpcClient extends JsonRpcClient
      * @param ?Address $address The 95-character public address to set.
      * @param bool $setDescription If true, set the description for this entry to the value of "description".
      * @param ?string $description Human-readable description for this entry.
-     * @param bool $setPaymentId If true, set the payment ID for this entry to the value of "payment_id".
-     * @param ?string $paymentId defaults to a random ID) 16 characters hex encoded.
      * @throws MoneroRpcException
      */
     public function editAddressBook(
         int $index,
         bool $setAddress,
         bool $setDescription,
-        bool $setPaymentId,
         ?Address $address = null,
         ?string $description = null,
-        ?string $paymentId = null,
     ): EditAddressBookResponse {
-        return $this->handleRequest(EditAddressBookRequest::create($index, $setAddress, $address, $setDescription, $description, $setPaymentId, $paymentId), EditAddressBookResponse::class);
+        return $this->handleRequest(EditAddressBookRequest::create($index, $setAddress, $address, $setDescription, $description), EditAddressBookResponse::class);
     }
 
 

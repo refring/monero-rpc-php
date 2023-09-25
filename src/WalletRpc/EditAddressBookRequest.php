@@ -47,27 +47,12 @@ class EditAddressBookRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $description;
 
-    /**
-     * If true, set the payment ID for this entry to the value of "payment_id".
-     */
-    #[Json('set_payment_id')]
-    public bool $setPaymentId;
-
-    /**
-     * 16 characters hex encoded.
-     * When omitted the default value is a random ID
-     */
-    #[Json('payment_id', omit_empty: true)]
-    public ?string $paymentId;
-
     public static function create(
         int $index,
         bool $setAddress,
         ?Address $address = null,
         bool $setDescription = false,
         ?string $description = null,
-        bool $setPaymentId = false,
-        ?string $paymentId = null,
     ): RpcRequest {
         $self = new self();
         $self->index = $index;
@@ -75,8 +60,6 @@ class EditAddressBookRequest implements ParameterInterface
         $self->address = $address;
         $self->setDescription = $setDescription;
         $self->description = $description;
-        $self->setPaymentId = $setPaymentId;
-        $self->paymentId = $paymentId;
         return new RpcRequest('edit_address_book', $self);
     }
 }

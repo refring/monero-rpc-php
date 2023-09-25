@@ -13,6 +13,7 @@ use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
 use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
+use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
@@ -39,6 +40,8 @@ class BasicWalletTest extends TestCase
     public const DEFAULT_ACCOUNT_INDEX = 0;
     public const ACCOUNT_TAG = 'TAG123';
     public const ACCOUNT_TAG_DESCRIPTION = 'TAG123_DESCRIPTION';
+    public const ADDRESS_BOOK_DESCRIPTION = 'ADDRESS_BOOK_DESCRIPTION';
+    public const ADDRESS_BOOK_DESCRIPTION_EDIT = 'ADDRESS_BOOK_DESCRIPTION_EDIT';
 
     public static function setUpBeforeClass(): void
     {
@@ -437,4 +440,48 @@ class BasicWalletTest extends TestCase
         $this->assertSame('Nebbiolo', $result->uri->txDescription);
     }
 
+    public function testAddAddressBook(): int
+    {
+        $result = self::$rpcClient->addAddressBook(new Address(TestHelper::MAINNET_ADDRESS), self::ADDRESS_BOOK_DESCRIPTION);
+        $this->assertGreaterThanOrEqual(0, $result->index);
+
+        return $result->index;
+    }
+
+    #[Depends('testAddAddressBook')]
+    public function testGetAddressBook(int $index): void
+    {
+        $result = self::$rpcClient->getAddressBook();
+        $this->assertSame($result->entries[0]->description, self::ADDRESS_BOOK_DESCRIPTION);
+    }
+
+    #[Depends('testAddAddressBook')]
+    public function testGetAddressBookByIndex(int $index): void
+    {
+        $result = self::$rpcClient->getAddressBook([$index]);
+        $this->assertSame($result->entries[0]->description, self::ADDRESS_BOOK_DESCRIPTION);
+    }
+
+    #[Depends('testAddAddressBook')]
+    public function testEditAddressBookByIndex(int $index): void
+    {
+        self::$rpcClient->editAddressBook($index, false, true, null, self::ADDRESS_BOOK_DESCRIPTION_EDIT);
+        $result = self::$rpcClient->getAddressBook([$index]);
+        $this->assertSame($result->entries[0]->description, self::ADDRESS_BOOK_DESCRIPTION_EDIT);
+    }
+
+    #[Depends('testAddAddressBook')]
+    public function testDeleteAddressBookByIndex(int $index): int
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->deleteAddressBook($index);
+        return $index;
+    }
+
+    #[Depends('testDeleteAddressBookByIndex')]
+    public function testGetAddressBookByIndexError(int $index): void
+    {
+        $this->expectException(IndexOutOfRangeException::class);
+        self::$rpcClient->getAddressBook([$index]);
+    }
 }

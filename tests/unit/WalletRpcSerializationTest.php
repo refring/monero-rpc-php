@@ -626,14 +626,14 @@ class WalletRpcSerializationTest extends TestCase
         $expected = '{"jsonrpc":"2.0","id":"0","method":"add_address_book","params":{"address":"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j","description":"Third account"}}';
         $address = new Address('78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j');
         $description = 'Third account';
-        $request = AddAddressBookRequest::create($address, null, $description);
+        $request = AddAddressBookRequest::create($address, $description);
         $this->assertSame($expected, $request->toJson());
     }
 
 
     public function testEditAddressBook()
     {
-        $expected = '{"jsonrpc":"2.0","id":"0","method":"edit_address_book","params":{"index":0,"set_address":true,"address":"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j","set_description":true,"description":"Example description.","set_payment_id":true,"payment_id":"60900e5603bf96e3"}}';
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"edit_address_book","params":{"index":0,"set_address":true,"address":"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j","set_description":true,"description":"Example description."}}';
         $index = 0;
         $setAddress = true;
         $address = new Address('78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j');

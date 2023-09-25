@@ -17,16 +17,16 @@ class GetAddressBookRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * @var int[] indices of the requested address book entries
+     * @var ?int[] indices of the requested address book entries
      */
-    #[Json]
-    public array $entries;
+    #[Json(omit_empty: true)]
+    public ?array $entries;
 
 
     /**
-     * @param int[] $entries
+     * @param ?int[] $entries
      */
-    public static function create(array $entries): RpcRequest
+    public static function create(?array $entries = null): RpcRequest
     {
         $self = new self();
         $self->entries = $entries;
