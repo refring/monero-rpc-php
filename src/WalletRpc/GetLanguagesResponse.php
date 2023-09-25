@@ -15,8 +15,7 @@ class GetLanguagesResponse
     use JsonSerialize;
 
     /**
-     * List of available languages
-     * @var string[]
+     * @var string[] List of available languages
      */
     #[Json]
     public array $languages;

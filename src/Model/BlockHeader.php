@@ -143,7 +143,6 @@ class BlockHeader
     #[Json('wide_difficulty')]
     public string $wideDifficulty;
 
-
     public function __construct(
         int $blockSize,
         int $blockWeight,

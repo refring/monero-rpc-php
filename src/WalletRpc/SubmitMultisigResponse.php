@@ -15,8 +15,7 @@ class SubmitMultisigResponse
     use JsonSerialize;
 
     /**
-     * List of transaction Hash.
-     * @var string[]
+     * @var string[] List of transaction Hash.
      */
     #[Json('tx_hash_list')]
     public array $txHashList;

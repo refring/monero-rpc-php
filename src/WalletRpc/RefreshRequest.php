@@ -17,7 +17,7 @@ class RefreshRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional) The block height from which to start refreshing. Passing no value or a value less than the last block scanned by the wallet refreshes from the last block scanned.
+     * The block height from which to start refreshing. Passing no value or a value less than the last block scanned by the wallet refreshes from the last block scanned.
      */
     #[Json('start_height', omit_empty: true)]
     public ?int $startHeight;

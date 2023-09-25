@@ -17,7 +17,8 @@ class ExportOutputsRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (optional) If true, export all outputs. Otherwise, export outputs since the last export. (Defaults to false)
+     * If true, export all outputs. Otherwise, export outputs since the last export. (
+     * When omitted the default value is false
      */
     #[Json(omit_empty: true)]
     public ?bool $all;

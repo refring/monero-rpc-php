@@ -17,7 +17,6 @@ class AuxPow
     #[Json]
     public string $hash;
 
-
     public function __construct(string $id, string $hash)
     {
         $this->id = $id;

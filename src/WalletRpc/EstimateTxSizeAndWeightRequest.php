@@ -9,9 +9,6 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-/**
- *
- */
 class EstimateTxSizeAndWeightRequest implements ParameterInterface
 {
     use JsonSerialize;

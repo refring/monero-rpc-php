@@ -16,6 +16,6 @@ class GetAddressBookResponse
     use JsonSerialize;
 
     /** @var AddressBookEntry[] */
-    #[Json]
+    #[Json(type: AddressBookEntry::class)]
     public array $entries;
 }

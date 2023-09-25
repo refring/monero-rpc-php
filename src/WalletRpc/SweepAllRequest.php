@@ -24,25 +24,26 @@ class SweepAllRequest implements ParameterInterface
     public Address $address;
 
     /**
-     * (Optional) Sweep transactions from this account.
+     * Sweep transactions from this account.
      */
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
     /**
-     * @var int[] (Optional) Sweep from this set of subaddresses in the account.
+     * @var ?int[] Sweep from this set of subaddresses in the account.
      */
     #[Json('subaddr_indices', omit_empty: true)]
     public ?array $subaddrIndices;
 
     /**
-     * (Optional) use outputs in all subaddresses within an account (Defaults to false).
+     * use outputs in all subaddresses within an account (.
+     * When omitted the default value is false
      */
     #[Json('subaddr_indices_all', omit_empty: true)]
     public ?bool $subaddrIndicesAll;
 
     /**
-     * (Optional) Priority for sending the sweep transfer, partially determines fee.
+     * Priority for sending the sweep transfer, partially determines fee.
      */
     #[Json(omit_empty: true)]
     public ?int $priority;
@@ -66,19 +67,20 @@ class SweepAllRequest implements ParameterInterface
     public ?int $unlockTime;
 
     /**
-     * (Optional, defaults to a random ID) 16 characters hex encoded.
+     * 16 characters hex encoded.
+     * When omitted the default value is a random ID
      */
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;
 
     /**
-     * (Optional) Return the transaction keys after sending.
+     * Return the transaction keys after sending.
      */
     #[Json('get_tx_keys', omit_empty: true)]
     public ?bool $getTxKeys;
 
     /**
-     * (Optional) Include outputs below this amount.
+     * Include outputs below this amount.
      */
     #[Json('below_amount', omit_empty: true)]
     public ?int $belowAmount;
@@ -96,7 +98,8 @@ class SweepAllRequest implements ParameterInterface
     public ?bool $getTxHex;
 
     /**
-     * (Optional) return the transaction metadata as a string. (Defaults to false)
+     * return the transaction metadata as a string. (
+     * When omitted the default value is false
      */
     #[Json('get_tx_metadata', omit_empty: true)]
     public ?bool $getTxMetadata;

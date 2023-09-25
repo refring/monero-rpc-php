@@ -17,7 +17,8 @@ class ExportKeyImagesRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (optional) If true, export all key images. Otherwise, export key images since the last export. (Defaults to false)
+     * If true, export all key images. Otherwise, export key images since the last export. (
+     * When omitted the default value is false
      */
     #[Json(omit_empty: true)]
     public ?bool $all;

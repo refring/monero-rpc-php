@@ -22,7 +22,6 @@ class GetMinerDataResponse extends DaemonBaseResponse
     #[Json('already_generated_coins')]
     public int $alreadyGeneratedCoins;
 
-
     /**
      * network. difficulty.
      */

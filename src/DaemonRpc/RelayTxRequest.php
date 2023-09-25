@@ -22,7 +22,6 @@ class RelayTxRequest implements ParameterInterface
     #[Json]
     public array $txids;
 
-
     /**
      * @param string[] $txids
      */

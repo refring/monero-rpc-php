@@ -23,7 +23,7 @@ class GetSpendProofRequest implements ParameterInterface
     public string $txid;
 
     /**
-     * (Optional) add a message to the signature to further authenticate the prooving process.
+     * add a message to the signature to further authenticate the prooving process.
      */
     #[Json(omit_empty: true)]
     public ?string $message;

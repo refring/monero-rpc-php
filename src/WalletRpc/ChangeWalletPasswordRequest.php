@@ -17,13 +17,13 @@ class ChangeWalletPasswordRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional) Current wallet password, if defined.
+     * Current wallet password, if defined.
      */
     #[Json('old_password', omit_empty: true)]
     public ?string $oldPassword;
 
     /**
-     * (Optional) New wallet password, if not blank.
+     * New wallet password, if not blank.
      */
     #[Json('new_password', omit_empty: true)]
     public ?string $newPassword;

@@ -29,11 +29,10 @@ class MakeMultisigRequest implements ParameterInterface
     public int $threshold;
 
     /**
-     * (Optional) Wallet password
+     * Wallet password
      */
     #[Json(omit_empty: true)]
     public ?string $password;
-
 
     /**
      * @param string[] $multisigInfo

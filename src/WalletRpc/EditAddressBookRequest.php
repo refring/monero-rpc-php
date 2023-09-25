@@ -30,7 +30,7 @@ class EditAddressBookRequest implements ParameterInterface
     public bool $setAddress;
 
     /**
-     * (Optional) The 95-character public address to set.
+     * The 95-character public address to set.
      */
     #[Json(omit_empty: true)]
     public ?Address $address;
@@ -42,7 +42,7 @@ class EditAddressBookRequest implements ParameterInterface
     public bool $setDescription;
 
     /**
-     * (Optional) Human-readable description for this entry.
+     * Human-readable description for this entry.
      */
     #[Json(omit_empty: true)]
     public ?string $description;
@@ -54,7 +54,8 @@ class EditAddressBookRequest implements ParameterInterface
     public bool $setPaymentId;
 
     /**
-     * (Optional, defaults to a random ID) 16 characters hex encoded.
+     * 16 characters hex encoded.
+     * When omitted the default value is a random ID
      */
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;

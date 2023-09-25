@@ -89,13 +89,11 @@ class Transfer
     #[Json('subaddr_indices', type: SubAddressIndex::class)]
     public array $subaddrIndices;
 
-
     /**
      * Number of confirmations needed for the amount received to be lower than the accumulated block reward (or close to that).
      */
     #[Json('suggested_confirmations_threshold')]
     public int $suggestedConfirmationsThreshold;
-
 
     /**
      * POSIX timestamp for when this transfer was first confirmed in a block (or timestamp submission if not mined yet).
@@ -114,7 +112,6 @@ class Transfer
      */
     #[Json]
     public TransferType $type;
-
 
     /**
      * Number of blocks until transfer is safely spendable.

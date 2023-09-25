@@ -30,24 +30,28 @@ class CheckTxProofRequest implements ParameterInterface
     public Address $address;
 
     /**
-     * (Optional) Should be the same message used in `get_tx_proof`.
-     */
-    #[Json(omit_empty: true)]
-    public ?string $message;
-
-    /**
      * transaction signature to confirm.
      */
     #[Json]
     public string $signature;
 
-    public static function create(string $txid, Address $address, string $signature, ?string $message = null): RpcRequest
-    {
+    /**
+     * Should be the same message used in `get_tx_proof`.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $message;
+
+    public static function create(
+        string $txid,
+        Address $address,
+        string $signature,
+        ?string $message = null,
+    ): RpcRequest {
         $self = new self();
         $self->txid = $txid;
         $self->address = $address;
-        $self->message = $message;
         $self->signature = $signature;
+        $self->message = $message;
         return new RpcRequest('check_tx_proof', $self);
     }
 }

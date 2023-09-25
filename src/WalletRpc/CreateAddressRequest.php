@@ -23,13 +23,14 @@ class CreateAddressRequest implements ParameterInterface
     public int $accountIndex;
 
     /**
-     * (Optional) Label for the new address.
+     * Label for the new address.
      */
     #[Json(omit_empty: true)]
     public ?string $label;
 
     /**
-     * (Optional) Number of addresses to create (Defaults to 1).
+     * Number of addresses to create (.
+     * When omitted the default value is 1
      */
     #[Json(omit_empty: true)]
     public ?int $count;

@@ -23,7 +23,7 @@ class CreateWalletRequest implements ParameterInterface
     public string $filename;
 
     /**
-     * (Optional) password to protect the wallet.
+     * password to protect the wallet.
      */
     #[Json(omit_empty: true)]
     public ?string $password;

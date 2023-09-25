@@ -47,7 +47,6 @@ class SubAddressAccountInformation
     #[Json('unlocked_balance')]
     public int $unlockedBalance;
 
-
     public function __construct(
         int $accountIndex,
         int $balance,

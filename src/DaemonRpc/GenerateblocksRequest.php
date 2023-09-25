@@ -28,14 +28,11 @@ class GenerateblocksRequest implements ParameterInterface
     #[Json('wallet_address')]
     public string $walletAddress;
 
-    /**
-     * (Optional)
-     */
     #[Json('prev_block', omit_empty: true)]
     public ?string $prevBlock;
 
     /**
-     * (Optional) Increased by miner untill it finds a matching result that solves a block.
+     * Increased by miner until it finds a matching result that solves a block.
      */
     #[Json('starting_nonce', omit_empty: true)]
     public ?int $startingNonce;

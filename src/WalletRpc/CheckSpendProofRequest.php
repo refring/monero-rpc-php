@@ -23,23 +23,23 @@ class CheckSpendProofRequest implements ParameterInterface
     public string $txid;
 
     /**
-     * (Optional) Should be the same message used in `get_spend_proof`.
-     */
-    #[Json(omit_empty: true)]
-    public ?string $message;
-
-    /**
      * spend signature to confirm.
      */
     #[Json]
     public string $signature;
 
+    /**
+     * Should be the same message used in `get_spend_proof`.
+     */
+    #[Json(omit_empty: true)]
+    public ?string $message;
+
     public static function create(string $txid, string $signature, ?string $message = null): RpcRequest
     {
         $self = new self();
         $self->txid = $txid;
-        $self->message = $message;
         $self->signature = $signature;
+        $self->message = $message;
         return new RpcRequest('check_spend_proof', $self);
     }
 }

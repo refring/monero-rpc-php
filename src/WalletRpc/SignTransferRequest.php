@@ -23,13 +23,14 @@ class SignTransferRequest implements ParameterInterface
     public string $unsignedTxset;
 
     /**
-     * (Optional) If true, return the raw transaction data. (Defaults to false)
+     * If true, return the raw transaction data. (
+     * When omitted the default value is false
      */
     #[Json('export_raw', omit_empty: true)]
     public ?bool $exportRaw;
 
     /**
-     * (Optional) Return the transaction keys after signing.
+     * Return the transaction keys after signing.
      */
     #[Json('get_tx_keys', omit_empty: true)]
     public ?bool $getTxKeys;

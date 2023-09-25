@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Returns the wallet's current block height.Alias: *getheight*.
+ * Returns the wallet's current block height.
  */
 class GetHeightResponse
 {

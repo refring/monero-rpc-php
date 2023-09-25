@@ -24,7 +24,7 @@ class CheckReserveProofRequest implements ParameterInterface
     public Address $address;
 
     /**
-     * If a _message_ was added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
+     * If a _message_ was added to `get_reserve_proof` , this message will be required when using `check_reserve_proof`
      */
     #[Json(omit_empty: true)]
     public ?string $message;

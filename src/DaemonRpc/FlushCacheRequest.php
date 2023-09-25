@@ -17,13 +17,13 @@ class FlushCacheRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * Optional (`false` by default).
+     * When omitted the default value is false
      */
     #[Json('bad_txs', omit_empty: true)]
     public ?bool $badTxs;
 
     /**
-     * Optional (`false` by default).
+     * When omitted the default value is false
      */
     #[Json('bad_blocks', omit_empty: true)]
     public ?bool $badBlocks;

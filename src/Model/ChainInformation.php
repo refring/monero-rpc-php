@@ -59,7 +59,6 @@ class ChainInformation
     #[Json('wide_difficulty')]
     public string $wideDifficulty;
 
-
     /**
      * @param BlockHash[] $blockHashes
      */

@@ -12,7 +12,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Full block information can be retrieved by either block height or hash, like with the above block header calls. For full block information, both lookups use the same method, but with different input parameters.Alias: *getblock*.
+ * Full block information can be retrieved by either block height or hash, like with the above block header calls. For full block information, both lookups use the same method, but with different input parameters.
  */
 class GetBlockRequest implements ParameterInterface
 {
@@ -31,7 +31,8 @@ class GetBlockRequest implements ParameterInterface
     public ?string $hash;
 
     /**
-     * (Optional; Default false) Add PoW hash to block_header response.
+     * Add PoW hash to block_header response.
+     * When omitted the default value is false
      */
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;

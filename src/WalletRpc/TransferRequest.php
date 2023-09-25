@@ -41,43 +41,46 @@ class TransferRequest implements ParameterInterface
     public ?TransferPriority $priority;
 
     /**
-     * (Optional) Number of outputs from the blockchain to mix with (0 means no mixing).
+     * Number of outputs from the blockchain to mix with (0 means no mixing).
      */
     #[Json(omit_empty: true)]
     public ?int $mixin;
 
     /**
-     * (Optional) Number of outputs to mix in the transaction (this output + N decoys from the blockchain). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
+     * Number of outputs to mix in the transaction (this output + N decoys from the blockchain). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
      */
     #[Json('ring_size', omit_empty: true)]
     public ?int $ringSize;
 
     /**
-     * (Optional)  Number of blocks before the monero can be spent (0 to not add a lock).
+     * Number of blocks before the monero can be spent (0 to not add a lock).
      */
     #[Json('unlock_time', omit_empty: true)]
     public ?int $unlockTime;
 
     /**
-     * (Optional) Return the transaction key after sending.
+     * Return the transaction key after sending.
      */
     #[Json('get_tx_key', omit_empty: true)]
     public ?bool $getTxKey;
 
     /**
-     * (Optional) If true, the newly created transaction will not be relayed to the monero network. (Defaults to false)
+     * If true, the newly created transaction will not be relayed to the monero network. (
+     * When omitted the default value is false
      */
     #[Json('do_not_relay', omit_empty: true)]
     public ?bool $doNotRelay;
 
     /**
-     * Return the transaction as hex string after sending (Defaults to false)
+     * Return the transaction as hex string after sending (
+     * When omitted the default value is false
      */
     #[Json('get_tx_hex', omit_empty: true)]
     public ?bool $getTxHex;
 
     /**
-     * Return the metadata needed to relay the transaction. (Defaults to false)
+     * Return the metadata needed to relay the transaction. (
+     * When omitted the default value is false
      */
     #[Json('get_tx_metadata', omit_empty: true)]
     public ?bool $getTxMetadata;

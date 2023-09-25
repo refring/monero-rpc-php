@@ -590,7 +590,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testGetAddressBook()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"entries":[{"address":"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp","description":"Second account","index":0,"payment_id":"0000000000000000000000000000000000000000000000000000000000000000"},{"address":"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j","description":"Third account","index":1,"payment_id":"0000000000000000000000000000000000000000000000000000000000000000"}]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"entries":[{"address":"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp","description":"Second account","index":0},{"address":"78P16M3XmFRGcWFCcsgt1WcTntA1jzcq31seQX1Eg92j8VQ99NPivmdKam4J5CKNAD7KuNWcq5xUPgoWczChzdba5WLwQ4j","description":"Third account","index":1}]}}';
         $response = GetAddressBookResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());

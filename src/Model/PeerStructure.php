@@ -17,7 +17,6 @@ class PeerStructure
     #[Json]
     public ConnectionInfo $info;
 
-
     public function __construct(ConnectionInfo $info)
     {
         $this->info = $info;

@@ -9,9 +9,6 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-/**
- *
- */
 class GetOutputDistributionRequest implements ParameterInterface
 {
     use JsonSerialize;
@@ -29,17 +26,18 @@ class GetOutputDistributionRequest implements ParameterInterface
     public ?bool $cumulative;
 
     /**
-     * (optional, default is 0) starting height to check from
+     * starting height to check from
+     * When omitted the default value is 0
      */
     #[Json('from_height', omit_empty: true)]
     public ?int $fromHeight;
 
     /**
-     * (optional, default is 0) ending height to check up to
+     * ending height to check up to
+     * When omitted the default value is 0
      */
     #[Json('to_height', omit_empty: true)]
     public ?int $toHeight;
-
 
     /**
      * @param int[] $amounts

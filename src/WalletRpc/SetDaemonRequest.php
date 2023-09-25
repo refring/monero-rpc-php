@@ -17,62 +17,60 @@ class SetDaemonRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional, Defaults to "") The URL of the daemon to connect to.
+     * The URL of the daemon to connect to.
+     * When omitted the default value is
      */
     #[Json(omit_empty: true)]
     public ?string $address;
 
     /**
-     * (Optional, Defaults to false) If false, some RPC wallet methods will be disabled.
+     * If false, some RPC wallet methods will be disabled.
+     * When omitted the default value is false
      */
     #[Json(omit_empty: true)]
     public ?bool $trusted;
 
     /**
-     * (Optional, Defaults to autodetect; Accepts: disabled, enabled, autodetect) Specifies whether the Daemon uses SSL encryption.
+     * Specifies whether the Daemon uses SSL encryption.
+     * When omitted the default value is autodetect
      */
     #[Json('ssl_support', omit_empty: true)]
     public ?string $sslSupport;
 
     /**
-     * (Optional) The file path location of the SSL key.
+     * The file path location of the SSL key.
      */
     #[Json('ssl_private_key_path', omit_empty: true)]
     public ?string $sslPrivateKeyPath;
 
     /**
-     * (Optional) The file path location of the SSL certificate.
+     * The file path location of the SSL certificate.
      */
     #[Json('ssl_certificate_path', omit_empty: true)]
     public ?string $sslCertificatePath;
 
     /**
-     * (Optional) The file path location of the certificate authority file.
+     * The file path location of the certificate authority file.
      */
     #[Json('ssl_ca_file', omit_empty: true)]
     public ?string $sslCaFile;
 
     /**
-     * @var string[] (Optional) The SHA1 fingerprints accepted by the SSL certificate.
+     * @var string[] The SHA1 fingerprints accepted by the SSL certificate.
      */
     #[Json('ssl_allowed_fingerprints', omit_empty: true)]
     public ?array $sslAllowedFingerprints;
 
     /**
-     * (Optional, Defaults to false) If false, the certificate must be signed by a trusted certificate authority.
+     * If false, the certificate must be signed by a trusted certificate authority.
+     * When omitted the default value is false
      */
     #[Json('ssl_allow_any_cert', omit_empty: true)]
     public ?bool $sslAllowAnyCert;
 
-    /**
-     * (Optional)
-     */
     #[Json(omit_empty: true)]
     public ?string $username;
 
-    /**
-     * (Optional)
-     */
     #[Json(omit_empty: true)]
     public ?string $password;
 
@@ -87,7 +85,7 @@ class SetDaemonRequest implements ParameterInterface
         ?string $sslCertificatePath = null,
         ?string $sslCaFile = null,
         ?array $sslAllowedFingerprints = null,
-        ?bool $sslAllowAnyCert = false,
+        ?bool $sslAllowAnyCert = null,
         ?string $username = null,
         ?string $password = null,
     ): RpcRequest {

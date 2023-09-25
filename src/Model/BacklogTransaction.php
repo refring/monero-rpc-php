@@ -20,7 +20,6 @@ class BacklogTransaction
     #[Json]
     public int $fee;
 
-
     public function __construct(string $id, int $weight, int $fee)
     {
         $this->id = $id;

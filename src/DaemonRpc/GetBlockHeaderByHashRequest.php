@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Block header information can be retrieved using either a block's hash or height. This method includes a block's hash as an input parameter to retrieve basic information about the block.Alias: *getblockheaderbyhash*.
+ * Block header information can be retrieved using either a block's hash or height. This method includes a block's hash as an input parameter to retrieve basic information about the block.
  */
 class GetBlockHeaderByHashRequest implements ParameterInterface
 {
@@ -23,7 +23,8 @@ class GetBlockHeaderByHashRequest implements ParameterInterface
     public string $hash;
 
     /**
-     * (Optional; defaults to `false`) Add PoW hash to block_header response.
+     * Add PoW hash to block_header response.
+     * When omitted the default value is false
      */
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;

@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Return the wallet's balance.Alias: *getbalance*.
+ * Return the wallet's balance.
  */
 class GetBalanceRequest implements ParameterInterface
 {
@@ -23,7 +23,7 @@ class GetBalanceRequest implements ParameterInterface
     public int $accountIndex;
 
     /**
-     * @var int[] (Optional) Return balance detail for those subaddresses.
+     * @var ?int[] Return balance detail for those subaddresses.
      */
     #[Json('address_indices', omit_empty: true)]
     public ?array $addressIndices;
@@ -39,7 +39,6 @@ class GetBalanceRequest implements ParameterInterface
      */
     #[Json(omit_empty: true)]
     public ?bool $strict;
-
 
     /**
      * @param ?int[] $addressIndices

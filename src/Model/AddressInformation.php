@@ -35,7 +35,6 @@ class AddressInformation
     #[Json]
     public bool $used;
 
-
     public function __construct(string $address, string $label, int $addressIndex, bool $used)
     {
         $this->address = $address;

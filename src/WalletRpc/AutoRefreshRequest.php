@@ -17,18 +17,19 @@ class AutoRefreshRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional) Enable or disable automatic refreshing (Defaults to true).
+     * Enable or disable automatic refreshing (.
+     * When omitted the default value is true
      */
     #[Json(omit_empty: true)]
     public ?bool $enable;
 
     /**
-     * (Optional) The period of the wallet refresh cycle (i.e. time between refreshes) in seconds.
+     * The period of the wallet refresh cycle (i.e. time between refreshes) in seconds.
      */
     #[Json(omit_empty: true)]
     public ?int $period;
 
-    public static function create(?bool $enable = true, ?int $period = null): RpcRequest
+    public static function create(?bool $enable = null, ?int $period = null): RpcRequest
     {
         $self = new self();
         $self->enable = $enable;

@@ -22,7 +22,6 @@ class FlushTxpoolRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?array $txids;
 
-
     /**
      * @param ?string[] $txids
      */

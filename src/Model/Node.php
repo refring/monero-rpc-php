@@ -35,7 +35,6 @@ class Node
     #[Json]
     public int $seconds;
 
-
     public function __construct(?string $host, ?int $ip, bool $ban, int $seconds)
     {
         $this->host = $host;

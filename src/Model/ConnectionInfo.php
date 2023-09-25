@@ -149,7 +149,6 @@ class ConnectionInfo
     #[Json('support_flags')]
     public int $supportFlags;
 
-
     public function __construct(
         string $address,
         int $avgDownload,

@@ -59,7 +59,6 @@ class Payment
     #[Json]
     public bool $locked;
 
-
     public function __construct(
         string $paymentId,
         string $txHash,

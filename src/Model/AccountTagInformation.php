@@ -28,7 +28,6 @@ class AccountTagInformation
     #[Json]
     public string $tag;
 
-
     /**
      * @param int[] $accounts
      */

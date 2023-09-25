@@ -41,7 +41,6 @@ class PaymentUri
     #[Json('tx_description')]
     public string $txDescription;
 
-
     public function __construct(
         string $address,
         int $amount,

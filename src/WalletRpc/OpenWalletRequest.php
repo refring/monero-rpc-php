@@ -23,7 +23,7 @@ class OpenWalletRequest implements ParameterInterface
     public string $filename;
 
     /**
-     * (Optional) only needed if the wallet has a password defined.
+     * only needed if the wallet has a password defined.
      */
     #[Json(omit_empty: true)]
     public ?string $password;

@@ -23,11 +23,10 @@ class FinalizeMultisigRequest implements ParameterInterface
     public array $multisigInfo;
 
     /**
-     * (Optional) Wallet password
+     * Wallet password
      */
     #[Json(omit_empty: true)]
     public ?string $password;
-
 
     /**
      * @param string[] $multisigInfo

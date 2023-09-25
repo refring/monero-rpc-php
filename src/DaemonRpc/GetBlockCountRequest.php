@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Look up how many blocks are in the longest chain known to the node.Alias: *getblockcount*.
+ * Look up how many blocks are in the longest chain known to the node.
  */
 class GetBlockCountRequest
 {

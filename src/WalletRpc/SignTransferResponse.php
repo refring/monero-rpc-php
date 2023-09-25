@@ -22,21 +22,18 @@ class SignTransferResponse
 
     /**
      * @var string[] The tx hashes of every transaction.
-     *
      */
     #[Json('tx_hash_list')]
     public array $txHashList;
 
     /**
      * @var string[] The tx raw data of every transaction.
-     *
      */
     #[Json('tx_raw_list')]
     public array $txRawList;
 
     /**
      * @var string[]
-     *
      */
     #[Json('tx_key_list')]
     public array $txKeyList;

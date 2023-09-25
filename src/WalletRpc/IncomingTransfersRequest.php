@@ -24,17 +24,17 @@ class IncomingTransfersRequest implements ParameterInterface
     public IncomingTransferType $transferType;
 
     /**
-     * (Optional) Return transfers for this account. (defaults to 0)
+     * Return transfers for this account.
+     * When omitted the default value is 0
      */
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
     /**
-     * @var int[] (Optional) Return transfers sent to these subaddresses.
+     * @var ?int[] Return transfers sent to these subaddresses.
      */
     #[Json('subaddr_indices', omit_empty: true)]
     public ?array $subaddrIndices;
-
 
     /**
      * @param ?int[] $subaddrIndices

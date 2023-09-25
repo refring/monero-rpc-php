@@ -17,7 +17,7 @@ class CreateAccountRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional) Label for the account.
+     * Label for the account.
      */
     #[Json(omit_empty: true)]
     public ?string $label;

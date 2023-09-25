@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get a block template on which mining a new block.Alias: *getblocktemplate*.
+ * Get a block template on which mining a new block.
  */
 class GetBlockTemplateResponse extends DaemonBaseResponse
 {

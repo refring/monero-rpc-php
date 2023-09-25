@@ -16,6 +16,6 @@ class GetConnectionsResponse extends DaemonBaseResponse
     use JsonSerialize;
 
     /** @var ConnectionInfo[] */
-    #[Json]
+    #[Json(type: ConnectionInfo::class)]
     public array $connections;
 }

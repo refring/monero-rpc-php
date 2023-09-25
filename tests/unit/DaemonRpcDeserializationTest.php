@@ -193,7 +193,7 @@ class DaemonRpcDeserializationTest extends TestCase
 
     public function testGetOutputHistogram()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"histogram":[{"amount":20000000000,"recent_instances":0,"total_instances":381477,"unlocked_instances":0}],"credits":0,"top_hash":"","status":"OK","untrusted":false}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"histogram":[{"amount":20000000000,"total_instances":381477,"unlocked_instances":0,"recent_instances":0}],"credits":0,"top_hash":"","status":"OK","untrusted":false}}';
         $response = GetOutputHistogramResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());

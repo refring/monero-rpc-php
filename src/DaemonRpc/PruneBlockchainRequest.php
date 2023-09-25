@@ -9,15 +9,13 @@ use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-/**
- *
- */
 class PruneBlockchainRequest implements ParameterInterface
 {
     use JsonSerialize;
 
     /**
-     * Optional (`false` by default) - If set to `true` then pruning status is checked instead of initiating pruning.
+     * If set to `true` then pruning status is checked instead of initiating pruning.
+     * When omitted the default value is false
      */
     #[Json(omit_empty: true)]
     public ?bool $check;

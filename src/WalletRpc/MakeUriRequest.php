@@ -30,19 +30,20 @@ class MakeUriRequest implements ParameterInterface
     public ?int $amount;
 
     /**
-     * (Optional, defaults to a random ID) 16 characters hex encoded.
+     * 16 characters hex encoded.
+     * When omitted the default value is a random ID
      */
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;
 
     /**
-     * (optional) name of the payment recipient
+     * name of the payment recipient
      */
     #[Json('recipient_name', omit_empty: true)]
     public ?string $recipientName;
 
     /**
-     * (optional) Description of the reason for the tx
+     * Description of the reason for the tx
      */
     #[Json('tx_description', omit_empty: true)]
     public ?string $txDescription;

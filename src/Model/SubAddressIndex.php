@@ -23,7 +23,6 @@ class SubAddressIndex
     #[Json]
     public int $minor;
 
-
     public function __construct(int $major, int $minor)
     {
         $this->major = $major;

@@ -10,14 +10,15 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Block header information for the most recent block is easily retrieved with this method. No inputs are needed.Alias: *getlastblockheader*.
+ * Block header information for the most recent block is easily retrieved with this method. No inputs are needed.
  */
 class GetLastBlockHeaderRequest implements ParameterInterface
 {
     use JsonSerialize;
 
     /**
-     * (Optional; defaults to `false`) Add PoW hash to block_header response.
+     * Add PoW hash to block_header response.
+     * When omitted the default value is false
      */
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;

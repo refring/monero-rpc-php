@@ -18,7 +18,8 @@ class GenerateFromKeysRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional, defaults to 0) The block height to restore the wallet from.
+     * The block height to restore the wallet from.
+     * When omitted the default value is 0
      */
     #[Json('restore_height', omit_empty: true)]
     public ?int $restoreHeight;
@@ -36,7 +37,7 @@ class GenerateFromKeysRequest implements ParameterInterface
     public Address $address;
 
     /**
-     * (Optional, omit to create a view-only wallet) The wallet's private spend key.
+     * omit to create a view-only wallet) The wallet's private spend key.
      */
     #[Json(omit_empty: true)]
     public ?string $spendkey;

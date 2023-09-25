@@ -38,7 +38,6 @@ class HardForkInfoResponse extends RpcAccessBaseResponse
     #[Json]
     public int $threshold;
 
-
     /**
      * The major block version for the fork.
      */

@@ -16,6 +16,6 @@ class GetBansResponse extends DaemonBaseResponse
     use JsonSerialize;
 
     /** @var BannedNode[] */
-    #[Json]
+    #[Json(type: BannedNode::class)]
     public array $bans;
 }

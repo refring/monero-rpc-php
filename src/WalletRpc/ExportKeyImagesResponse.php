@@ -19,6 +19,6 @@ class ExportKeyImagesResponse
     public int $offset;
 
     /** @var SignedKeyImage[] */
-    #[Json('signed_key_images')]
+    #[Json('signed_key_images', type: SignedKeyImage::class)]
     public array $signedKeyImages;
 }

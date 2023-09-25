@@ -436,4 +436,5 @@ class BasicWalletTest extends TestCase
         $this->assertSame('Barolo', $result->uri->recipientName);
         $this->assertSame('Nebbiolo', $result->uri->txDescription);
     }
+
 }

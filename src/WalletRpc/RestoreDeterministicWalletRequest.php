@@ -35,25 +35,27 @@ class RestoreDeterministicWalletRequest implements ParameterInterface
     public string $seed;
 
     /**
-     * (Optional) Block height to restore the wallet from (Defaults to 0).
+     * Block height to restore the wallet from (.
+     * When omitted the default value is 0
      */
     #[Json('restore_height', omit_empty: true)]
     public ?int $restoreHeight;
 
     /**
-     * (Optional) Language of the mnemonic phrase in case the old language is invalid.
+     * Language of the mnemonic phrase in case the old language is invalid.
      */
     #[Json(omit_empty: true)]
     public ?string $language;
 
     /**
-     * (Optional) Offset used to derive a new seed from the given mnemonic to recover a secret wallet from the mnemonic phrase.
+     * Offset used to derive a new seed from the given mnemonic to recover a secret wallet from the mnemonic phrase.
      */
     #[Json('seed_offset', omit_empty: true)]
     public ?string $seedOffset;
 
     /**
-     * Whether to save the currently open RPC wallet before closing it (Defaults to true).
+     * Whether to save the currently open RPC wallet before closing it (.
+     * When omitted the default value is true
      */
     #[Json('autosave_current', omit_empty: true)]
     public ?bool $autosaveCurrent;
@@ -65,7 +67,7 @@ class RestoreDeterministicWalletRequest implements ParameterInterface
         ?int $restoreHeight = 0,
         ?string $language = null,
         ?string $seedOffset = null,
-        ?bool $autosaveCurrent = true,
+        ?bool $autosaveCurrent = null,
     ): RpcRequest {
         $self = new self();
         $self->filename = $filename;

@@ -24,7 +24,6 @@ class AddAuxPowRequest implements ParameterInterface
     #[Json('aux_pow')]
     public array $auxPow;
 
-
     /**
      * @param AuxPow[] $auxPow
      */

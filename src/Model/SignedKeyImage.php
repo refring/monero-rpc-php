@@ -17,7 +17,6 @@ class SignedKeyImage
     #[Json]
     public string $signature;
 
-
     public function __construct(string $keyImage, string $signature)
     {
         $this->keyImage = $keyImage;

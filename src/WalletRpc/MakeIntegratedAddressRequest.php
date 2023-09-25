@@ -17,13 +17,15 @@ class MakeIntegratedAddressRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional, defaults to primary address) Destination public address.
+     * Destination public address.
+     * When omitted the default value is primary address
      */
     #[Json('standard_address', omit_empty: true)]
     public ?string $standardAddress;
 
     /**
-     * (Optional, defaults to a random ID) 16 characters hex encoded.
+     * 16 characters hex encoded.
+     * When omitted the default value is a random ID
      */
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;

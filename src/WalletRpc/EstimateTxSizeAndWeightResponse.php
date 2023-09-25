@@ -7,9 +7,6 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-/**
- *
- */
 class EstimateTxSizeAndWeightResponse
 {
     use JsonSerialize;

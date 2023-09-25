@@ -16,6 +16,6 @@ class GetOutputHistogramResponse extends RpcAccessBaseResponse
     use JsonSerialize;
 
     /** @var Histogram[] */
-    #[Json]
+    #[Json(type: Histogram::class)]
     public array $histogram;
 }

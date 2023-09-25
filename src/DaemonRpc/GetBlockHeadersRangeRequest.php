@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Similar to [get_block_header_by_height](#get_block_header_by_height) above, but for a range of blocks. This method includes a starting block height and an ending block height as parameters to retrieve basic information about the range of blocks.Alias: *getblockheadersrange*.
+ * Similar to [get_block_header_by_height](#get_block_header_by_height) above, but for a range of blocks. This method includes a starting block height and an ending block height as parameters to retrieve basic information about the range of blocks.
  */
 class GetBlockHeadersRangeRequest implements ParameterInterface
 {
@@ -29,7 +29,8 @@ class GetBlockHeadersRangeRequest implements ParameterInterface
     public int $endHeight;
 
     /**
-     * (Optional; defaults to `false`) Add PoW hash to block_header response.
+     * Add PoW hash to block_header response.
+     * When omitted the default value is false
      */
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;

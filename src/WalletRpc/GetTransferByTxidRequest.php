@@ -23,7 +23,7 @@ class GetTransferByTxidRequest implements ParameterInterface
     public string $txid;
 
     /**
-     * (Optional) Index of the account to query for the transfer.
+     * Index of the account to query for the transfer.
      */
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;

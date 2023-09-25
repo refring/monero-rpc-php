@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Return the wallet's addresses for an account. Optionally filter for specific set of subaddresses.Alias: *getaddress*.
+ * Return the wallet's addresses for an account. Optionally filter for specific set of subaddresses.
  */
 class GetAddressResponse
 {

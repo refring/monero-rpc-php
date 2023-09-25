@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Submit a mined block to the network.Alias: *submitblock*.
+ * Submit a mined block to the network.
  */
 class SubmitBlockResponse extends DaemonBaseResponse
 {

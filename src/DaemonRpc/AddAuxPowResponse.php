@@ -28,6 +28,6 @@ class AddAuxPowResponse
     public int $merkleTreeDepth;
 
     /** @var AuxPow[] */
-    #[Json('aux_pow')]
+    #[Json('aux_pow', type: AuxPow::class)]
     public array $auxPow;
 }

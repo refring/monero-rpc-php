@@ -21,7 +21,6 @@ class SetBansRequest implements ParameterInterface
     #[Json]
     public array $bans;
 
-
     /**
      * @param Node[] $bans
      */

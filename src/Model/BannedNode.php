@@ -29,7 +29,6 @@ class BannedNode
     #[Json]
     public int $seconds;
 
-
     public function __construct(string $host, int $ip, int $seconds)
     {
         $this->host = $host;

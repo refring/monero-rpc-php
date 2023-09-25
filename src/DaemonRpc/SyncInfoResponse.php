@@ -36,7 +36,7 @@ class SyncInfoResponse extends RpcAccessBaseResponse
     public array $peers;
 
     /** @var SpanStructure[] */
-    #[Json(type:SpanStructure::class, omit_empty: true)]
+    #[Json(omit_empty: true, type: SpanStructure::class)]
     public array $spans;
 
     /**

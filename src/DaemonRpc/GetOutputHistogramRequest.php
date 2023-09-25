@@ -22,30 +22,17 @@ class GetOutputHistogramRequest implements ParameterInterface
     #[Json]
     public array $amounts;
 
-    /**
-     * (Optional)
-     */
     #[Json('min_count', omit_empty: true)]
     public ?int $minCount;
 
-    /**
-     * (Optional)
-     */
     #[Json('max_count', omit_empty: true)]
     public ?int $maxCount;
 
-    /**
-     * (Optional)
-     */
     #[Json(omit_empty: true)]
     public ?bool $unlocked;
 
-    /**
-     * (Optional)
-     */
     #[Json('recent_cutoff', omit_empty: true)]
     public ?int $recentCutoff;
-
 
     /**
      * @param int[] $amounts

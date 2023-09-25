@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Returns the wallet's current block height.Alias: *getheight*.
+ * Returns the wallet's current block height.
  */
 class GetHeightRequest
 {

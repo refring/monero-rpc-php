@@ -8,7 +8,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Look up how many blocks are in the longest chain known to the node.Alias: *getblockcount*.
+ * Look up how many blocks are in the longest chain known to the node.
  */
 class GetBlockCountResponse extends DaemonBaseResponse
 {

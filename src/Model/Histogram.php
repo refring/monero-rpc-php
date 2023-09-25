@@ -26,7 +26,6 @@ class Histogram
     #[Json('recent_instances')]
     public int $recentInstances;
 
-
     public function __construct(int $amount, int $totalInstances, int $unlockedInstances, int $recentInstances)
     {
         $this->amount = $amount;

@@ -17,13 +17,13 @@ class DescribeTransferRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (Optional) A hexadecimal string representing a set of unsigned transactions (empty for multisig transactions; non-multisig signed transactions are not supported).
+     * A hexadecimal string representing a set of unsigned transactions (empty for multisig transactions; non-multisig signed transactions are not supported).
      */
     #[Json('unsigned_txset', omit_empty: true)]
     public ?string $unsignedTxset;
 
     /**
-     * (Optional) A hexadecimal string representing the set of signing keys used in a multisig transaction (empty for unsigned transactions; non-multisig signed transactions are not supported).
+     * A hexadecimal string representing the set of signing keys used in a multisig transaction (empty for unsigned transactions; non-multisig signed transactions are not supported).
      */
     #[Json('multisig_txset', omit_empty: true)]
     public ?string $multisigTxset;

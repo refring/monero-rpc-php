@@ -16,6 +16,6 @@ class GetOutputDistributionResponse extends RpcAccessBaseResponse
     use JsonSerialize;
 
     /** @var Distribution[] */
-    #[Json]
+    #[Json(type: Distribution::class)]
     public array $distributions;
 }
