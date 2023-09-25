@@ -22,7 +22,6 @@ class ExportKeyImagesRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?bool $all;
 
-
     public static function create(?bool $all = null): RpcRequest
     {
         $self = new self();

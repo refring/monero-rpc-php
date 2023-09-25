@@ -23,7 +23,6 @@ class GetAddressIndexRequest implements ParameterInterface
     #[Json]
     public Address $address;
 
-
     public static function create(Address $address): RpcRequest
     {
         $self = new self();

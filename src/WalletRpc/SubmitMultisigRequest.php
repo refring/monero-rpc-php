@@ -22,7 +22,6 @@ class SubmitMultisigRequest implements ParameterInterface
     #[Json('tx_data_hex')]
     public string $txDataHex;
 
-
     public static function create(string $txDataHex): RpcRequest
     {
         $self = new self();

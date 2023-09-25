@@ -34,7 +34,6 @@ class GetBlockHeadersRangeRequest implements ParameterInterface
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;
 
-
     public static function create(int $startHeight, int $endHeight, ?bool $fillPowHash = null): RpcRequest
     {
         $self = new self();

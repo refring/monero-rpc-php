@@ -28,7 +28,6 @@ class SetAccountTagDescriptionRequest implements ParameterInterface
     #[Json]
     public string $description;
 
-
     public static function create(string $tag, string $description): RpcRequest
     {
         $self = new self();

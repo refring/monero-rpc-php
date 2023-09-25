@@ -28,7 +28,6 @@ class ExchangeMultisigKeysRequest implements ParameterInterface
     #[Json('force_update_use_with_caution', omit_empty: true)]
     public ?bool $forceUpdateUseWithCaution;
 
-
     public static function create(
         string $password,
         string $multisigInfo,

@@ -29,7 +29,6 @@ class LabelAddressRequest implements ParameterInterface
     #[Json]
     public string $label;
 
-
     public static function create(SubAddressIndex $index, string $label): RpcRequest
     {
         $self = new self();

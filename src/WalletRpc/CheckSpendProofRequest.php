@@ -34,7 +34,6 @@ class CheckSpendProofRequest implements ParameterInterface
     #[Json]
     public string $signature;
 
-
     public static function create(string $txid, string $signature, ?string $message = null): RpcRequest
     {
         $self = new self();

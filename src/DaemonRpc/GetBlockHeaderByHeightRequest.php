@@ -28,7 +28,6 @@ class GetBlockHeaderByHeightRequest implements ParameterInterface
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;
 
-
     public static function create(int $height, ?bool $fillPowHash = null): RpcRequest
     {
         $self = new self();

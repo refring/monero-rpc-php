@@ -34,7 +34,6 @@ class StartMiningRequest implements ParameterInterface
     #[Json('ignore_battery')]
     public bool $ignoreBattery;
 
-
     public static function create(int $threadsCount, bool $doBackgroundMining, bool $ignoreBattery): RpcRequest
     {
         $self = new self();

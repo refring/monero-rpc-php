@@ -34,7 +34,6 @@ class GetAccountsRequest implements ParameterInterface
     #[Json('strict_balances', omit_empty: true)]
     public ?bool $strictBalances;
 
-
     public static function create(?string $tag = null, ?bool $regex = null, ?bool $strictBalances = null): RpcRequest
     {
         $self = new self();

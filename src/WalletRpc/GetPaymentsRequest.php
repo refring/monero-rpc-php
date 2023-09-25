@@ -22,7 +22,6 @@ class GetPaymentsRequest implements ParameterInterface
     #[Json('payment_id')]
     public string $paymentId;
 
-
     public static function create(string $paymentId): RpcRequest
     {
         $self = new self();

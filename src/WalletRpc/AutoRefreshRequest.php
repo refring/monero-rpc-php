@@ -28,7 +28,6 @@ class AutoRefreshRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?int $period;
 
-
     public static function create(?bool $enable = true, ?int $period = null): RpcRequest
     {
         $self = new self();

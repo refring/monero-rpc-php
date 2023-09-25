@@ -34,7 +34,6 @@ class CreateAddressRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?int $count;
 
-
     public static function create(int $accountIndex, ?string $label = null, ?int $count = 1): RpcRequest
     {
         $self = new self();

@@ -22,7 +22,6 @@ class ParseUriRequest implements ParameterInterface
     #[Json]
     public string $uri;
 
-
     public static function create(string $uri): RpcRequest
     {
         $self = new self();

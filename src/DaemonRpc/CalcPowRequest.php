@@ -31,7 +31,6 @@ class CalcPowRequest implements ParameterInterface
     #[Json('seed_hash')]
     public string $seedHash;
 
-
     public static function create(int $majorVersion, int $height, string $blockBlob, string $seedHash): RpcRequest
     {
         $self = new self();

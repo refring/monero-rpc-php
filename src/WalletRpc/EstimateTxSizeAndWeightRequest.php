@@ -34,7 +34,6 @@ class EstimateTxSizeAndWeightRequest implements ParameterInterface
     #[Json]
     public bool $rct;
 
-
     public static function create(int $nInputs, int $nOutputs, int $ringSize, bool $rct): RpcRequest
     {
         $self = new self();

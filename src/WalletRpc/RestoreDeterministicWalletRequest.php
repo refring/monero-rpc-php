@@ -58,7 +58,6 @@ class RestoreDeterministicWalletRequest implements ParameterInterface
     #[Json('autosave_current', omit_empty: true)]
     public ?bool $autosaveCurrent;
 
-
     public static function create(
         string $filename,
         string $password,

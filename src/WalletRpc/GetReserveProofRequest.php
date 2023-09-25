@@ -40,7 +40,6 @@ class GetReserveProofRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $message;
 
-
     public static function create(bool $all, int $accountIndex, int $amount, ?string $message = null): RpcRequest
     {
         $self = new self();

@@ -83,7 +83,6 @@ class SweepSingleRequest implements ParameterInterface
     #[Json('get_tx_metadata', omit_empty: true)]
     public ?bool $getTxMetadata;
 
-
     public static function create(
         Address $address,
         string $keyImage,

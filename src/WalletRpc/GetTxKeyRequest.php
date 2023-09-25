@@ -22,7 +22,6 @@ class GetTxKeyRequest implements ParameterInterface
     #[Json]
     public string $txid;
 
-
     public static function create(string $txid): RpcRequest
     {
         $self = new self();

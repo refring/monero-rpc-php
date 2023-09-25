@@ -28,7 +28,6 @@ class GetSpendProofRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $message;
 
-
     public static function create(string $txid, ?string $message = null): RpcRequest
     {
         $self = new self();

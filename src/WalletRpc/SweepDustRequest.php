@@ -40,7 +40,6 @@ class SweepDustRequest implements ParameterInterface
     #[Json('get_tx_metadata', omit_empty: true)]
     public ?bool $getTxMetadata;
 
-
     public static function create(
         ?bool $getTxKeys = null,
         ?bool $doNotRelay = null,

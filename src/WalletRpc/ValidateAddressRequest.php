@@ -35,7 +35,6 @@ class ValidateAddressRequest implements ParameterInterface
     #[Json('allow_openalias', omit_empty: true)]
     public ?bool $allowOpenalias;
 
-
     public static function create(Address|string $address, ?bool $anyNetType = false, ?bool $allowOpenalias = false): RpcRequest
     {
         $self = new self();

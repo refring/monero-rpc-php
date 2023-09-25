@@ -22,7 +22,6 @@ class CreateAccountRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $label;
 
-
     public static function create(?string $label = null): RpcRequest
     {
         $self = new self();

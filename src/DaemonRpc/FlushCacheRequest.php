@@ -28,7 +28,6 @@ class FlushCacheRequest implements ParameterInterface
     #[Json('bad_blocks', omit_empty: true)]
     public ?bool $badBlocks;
 
-
     public static function create(?bool $badTxs = null, ?bool $badBlocks = null): RpcRequest
     {
         $self = new self();

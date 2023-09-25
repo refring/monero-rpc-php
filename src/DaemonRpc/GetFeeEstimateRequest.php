@@ -22,7 +22,6 @@ class GetFeeEstimateRequest implements ParameterInterface
     #[Json('grace_blocks', omit_empty: true)]
     public ?int $graceBlocks;
 
-
     public static function create(?int $graceBlocks = null): RpcRequest
     {
         $self = new self();

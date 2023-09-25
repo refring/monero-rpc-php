@@ -47,7 +47,6 @@ class MakeUriRequest implements ParameterInterface
     #[Json('tx_description', omit_empty: true)]
     public ?string $txDescription;
 
-
     public static function create(
         Address $address,
         ?int $amount = null,

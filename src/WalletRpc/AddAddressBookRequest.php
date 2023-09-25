@@ -32,7 +32,6 @@ class AddAddressBookRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $description;
 
-
     public static function create(Address $address, ?string $paymentId = null, ?string $description = null): RpcRequest
     {
         $self = new self();

@@ -28,7 +28,6 @@ class ChangeWalletPasswordRequest implements ParameterInterface
     #[Json('new_password', omit_empty: true)]
     public ?string $newPassword;
 
-
     public static function create(?string $oldPassword = null, ?string $newPassword = null): RpcRequest
     {
         $self = new self();

@@ -22,7 +22,6 @@ class DeleteAddressBookRequest implements ParameterInterface
     #[Json]
     public int $index;
 
-
     public static function create(int $index): RpcRequest
     {
         $self = new self();

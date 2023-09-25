@@ -22,7 +22,6 @@ class RelayTxRequest implements ParameterInterface
     #[Json]
     public string $hex;
 
-
     public static function create(string $hex): RpcRequest
     {
         $self = new self();

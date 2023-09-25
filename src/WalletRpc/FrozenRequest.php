@@ -19,7 +19,6 @@ class FrozenRequest implements ParameterInterface
     #[Json('key_image')]
     public string $keyImage;
 
-
     public static function create(string $keyImage): RpcRequest
     {
         $self = new self();

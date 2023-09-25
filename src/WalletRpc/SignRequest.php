@@ -22,7 +22,6 @@ class SignRequest implements ParameterInterface
     #[Json]
     public string $data;
 
-
     public static function create(string $data): RpcRequest
     {
         $self = new self();

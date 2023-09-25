@@ -28,7 +28,6 @@ class OpenWalletRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $password;
 
-
     public static function create(string $filename, ?string $password = null): RpcRequest
     {
         $self = new self();

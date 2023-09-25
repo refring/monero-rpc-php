@@ -22,7 +22,6 @@ class RefreshRequest implements ParameterInterface
     #[Json('start_height', omit_empty: true)]
     public ?int $startHeight;
 
-
     public static function create(?int $startHeight = null): RpcRequest
     {
         $self = new self();

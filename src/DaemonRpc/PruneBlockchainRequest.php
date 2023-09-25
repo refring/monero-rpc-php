@@ -22,7 +22,6 @@ class PruneBlockchainRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?bool $check;
 
-
     public static function create(?bool $check = null): RpcRequest
     {
         $self = new self();

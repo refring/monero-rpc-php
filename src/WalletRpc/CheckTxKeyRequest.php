@@ -35,7 +35,6 @@ class CheckTxKeyRequest implements ParameterInterface
     #[Json]
     public Address $address;
 
-
     public static function create(string $txid, string $txKey, Address $address): RpcRequest
     {
         $self = new self();

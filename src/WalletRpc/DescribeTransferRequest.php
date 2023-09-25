@@ -28,7 +28,6 @@ class DescribeTransferRequest implements ParameterInterface
     #[Json('multisig_txset', omit_empty: true)]
     public ?string $multisigTxset;
 
-
     public static function create(?string $unsignedTxset = null, ?string $multisigTxset = null): RpcRequest
     {
         $self = new self();

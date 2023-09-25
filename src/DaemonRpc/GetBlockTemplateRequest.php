@@ -28,7 +28,6 @@ class GetBlockTemplateRequest implements ParameterInterface
     #[Json('reserve_size')]
     public int $reserveSize;
 
-
     public static function create(string $walletAddress, int $reserveSize): RpcRequest
     {
         $self = new self();

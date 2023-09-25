@@ -28,7 +28,6 @@ class GetBlockHeaderByHashRequest implements ParameterInterface
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;
 
-
     public static function create(string $hash, ?bool $fillPowHash = null): RpcRequest
     {
         $self = new self();

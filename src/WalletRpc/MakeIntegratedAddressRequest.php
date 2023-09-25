@@ -28,7 +28,6 @@ class MakeIntegratedAddressRequest implements ParameterInterface
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;
 
-
     public static function create(?string $standardAddress = null, ?string $paymentId = null): RpcRequest
     {
         $self = new self();

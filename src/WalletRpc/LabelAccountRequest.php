@@ -28,7 +28,6 @@ class LabelAccountRequest implements ParameterInterface
     #[Json]
     public string $label;
 
-
     public static function create(int $accountIndex, string $label): RpcRequest
     {
         $self = new self();

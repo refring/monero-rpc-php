@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RefRing\MoneroRpcPhp\Trait;
 
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;

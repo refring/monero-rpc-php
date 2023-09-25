@@ -35,7 +35,6 @@ class VerifyRequest implements ParameterInterface
     #[Json]
     public string $signature;
 
-
     public static function create(string $data, Address $address, string $signature): RpcRequest
     {
         $self = new self();

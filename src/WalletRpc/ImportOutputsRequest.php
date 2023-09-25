@@ -22,7 +22,6 @@ class ImportOutputsRequest implements ParameterInterface
     #[Json('outputs_data_hex')]
     public string $outputsDataHex;
 
-
     public static function create(string $outputsDataHex): RpcRequest
     {
         $self = new self();

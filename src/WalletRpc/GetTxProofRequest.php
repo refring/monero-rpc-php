@@ -35,7 +35,6 @@ class GetTxProofRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $message;
 
-
     public static function create(string $txid, Address $address, ?string $message = null): RpcRequest
     {
         $self = new self();

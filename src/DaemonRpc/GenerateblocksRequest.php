@@ -40,7 +40,6 @@ class GenerateblocksRequest implements ParameterInterface
     #[Json('starting_nonce', omit_empty: true)]
     public ?int $startingNonce;
 
-
     public static function create(
         int $amountOfBlocks,
         string $walletAddress,

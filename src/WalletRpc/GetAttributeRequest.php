@@ -22,7 +22,6 @@ class GetAttributeRequest implements ParameterInterface
     #[Json]
     public string $key;
 
-
     public static function create(string $key): RpcRequest
     {
         $self = new self();

@@ -22,7 +22,6 @@ class SplitIntegratedAddressRequest implements ParameterInterface
     #[Json('integrated_address')]
     public string $integratedAddress;
 
-
     public static function create(string $integratedAddress): RpcRequest
     {
         $self = new self();

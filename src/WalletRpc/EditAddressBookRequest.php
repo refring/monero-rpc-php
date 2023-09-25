@@ -59,7 +59,6 @@ class EditAddressBookRequest implements ParameterInterface
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;
 
-
     public static function create(
         int $index,
         bool $setAddress,

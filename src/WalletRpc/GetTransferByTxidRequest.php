@@ -28,7 +28,6 @@ class GetTransferByTxidRequest implements ParameterInterface
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
-
     public static function create(string $txid, ?int $accountIndex = null): RpcRequest
     {
         $self = new self();

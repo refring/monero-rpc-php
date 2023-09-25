@@ -28,7 +28,6 @@ class GetCoinbaseTxSumRequest implements ParameterInterface
     #[Json]
     public int $count;
 
-
     public static function create(int $height, int $count): RpcRequest
     {
         $self = new self();

@@ -23,7 +23,6 @@ class QueryKeyRequest implements ParameterInterface
     #[Json('key_type')]
     public QueryKeyType $keyType;
 
-
     public static function create(QueryKeyType $keyType): RpcRequest
     {
         $self = new self();

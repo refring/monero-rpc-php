@@ -34,7 +34,6 @@ class CreateWalletRequest implements ParameterInterface
     #[Json]
     public string $language;
 
-
     public static function create(string $filename, string $language, ?string $password = null): RpcRequest
     {
         $self = new self();

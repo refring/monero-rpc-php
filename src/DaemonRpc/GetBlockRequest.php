@@ -36,7 +36,6 @@ class GetBlockRequest implements ParameterInterface
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;
 
-
     public static function create(BlockHash|BlockHeight $blockHashOrHeight, ?bool $fillPowHash = null): RpcRequest
     {
         $self = new self();

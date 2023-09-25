@@ -35,7 +35,6 @@ class CheckReserveProofRequest implements ParameterInterface
     #[Json]
     public string $signature;
 
-
     public static function create(Address $address, string $signature, ?string $message = null): RpcRequest
     {
         $self = new self();

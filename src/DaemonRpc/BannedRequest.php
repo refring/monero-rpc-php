@@ -19,7 +19,6 @@ class BannedRequest implements ParameterInterface
     #[Json]
     public string $address;
 
-
     public static function create(string $address): RpcRequest
     {
         $self = new self();

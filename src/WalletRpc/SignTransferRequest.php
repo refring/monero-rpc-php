@@ -34,7 +34,6 @@ class SignTransferRequest implements ParameterInterface
     #[Json('get_tx_keys', omit_empty: true)]
     public ?bool $getTxKeys;
 
-
     public static function create(string $unsignedTxset, ?bool $exportRaw = null, ?bool $getTxKeys = null): RpcRequest
     {
         $self = new self();

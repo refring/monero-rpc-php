@@ -22,7 +22,6 @@ class GetLastBlockHeaderRequest implements ParameterInterface
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;
 
-
     public static function create(?bool $fillPowHash = null): RpcRequest
     {
         $self = new self();

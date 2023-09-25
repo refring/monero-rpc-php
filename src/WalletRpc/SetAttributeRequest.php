@@ -28,7 +28,6 @@ class SetAttributeRequest implements ParameterInterface
     #[Json]
     public string $value;
 
-
     public static function create(string $key, string $value): RpcRequest
     {
         $self = new self();
