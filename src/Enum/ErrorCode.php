@@ -11,6 +11,7 @@ use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\HttpApiException;
+use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHashException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
@@ -44,6 +45,7 @@ enum ErrorCode: string
     case OpenWalletFailure = "Failed to open wallet";
     case AttributeNotFound = "Attribute not found.";
     case TagUnregisteredError = "Tag is unregistered.";
+    case IndexOutOfRangeError = "Index out of range";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -61,6 +63,8 @@ enum ErrorCode: string
             'greater than current top block height' => self::InvalidBlockHeight,
             // Tag invalidTag is unregistered
             ' is unregistered' => self::TagUnregisteredError,
+            // Index out of range: 6
+            'Index out of range' => self::IndexOutOfRangeError,
             '401 Unauthorized' => self::AuthenticationFailure,
             'Unknown language:' => self::InvalidLanguage,
             'account index is out of bound' => self::AccountIndexOutOfBound,
@@ -107,6 +111,7 @@ enum ErrorCode: string
             self::OpenWalletFailure => new OpenWalletException($message),
             self::AttributeNotFound => new AttributeNotFoundException($message),
             self::TagUnregisteredError => new TagNotFoundException($message),
+            self::IndexOutOfRangeError => new IndexOutOfRangeException($message),
         };
 
         return $exception;
