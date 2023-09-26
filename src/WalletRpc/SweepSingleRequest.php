@@ -24,7 +24,7 @@ class SweepSingleRequest implements ParameterInterface
     public Address $address;
 
     /**
-     * (Optional) Priority for sending the sweep transfer, partially determines fee.
+     * Priority for sending the sweep transfer, partially determines fee.
      */
     #[Json(omit_empty: true)]
     public ?int $priority;
@@ -32,29 +32,30 @@ class SweepSingleRequest implements ParameterInterface
     /**
      * specify the number of separate outputs of smaller denomination that will be created by sweep operation.
      */
-    #[Json]
+    #[Json(omit_empty: true)]
     public ?int $outputs;
 
     /**
      * Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
      */
-    #[Json('ring_size')]
+    #[Json('ring_size', omit_empty: true)]
     public ?int $ringSize;
 
     /**
      * Number of blocks before the monero can be spent (0 to not add a lock).
      */
-    #[Json('unlock_time')]
+    #[Json('unlock_time', omit_empty: true)]
     public ?int $unlockTime;
 
     /**
-     * (Optional, defaults to a random ID) 16 characters hex encoded.
+     * 16 characters hex encoded.
+     * When omitted the default value is a random ID
      */
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;
 
     /**
-     * (Optional) Return the transaction keys after sending.
+     * Return the transaction keys after sending.
      */
     #[Json('get_tx_key', omit_empty: true)]
     public ?bool $getTxKey;
@@ -66,19 +67,22 @@ class SweepSingleRequest implements ParameterInterface
     public string $keyImage;
 
     /**
-     * (Optional) If true, do not relay this sweep transfer. (Defaults to false)
+     * If true, do not relay this sweep transfer. (
+     * When omitted the default value is false
      */
     #[Json('do_not_relay', omit_empty: true)]
     public ?bool $doNotRelay;
 
     /**
-     * (Optional) return the transactions as hex encoded string. (Defaults to false)
+     * return the transactions as hex encoded string. (
+     * When omitted the default value is false
      */
     #[Json('get_tx_hex', omit_empty: true)]
     public ?bool $getTxHex;
 
     /**
-     * (Optional) return the transaction metadata as a string. (Defaults to false)
+     * return the transaction metadata as a string. (
+     * When omitted the default value is false
      */
     #[Json('get_tx_metadata', omit_empty: true)]
     public ?bool $getTxMetadata;
@@ -92,9 +96,9 @@ class SweepSingleRequest implements ParameterInterface
         ?int $unlockTime = null,
         ?string $paymentId = null,
         ?bool $getTxKey = null,
-        ?bool $doNotRelay = false,
-        ?bool $getTxHex = false,
-        ?bool $getTxMetadata = false,
+        ?bool $doNotRelay = null,
+        ?bool $getTxHex = null,
+        ?bool $getTxMetadata = null,
     ): RpcRequest {
         $self = new self();
         $self->address = $address;

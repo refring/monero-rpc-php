@@ -12,7 +12,6 @@ use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\Model\Recipient;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\Model\IncomingTransferType;
-use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\ChangeWalletPasswordRequest;
@@ -296,23 +295,18 @@ class WalletRpcSerializationTest extends TestCase
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"sweep_all","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","subaddr_indices":[4],"get_tx_keys":true}}';
         $address = new Address('55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt');
-        $request = new SweepAllRequest();
-        $request->address = $address;
-        $request->subaddrIndices = [4];
-        $request->getTxKeys = true;
-        $request = new RpcRequest('sweep_all', $request);
+        $request = SweepAllRequest::create($address, subaddrIndices: [4], getTxKeys: true);
         $this->assertSame($expected, $request->toJson());
     }
 
+    public function testSweepSingle()
+    {
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","get_tx_key":true,"key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e"}}';
+        $address = new Address('74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD');
+        $request = SweepSingleRequest::create($address, keyImage: 'a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e', getTxKey: true);
+        $this->assertSame($expected, $request->toJson());
+    }
 
-    //    public function testSweepSingle()
-    //    {
-    //        $expected = '{"jsonrpc":"2.0","id":"0","method":"sweep_single","params":{"address":"74Jsocx8xbpTBEjm3ncKE5LBQbiJouyCDaGhgSiebpvNDXZnTAbW2CmUR5SsBeae2pNk9WMVuz6jegkC4krUyqRjA6VjoLD","key_image":"a7834459ef795d2efb6f665d2fd758c8d9288989d8d4c712a68f8023f7804a5e","get_tx_key":true}}';
-    //        $request = SweepSingleRequest::create($address, $priority, $outputs, $ringSize, $unlockTime, $paymentId, $getTxKey, $keyImage, $doNotRelay, $getTxHex, $getTxMetadata);
-    //        $this->assertSame($expected, $request->toJson());
-    //    }
-    //
-    //
     public function testRelayTx()
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"relay_tx","params":{"hex":"...tx_metadata..."}}';
