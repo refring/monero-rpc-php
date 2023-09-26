@@ -8,5 +8,6 @@ enum RpcClientType
 {
     case WALLET;
     case DAEMON;
+    case DAEMON_REGTEST;
     case DAEMON_OTHER;
 }

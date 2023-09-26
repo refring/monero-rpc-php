@@ -69,13 +69,14 @@ final class ClientBuilder
     }
 
 
-    public function build(RpcClientType $rpcClientType): WalletRpcClient|DaemonRpcClient|DaemonOtherClient
+    private function build(RpcClientType $rpcClientType): JsonRpcClient
     {
         $httpClient = $this->httpClient ??= Psr18ClientDiscovery::find();
 
         $jsonRpcClient = match($rpcClientType) {
             RpcClientType::DAEMON => new DaemonRpcClient($httpClient, $this->url, $this->logger),
             RpcClientType::DAEMON_OTHER => new DaemonOtherClient($httpClient, $this->url, $this->logger),
+            RpcClientType::DAEMON_REGTEST => new RegtestRpcClient($httpClient, $this->url, $this->logger),
             default => new WalletRpcClient($httpClient, $this->url, $this->logger)
         };
 
@@ -104,5 +105,11 @@ final class ClientBuilder
     {
         /** @phpstan-ignore-next-line  */
         return $this->build(RpcClientType::DAEMON_OTHER);
+    }
+
+    public function buildRegtestClient(): RegtestRpcClient
+    {
+        /** @phpstan-ignore-next-line  */
+        return $this->build(RpcClientType::DAEMON_REGTEST);
     }
 }
