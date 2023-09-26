@@ -51,7 +51,7 @@ final class EmptyBlockchainTest extends TestCase
 
     public function testGetBlockTemplate(): void
     {
-        $address = TestHelper::MAINNET_ADDRESS;
+        $address = TestHelper::MAINNET_ADDRESS_1;
 
         $expectedBlockTemplate = new GetBlockTemplateResponse();
         $expectedBlockTemplate->difficulty = 1;
@@ -82,7 +82,7 @@ final class EmptyBlockchainTest extends TestCase
     public function testBlockTemplateErrorInvalidSize(): void
     {
         $this->expectException(InvalidReservedSizeException::class);
-        $address = TestHelper::MAINNET_ADDRESS;
+        $address = TestHelper::MAINNET_ADDRESS_1;
         self::$regtestRpcClient->getBlockTemplate($address, 256);
     }
 

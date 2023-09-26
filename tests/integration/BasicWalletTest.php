@@ -22,6 +22,7 @@ use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
+use RefRing\MoneroRpcPhp\RegtestRpcClient;
 use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 use RefRing\MoneroRpcPhp\WalletRpc\CreateAccountResponse;
@@ -32,6 +33,7 @@ use RefRing\MoneroRpcPhp\WalletRpcClient;
 class BasicWalletTest extends TestCase
 {
     private static WalletRpcClient $rpcClient;
+    private static RegtestRpcClient $regtestRpcClient;
 
     private static string $walletNoPwd;
     private static string $walletWithEmptyPwd;
@@ -47,6 +49,7 @@ class BasicWalletTest extends TestCase
     {
         self::$rpcClient = (new ClientBuilder(TestHelper::WALLET_RPC_URL))
             ->buildWalletClient();
+        self::$regtestRpcClient = (new ClientBuilder(TestHelper::DAEMON_RPC_URL))->buildRegtestClient();
     }
 
     public function testGetVersion(): void
@@ -144,7 +147,7 @@ class BasicWalletTest extends TestCase
 
     public function testGenerateFromKeysWatchOnly(): void
     {
-        $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_1);
+        $keyPair = new KeyPairHelper(TestHelper::WALLET_1_MNEMONIC);
         $result = self::$rpcClient->generateFromKeys(TestHelper::getRandomWalletName(), new Address($keyPair->getAddress()), $keyPair->getPrivateViewKey(), "");
 
         $this->assertSame('Watch-only wallet has been generated successfully.', $result->info);
@@ -156,7 +159,7 @@ class BasicWalletTest extends TestCase
      */
     public function testGenerateFromKeysWatchOnlyReturn(): array
     {
-        $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_1);
+        $keyPair = new KeyPairHelper(TestHelper::WALLET_1_MNEMONIC);
         $filename = TestHelper::getRandomWalletName();
         $result = self::$rpcClient->generateFromKeys($filename, new Address($keyPair->getAddress()), $keyPair->getPrivateViewKey(), "");
 
@@ -166,7 +169,7 @@ class BasicWalletTest extends TestCase
 
     public function testGenerateFromKeysWithSpendKeyAndPassword(): GenerateFromKeysResponse
     {
-        $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_2);
+        $keyPair = new KeyPairHelper(TestHelper::WALLET_2_MNEMONIC);
         $result = self::$rpcClient->generateFromKeys(TestHelper::getRandomWalletName(), new Address($keyPair->getAddress()), $keyPair->getPrivateViewKey(), TestHelper::WALLET_PWD_1, 0, $keyPair->getPrivateSpendKey(), false);
 
         $this->assertSame('Wallet has been generated successfully.', $result->info);
@@ -176,7 +179,7 @@ class BasicWalletTest extends TestCase
     public function testGenerateFromKeysWithInvalidAddress(): void
     {
         try {
-            $keyPair = new KeyPairHelper(TestHelper::PRIVATE_SPEND_KEY_3);
+            $keyPair = new KeyPairHelper(TestHelper::WALLET_3_MNEMONIC);
             self::$rpcClient->generateFromKeys(TestHelper::getRandomWalletName(), new Address($keyPair->getTestnetAddress()), $keyPair->getPrivateViewKey(), '');
         } catch (HttpApiException $e) {
             $this->assertSame('Failed to parse public address', $e->getMessage());
@@ -280,13 +283,13 @@ class BasicWalletTest extends TestCase
     public function testGetAddressIndexInvalidAddressException(): void
     {
         $this->expectException(InvalidAddressException::class);
-        self::$rpcClient->getAddressIndex(new Address(TestHelper::TESTNET_ADDRESS));
+        self::$rpcClient->getAddressIndex(new Address(TestHelper::TESTNET_ADDRESS_1));
     }
 
     public function testGetAddressIndexException(): void
     {
         $this->expectException(AddressNotInWalletException::class);
-        self::$rpcClient->getAddressIndex(new Address(TestHelper::MAINNET_ADDRESS));
+        self::$rpcClient->getAddressIndex(new Address(TestHelper::MAINNET_ADDRESS_1));
     }
 
     #[Depends('testCreateAddress')]
@@ -326,21 +329,21 @@ class BasicWalletTest extends TestCase
 
     public function testValidateAddress(): void
     {
-        $result = self::$rpcClient->validateAddress(new Address(TestHelper::MAINNET_ADDRESS));
+        $result = self::$rpcClient->validateAddress(new Address(TestHelper::MAINNET_ADDRESS_1));
         $this->assertSame(true, $result->valid);
         $this->assertSame(NetType::MAINNET, $result->nettype);
     }
 
     public function testValidateAddressTestnet(): void
     {
-        $result = self::$rpcClient->validateAddress(new Address(TestHelper::TESTNET_ADDRESS), true);
+        $result = self::$rpcClient->validateAddress(new Address(TestHelper::TESTNET_ADDRESS_1), true);
         $this->assertSame(true, $result->valid);
         $this->assertSame(NetType::TESTNET, $result->nettype);
     }
 
     public function testValidateAddressInvalid(): void
     {
-        $result = self::$rpcClient->validateAddress(new Address(TestHelper::TESTNET_ADDRESS));
+        $result = self::$rpcClient->validateAddress(new Address(TestHelper::TESTNET_ADDRESS_1));
         $this->assertSame(false, $result->valid);
     }
 
@@ -425,16 +428,16 @@ class BasicWalletTest extends TestCase
 
     public function testMakeUri(): void
     {
-        $expected = 'monero:46FTwA4zSi1Pv6vmDGbfbvTKzNZonqNbuSdf9DzjYcJ9atw2rSWKN91ZFpuZsNicYqVdbSxAwS3T23KxfdW1aByDMmtVHTc?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
-        $result = self::$rpcClient->makeUri(new Address(TestHelper::MAINNET_ADDRESS), 1, null, 'Barolo', 'Nebbiolo');
+        $expected = 'monero:43ZdL1Rm65iTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias54xAJXRm?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
+        $result = self::$rpcClient->makeUri(new Address(TestHelper::MAINNET_ADDRESS_1), 1, null, 'Barolo', 'Nebbiolo');
         $this->assertSame($expected, $result->uri);
     }
 
     public function testParseUri(): void
     {
-        $uri = 'monero:46FTwA4zSi1Pv6vmDGbfbvTKzNZonqNbuSdf9DzjYcJ9atw2rSWKN91ZFpuZsNicYqVdbSxAwS3T23KxfdW1aByDMmtVHTc?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
+        $uri = 'monero:43ZdL1Rm65iTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias54xAJXRm?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
         $result = self::$rpcClient->parseUri($uri);
-        $this->assertSame(TestHelper::MAINNET_ADDRESS, $result->uri->address);
+        $this->assertSame(TestHelper::MAINNET_ADDRESS_1, $result->uri->address);
         $this->assertSame(1, $result->uri->amount);
         $this->assertSame('Barolo', $result->uri->recipientName);
         $this->assertSame('Nebbiolo', $result->uri->txDescription);
@@ -442,7 +445,7 @@ class BasicWalletTest extends TestCase
 
     public function testAddAddressBook(): int
     {
-        $result = self::$rpcClient->addAddressBook(new Address(TestHelper::MAINNET_ADDRESS), self::ADDRESS_BOOK_DESCRIPTION);
+        $result = self::$rpcClient->addAddressBook(new Address(TestHelper::MAINNET_ADDRESS_1), self::ADDRESS_BOOK_DESCRIPTION);
         $this->assertGreaterThanOrEqual(0, $result->index);
 
         return $result->index;

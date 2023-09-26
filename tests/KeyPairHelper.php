@@ -5,19 +5,22 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests;
 
 use MoneroIntegrations\MoneroPhp\Cryptonote;
+use MoneroIntegrations\MoneroPhp\mnemonic;
 
 class KeyPairHelper
 {
     private Cryptonote $cryptoNote;
 
+    private string $privateSpendKey;
     private string $privateViewKey;
     private string $publicSpendKey;
     private string $publicViewKey;
 
-    public function __construct(private string $privateSpendKey)
+    public function __construct(private string $seedPhrase)
     {
         ini_set('xdebug.max_nesting_level', 10000);
         $this->cryptoNote = new Cryptonote();
+        $this->privateSpendKey = mnemonic::decode(explode(' ', $this->seedPhrase));
     }
 
     public function getPrivateSpendKey(): string

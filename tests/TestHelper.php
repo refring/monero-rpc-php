@@ -10,6 +10,7 @@ class TestHelper
      * @var string
      */
     final public const WALLET_RPC_URL = 'http://127.0.0.1:18083/json_rpc';
+    final public const DAEMON_RPC_URL = 'http://127.0.0.1:18081/json_rpc';
 
     /**
      * @var string
@@ -19,42 +20,27 @@ class TestHelper
     /**
      * @var string
      */
-    final public const MAINNET_ADDRESS = '46FTwA4zSi1Pv6vmDGbfbvTKzNZonqNbuSdf9DzjYcJ9atw2rSWKN91ZFpuZsNicYqVdbSxAwS3T23KxfdW1aByDMmtVHTc';
+    final public const MAINNET_ADDRESS_1 = '43ZdL1Rm65iTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias54xAJXRm';
 
     /**
      * @var string
      */
-    final public const TESTNET_ADDRESS = '9wo1RQjFj57Pv6vmDGbfbvTKzNZonqNbuSdf9DzjYcJ9atw2rSWKN91ZFpuZsNicYqVdbSxAwS3T23KxfdW1aByDMsWiNq2';
+    final public const TESTNET_ADDRESS_1 = '9u7ApG62NSpTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VvSVYVsP2kWVL73a4nCcpC4McwEivwVh9bJ5adihdSg1P9TAstP';
 
     /**
      * @var string
      */
-    final public const PRIVATE_SPEND_KEY_1 = 'eae5d41a112e14dcd549780a982bb3653c2f86ab1f4e6aa2b13c41f8b893ab04';
+    final public const WALLET_1_MNEMONIC = 'entrance sushi general eskimos salads aspire zippers noodles imbalance morsel bodies agnostic begun tedious unrest intended impel vats cajun aplomb films selfish weekday yellow intended';
 
     /**
      * @var string
      */
-    final public const PRIVATE_VIEW_KEY_1 = '8ae33e57aee12fa4ad5b42a3ab093d9f3cb7f9be68b112a85f83275bcc5a190b';
+    final public const WALLET_2_MNEMONIC = 'attire cocoa jukebox inundate evicted arsenic vein wives irony dunes puzzled lurk lymph toyed selfish aggravate tequila roomy technical boil dwindling jackets using vehicle roomy';
 
     /**
      * @var string
      */
-    final public const PRIVATE_SPEND_KEY_2 = '90b7a822fbd3d06d04f5ad746300601a85c469ffc21b2fd7281cc43227537209';
-
-    /**
-     * @var string
-     */
-    final public const PRIVATE_VIEW_KEY_2 = '21dbc3b71b900ac5af0d2e1cc3b279ad3b4a66633d1d8f6653b838f11bd14904';
-
-    /**
-     * @var string
-     */
-    final public const PRIVATE_SPEND_KEY_3 = 'a0967c33a4a1b6fbfdd0fba36f0593fa6627462470f9a58c09a532518415320a';
-
-    /**
-     * @var string
-     */
-    final public const PRIVATE_VIEW_KEY_3 = 'fb2a79386a470d1743cb867505bdf8045e2d44f012155018096740ea2fbca200';
+    final public const WALLET_3_MNEMONIC = 'mullet southern happens upstairs ruling auburn gutter doing calamity tattoo hive hectare diplomat catch wise shackles idiom vitals beer kiosk lower wept lurk nifty beer';
 
     /**
      * @var string
