@@ -16,6 +16,7 @@
       </testsuite>
 
       <testsuite name="integration">
+          <file>tests/integration/EmptyBlockchainTest.php</file>
           <directory>tests/integration</directory>
       </testsuite>
   </testsuites>
