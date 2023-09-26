@@ -90,9 +90,7 @@ To run the integration tests, you'll need `docker` and `docker compose`  or you 
 
 If you have the docker stack installed, go to the `tests` folder and run `docker compose up`. Note that the daemon will run on port `18081` and `monero-wallet-rpc` will run on port `18083`.
 
-After that, run `composer test:integration`
-
-Also, you can run `docker compose down` to stop and remove the containers started by `docker compose up`.
+After that, run `composer test:integration` to run the integration tests.
 
 ## Roadmap
 - [ ] More wallet-rpc integration tests

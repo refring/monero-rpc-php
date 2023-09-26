@@ -31,6 +31,13 @@ final class NonEmptyBlockchainTest extends TestCase
     private static RegtestRpcClient $regtestRpcClient;
     private static DaemonOtherClient $daemonOtherClient;
 
+    public static function tearDownAfterClass(): void
+    {
+        // Reset the blockchain
+        $height = self::$daemonOtherClient->getHeight();
+        self::$daemonOtherClient->popBlocks($height->height - 1);
+        self::$regtestRpcClient->flushTxpool();
+    }
 
     public static function setUpBeforeClass(): void
     {
@@ -46,7 +53,7 @@ final class NonEmptyBlockchainTest extends TestCase
     public function testGenerateBlocksErrorInvalidAddress(): void
     {
         $this->expectException(InvalidAddressException::class);
-        self::$regtestRpcClient->generateblocks(self::BLOCKS_TO_GENERATE, TestHelper::TESTNET_ADDRESS);
+        self::$regtestRpcClient->generateblocks(self::BLOCKS_TO_GENERATE, TestHelper::TESTNET_ADDRESS_1);
     }
 
     // STEP 2: we generate blocks and give the coins to a `mainnet/regtest` address.
@@ -57,7 +64,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         $startingBlockCount = self::$regtestRpcClient->getBlockCount();
 
-        $result = self::$regtestRpcClient->generateblocks(self::BLOCKS_TO_GENERATE, TestHelper::MAINNET_ADDRESS);
+        $result = self::$regtestRpcClient->generateblocks(self::BLOCKS_TO_GENERATE, TestHelper::MAINNET_ADDRESS_1);
         $expectedHeight = $this->getExpectedHeightReturnedByGenerateBlocks($startingBlockCount->count, self::BLOCKS_TO_GENERATE);
 
         $this->assertSame($expectedHeight, $result->height);
@@ -170,7 +177,7 @@ final class NonEmptyBlockchainTest extends TestCase
 
     public function testSubmitBlock(): void
     {
-        $blockTemplate = self::$regtestRpcClient->getBlockTemplate(TestHelper::MAINNET_ADDRESS, 0);
+        $blockTemplate = self::$regtestRpcClient->getBlockTemplate(TestHelper::MAINNET_ADDRESS_1, 0);
         $startBlockCount = self::$regtestRpcClient->getBlockCount()->count;
 
         $result = self::$regtestRpcClient->submitBlock([$blockTemplate->blocktemplateBlob]);
