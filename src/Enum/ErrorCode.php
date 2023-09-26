@@ -18,6 +18,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
+use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
@@ -46,6 +47,7 @@ enum ErrorCode: string
     case AttributeNotFound = "Attribute not found.";
     case TagUnregisteredError = "Tag is unregistered.";
     case IndexOutOfRangeError = "Index out of range";
+    case InvalidPaymentId = "Invalid payment ID";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -112,6 +114,7 @@ enum ErrorCode: string
             self::AttributeNotFound => new AttributeNotFoundException($message),
             self::TagUnregisteredError => new TagNotFoundException($message),
             self::IndexOutOfRangeError => new IndexOutOfRangeException($message),
+            self::InvalidPaymentId => new InvalidPaymentIdException($message),
         };
 
         return $exception;
