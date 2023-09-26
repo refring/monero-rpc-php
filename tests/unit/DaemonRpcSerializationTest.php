@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
+use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\BannedRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\CalcPowRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\FlushCacheRequest;
@@ -35,6 +36,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\RelayTxRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SetBansRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoRequest;
+use RefRing\MoneroRpcPhp\Model\AuxPow;
 use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Model\BlockHeight;
 use RefRing\MoneroRpcPhp\Model\Node;
@@ -299,6 +301,14 @@ class DaemonRpcSerializationTest extends TestCase
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"flush_cache","params":{"bad_txs":true,"bad_blocks":true}}';
         $request = FlushCacheRequest::create(true, true);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testAddAuxPow()
+    {
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"add_aux_pow","params":{"blocktemplate_blob":" ... ","aux_pow":[{"id":"3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8","hash":"7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a"}]}}';
+        $auxPow = new AuxPow('3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8', '7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a');
+        $request = AddAuxPowRequest::create(' ... ', [$auxPow]);
         $this->assertSame($expected, $request->toJson());
     }
 }

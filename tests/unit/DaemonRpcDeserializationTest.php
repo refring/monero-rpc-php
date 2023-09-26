@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
+use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\BannedResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\CalcPowResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\FlushCacheResponse;
@@ -303,6 +304,14 @@ class DaemonRpcDeserializationTest extends TestCase
     {
         $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"status":"OK","untrusted":false}}';
         $response = FlushCacheResponse::fromJsonString($jsonResponse, "result");
+        $responseFlat = json_encode(json_decode($jsonResponse)->result);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testAddAuxPow()
+    {
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"blocktemplate_blob":" ... ","blockhashing_blob":"1010ee97e2a106e9f8ebe8887e5b609949ac8ea6143e560ed13552b110cb009b21f0cfca1eaccf00000000b2685c1283a646bc9020c758daa443be145b7370ce5a6efacb3e614117032e2c22","merkle_root":"7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a","merkle_tree_depth":0,"aux_pow":[{"id":"3200b4ea97c3b2081cd4190b58e49572b2319fed00d030ad51809dff06b5d8c8","hash":"7b35762de164b20885e15dbe656b1138db06bb402fa1796f5765a23933d8859a"}],"status":"OK","untrusted":false}}';
+        $response = AddAuxPowResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = json_encode(json_decode($jsonResponse)->result);
         $this->assertSame($responseFlat, $response->toJson());
     }
