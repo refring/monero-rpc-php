@@ -25,7 +25,7 @@ jobs:
     name: Tests PHP${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }} - monero ${{ matrix.monero }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Spin up containers
         run: docker-compose -f tests/docker-compose.yml up -d
