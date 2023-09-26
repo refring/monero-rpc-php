@@ -16,6 +16,7 @@ use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
+use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
@@ -44,6 +45,7 @@ class BasicWalletTest extends TestCase
     public const ACCOUNT_TAG_DESCRIPTION = 'TAG123_DESCRIPTION';
     public const ADDRESS_BOOK_DESCRIPTION = 'ADDRESS_BOOK_DESCRIPTION';
     public const ADDRESS_BOOK_DESCRIPTION_EDIT = 'ADDRESS_BOOK_DESCRIPTION_EDIT';
+    public const PAYMENT_ID_1 = '0123456789abcdef';
 
     public static function setUpBeforeClass(): void
     {
@@ -486,5 +488,32 @@ class BasicWalletTest extends TestCase
     {
         $this->expectException(IndexOutOfRangeException::class);
         self::$rpcClient->getAddressBook([$index]);
+    }
+    public function testMakeIntegratedAddressErrorInvalidPaymentId(): void
+    {
+        $this->expectException(InvalidPaymentIdException::class);
+        self::$rpcClient->makeIntegratedAddress(TestHelper::MAINNET_ADDRESS_1, 'test');
+    }
+
+    public function testMakeIntegratedAddressErrorInvalidAddress(): void
+    {
+        $this->expectException(InvalidAddressException::class);
+        self::$rpcClient->makeIntegratedAddress(TestHelper::MAINNET_ADDRESS_1.'error', self::PAYMENT_ID_1);
+    }
+
+    public function testMakeIntegratedAddress(): string
+    {
+        $result = self::$rpcClient->makeIntegratedAddress(TestHelper::MAINNET_ADDRESS_1, self::PAYMENT_ID_1);
+        $this->assertSame(self::PAYMENT_ID_1, $result->paymentId);
+        $this->assertSame('4DGJLpFFhMETPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias56rb3XqNyev8U3xFDyA', $result->integratedAddress);
+        return $result->integratedAddress;
+    }
+
+    #[Depends('testMakeIntegratedAddress')]
+    public function splitIntegratedAddress(string $integratedAddress): void
+    {
+        $result = self::$rpcClient->splitIntegratedAddress($integratedAddress);
+        $this->assertSame(TestHelper::MAINNET_ADDRESS_1, $result->standardAddress);
+        $this->assertSame(self::PAYMENT_ID_1, $result->paymentId);
     }
 }

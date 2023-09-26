@@ -9,7 +9,9 @@ use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
+use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
+use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
@@ -703,6 +705,8 @@ class WalletRpcClient extends JsonRpcClient
      * @param ?string $standardAddress defaults to primary address) Destination public address.
      * @param ?string $paymentId defaults to a random ID) 16 characters hex encoded.
      * @throws MoneroRpcException
+     * @throws InvalidPaymentIdException
+     * @throws InvalidAddressException
      */
     public function makeIntegratedAddress(
         ?string $standardAddress = null,
