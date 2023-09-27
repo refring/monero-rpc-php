@@ -16,12 +16,14 @@ use RefRing\MoneroRpcPhp\Exception\HttpApiException;
 use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
+use RefRing\MoneroRpcPhp\Exception\InvalidOriginalPasswordException;
 use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
+use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\RegtestRpcClient;
 use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
@@ -74,13 +76,6 @@ class BasicWalletTest extends TestCase
         self::$rpcClient->createWallet(self::$walletWithEmptyPwd, 'English', '');
     }
 
-    public function testCreateWalletWithPassword(): void
-    {
-        $this->expectNotToPerformAssertions();
-        self::$walletWithPwd = TestHelper::getRandomWalletName();
-        self::$rpcClient->createWallet(self::$walletWithPwd, 'English', TestHelper::WALLET_PWD_1);
-    }
-
     public function testCreateWalletErrorAlreadyExists(): void
     {
         $this->expectException(WalletExistsException::class);
@@ -105,13 +100,6 @@ class BasicWalletTest extends TestCase
         self::$rpcClient->closeWallet();
     }
 
-    #[Depends('testCreateWalletWithPassword')]
-    public function testOpenWalletWithPassword(): void
-    {
-        $this->expectNotToPerformAssertions();
-        self::$rpcClient->openWallet(self::$walletWithPwd, TestHelper::WALLET_PWD_1);
-    }
-
     #[Depends('testCreateWalletWithEmptyPassword')]
     public function testOpenWalletWithEmptyPassword(): void
     {
@@ -134,6 +122,21 @@ class BasicWalletTest extends TestCase
         $this->expectException(OpenWalletException::class);
         self::$rpcClient->openWallet(TestHelper::getRandomWalletName());
     }
+
+    public function testCreateWalletWithPassword(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$walletWithPwd = TestHelper::getRandomWalletName();
+        self::$rpcClient->createWallet(self::$walletWithPwd, 'English', TestHelper::WALLET_PWD_1);
+    }
+
+    #[Depends('testCreateWalletWithPassword')]
+    public function testOpenWalletWithPassword(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->openWallet(self::$walletWithPwd, TestHelper::WALLET_PWD_1);
+    }
+
     #[Depends('testCreateWalletWithPassword')]
     public function testOpenWalletNoPasswordError(): void
     {
@@ -145,6 +148,21 @@ class BasicWalletTest extends TestCase
     {
         $this->expectException(OpenWalletException::class);
         self::$rpcClient->openWallet(self::$walletWithPwd, '');
+    }
+
+    #[Depends('testCreateWalletWithPassword')]
+    public function testChangeWalletPasswordInvalidPassword(): void
+    {
+        $this->expectException(InvalidOriginalPasswordException::class);
+        self::$rpcClient->changeWalletPassword('', TestHelper::WALLET_PWD_2);
+    }
+
+    #[Depends('testCreateWalletWithPassword')]
+    public function testChangeWalletPassword(): void
+    {
+        $this->expectNotToPerformAssertions();
+        self::$rpcClient->changeWalletPassword(TestHelper::WALLET_PWD_1, TestHelper::WALLET_PWD_2);
+        self::$rpcClient->openWallet(self::$walletWithPwd, TestHelper::WALLET_PWD_2);
     }
 
     public function testGenerateFromKeysWatchOnly(): void
@@ -355,7 +373,7 @@ class BasicWalletTest extends TestCase
         self::$rpcClient->tagAccounts(self::ACCOUNT_TAG, self::DEFAULT_ACCOUNT_INDEX);
     }
 
-    public function testTagAccountsInvalid(): array
+    public function testTagAccountsInvalid(): void
     {
         $this->expectException(AccountIndexOutOfBoundException::class);
         self::$rpcClient->tagAccounts('', 999);
@@ -515,5 +533,27 @@ class BasicWalletTest extends TestCase
         $result = self::$rpcClient->splitIntegratedAddress($integratedAddress);
         $this->assertSame(TestHelper::MAINNET_ADDRESS_1, $result->standardAddress);
         $this->assertSame(self::PAYMENT_ID_1, $result->paymentId);
+    }
+
+    public function testRestoreDeterministicWallet(): string
+    {
+        $result = self::$rpcClient->restoreDeterministicWallet(TestHelper::getRandomWalletName(), '', TestHelper::WALLET_1_MNEMONIC);
+        $this->assertEquals(new Address(TestHelper::MAINNET_ADDRESS_1), $result->address);
+        $this->assertSame('Wallet has been restored successfully.', $result->info);
+        return $result->seed;
+    }
+
+    #[Depends('testRestoreDeterministicWallet')]
+    public function testQueryKey(string $seed): void
+    {
+        $keyPair = new KeyPairHelper($seed);
+        $result = self::$rpcClient->queryKey(QueryKeyType::VIEW_KEY);
+        $this->assertSame($keyPair->getPrivateViewKey(), $result->key);
+
+        $result = self::$rpcClient->queryKey(QueryKeyType::SPEND_KEY);
+        $this->assertSame($keyPair->getPrivateSpendKey(), $result->key);
+
+        $result = self::$rpcClient->queryKey(QueryKeyType::MNEMONIC);
+        $this->assertSame($seed, $result->key);
     }
 }

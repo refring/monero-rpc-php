@@ -46,6 +46,7 @@ class TestHelper
      * @var string
      */
     final public const WALLET_PWD_1 = 'b4r0l0';
+    final public const WALLET_PWD_2 = 'b4r0l0-2';
 
     public static function getRandomWalletName(): string
     {
