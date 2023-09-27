@@ -11,6 +11,7 @@ use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
+use RefRing\MoneroRpcPhp\Exception\InvalidOriginalPasswordException;
 use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
@@ -1324,6 +1325,7 @@ class WalletRpcClient extends JsonRpcClient
      * @param ?string $oldPassword Current wallet password, if defined.
      * @param ?string $newPassword New wallet password, if not blank.
      * @throws MoneroRpcException
+     * @throws InvalidOriginalPasswordException
      */
     public function changeWalletPassword(
         ?string $oldPassword = null,
