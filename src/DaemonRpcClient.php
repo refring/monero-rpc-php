@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp;
 
+use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\BannedRequest;
@@ -14,6 +20,8 @@ use RefRing\MoneroRpcPhp\DaemonRpc\FlushCacheRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\FlushCacheResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\FlushTxpoolRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\FlushTxpoolResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksRequest;
+use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetAlternateChainsRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetAlternateChainsResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBansRequest;
@@ -432,5 +440,59 @@ class DaemonRpcClient extends JsonRpcClient
     public function addAuxPow(string $blocktemplateBlob, array $auxPow): AddAuxPowResponse
     {
         return $this->handleRequest(AddAuxPowRequest::create($blocktemplateBlob, $auxPow), AddAuxPowResponse::class);
+    }
+
+    /**
+     * For this method to work the daemon has to be running in regtest mode.
+     * Generate a block and specify the address to receive the coinbase reward.
+     *
+     * @param int $amountOfBlocks number of blocks to be generated.
+     * @param string $walletAddress address to receive the coinbase reward.
+     * @param ?string $prevBlock
+     * @param ?int $startingNonce Increased by miner untill it finds a matching result that solves a block.
+     * @throws MoneroRpcException
+     */
+    public function generateBlocks(
+        int $amountOfBlocks,
+        string $walletAddress,
+        ?string $prevBlock = null,
+        ?int $startingNonce = null,
+    ): GenerateblocksResponse {
+        return $this->handleRequest(GenerateblocksRequest::create($amountOfBlocks, $walletAddress, $prevBlock, $startingNonce), GenerateblocksResponse::class);
+    }
+
+    // Below this line are the 'other' methods
+
+    /**
+     * Remove blocks from the blockchain
+     *
+     * @throws MoneroRpcException
+     */
+    public function popBlocks(int $numberOfBlocks): PopBlocksResponse
+    {
+        $this->endPointPath = '/pop_blocks';
+        return $this->handleRequest(PopBlocksRequest::create($numberOfBlocks), PopBlocksResponse::class);
+    }
+
+    /**
+     * Get some networking information from the daemon
+     *
+     * @throws MoneroRpcException
+     */
+    public function getNetStats(): GetNetStatsResponse
+    {
+        $this->endPointPath = '/get_net_stats';
+        return $this->handleRequest(GetNetStatsRequest::create(), GetNetStatsResponse::class);
+    }
+
+    /**
+     * Get the node's current height.
+     *
+     * @throws MoneroRpcException
+     */
+    public function getHeight(): GetHeightResponse
+    {
+        $this->endPointPath = '/get_height';
+        return $this->handleRequest(GetHeightRequest::create(), GetHeightResponse::class);
     }
 }

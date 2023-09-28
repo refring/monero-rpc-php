@@ -7,18 +7,17 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 use Http\Discovery\Psr18ClientDiscovery;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
-use RefRing\MoneroRpcPhp\DaemonOtherClient;
 use RefRing\MoneroRpcPhp\DaemonRpc\GenerateblocksResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderBaseResponse;
+use RefRing\MoneroRpcPhp\DaemonRpcClient;
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 use RefRing\MoneroRpcPhp\Model\BlockHeader;
-use RefRing\MoneroRpcPhp\RegtestRpcClient;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class NonEmptyBlockchainTest extends TestCase
@@ -28,22 +27,20 @@ final class NonEmptyBlockchainTest extends TestCase
      */
     public const BLOCKS_TO_GENERATE = 10;
 
-    private static RegtestRpcClient $regtestRpcClient;
-    private static DaemonOtherClient $daemonOtherClient;
+    private static DaemonRpcClient $daemonRpcClient;
 
     public static function tearDownAfterClass(): void
     {
         // Reset the blockchain
-        $height = self::$daemonOtherClient->getHeight();
-        self::$daemonOtherClient->popBlocks($height->height - 1);
-        self::$regtestRpcClient->flushTxpool();
+        $height = self::$daemonRpcClient->getHeight();
+        self::$daemonRpcClient->popBlocks($height->height - 1);
+        self::$daemonRpcClient->flushTxpool();
     }
 
     public static function setUpBeforeClass(): void
     {
         $httpClient = Psr18ClientDiscovery::find();
-        self::$regtestRpcClient = new RegtestRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
-        self::$daemonOtherClient = new DaemonOtherClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
+        self::$daemonRpcClient = new DaemonRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
     }
 
     // STEP 1: we use a testnet address; however,
@@ -53,7 +50,7 @@ final class NonEmptyBlockchainTest extends TestCase
     public function testGenerateBlocksErrorInvalidAddress(): void
     {
         $this->expectException(InvalidAddressException::class);
-        self::$regtestRpcClient->generateblocks(self::BLOCKS_TO_GENERATE, TestHelper::TESTNET_ADDRESS_1);
+        self::$daemonRpcClient->generateBlocks(self::BLOCKS_TO_GENERATE, TestHelper::TESTNET_ADDRESS_1);
     }
 
     // STEP 2: we generate blocks and give the coins to a `mainnet/regtest` address.
@@ -62,15 +59,15 @@ final class NonEmptyBlockchainTest extends TestCase
     // their heights, etc.
     public function testGenerateBlocks(): GenerateblocksResponse
     {
-        $startingBlockCount = self::$regtestRpcClient->getBlockCount();
+        $startingBlockCount = self::$daemonRpcClient->getBlockCount();
 
-        $result = self::$regtestRpcClient->generateblocks(self::BLOCKS_TO_GENERATE, TestHelper::MAINNET_ADDRESS_1);
+        $result = self::$daemonRpcClient->generateBlocks(self::BLOCKS_TO_GENERATE, TestHelper::MAINNET_ADDRESS_1);
         $expectedHeight = $this->getExpectedHeightReturnedByGenerateBlocks($startingBlockCount->count, self::BLOCKS_TO_GENERATE);
 
         $this->assertSame($expectedHeight, $result->height);
         $this->assertNotEmpty($result->blocks);
 
-        $finalBlockCount = self::$regtestRpcClient->getBlockCount();
+        $finalBlockCount = self::$daemonRpcClient->getBlockCount();
         $this->assertSame($startingBlockCount->count + self::BLOCKS_TO_GENERATE, $finalBlockCount->count);
 
         return $result;
@@ -81,14 +78,14 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         // Try and get the block hash for the returned height + 1 (should give an error)
         $this->expectException(InvalidBlockHeightException::class);
-        self::$regtestRpcClient->onGetBlockHash($result->height + 1);
+        self::$daemonRpcClient->onGetBlockHash($result->height + 1);
     }
 
     #[Depends('testGenerateBlocks')]
     public function testGeneratedBlockHash(GenerateblocksResponse $result): void
     {
         // Compare the latest hash
-        $blockHash = self::$regtestRpcClient->onGetBlockHash($result->height);
+        $blockHash = self::$daemonRpcClient->onGetBlockHash($result->height);
         $lastBlockHashResult = end($result->blocks);
         $this->assertSame((string) $blockHash, (string) $lastBlockHashResult);
     }
@@ -98,7 +95,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
-        $blockHeight = self::$regtestRpcClient->getBlockCount()->count - 1;
+        $blockHeight = self::$daemonRpcClient->getBlockCount()->count - 1;
         $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
 
         $expected = new GetLastBlockHeaderBaseResponse();
@@ -108,7 +105,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $blockHeader;
 
-        $lastBlockHeader = self::$regtestRpcClient->getLastBlockHeader();
+        $lastBlockHeader = self::$daemonRpcClient->getLastBlockHeader();
 
         // Overwrite a couple non-deterministic fields
         $lastBlockHeader->blockHeader->minerTxHash = '';
@@ -122,7 +119,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
-        $blockHeight = self::$regtestRpcClient->getBlockCount()->count - 1;
+        $blockHeight = self::$daemonRpcClient->getBlockCount()->count - 1;
         $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
 
         $expected = new GetBlockHeaderByHashResponse();
@@ -132,7 +129,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $blockHeader;
 
-        $lastBlockHeaderByHash = self::$regtestRpcClient->getBlockHeaderByHash((string)$lastBlockHashResult);
+        $lastBlockHeaderByHash = self::$daemonRpcClient->getBlockHeaderByHash((string)$lastBlockHashResult);
 
         // Overwrite a couple non-deterministic fields
         $lastBlockHeaderByHash->blockHeader->minerTxHash = '';
@@ -146,7 +143,7 @@ final class NonEmptyBlockchainTest extends TestCase
     {
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
-        $blockHeight = self::$regtestRpcClient->getBlockCount()->count - 1;
+        $blockHeight = self::$daemonRpcClient->getBlockCount()->count - 1;
         $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
 
         $expected = new GetBlockHeaderByHeightResponse();
@@ -156,7 +153,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $blockHeader;
 
-        $lastBlockHeaderByHeight = self::$regtestRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE);
+        $lastBlockHeaderByHeight = self::$daemonRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE);
 
         // Overwrite a couple non-deterministic fields
         $lastBlockHeaderByHeight->blockHeader->minerTxHash = '';
@@ -167,24 +164,24 @@ final class NonEmptyBlockchainTest extends TestCase
 
     public function testGeneratedBlocksByRange(): void
     {
-        $blockHeadersByRange = self::$regtestRpcClient->getBlockHeadersRange(self::BLOCKS_TO_GENERATE - 1, self::BLOCKS_TO_GENERATE);
+        $blockHeadersByRange = self::$daemonRpcClient->getBlockHeadersRange(self::BLOCKS_TO_GENERATE - 1, self::BLOCKS_TO_GENERATE);
 
-        $lastBlockHeaderByHeight = self::$regtestRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE);
-        $secondLastBlockHeaderByHeight = self::$regtestRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE - 1);
+        $lastBlockHeaderByHeight = self::$daemonRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE);
+        $secondLastBlockHeaderByHeight = self::$daemonRpcClient->getBlockHeaderByHeight(self::BLOCKS_TO_GENERATE - 1);
 
         $this->assertEquals($blockHeadersByRange->headers, [$secondLastBlockHeaderByHeight->blockHeader, $lastBlockHeaderByHeight->blockHeader]);
     }
 
     public function testSubmitBlock(): void
     {
-        $blockTemplate = self::$regtestRpcClient->getBlockTemplate(TestHelper::MAINNET_ADDRESS_1, 0);
-        $startBlockCount = self::$regtestRpcClient->getBlockCount()->count;
+        $blockTemplate = self::$daemonRpcClient->getBlockTemplate(TestHelper::MAINNET_ADDRESS_1, 0);
+        $startBlockCount = self::$daemonRpcClient->getBlockCount()->count;
 
-        $result = self::$regtestRpcClient->submitBlock([$blockTemplate->blocktemplateBlob]);
+        $result = self::$daemonRpcClient->submitBlock([$blockTemplate->blocktemplateBlob]);
 
         $this->assertSame(ResponseStatus::OK, $result->status);
 
-        $this->assertSame($startBlockCount + 1, self::$regtestRpcClient->getBlockCount()->count);
+        $this->assertSame($startBlockCount + 1, self::$daemonRpcClient->getBlockCount()->count);
     }
 
     public function testSubmitBlockErrorWrongBlockBlob(): void
@@ -192,7 +189,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $blob = '0123456789';
         $this->expectException(InvalidBlockTemplateBlobException::class);
 
-        self::$regtestRpcClient->submitBlock([$blob]);
+        self::$daemonRpcClient->submitBlock([$blob]);
     }
 
     public function testSubmitBlockErrorNotAccepted(): void
@@ -200,7 +197,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $blob = '0707e6bdfedc053771512f1bc27c62731ae9e8f2443db64ce742f4e57f5cf8d393de28551e441a0000000002fb830a01ffbf830a018cfe88bee283060274c0aae2ef5730e680308d9c00b6da59187ad0352efe3c71d36eeeb28782f29f2501bd56b952c3ddc3e350c2631d3a5086cac172c56893831228b17de296ff4669de020200000000';
         $this->expectException(BlockNotAcceptedException::class);
 
-        self::$regtestRpcClient->submitBlock([$blob]);
+        self::$daemonRpcClient->submitBlock([$blob]);
     }
 
     private function getExpectedHeightReturnedByGenerateBlocks(int $startBlockCount, int $amountOfBlocks): int
@@ -239,9 +236,9 @@ final class NonEmptyBlockchainTest extends TestCase
 
     public function testPopBlocks(): void
     {
-        $startBlockCount = self::$regtestRpcClient->getBlockCount()->count;
+        $startBlockCount = self::$daemonRpcClient->getBlockCount()->count;
         $blocksToPop = 2;
-        $result = self::$daemonOtherClient->popBlocks($blocksToPop);
+        $result = self::$daemonRpcClient->popBlocks($blocksToPop);
 
         $this->assertSame($startBlockCount - $blocksToPop, $result->height);
     }

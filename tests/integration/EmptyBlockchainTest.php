@@ -17,22 +17,22 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Model\BlockHeader;
-use RefRing\MoneroRpcPhp\RegtestRpcClient;
+use RefRing\MoneroRpcPhp\DaemonRpcClient;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class EmptyBlockchainTest extends TestCase
 {
-    private static RegtestRpcClient $regtestRpcClient;
+    private static DaemonRpcClient $daemonRpcClient;
 
     public static function setUpBeforeClass(): void
     {
         $httpClient = Psr18ClientDiscovery::find();
-        self::$regtestRpcClient = new RegtestRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
+        self::$daemonRpcClient = new DaemonRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
     }
 
     public function testBlockCountHeight(): void
     {
-        $count = self::$regtestRpcClient->getBlockCount();
+        $count = self::$daemonRpcClient->getBlockCount();
         $this->assertSame(1, $count->count);
     }
 
@@ -40,12 +40,12 @@ final class EmptyBlockchainTest extends TestCase
     {
         $this->expectException(InvalidBlockHeightException::class);
         //        $this->expectExceptionMessage('Invalid height 10 supplied');
-        self::$regtestRpcClient->onGetBlockHash(10);
+        self::$daemonRpcClient->onGetBlockHash(10);
     }
 
     public function testGenesisHash(): void
     {
-        $blockHash = self::$regtestRpcClient->onGetBlockHash(0);
+        $blockHash = self::$daemonRpcClient->onGetBlockHash(0);
         $this->assertSame(TestHelper::GENESIS_BLOCK_HASH, (string) $blockHash);
     }
 
@@ -69,7 +69,7 @@ final class EmptyBlockchainTest extends TestCase
         $expectedBlockTemplate->blocktemplateBlob = '';
         $expectedBlockTemplate->reservedOffset = 10;
 
-        $blockTemplate = self::$regtestRpcClient->getBlockTemplate($address, 60);
+        $blockTemplate = self::$daemonRpcClient->getBlockTemplate($address, 60);
 
         // The fields are non-deterministic so overwrite for the test
         $blockTemplate->blockhashingBlob = '';
@@ -83,14 +83,14 @@ final class EmptyBlockchainTest extends TestCase
     {
         $this->expectException(InvalidReservedSizeException::class);
         $address = TestHelper::MAINNET_ADDRESS_1;
-        self::$regtestRpcClient->getBlockTemplate($address, 256);
+        self::$daemonRpcClient->getBlockTemplate($address, 256);
     }
 
     public function testBlockTemplateErrorInvalidAddress(): void
     {
         $this->expectException(InvalidAddressException::class);
         $address = 'xxx';
-        self::$regtestRpcClient->getBlockTemplate($address, 10);
+        self::$daemonRpcClient->getBlockTemplate($address, 10);
     }
 
     private function getGenesisBlockHeader(): BlockHeader
@@ -130,7 +130,7 @@ final class EmptyBlockchainTest extends TestCase
         $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $this->getGenesisBlockHeader();
 
-        $blockHeader = self::$regtestRpcClient->getLastBlockHeader();
+        $blockHeader = self::$daemonRpcClient->getLastBlockHeader();
         $this->assertEquals($expected, $blockHeader);
     }
 
@@ -143,20 +143,20 @@ final class EmptyBlockchainTest extends TestCase
         $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $this->getGenesisBlockHeader();
 
-        $blockHeader = self::$regtestRpcClient->getBlockHeaderByHash(TestHelper::GENESIS_BLOCK_HASH);
+        $blockHeader = self::$daemonRpcClient->getBlockHeaderByHash(TestHelper::GENESIS_BLOCK_HASH);
         $this->assertEquals($expected, $blockHeader);
     }
 
     public function testGetBlockHeaderByHashErrorNotFoundEmpty(): void
     {
         $this->expectException(InvalidBlockHashException::class);
-        self::$regtestRpcClient->getBlockHeaderByHash('0000000000000000000000000000000000000000000000000000000000000000');
+        self::$daemonRpcClient->getBlockHeaderByHash('0000000000000000000000000000000000000000000000000000000000000000');
     }
 
     public function testGetBlockHeaderByHashErrorNotFound(): void
     {
         $this->expectException(InvalidBlockHashException::class);
-        self::$regtestRpcClient->getBlockHeaderByHash('4444444444444444444444444444444444444444444444444444444444444444');
+        self::$daemonRpcClient->getBlockHeaderByHash('4444444444444444444444444444444444444444444444444444444444444444');
     }
 
     public function testGetBlockHeaderByHeight(): void
@@ -168,31 +168,31 @@ final class EmptyBlockchainTest extends TestCase
         $expected->status = ResponseStatus::OK;
         $expected->blockHeader = $this->getGenesisBlockHeader();
 
-        $blockHeader = self::$regtestRpcClient->getBlockHeaderByHeight(0);
+        $blockHeader = self::$daemonRpcClient->getBlockHeaderByHeight(0);
         $this->assertEquals($expected, $blockHeader);
     }
 
     public function testGetBlockHeaderByHeightError(): void
     {
         $this->expectException(InvalidBlockHeightException::class);
-        self::$regtestRpcClient->getBlockHeaderByHeight(10);
+        self::$daemonRpcClient->getBlockHeaderByHeight(10);
     }
 
     public function testGetBlockHeaderRange(): void
     {
-        $blockHeaderList = self::$regtestRpcClient->getBlockHeadersRange(0, 0);
+        $blockHeaderList = self::$daemonRpcClient->getBlockHeadersRange(0, 0);
         $this->assertEquals([$this->getGenesisBlockHeader()], $blockHeaderList->headers);
     }
 
     public function testGetBlockHeaderRangeError(): void
     {
         $this->expectException(InvalidBlockHeightRangeException::class);
-        self::$regtestRpcClient->getBlockHeadersRange(0, 10);
+        self::$daemonRpcClient->getBlockHeadersRange(0, 10);
     }
 
     public function testGetBlockHeaderRangeErrorNonZero(): void
     {
         $this->expectException(InvalidBlockHeightRangeException::class);
-        self::$regtestRpcClient->getBlockHeadersRange(10, 20);
+        self::$daemonRpcClient->getBlockHeadersRange(10, 20);
     }
 }

@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp\Tests\integration;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\ClientBuilder;
+use RefRing\MoneroRpcPhp\DaemonRpcClient;
 use RefRing\MoneroRpcPhp\Enum\NetType;
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
@@ -25,7 +26,6 @@ use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
-use RefRing\MoneroRpcPhp\RegtestRpcClient;
 use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 use RefRing\MoneroRpcPhp\WalletRpc\CreateAccountResponse;
@@ -36,7 +36,7 @@ use RefRing\MoneroRpcPhp\WalletRpcClient;
 class BasicWalletTest extends TestCase
 {
     private static WalletRpcClient $rpcClient;
-    private static RegtestRpcClient $regtestRpcClient;
+    private static DaemonRpcClient $daemonRpcClient;
 
     private static string $walletNoPwd;
     private static string $walletWithEmptyPwd;
@@ -53,7 +53,7 @@ class BasicWalletTest extends TestCase
     {
         self::$rpcClient = (new ClientBuilder(TestHelper::WALLET_RPC_URL))
             ->buildWalletClient();
-        self::$regtestRpcClient = (new ClientBuilder(TestHelper::DAEMON_RPC_URL))->buildRegtestClient();
+        self::$daemonRpcClient = (new ClientBuilder(TestHelper::DAEMON_RPC_URL))->buildDaemonClient();
     }
 
     public function testGetVersion(): void
