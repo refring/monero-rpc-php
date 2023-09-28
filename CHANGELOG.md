@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.6.0 (2023-09-28)
+### Added
+- DaemonRpcClient::getHeight()
+- Errors: IndexOutOfRangeException, InvalidAddressException, InvalidOriginalPasswordException and InvalidPaymentIdException
+- Github Actions: dependabot config for keeping actions and composer deps up to date
+- Github Actions: symfonycorp/security-checker-action for checking security vulnerabilities in deps
+- Integration tests: addressbook methods, integrated address methods, restore_deterministic_wallet and query_key 
+
+### Changed
+- Removed DaemonOtherClient and moved methods to DaemonRpcClient
+- Removed RegtestRpcClient and moved method generateblocks to DaemonRpcClient::generateBlocks()
+- addAuxPow() now returns AuxPow objects instead of a generic array
+- Some cosmetic changes like better and more consistent comments
+- AddressBook methods no longer have paymentId
+- Tests: Work with mnemonics instead of private spend keys
+- Tests: NonEmptyBlockchainTest now reset the chain after running so the tests can be run again without errors
+
 ## v0.5.0 (2023-09-20)
 ### Added
 - Support for the "other" Daemon rpc requests through DaemonOtherClient
