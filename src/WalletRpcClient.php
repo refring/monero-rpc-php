@@ -10,6 +10,7 @@ use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\IndexOutOfRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
+use RefRing\MoneroRpcPhp\Exception\InvalidDestinationException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\InvalidOriginalPasswordException;
 use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
@@ -447,6 +448,8 @@ class WalletRpcClient extends JsonRpcClient
      * @param bool $getTxHex Return the transaction as hex string after sending
      * @param bool $getTxMetadata Return the metadata needed to relay the transaction.
      * @throws MoneroRpcException
+     * @throws InvalidDestinationException
+     * @throws InvalidAddressException
      */
     public function transfer(
         array|Recipient $destinations,

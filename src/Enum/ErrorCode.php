@@ -17,6 +17,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHashException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
+use RefRing\MoneroRpcPhp\Exception\InvalidDestinationException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\InvalidOriginalPasswordException;
 use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
@@ -50,6 +51,7 @@ enum ErrorCode: string
     case IndexOutOfRangeError = "Index out of range";
     case InvalidPaymentId = "Invalid payment ID";
     case InvalidOriginalPassword = "Invalid original password.";
+    case TransactionHasNoDestination = "Transaction has no destination";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -73,6 +75,7 @@ enum ErrorCode: string
             'Unknown language:' => self::InvalidLanguage,
             'account index is out of bound' => self::AccountIndexOutOfBound,
             'Invalid address' => self::InvalidAddress,
+            'WALLET_RPC_ERROR_CODE_WRONG_ADDRESS' => self::InvalidAddress,
         ];
 
         // If an exact match was not found try to find a partial match
@@ -118,6 +121,7 @@ enum ErrorCode: string
             self::IndexOutOfRangeError => new IndexOutOfRangeException($message),
             self::InvalidPaymentId => new InvalidPaymentIdException($message),
             self::InvalidOriginalPassword => new InvalidOriginalPasswordException($message),
+            self::TransactionHasNoDestination => new InvalidDestinationException($message),
         };
 
         return $exception;
