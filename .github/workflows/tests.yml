@@ -45,6 +45,8 @@ jobs:
           coverage: ${{ matrix.coverage-driver }}
           extensions: ${{ env.PHP_EXTENSIONS }}
           ini-values: ${{ env.PHP_INI_VALUES }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Composer dependencies
         run: composer update --${{ matrix.dependency-version }} --no-ansi --no-interaction --no-progress --prefer-dist
