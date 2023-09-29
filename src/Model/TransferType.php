@@ -10,4 +10,5 @@ enum TransferType: string
     case OUTGOING = 'out';
     case PENDING = 'pending';
     case POOL = 'pool';
+    case BLOCK = 'block';
 }
