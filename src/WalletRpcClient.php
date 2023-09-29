@@ -457,7 +457,7 @@ class WalletRpcClient extends JsonRpcClient
         ?array $subaddrIndices = [],
         ?TransferPriority $priority = null,
         ?int $mixin = null,
-        ?int $ringSize = null,
+        ?int $ringSize = 16,
         ?int $unlockTime = null,
         ?bool $getTxKey = null,
         ?bool $doNotRelay = false,
