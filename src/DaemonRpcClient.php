@@ -10,6 +10,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\BannedRequest;
@@ -494,5 +496,18 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/get_height';
         return $this->handleRequest(GetHeightRequest::create(), GetHeightResponse::class);
+    }
+
+    /**
+     * Broadcast a raw transaction to the network.
+     *
+     * @param string $txAsHex Full transaction information as hexidecimal string.
+     * @param ?bool $doNotRelay Stop relaying transaction to other nodes (default is `false`).
+     * @throws MoneroRpcException
+     */
+    public function sendRawTransaction(string $txAsHex, ?bool $doNotRelay = null): SendRawTransactionResponse
+    {
+        $this->endPointPath = '/send_raw_transaction';
+        return $this->handleRequest(SendRawTransactionRequest::create($txAsHex, $doNotRelay), SendRawTransactionResponse::class);
     }
 }
