@@ -12,7 +12,7 @@ Monero daemon and wallet RPC client library written in modern PHP.
 ## Features
 * Implements Monero wallet and daemon json-rpc methods
 * Support authentication for the wallet and daemon rpc servers
-* Completely strong-typed
+* Fully strongly typed and strict_types enabled
 * Minimal dependencies
 * PSR-18 compatible, so different http client libraries can be used
 
@@ -82,6 +82,18 @@ $client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_
 echo $client->getVersion()->version;
 ```
 
+The client builder also supports injecting a logger and/or a http client: 
+```php
+$httpClient = new \Symfony\Component\HttpClient\Psr18Client();
+$logger = new \Psr\Log\NullLogger();
+
+$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))    
+    ->withHttpClient($httpClient)
+    ->withLogger($logger)
+    ->buildDaemonClient();
+```
+
+
 ## Testing
 
 The project has unit tests and integration tests, the unit tests can be run using `composer test:unit`
@@ -95,7 +107,7 @@ After that, run `composer test:integration` to run the integration tests.
 ## Roadmap
 - [ ] More wallet-rpc integration tests
 - [ ] More thorough error handling
-- [ ] Implement the 'Other Daemon RPC Calls' ?
+- [ ] Implement remaining 'Other Daemon RPC Calls'
 
 ##  Contributing
 
