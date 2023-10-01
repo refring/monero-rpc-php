@@ -239,7 +239,7 @@ class WalletRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      */
     public function getBalance(
-        int $accountIndex,
+        int $accountIndex = 0,
         ?array $addressIndices = null,
         ?bool $allAccounts = false,
         ?bool $strict = false,
