@@ -9,4 +9,5 @@ enum NetType: string
     case MAINNET = 'mainnet';
     case TESTNET = 'testnet';
     case STAGENET = 'stagenet';
+    case REGTEST = 'fakechain';
 }
