@@ -17,21 +17,21 @@ class GetTransfersResponse
 
     /** @var Transfer[] */
     #[Json(type: Transfer::class)]
-    public array $in;
+    public array $in = [];
 
     /** @var Transfer[] (see above). */
     #[Json(type: Transfer::class)]
-    public array $out;
+    public array $out = [];
 
     /** @var Transfer[] (see above). */
     #[Json(type: Transfer::class)]
-    public array $pending;
+    public array $pending = [];
 
     /** @var Transfer[] (see above). */
     #[Json(type: Transfer::class)]
-    public array $failed;
+    public array $failed = [];
 
     /** @var Transfer[] (see above). */
     #[Json(type: Transfer::class)]
-    public array $pool;
+    public array $pool = [];
 }
