@@ -68,7 +68,7 @@ class Transfer
     /**
      * @var Recipient[]  array of JSON objects containing transfer destinations: (only for outgoing transactions):
      */
-    #[Json]
+    #[Json(type: Recipient::class)]
     public array $destinations;
 
     /**
