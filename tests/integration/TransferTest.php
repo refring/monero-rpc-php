@@ -19,7 +19,7 @@ use RefRing\MoneroRpcPhp\WalletRpcClient;
 
 final class TransferTest extends TestCase
 {
-    public static array $seeds = [TestHelper::WALLET_1_MNEMONIC];
+    public static array $seeds = [TestHelper::WALLET_1_MNEMONIC, TestHelper::WALLET_2_MNEMONIC];
 
     public static array $wallets = [];
 
@@ -46,16 +46,13 @@ final class TransferTest extends TestCase
         self::$walletRpcClient = (new ClientBuilder(TestHelper::WALLET_RPC_URL))
 //            ->withLogger(new StdOutLogger())
             ->buildWalletClient();
-        foreach (self::$seeds as $seed) {
-            self::$wallets[] = self::$walletRpcClient->restoreDeterministicWallet('', '', $seed);
-        }
 
+        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[0]);
         self::$daemonRpcClient->generateBlocks(100, TestHelper::MAINNET_ADDRESS_1);
     }
 
     public function testWallet(): void
     {
-        $this->assertSame(self::$seeds[0], self::$wallets[0]->seed);
         self::$walletRpcClient->refresh();
         $this->assertSame(101, self::$walletRpcClient->getHeight()->height);
 
@@ -80,8 +77,6 @@ final class TransferTest extends TestCase
     public function testTransfer(): TransferResponse
     {
         self::$walletRpcClient->refresh();
-
-        echo 'Current walelt height: '.self::$walletRpcClient->getHeight()->height;
 
         $result = self::$walletRpcClient->transfer(new Recipient(TestHelper::MAINNET_ADDRESS_1, self::AMOUNT), getTxKey: false, getTxHex: true);
 
@@ -137,7 +132,6 @@ final class TransferTest extends TestCase
     {
 
         self::$daemonRpcClient->generateBlocks(1, TestHelper::MAINNET_ADDRESS_1);
-        sleep(2);
         $result = self::$walletRpcClient->refresh();
         $this->assertSame(true, $result->receivedMoney);
         $height = self::$walletRpcClient->getHeight()->height;
@@ -149,7 +143,6 @@ final class TransferTest extends TestCase
         $this->assertEquals($result->transfer, $result->transfers[0]);
 
         $transfer = $result->transfer;
-        print_r($transfer);
         $this->assertSame($transferResponse->txHash, $transfer->txid);
         $this->assertSame('0000000000000000', $transfer->paymentId);
         $this->assertGreaterThan(0, $transfer->timestamp);
@@ -161,6 +154,45 @@ final class TransferTest extends TestCase
         $this->assertSame(0, $transfer->unlockTime);
         $this->assertSame(TestHelper::MAINNET_ADDRESS_1, $transfer->address);
         $this->assertSame(false, $transfer->doubleSpendSeen);
-        //        $this->assertSame(61, $transfer->confirmations);
+        $this->assertSame(1, $transfer->confirmations);
+    }
+
+    public function testRawTransactions(): void
+    {
+        $recipient = new Recipient(TestHelper::MAINNET_ADDRESS_2, 1000000000000);
+        $result = self::$walletRpcClient->transfer($recipient, getTxKey: true, doNotRelay: true, getTxHex: true);
+        $this->assertSame(64, strlen($result->txHash));
+        $this->assertSame(64, strlen($result->txKey));
+        $this->assertSame(1000000000000, $result->amount);
+        $this->assertGreaterThan(0, $result->fee);
+        $this->assertGreaterThan(0, strlen($result->txBlob));
+        $this->assertSame(0, strlen($result->txMetadata));
+        $this->assertSame(0, strlen($result->multisigTxset));
+        $this->assertSame(0, strlen($result->unsignedTxset));
+
+        // We'll use these later
+        $txId = $result->txHash;
+        $fee = $result->fee;
+        $amount = $result->amount;
+
+        $result = self::$daemonRpcClient->sendRawTransaction($result->txBlob);
+        $this->assertFalse($result->notRelayed);
+        $this->assertFalse($result->lowMixin);
+        $this->assertFalse($result->doubleSpend);
+        $this->assertFalse($result->invalidInput);
+        $this->assertFalse($result->invalidOutput);
+        $this->assertFalse($result->tooBig);
+        $this->assertFalse($result->overspend);
+        $this->assertFalse($result->feeTooLow);
+
+        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[1]);
+        self::$walletRpcClient->refresh();
+
+        $result = self::$walletRpcClient->getTransfers(true, true, true, true, true);
+        $this->assertCount(0, $result->in);
+        $this->assertCount(0, $result->out);
+        $this->assertCount(0, $result->pending);
+        $this->assertCount(1, $result->pool);
+        $this->assertCount(0, $result->failed);
     }
 }

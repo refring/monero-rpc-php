@@ -21,6 +21,7 @@ class TestHelper
      * @var string
      */
     final public const MAINNET_ADDRESS_1 = '43ZdL1Rm65iTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias54xAJXRm';
+    final public const MAINNET_ADDRESS_2 = '45N8QHXrp6Ua5tATgoZKfNLsDtWRnFyQmgxkCiewWR3NWAbjrnXA2DLAKibMgBiaEyNyTZFDHSgm9X93k6yJe65D56qQdvK';
 
     /**
      * @var string
