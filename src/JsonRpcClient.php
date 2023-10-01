@@ -110,6 +110,7 @@ abstract class JsonRpcClient
         // The 'other' daemon methods are not contained in a result property, so just parse the whole response
         if ($this->isOtherDaemonMethodRequest()) {
             $jsonResultPath = [];
+            $this->resetEndPointPath();
         }
 
         return $className::fromJsonString($body, $jsonResultPath);
@@ -149,5 +150,10 @@ abstract class JsonRpcClient
     private function isOtherDaemonMethodRequest(): bool
     {
         return $this->endPointPath !== self::DEFAULT_ENDPOINT_PATH;
+    }
+
+    private function resetEndPointPath(): void
+    {
+        $this->endPointPath = self::DEFAULT_ENDPOINT_PATH;
     }
 }
