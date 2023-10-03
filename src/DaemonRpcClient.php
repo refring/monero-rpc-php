@@ -10,6 +10,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
@@ -522,5 +524,16 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/get_alt_blocks_hashes';
         return $this->handleRequest(GetAltBlocksHashesRequest::create(), GetAltBlocksHashesResponse::class);
+    }
+
+    /**
+     * Check if outputs have been spent using the key image associated with the output.
+     *
+     * @param string[] $keyImages List of key image hex strings to check.
+     * @throws MoneroRpcException
+     */
+    public function isKeyImageSpent(array $keyImages): IsKeyImageSpentResponse
+    {
+        return $this->handleRequest(IsKeyImageSpentRequest::create($keyImages), IsKeyImageSpentResponse::class);
     }
 }

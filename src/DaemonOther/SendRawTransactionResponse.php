@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
-use RefRing\MoneroRpcPhp\DaemonRpc\DaemonBaseResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\RpcAccessBaseResponse;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;

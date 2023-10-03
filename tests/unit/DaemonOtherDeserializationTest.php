@@ -7,8 +7,8 @@ namespace RefRing\MoneroRpcPhp\Tests\unit;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
-use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 
@@ -50,6 +50,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"blks_hashes":["dd4998cfe92a959a5a0e4ed72432cf23d7dfc4179cbea871ee2a705d71fb5e25","f36c3856ffde6a7d06fc832c80ede4ad5b6c8f702c9736dae1e2140d86504db9","8d0c1f806817259d213c8829ea3356334e0d8fdd3b118e1243756e12dce767bb"],"credits":0,"top_hash":"","status":"OK","untrusted":false}';
         $response = GetAltBlocksHashesResponse::fromJsonString($jsonResponse);
+        $responseFlat = json_encode(json_decode($jsonResponse));
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testIsKeyImageSpent()
+    {
+        $jsonResponse = '{"spent_status":[1,1],"credits":0,"top_hash":"","status":"OK","untrusted":false}';
+        $response = IsKeyImageSpentResponse::fromJsonString($jsonResponse);
         $responseFlat = json_encode(json_decode($jsonResponse));
         $this->assertSame($responseFlat, $response->toJson());
     }

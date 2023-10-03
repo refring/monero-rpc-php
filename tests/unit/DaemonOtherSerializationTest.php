@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
-use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 
@@ -46,6 +46,14 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '';
         $request = GetAltBlocksHashesRequest::create();
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testIsKeyImageSpent()
+    {
+        $expected = '{"key_images":["8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3","7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4"]}';
+        $keyImages = ['8d1bd8181bf7d857bdb281e0153d84cd55a3fcaa57c3e570f4a49f935850b5e3', '7319134bfc50668251f5b899c66b005805ee255c136f0e1cecbb0f3a912e09d4'];
+        $request = IsKeyImageSpentRequest::create($keyImages);
         $this->assertSame($expected, $request->toJson());
     }
 }
