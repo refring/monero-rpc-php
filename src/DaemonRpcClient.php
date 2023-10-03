@@ -16,6 +16,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\BannedRequest;
@@ -535,5 +537,24 @@ class DaemonRpcClient extends JsonRpcClient
     public function isKeyImageSpent(array $keyImages): IsKeyImageSpentResponse
     {
         return $this->handleRequest(IsKeyImageSpentRequest::create($keyImages), IsKeyImageSpentResponse::class);
+    }
+
+    /**
+     * Start mining on the daemon.
+     *
+     * @param bool $doBackgroundMining States if the mining should run in background (`true`) or foreground (`false`).
+     * @param bool $ignoreBattery States if batery state (on laptop) should be ignored (`true`) or not (`false`).
+     * @param string $minerAddress Account address to mine to.
+     * @param int $threadsCount Number of mining thread to run.
+     * @throws MoneroRpcException
+     */
+    public function startMining(
+        bool $doBackgroundMining,
+        bool $ignoreBattery,
+        string $minerAddress,
+        int $threadsCount,
+    ): StartMiningResponse
+    {
+        return $this->handleRequest(StartMiningRequest::create($doBackgroundMining, $ignoreBattery, $minerAddress, $threadsCount), StartMiningResponse::class);
     }
 }
