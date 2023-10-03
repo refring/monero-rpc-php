@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 
 class DaemonOtherSerializationTest extends TestCase
 {
@@ -30,6 +31,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '{"nblocks":6}';
         $request = PopBlocksRequest::create(6);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testSendRawTransaction()
+    {
+        $expected = '{"tx_as_hex":"de6a3...","do_not_relay":false}';
+        $request = SendRawTransactionRequest::create('de6a3...', false);
         $this->assertSame($expected, $request->toJson());
     }
 }

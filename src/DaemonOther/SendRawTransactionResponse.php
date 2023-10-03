@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonBaseResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\RpcAccessBaseResponse;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
  * Broadcast a raw transaction to the network.
  */
-class SendRawTransactionResponse extends DaemonBaseResponse
+class SendRawTransactionResponse extends RpcAccessBaseResponse
 {
     use JsonSerialize;
 
@@ -70,8 +71,26 @@ class SendRawTransactionResponse extends DaemonBaseResponse
     public string $reason;
 
     /**
+     * Sanity check
+     */
+    #[Json('sanity_check_failed')]
+    public bool $sanityCheckFailed;
+
+    /**
      * Transaction size is too big (`true`) or OK (`false`).
      */
     #[Json('too_big')]
     public bool $tooBig;
+
+    /**
+     * Too few outputs
+     */
+    #[Json('too_few_outputs')]
+    public bool $tooFewOutputs;
+
+    /**
+     * Tx extra is too big
+     */
+    #[Json('tx_extra_too_big')]
+    public bool $txExtraTooBig;
 }

@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 
 class DaemonOtherDeserializationTest extends TestCase
 {
@@ -32,6 +33,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"height":76482,"status":"OK","untrusted":false}';
         $response = PopBlocksResponse::fromJsonString($jsonResponse);
+        $responseFlat = json_encode(json_decode($jsonResponse));
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testSendRawTransaction()
+    {
+        $jsonResponse = '{"double_spend":false,"fee_too_low":false,"invalid_input":false,"invalid_output":false,"low_mixin":false,"not_relayed":false,"overspend":false,"reason":"","sanity_check_failed":false,"too_big":false,"too_few_outputs":false,"tx_extra_too_big":false,"credits":0,"top_hash":"","status":"OK","untrusted":false}';
+        $response = SendRawTransactionResponse::fromJsonString($jsonResponse);
         $responseFlat = json_encode(json_decode($jsonResponse));
         $this->assertSame($responseFlat, $response->toJson());
     }
