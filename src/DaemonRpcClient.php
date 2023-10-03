@@ -12,6 +12,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
@@ -571,5 +573,16 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/stop_mining';
         return $this->handleRequest(StopMiningRequest::create(), StopMiningResponse::class);
+    }
+
+    /**
+     * Get the mining status of the daemon.
+     *
+     * @throws MoneroRpcException
+     */
+    public function miningStatus(): MiningStatusResponse
+    {
+        $this->endPointPath = '/mining_status';
+        return $this->handleRequest(MiningStatusRequest::create(), MiningStatusResponse::class);
     }
 }

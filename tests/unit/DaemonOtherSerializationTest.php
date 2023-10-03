@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
@@ -71,6 +72,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '';
         $request = StopMiningRequest::create();
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testMiningStatus()
+    {
+        $expected = '';
+        $request = MiningStatusRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }
