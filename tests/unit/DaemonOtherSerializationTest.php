@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
+use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
@@ -38,6 +39,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '{"tx_as_hex":"de6a3...","do_not_relay":false}';
         $request = SendRawTransactionRequest::create('de6a3...', false);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetAltBlocksHashes()
+    {
+        $expected = '';
+        $request = GetAltBlocksHashesRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }

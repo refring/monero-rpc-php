@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp;
 
+use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
@@ -509,5 +511,16 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/send_raw_transaction';
         return $this->handleRequest(SendRawTransactionRequest::create($txAsHex, $doNotRelay), SendRawTransactionResponse::class);
+    }
+
+    /**
+     * Get the known blocks hashes which are not on the main chain.
+     *
+     * @throws MoneroRpcException
+     */
+    public function getAltBlocksHashes(): GetAltBlocksHashesResponse
+    {
+        $this->endPointPath = '/get_alt_blocks_hashes';
+        return $this->handleRequest(GetAltBlocksHashesRequest::create(), GetAltBlocksHashesResponse::class);
     }
 }
