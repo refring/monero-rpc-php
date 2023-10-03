@@ -12,6 +12,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
 
 class DaemonOtherSerializationTest extends TestCase
 {
@@ -63,6 +64,13 @@ class DaemonOtherSerializationTest extends TestCase
         $expected = '{"do_background_mining":false,"ignore_battery":true,"miner_address":"47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc","threads_count":1}';
         $minerAddress = '47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc';
         $request = StartMiningRequest::create(false, true, $minerAddress, 1);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testStopMining()
+    {
+        $expected = '';
+        $request = StopMiningRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }

@@ -18,6 +18,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\BannedRequest;
@@ -536,6 +538,7 @@ class DaemonRpcClient extends JsonRpcClient
      */
     public function isKeyImageSpent(array $keyImages): IsKeyImageSpentResponse
     {
+        $this->endPointPath = '/is_key_image_spent';
         return $this->handleRequest(IsKeyImageSpentRequest::create($keyImages), IsKeyImageSpentResponse::class);
     }
 
@@ -555,6 +558,18 @@ class DaemonRpcClient extends JsonRpcClient
         int $threadsCount,
     ): StartMiningResponse
     {
+        $this->endPointPath = '/start_mining';
         return $this->handleRequest(StartMiningRequest::create($doBackgroundMining, $ignoreBattery, $minerAddress, $threadsCount), StartMiningResponse::class);
+    }
+
+    /**
+     * Stop mining on the daemon.
+     *
+     * @throws MoneroRpcException
+     */
+    public function stopMining(): StopMiningResponse
+    {
+        $this->endPointPath = '/stop_mining';
+        return $this->handleRequest(StopMiningRequest::create(), StopMiningResponse::class);
     }
 }

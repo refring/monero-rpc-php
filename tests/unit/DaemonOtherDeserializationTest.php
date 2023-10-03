@@ -12,6 +12,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
 
 class DaemonOtherDeserializationTest extends TestCase
 {
@@ -67,6 +68,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"status":"OK","untrusted":false}';
         $response = StartMiningResponse::fromJsonString($jsonResponse);
+        $responseFlat = json_encode(json_decode($jsonResponse));
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testStopMining()
+    {
+        $jsonResponse = '{"status":"OK","untrusted":false}';
+        $response = StopMiningResponse::fromJsonString($jsonResponse);
         $responseFlat = json_encode(json_decode($jsonResponse));
         $this->assertSame($responseFlat, $response->toJson());
     }
