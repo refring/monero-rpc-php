@@ -105,9 +105,24 @@ If you have the docker stack installed, go to the `tests` folder and run `docker
 After that, run `composer test:integration` to run the integration tests.
 
 ## Roadmap
-- [ ] More wallet-rpc integration tests
-- [ ] More thorough error handling
+- [ ] More integration tests
+- [ ] Improve documentation and add examples
 - [ ] Implement remaining 'Other Daemon RPC Calls'
+    - [ ] /get_transactions
+    - [ ] /get_peer_list
+    - [ ] /set_bootstrap_daemon
+    - [ ] /get_transaction_pool
+    - [ ] /get_transaction_pool_stats
+    - [ ] /stop_daemon
+    - [ ] /get_info (not JSON)
+    - [ ] /get_limit
+    - [ ] /set_limit
+    - [ ] /out_peers
+    - [ ] /in_peers
+    - [ ] /start_save_graph
+    - [ ] /stop_save_graph
+    - [ ] /get_outs
+    - [ ] /update
 
 ##  Contributing
 
