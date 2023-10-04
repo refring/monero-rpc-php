@@ -40,6 +40,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\UpdateRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\UpdateResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\AddAuxPowResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\BannedRequest;
@@ -103,6 +105,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoResponse;
 use RefRing\MoneroRpcPhp\Enum\ErrorCode;
+use RefRing\MoneroRpcPhp\Enum\UpdateCommand;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
@@ -711,5 +714,18 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/get_peer_list';
         return $this->handleRequest(GetPeerListRequest::create($publicOnly, $includeBlocked), GetPeerListResponse::class);
+    }
+
+    /**
+     * Update daemon.
+     *
+     * @param UpdateCommand $command command to use, either `check` or `download`
+     * @param ?string $path Optional, path where to download the update.
+     * @throws MoneroRpcException
+     */
+    public function update(UpdateCommand $command, ?string $path = null): UpdateResponse
+    {
+        $this->endPointPath = '/update';
+        return $this->handleRequest(UpdateRequest::create($command, $path), UpdateResponse::class);
     }
 }
