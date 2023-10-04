@@ -20,6 +20,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelRequest;
@@ -625,5 +627,18 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/set_log_level';
         return $this->handleRequest(SetLogLevelRequest::create($level), SetLogLevelResponse::class);
+    }
+
+    /**
+     * Set the daemon log categories.Categories are represented as a comma separated list of `<Category>:<level>`
+     * (similarly to syslog standard `<Facility>:<Severity-level>`)
+     *
+     * @param ?string $categories Daemon log categories to enable
+     * @throws MoneroRpcException
+     */
+    public function setLogCategories(?string $categories = null): SetLogCategoriesResponse
+    {
+        $this->endPointPath = '/set_log_categories';
+        return $this->handleRequest(SetLogCategoriesRequest::create($categories), SetLogCategoriesResponse::class);
     }
 }
