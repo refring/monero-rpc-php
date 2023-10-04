@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ecfdaa8efdc4ec3c98bfa188c7b5465",
+    "content-hash": "cb56655c8932909e1d602dcf235a8917",
     "packages": [
         {
             "name": "php-http/discovery",
@@ -241,16 +241,16 @@
         },
         {
             "name": "square/pjson",
-            "version": "v0.3.3",
+            "version": "dev-backend-enum-arrays",
             "source": {
                 "type": "git",
-                "url": "https://github.com/square/pjson.git",
-                "reference": "5a2db0a0d5bcd7b87ce0abb7f8da7b762568b3d6"
+                "url": "https://github.com/refactor-ring/pjson.git",
+                "reference": "f5468000da06d7c416d3825c0e42424610e61f74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/square/pjson/zipball/5a2db0a0d5bcd7b87ce0abb7f8da7b762568b3d6",
-                "reference": "5a2db0a0d5bcd7b87ce0abb7f8da7b762568b3d6",
+                "url": "https://api.github.com/repos/refactor-ring/pjson/zipball/f5468000da06d7c416d3825c0e42424610e61f74",
+                "reference": "f5468000da06d7c416d3825c0e42424610e61f74",
                 "shasum": ""
             },
             "require": {
@@ -270,7 +270,6 @@
                     "Square\\Pjson\\Tests\\": "tests/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Apache-2.0"
             ],
@@ -282,10 +281,9 @@
             ],
             "description": "Library for JSON <=> PHP model serialization / deserialization. Deserialize JSON directly into your object model PHP classes.",
             "support": {
-                "issues": "https://github.com/square/pjson/issues",
-                "source": "https://github.com/square/pjson/tree/v0.3.3"
+                "source": "https://github.com/refactor-ring/pjson/tree/backend-enum-arrays"
             },
-            "time": "2023-07-03T20:55:15+00:00"
+            "time": "2023-10-04T07:07:23+00:00"
         }
     ],
     "packages-dev": [
@@ -725,16 +723,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.35",
+            "version": "1.10.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "e730e5facb75ffe09dfb229795e8c01a459f26c3"
+                "reference": "058ba07e92f744d4dcf6061ae75283d0c6456f2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e730e5facb75ffe09dfb229795e8c01a459f26c3",
-                "reference": "e730e5facb75ffe09dfb229795e8c01a459f26c3",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/058ba07e92f744d4dcf6061ae75283d0c6456f2e",
+                "reference": "058ba07e92f744d4dcf6061ae75283d0c6456f2e",
                 "shasum": ""
             },
             "require": {
@@ -783,7 +781,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-09-19T15:27:56+00:00"
+            "time": "2023-10-02T16:18:37+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1617,16 +1615,16 @@
         },
         {
             "name": "sebastian/complexity",
-            "version": "3.0.1",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/complexity.git",
-                "reference": "c70b73893e10757af9c6a48929fa6a333b56a97a"
+                "reference": "68cfb347a44871f01e33ab0ef8215966432f6957"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/complexity/zipball/c70b73893e10757af9c6a48929fa6a333b56a97a",
-                "reference": "c70b73893e10757af9c6a48929fa6a333b56a97a",
+                "url": "https://api.github.com/repos/sebastianbergmann/complexity/zipball/68cfb347a44871f01e33ab0ef8215966432f6957",
+                "reference": "68cfb347a44871f01e33ab0ef8215966432f6957",
                 "shasum": ""
             },
             "require": {
@@ -1639,7 +1637,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.0-dev"
+                    "dev-main": "3.1-dev"
                 }
             },
             "autoload": {
@@ -1663,7 +1661,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/complexity/issues",
                 "security": "https://github.com/sebastianbergmann/complexity/security/policy",
-                "source": "https://github.com/sebastianbergmann/complexity/tree/3.0.1"
+                "source": "https://github.com/sebastianbergmann/complexity/tree/3.1.0"
             },
             "funding": [
                 {
@@ -1671,7 +1669,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-08-31T09:55:53+00:00"
+            "time": "2023-09-28T11:50:59+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -1806,16 +1804,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "5.1.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "c3fa8483f9539b190f7cd4bfc4a07631dd1df344"
+                "reference": "64f51654862e0f5e318db7e9dcc2292c63cdbddc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/c3fa8483f9539b190f7cd4bfc4a07631dd1df344",
-                "reference": "c3fa8483f9539b190f7cd4bfc4a07631dd1df344",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/64f51654862e0f5e318db7e9dcc2292c63cdbddc",
+                "reference": "64f51654862e0f5e318db7e9dcc2292c63cdbddc",
                 "shasum": ""
             },
             "require": {
@@ -1829,7 +1827,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "5.0-dev"
+                    "dev-main": "5.1-dev"
                 }
             },
             "autoload": {
@@ -1872,7 +1870,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
                 "security": "https://github.com/sebastianbergmann/exporter/security/policy",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/5.1.0"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/5.1.1"
             },
             "funding": [
                 {
@@ -1880,7 +1878,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-18T07:15:37+00:00"
+            "time": "2023-09-24T13:22:09+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -2355,16 +2353,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v6.3.2",
+            "version": "v6.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "15f9f4bad62bfcbe48b5dedd866f04a08fc7ff00"
+                "reference": "213e564da4cbf61acc9728d97e666bcdb868c10d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/15f9f4bad62bfcbe48b5dedd866f04a08fc7ff00",
-                "reference": "15f9f4bad62bfcbe48b5dedd866f04a08fc7ff00",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/213e564da4cbf61acc9728d97e666bcdb868c10d",
+                "reference": "213e564da4cbf61acc9728d97e666bcdb868c10d",
                 "shasum": ""
             },
             "require": {
@@ -2427,7 +2425,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v6.3.2"
+                "source": "https://github.com/symfony/http-client/tree/v6.3.5"
             },
             "funding": [
                 {
@@ -2443,7 +2441,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-05T08:41:27+00:00"
+            "time": "2023-09-29T15:57:12+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -2659,6 +2657,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "square/pjson": 20,
         "monero-integrations/monerophp": 20
     },
     "prefer-stable": true,
