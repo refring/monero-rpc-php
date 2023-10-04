@@ -12,6 +12,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
@@ -696,5 +698,18 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/in_peers';
         return $this->handleRequest(InPeersRequest::create($inPeers), InPeersResponse::class);
+    }
+
+    /**
+     * Get the known peers list.
+     *
+     * @param ?bool $publicOnly Only show public zone peers
+     * @param ?bool $includeBlocked Show blocked nodes
+     * @throws MoneroRpcException
+     */
+    public function getPeerList(?bool $publicOnly = null, ?bool $includeBlocked = null): GetPeerListResponse
+    {
+        $this->endPointPath = '/get_peer_list';
+        return $this->handleRequest(GetPeerListRequest::create($publicOnly, $includeBlocked), GetPeerListResponse::class);
     }
 }
