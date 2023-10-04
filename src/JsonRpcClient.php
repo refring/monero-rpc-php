@@ -113,7 +113,7 @@ abstract class JsonRpcClient
             $this->resetEndPointPath();
         }
 
-        return $className::fromJsonString($body, $jsonResultPath);
+        return $className::fromJsonString($body, $jsonResultPath, flags: JSON_BIGINT_AS_STRING);
     }
 
     protected function getExceptionForInvalidResponse(string $responseBody): ?MoneroRpcException
