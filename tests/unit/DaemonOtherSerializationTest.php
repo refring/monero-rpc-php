@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
@@ -143,6 +144,17 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '{"in_peers":3232235535}';
         $request = InPeersRequest::create(3232235535);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetPeerList()
+    {
+        $expected = '';
+        $request = GetPeerListRequest::create();
+        $this->assertSame($expected, $request->toJson());
+
+        $expected = '{"public_only":false,"include_blocked":true}';
+        $request = GetPeerListRequest::create(false, true);
         $this->assertSame($expected, $request->toJson());
     }
 }
