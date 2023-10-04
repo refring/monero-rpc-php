@@ -12,6 +12,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
@@ -682,5 +684,17 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/out_peers';
         return $this->handleRequest(OutPeersRequest::create($outPeers), OutPeersResponse::class);
+    }
+
+    /**
+     * Limit number of Incoming peers.
+     *
+     * @param int $inPeers Max number of incoming peers
+     * @throws MoneroRpcException
+     */
+    public function inPeers(int $inPeers): InPeersResponse
+    {
+        $this->endPointPath = '/in_peers';
+        return $this->handleRequest(InPeersRequest::create($inPeers), InPeersResponse::class);
     }
 }

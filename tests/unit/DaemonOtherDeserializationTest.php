@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\OutPeersResponse;
@@ -154,6 +155,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"out_peers":3232235535,"status":"OK","untrusted":false}';
         $response = OutPeersResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testInPeers()
+    {
+        $jsonResponse = '{"in_peers":3232235535,"status":"OK","untrusted":false}';
+        $response = InPeersResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }

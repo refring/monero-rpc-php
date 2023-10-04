@@ -115,7 +115,6 @@ After that, run `composer test:integration` to run the integration tests.
     - [ ] /get_transaction_pool_stats
     - [ ] /stop_daemon
     - [ ] /get_info (not JSON)
-    - [ ] /in_peers
     - [ ] /get_outs
     - [ ] /update
 
