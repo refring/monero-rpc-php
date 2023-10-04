@@ -16,6 +16,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
@@ -583,5 +585,17 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/mining_status';
         return $this->handleRequest(MiningStatusRequest::create(), MiningStatusResponse::class);
+    }
+
+    /**
+     * Save the blockchain. The blockchain does not need saving and is always saved when modified,
+     * however it does a sync to flush the filesystem cache onto the disk for safety purposes against Operating System or Hardware crashes.
+     *
+     * @throws MoneroRpcException
+     */
+    public function saveBlockchain(): SaveBlockchainResponse
+    {
+        $this->endPointPath = '/save_bc';
+        return $this->handleRequest(SaveBlockchainRequest::create(), SaveBlockchainResponse::class);
     }
 }

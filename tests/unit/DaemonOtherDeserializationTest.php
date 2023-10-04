@@ -11,6 +11,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
@@ -91,6 +92,14 @@ class DaemonOtherDeserializationTest extends TestCase
         // When mining
         $jsonResponse = '{"active":true,"address":"47xu3gQpF569au9C2ajo5SSMrWji6xnoE5vhr94EzFRaKAGw6hEGFXYAwVADKuRpzsjiU1PtmaVgcjUJF89ghGPhUXkndHc","bg_idle_threshold":0,"bg_ignore_battery":false,"bg_min_idle_seconds":0,"bg_target":0,"block_reward":1181637918707,"block_target":120,"difficulty":239928394679,"difficulty_top64":0,"is_background_mining_enabled":false,"pow_algorithm":"RandomX","speed":23,"threads_count":1,"wide_difficulty":"0x37dcd8c3b7","status":"OK","untrusted":false}';
         $response = MiningStatusResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testSaveBlockchain()
+    {
+        $jsonResponse = '{"status":"OK","untrusted":false}';
+        $response = SaveBlockchainResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }
