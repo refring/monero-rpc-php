@@ -22,6 +22,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
@@ -611,5 +613,17 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/set_log_hash_rate';
         return $this->handleRequest(SetLogHashRateRequest::create($visible), SetLogHashRateResponse::class);
+    }
+
+    /**
+     * Set the daemon log level.By default, log level is set to `0`.
+     *
+     * @param int $level daemon log level to set from `0` (less verbose) to `4` (most verbose)
+     * @throws MoneroRpcException
+     */
+    public function setLogLevel(int $level): SetLogLevelResponse
+    {
+        $this->endPointPath = '/set_log_level';
+        return $this->handleRequest(SetLogLevelRequest::create($level), SetLogLevelResponse::class);
     }
 }
