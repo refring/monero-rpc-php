@@ -13,6 +13,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
 
@@ -87,6 +88,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '';
         $request = SaveBlockchainRequest::create();
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testSetLogHashRate()
+    {
+        $expected = '{"visible":true}';
+        $request = SetLogHashRateRequest::create(true);
         $this->assertSame($expected, $request->toJson());
     }
 }

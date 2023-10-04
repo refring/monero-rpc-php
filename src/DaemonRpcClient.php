@@ -20,6 +20,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
@@ -597,5 +599,17 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/save_bc';
         return $this->handleRequest(SaveBlockchainRequest::create(), SaveBlockchainResponse::class);
+    }
+
+    /**
+     * Set the log hash rate display mode.
+     *
+     * @param bool $visible States if hash rate logs should be visible (`true`) or hidden (`false`)
+     * @throws MoneroRpcException
+     */
+    public function setLogHashRate(bool $visible): SetLogHashRateResponse
+    {
+        $this->endPointPath = '/set_log_hash_rate';
+        return $this->handleRequest(SetLogHashRateRequest::create($visible), SetLogHashRateResponse::class);
     }
 }

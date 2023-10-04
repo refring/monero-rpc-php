@@ -13,6 +13,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
 
@@ -100,6 +101,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"status":"OK","untrusted":false}';
         $response = SaveBlockchainResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testSetLogHashRate()
+    {
+        $jsonResponse = '{"status":"OK","untrusted":false}';
+        $response = SetLogHashRateResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }
