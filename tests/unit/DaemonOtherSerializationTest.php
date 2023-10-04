@@ -23,6 +23,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\UpdateRequest;
+use RefRing\MoneroRpcPhp\Enum\UpdateCommand;
 
 class DaemonOtherSerializationTest extends TestCase
 {
@@ -155,6 +157,17 @@ class DaemonOtherSerializationTest extends TestCase
 
         $expected = '{"public_only":false,"include_blocked":true}';
         $request = GetPeerListRequest::create(false, true);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testUpdate()
+    {
+        $expected = '{"command":"check"}';
+        $request = UpdateRequest::create(UpdateCommand::CHECK);
+        $this->assertSame($expected, $request->toJson());
+
+        $expected = '{"command":"download","path":"path"}';
+        $request = UpdateRequest::create(UpdateCommand::DOWNLOAD, 'path');
         $this->assertSame($expected, $request->toJson());
     }
 }
