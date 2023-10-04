@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp\Tests\unit;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
@@ -136,6 +137,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"limit_down":1024,"limit_up":128,"status":"OK","untrusted":false}';
         $response = SetLimitResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testGetLimit()
+    {
+        $jsonResponse = '{"limit_down":8192,"limit_up":128,"status":"OK","untrusted":false}';
+        $response = GetLimitResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }

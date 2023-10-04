@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp\Tests\unit;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
@@ -119,6 +120,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '{"limit_down":1024}';
         $request = SetLimitRequest::create(1024);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetLimit()
+    {
+        $expected = '';
+        $request = GetLimitRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }

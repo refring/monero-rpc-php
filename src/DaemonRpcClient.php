@@ -8,6 +8,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
@@ -655,5 +657,16 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/set_limit';
         return $this->handleRequest(SetLimitRequest::create($limitDown, $limitUp), SetLimitResponse::class);
+    }
+
+    /**
+     * Get daemon bandwidth limits.
+     *
+     * @throws MoneroRpcException
+     */
+    public function getLimit(): GetLimitResponse
+    {
+        $this->endPointPath = '/get_limit';
+        return $this->handleRequest(GetLimitRequest::create(), GetLimitResponse::class);
     }
 }
