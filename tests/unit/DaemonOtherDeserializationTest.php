@@ -13,6 +13,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelResponse;
@@ -127,6 +128,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"categories":"*:INFO","status":"OK","untrusted":false}';
         $response = SetLogCategoriesResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testSetLimit()
+    {
+        $jsonResponse = '{"limit_down":1024,"limit_up":128,"status":"OK","untrusted":false}';
+        $response = SetLimitResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }

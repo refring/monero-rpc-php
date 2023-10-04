@@ -116,11 +116,8 @@ After that, run `composer test:integration` to run the integration tests.
     - [ ] /stop_daemon
     - [ ] /get_info (not JSON)
     - [ ] /get_limit
-    - [ ] /set_limit
     - [ ] /out_peers
     - [ ] /in_peers
-    - [ ] /start_save_graph
-    - [ ] /stop_save_graph
     - [ ] /get_outs
     - [ ] /update
 

@@ -13,6 +13,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelRequest;
@@ -111,6 +112,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '{"categories":"*:INFO"}';
         $request = SetLogCategoriesRequest::create("*:INFO");
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testSetLimit()
+    {
+        $expected = '{"limit_down":1024}';
+        $request = SetLimitRequest::create(1024);
         $this->assertSame($expected, $request->toJson());
     }
 }

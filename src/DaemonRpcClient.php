@@ -20,6 +20,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLimitRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
@@ -640,5 +642,18 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/set_log_categories';
         return $this->handleRequest(SetLogCategoriesRequest::create($categories), SetLogCategoriesResponse::class);
+    }
+
+    /**
+     * Set daemon bandwidth limits.
+     *
+     * @param int $limitDown Download limit in kBytes per second (-1 reset to default, 0 don't change the current limit)
+     * @param int $limitUp Upload limit in kBytes per second (-1 reset to default, 0 don't change the current limit)
+     * @throws MoneroRpcException
+     */
+    public function setLimit(int $limitDown, int $limitUp): SetLimitResponse
+    {
+        $this->endPointPath = '/set_limit';
+        return $this->handleRequest(SetLimitRequest::create($limitDown, $limitUp), SetLimitResponse::class);
     }
 }
