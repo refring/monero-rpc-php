@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use RefRing\MoneroRpcPhp\Model\PeerStructure;
+use RefRing\MoneroRpcPhp\Model\SyncPeer;
 use RefRing\MoneroRpcPhp\Model\SpanStructure;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
@@ -31,8 +31,8 @@ class SyncInfoResponse extends RpcAccessBaseResponse
     #[Json]
     public string $overview;
 
-    /** @var PeerStructure[] */
-    #[Json(type: PeerStructure::class)]
+    /** @var SyncPeer[] */
+    #[Json(type: SyncPeer::class)]
     public array $peers;
 
     /** @var SpanStructure[] */
