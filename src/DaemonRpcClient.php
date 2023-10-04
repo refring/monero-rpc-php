@@ -558,8 +558,7 @@ class DaemonRpcClient extends JsonRpcClient
         bool $ignoreBattery,
         string $minerAddress,
         int $threadsCount,
-    ): StartMiningResponse
-    {
+    ): StartMiningResponse {
         $this->endPointPath = '/start_mining';
         return $this->handleRequest(StartMiningRequest::create($doBackgroundMining, $ignoreBattery, $minerAddress, $threadsCount), StartMiningResponse::class);
     }

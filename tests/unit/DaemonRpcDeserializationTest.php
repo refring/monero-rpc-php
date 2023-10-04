@@ -316,7 +316,7 @@ class DaemonRpcDeserializationTest extends TestCase
         $this->assertSame($responseFlat, $response->toJson());
     }
 
-    public static function comparableJson(string $json) : string
+    public static function comparableJson(string $json): string
     {
         return json_encode(json_decode($json)->result);
     }

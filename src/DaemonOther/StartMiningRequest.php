@@ -44,8 +44,7 @@ class StartMiningRequest extends OtherRpcRequest
         bool $ignoreBattery,
         string $minerAddress,
         int $threadsCount,
-    ): OtherRpcRequest
-    {
+    ): OtherRpcRequest {
         $self = new self();
         $self->doBackgroundMining = $doBackgroundMining;
         $self->ignoreBattery = $ignoreBattery;

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\DaemonRpc\RpcAccessBaseResponse;
+use RefRing\MoneroRpcPhp\Enum\SpentStatus;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -16,8 +17,8 @@ class IsKeyImageSpentResponse extends RpcAccessBaseResponse
     use JsonSerialize;
 
     /**
-     * @var int[] List of statuses for each image checked. Statuses are follows: 0 = unspent, 1 = spent in blockchain, 2 = spent in transaction pool
+     * @var SpentStatus[] List of statuses for each image checked. Statuses are follows: 0 = unspent, 1 = spent in blockchain, 2 = spent in transaction pool
      */
-    #[Json('spent_status')]
+    #[Json('spent_status', type: SpentStatus::class)]
     public array $spentStatus;
 }
