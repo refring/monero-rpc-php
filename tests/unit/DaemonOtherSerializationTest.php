@@ -11,6 +11,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\OutPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
@@ -127,6 +128,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '';
         $request = GetLimitRequest::create();
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testOutPeers()
+    {
+        $expected = '{"out_peers":3232235535}';
+        $request = OutPeersRequest::create(3232235535);
         $this->assertSame($expected, $request->toJson());
     }
 }

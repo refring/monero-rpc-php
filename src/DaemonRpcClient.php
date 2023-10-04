@@ -16,6 +16,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\OutPeersRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\OutPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
@@ -668,5 +670,17 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/get_limit';
         return $this->handleRequest(GetLimitRequest::create(), GetLimitResponse::class);
+    }
+
+    /**
+     * Limit number of Outgoing peers.
+     *
+     * @param int $outPeers Max number of outgoing peers
+     * @throws MoneroRpcException
+     */
+    public function outPeers(int $outPeers): OutPeersResponse
+    {
+        $this->endPointPath = '/out_peers';
+        return $this->handleRequest(OutPeersRequest::create($outPeers), OutPeersResponse::class);
     }
 }

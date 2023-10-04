@@ -11,6 +11,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\OutPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
@@ -145,6 +146,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"limit_down":8192,"limit_up":128,"status":"OK","untrusted":false}';
         $response = GetLimitResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testOutPeers()
+    {
+        $jsonResponse = '{"out_peers":3232235535,"status":"OK","untrusted":false}';
+        $response = OutPeersResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }
