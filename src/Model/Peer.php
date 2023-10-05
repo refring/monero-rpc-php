@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
-use RefRing\MoneroRpcPhp\Model\Peer as Peer1;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
@@ -59,7 +58,7 @@ class Peer
 
     public function __construct(
         string $host,
-        string $id,
+        BigInt $id,
         int $ip,
         int $port,
         int $lastSeen,

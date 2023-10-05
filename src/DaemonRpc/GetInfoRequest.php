@@ -7,7 +7,7 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 
 /**
- * Retrieve general information about the state of your node and the network.Alias:* * /get_info** * /getinfo*See other RPC Methods [/get_info (not JSON)](#get_info-not-json)
+ * Retrieve general information about the state of your node and the network.
  */
 class GetInfoRequest
 {

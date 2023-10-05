@@ -10,9 +10,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Generate a block and specify the address to receive the coinbase reward.
  */
-class GenerateblocksResponse extends DaemonBaseResponse
+class GenerateblocksResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /**
      * @var OnGetBlockHashResponse[]

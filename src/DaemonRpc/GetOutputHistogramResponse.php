@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Get a histogram of output amounts. For all amounts (possibly filtered by parameters), gives the number of outputs on the chain for that amount.RingCT outputs counts as 0 amount.
  */
-class GetOutputHistogramResponse extends RpcAccessBaseResponse
+class GetOutputHistogramResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /** @var Histogram[] */
     #[Json(type: Histogram::class)]

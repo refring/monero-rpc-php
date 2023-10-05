@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
-use RefRing\MoneroRpcPhp\DaemonRpc\DaemonBaseResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
  * Set daemon bandwidth limits.
  */
-class SetLimitResponse extends DaemonBaseResponse
+class SetLimitResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /**
      * Download limit in kBytes per second

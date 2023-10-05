@@ -23,7 +23,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GetCoinbaseTxSumResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetConnectionsResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetFeeEstimateResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetInfoResponse;
-use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderBaseResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetMinerDataResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetOutputDistributionResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetOutputHistogramResponse;
@@ -36,6 +36,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\RelayTxResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SetBansResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoResponse;
+use RefRing\MoneroRpcPhp\Model\BacklogTransaction;
 
 class DaemonRpcDeserializationTest extends TestCase
 {
@@ -59,7 +60,7 @@ class DaemonRpcDeserializationTest extends TestCase
 
     public function testGetBlockTemplate()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"blockhashing_blob":"0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd00000000d130d22cf308b308498bbc16e2e955e7dbd691e6a8fab805f98ad82e6faa8bcc06","blocktemplate_blob":"0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd0000000002abc78b0101ffefc68b0101fcfcf0d4b422025014bb4a1eade6622fd781cb1063381cad396efa69719b41aa28b4fce8c7ad4b5f019ce1dc670456b24a5e03c2d9058a2df10fec779e2579753b1847b74ee644f16b023c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000051399a1bc46a846474f5b33db24eae173a26393b976054ee14f9feefe99925233802867097564c9db7a36af5bb5ed33ab46e63092bd8d32cef121608c3258edd55562812e21cc7e3ac73045745a72f7d74581d9a0849d6f30e8b2923171253e864f4e9ddea3acb5bc755f1c4a878130a70c26297540bc0b7a57affb6b35c1f03d8dbd54ece8457531f8cba15bb74516779c01193e212050423020e45aa2c15dcb","difficulty":226807339040,"difficulty_top64":0,"expected_reward":1182367759996,"height":2286447,"next_seed_hash":"","prev_hash":"ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd","reserved_offset":130,"seed_hash":"d432f499205150873b2572b5f033c9c6e4b7c6f3394bd2dd93822cd7085e7307","seed_height":2285568,"wide_difficulty":"0x34cec55820","status":"OK","untrusted":false}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"blocktemplate_blob":"0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd0000000002abc78b0101ffefc68b0101fcfcf0d4b422025014bb4a1eade6622fd781cb1063381cad396efa69719b41aa28b4fce8c7ad4b5f019ce1dc670456b24a5e03c2d9058a2df10fec779e2579753b1847b74ee644f16b023c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000051399a1bc46a846474f5b33db24eae173a26393b976054ee14f9feefe99925233802867097564c9db7a36af5bb5ed33ab46e63092bd8d32cef121608c3258edd55562812e21cc7e3ac73045745a72f7d74581d9a0849d6f30e8b2923171253e864f4e9ddea3acb5bc755f1c4a878130a70c26297540bc0b7a57affb6b35c1f03d8dbd54ece8457531f8cba15bb74516779c01193e212050423020e45aa2c15dcb","blockhashing_blob":"0e0ed286da8006ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd00000000d130d22cf308b308498bbc16e2e955e7dbd691e6a8fab805f98ad82e6faa8bcc06","difficulty":226807339040,"difficulty_top64":0,"expected_reward":1182367759996,"height":2286447,"next_seed_hash":"","prev_hash":"ecdc1aab3033cf1716c52f13f9d8ae0051615a2453643de94643b550d543becd","reserved_offset":130,"seed_hash":"d432f499205150873b2572b5f033c9c6e4b7c6f3394bd2dd93822cd7085e7307","seed_height":2285568,"wide_difficulty":"0x34cec55820","status":"OK","untrusted":false}}';
         $response = GetBlockTemplateResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
@@ -87,7 +88,7 @@ class DaemonRpcDeserializationTest extends TestCase
     public function testGetLastBlockHeader()
     {
         $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"block_header":{"block_size":5500,"block_weight":5500,"cumulative_difficulty":86164894009456483,"cumulative_difficulty_top64":0,"depth":0,"difficulty":227026389695,"difficulty_top64":0,"hash":"a6ad87cf357a1aac1ee1d7cb0afa4c2e653b0b1ab7d5bf6af310333e43c59dd0","height":2286454,"long_term_weight":5500,"major_version":14,"miner_tx_hash":"a474f87de1645ff14c5e90c477b07f9bc86a22fb42909caa0705239298da96d0","minor_version":14,"nonce":249602367,"num_txes":3,"orphan_status":false,"pow_hash":"","prev_hash":"fa17fefe1d05da775a61a3dc33d9e199d12af167ef0ab37e52b51e8487b50f25","reward":1181337498013,"timestamp":1612088597,"wide_cumulative_difficulty":"0x1321e83bb8af763","wide_difficulty":"0x34dbd3cabf"},"credits":0,"top_hash":"","status":"OK","untrusted":false}}';
-        $response = GetLastBlockHeaderBaseResponse::fromJsonString($jsonResponse, "result");
+        $response = GetLastBlockHeaderResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }
@@ -275,8 +276,10 @@ class DaemonRpcDeserializationTest extends TestCase
 
     public function testGetMinerData()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"already_generated_coins":100,"difficulty":"0x48afae42de","height":2731375,"major_version":16,"median_weight":300000,"prev_id":"78d50c5894d187c4946d54410990ca59a75017628174a9e8c7055fa4ca5c7c6d","seed_hash":"a6b869d50eca3a43ec26fe4c369859cf36ae37ce6ecb76457d31ffeb8a6ca8a6","tx_backlog":[{"fee":30700000,"id":"9868490d6bb9207fdd9cf17ca1f6c791b92ca97de0365855ea5c089f67c22208","weight":1535},{"fee":44280000,"id":"b6000b02bbec71e18ad704bcae09fb6e5ae86d897ced14a718753e76e86c0a0a","weight":2214}],"status":"OK","untrusted":false}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"major_version":16,"height":2731375,"prev_id":"78d50c5894d187c4946d54410990ca59a75017628174a9e8c7055fa4ca5c7c6d","seed_hash":"a6b869d50eca3a43ec26fe4c369859cf36ae37ce6ecb76457d31ffeb8a6ca8a6","difficulty":"0x48afae42de","median_weight":300000,"already_generated_coins":100,"tx_backlog":[{"id":"9868490d6bb9207fdd9cf17ca1f6c791b92ca97de0365855ea5c089f67c22208","weight":1535,"fee":30700000},{"id":"b6000b02bbec71e18ad704bcae09fb6e5ae86d897ced14a718753e76e86c0a0a","weight":2214,"fee":44280000}],"status":"OK","untrusted":false}}';
         $response = GetMinerDataResponse::fromJsonString($jsonResponse, "result");
+        $this->assertInstanceOf(BacklogTransaction::class, $response->txBacklog[0]);
+
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }

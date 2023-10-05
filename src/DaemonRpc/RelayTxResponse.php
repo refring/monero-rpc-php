@@ -9,7 +9,8 @@ use Square\Pjson\JsonSerialize;
 /**
  * Relay a list of transaction IDs.
  */
-class RelayTxResponse extends RpcAccessBaseResponse
+class RelayTxResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 }

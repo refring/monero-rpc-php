@@ -9,11 +9,12 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Retrieve general information about the state of your node and the network.Alias:* * /get_info** * /getinfo*See other RPC Methods [/get_info (not JSON)](#get_info-not-json)
+ * Retrieve general information about the state of your node and the network.
  */
-class GetInfoResponse extends RpcAccessBaseResponse
+class GetInfoResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /**
      * Current time approximated from chain data, as Unix time.
@@ -147,6 +148,9 @@ class GetInfoResponse extends RpcAccessBaseResponse
     #[Json('outgoing_connections_count')]
     public int $outgoingConnectionsCount;
 
+    #[Json]
+    public bool $restricted;
+
     /**
      * Number of RPC client connected to the daemon (Including this RPC request).
      */
@@ -242,7 +246,4 @@ class GetInfoResponse extends RpcAccessBaseResponse
      */
     #[Json('wide_difficulty')]
     public string $wideDifficulty;
-
-    #[Json]
-    public bool $restricted;
 }

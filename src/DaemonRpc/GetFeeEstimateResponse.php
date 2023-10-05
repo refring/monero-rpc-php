@@ -10,9 +10,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Gives an estimation on fees per byte.
  */
-class GetFeeEstimateResponse extends RpcAccessBaseResponse
+class GetFeeEstimateResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /**
      * Amount of fees estimated per byte in piconero
@@ -21,7 +22,7 @@ class GetFeeEstimateResponse extends RpcAccessBaseResponse
     public int $fee;
 
     /**
-     * @var string[] Represents the base fees at different priorities [slow, normal, fast, fastest].
+     * @var int[] Represents the base fees at different priorities [slow, normal, fast, fastest].
      */
     #[Json]
     public array $fees;

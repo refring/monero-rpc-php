@@ -40,7 +40,7 @@ class GetPeerListRequest extends OtherRpcRequest
     /**
      * @TODO Move this method into trait or parent class ?
      */
-    public function toJson(int $flags = 0, int $depth = 512) : string
+    public function toJson(int $flags = 0, int $depth = 512): string
     {
         $json = parent::toJson($flags, $depth);
 

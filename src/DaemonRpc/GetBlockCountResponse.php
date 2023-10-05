@@ -10,9 +10,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Look up how many blocks are in the longest chain known to the node.
  */
-class GetBlockCountResponse extends DaemonBaseResponse
+class GetBlockCountResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /**
      * Number of blocks in longest chain seen by the node.

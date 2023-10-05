@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Display alternative chains seen by the node.
  */
-class GetAlternateChainsResponse extends DaemonBaseResponse
+class GetAlternateChainsResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /** @var ChainInformation[] */
     #[Json(type: ChainInformation::class)]

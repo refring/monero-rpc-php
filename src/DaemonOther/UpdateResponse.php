@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
-use RefRing\MoneroRpcPhp\DaemonRpc\DaemonBaseResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
  * Update daemon.
  */
-class UpdateResponse extends DaemonBaseResponse
+class UpdateResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     #[Json('auto_uri')]
     public string $autoUri;

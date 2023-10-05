@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Block header information can be retrieved using either a block's hash or height. This method includes a block's hash as an input parameter to retrieve basic information about the block.
  */
-class GetBlockHeaderByHashResponse extends RpcAccessBaseResponse
+class GetBlockHeaderByHashResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /**
      * A structure containing block header information.
