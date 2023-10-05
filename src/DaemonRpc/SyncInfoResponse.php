@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use RefRing\MoneroRpcPhp\Model\SyncPeer;
 use RefRing\MoneroRpcPhp\Model\SpanStructure;
+use RefRing\MoneroRpcPhp\Model\SyncPeer;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Get synchronisation information
+ * Get synchronisation informations
  */
-class SyncInfoResponse extends RpcAccessBaseResponse
+class SyncInfoResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     #[Json]
     public int $height;

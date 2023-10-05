@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
-use RefRing\MoneroRpcPhp\DaemonRpc\DaemonBaseResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
@@ -12,9 +12,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Get the mining status of the daemon.
  */
-class MiningStatusResponse extends DaemonBaseResponse
+class MiningStatusResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /**
      * States if mining is enabled (`true`) or disabled (`false`).

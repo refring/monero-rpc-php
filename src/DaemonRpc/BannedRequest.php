@@ -10,7 +10,7 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Check if an IP address is banned and for how long.Alias: *None*
+ * Check if an IP address is banned and for how long.
  */
 class BannedRequest implements ParameterInterface
 {

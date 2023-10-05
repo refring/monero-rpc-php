@@ -10,9 +10,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Get the coinbase amount and the fees amount for n last blocks starting at particular height
  */
-class GetCoinbaseTxSumResponse extends RpcAccessBaseResponse
+class GetCoinbaseTxSumResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /**
      * Least significant 64 bits for 128 bit integer representing the sum of coinbase rewards in piconero. (See src/rpc/core_rpc_server.cpp store_128)

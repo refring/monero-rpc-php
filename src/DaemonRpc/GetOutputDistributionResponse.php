@@ -8,12 +8,10 @@ use RefRing\MoneroRpcPhp\Model\Distribution;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-/**
- *
- */
-class GetOutputDistributionResponse extends RpcAccessBaseResponse
+class GetOutputDistributionResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /** @var Distribution[] */
     #[Json(type: Distribution::class)]

@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Give the node current version
  */
-class GetVersionResponse extends DaemonBaseResponse
+class GetVersionResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /**
      * States if the daemon software version corresponds to an official tagged release (`true`), or not (`false`)

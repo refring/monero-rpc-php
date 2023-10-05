@@ -10,9 +10,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Look up information regarding hard fork voting and readiness.
  */
-class HardForkInfoResponse extends RpcAccessBaseResponse
+class HardForkInfoResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /**
      * Block height at which hard fork would be enabled if voted in.

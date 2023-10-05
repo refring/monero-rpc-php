@@ -10,9 +10,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Get all transaction pool backlog
  */
-class GetTxpoolBacklogResponse extends RpcAccessBaseResponse
+class GetTxpoolBacklogResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /**
      * array of structures tx_backlog_entry (in binary form)

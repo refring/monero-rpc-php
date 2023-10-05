@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Full block information can be retrieved by either block height or hash, like with the above block header calls. For full block information, both lookups use the same method, but with different input parameters.
  */
-class GetBlockResponse extends RpcAccessBaseResponse
+class GetBlockResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /**
      * Hexadecimal blob of block information.
@@ -33,12 +34,15 @@ class GetBlockResponse extends RpcAccessBaseResponse
     #[Json]
     public string $json;
 
+    /**
+     * The hash of this block's coinbase transaction.
+     */
     #[Json('miner_tx_hash')]
     public string $minerTxHash;
 
     /**
-     * @var string[]
+     * @var string[] List of hashes of non-coinbase transactions in the block. If there are no other transactions, this will be an empty list.
      */
-    #[Json('tx_hashes')]
+    #[Json('tx_hashes', omit_empty: true)]
     public array $txHashes;
 }

@@ -7,9 +7,10 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-class PruneBlockchainResponse extends DaemonBaseResponse
+class PruneBlockchainResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     #[Json]
     public bool $pruned;

@@ -10,9 +10,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Submit a mined block to the network.
  */
-class SubmitBlockResponse extends DaemonBaseResponse
+class SubmitBlockResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /**
      * Id of submitted block (v0.18.2.2+)

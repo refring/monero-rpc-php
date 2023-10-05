@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Get list of banned IPs.
  */
-class GetBansResponse extends DaemonBaseResponse
+class GetBansResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /** @var BannedNode[] */
     #[Json(type: BannedNode::class)]

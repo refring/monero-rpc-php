@@ -81,7 +81,7 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GetFeeEstimateResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetInfoRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetInfoResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderRequest;
-use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderBaseResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetMinerDataRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetMinerDataResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetOutputDistributionRequest;
@@ -180,9 +180,9 @@ class DaemonRpcClient extends JsonRpcClient
      * @param bool $fillPowHash (Optional; defaults to `false`) Add PoW hash to block_header response.
      * @throws MoneroRpcException
      */
-    public function getLastBlockHeader(?bool $fillPowHash = null): GetLastBlockHeaderBaseResponse
+    public function getLastBlockHeader(?bool $fillPowHash = null): GetLastBlockHeaderResponse
     {
-        return $this->handleRequest(GetLastBlockHeaderRequest::create($fillPowHash), GetLastBlockHeaderBaseResponse::class);
+        return $this->handleRequest(GetLastBlockHeaderRequest::create($fillPowHash), GetLastBlockHeaderResponse::class);
     }
 
     /**
@@ -745,8 +745,7 @@ class DaemonRpcClient extends JsonRpcClient
         ?string $username = null,
         ?string $password = null,
         ?string $proxy = null,
-    ): SetBootstrapDaemonResponse
-    {
+    ): SetBootstrapDaemonResponse {
         return $this->handleRequest(SetBootstrapDaemonRequest::create($address, $username, $password, $proxy), SetBootstrapDaemonResponse::class);
     }
 }

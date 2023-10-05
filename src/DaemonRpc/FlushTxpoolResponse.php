@@ -9,7 +9,8 @@ use Square\Pjson\JsonSerialize;
 /**
  * Flush tx ids from transaction pool
  */
-class FlushTxpoolResponse extends DaemonBaseResponse
+class FlushTxpoolResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 }

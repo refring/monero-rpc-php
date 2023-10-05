@@ -1,22 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\JsonDataSerializable;
 
-class BigInt implements JsonDataSerializable
+final class BigInt implements JsonDataSerializable
 {
     public function __construct(
-        protected string|int $value,
+        public string|int $value,
     ) {
     }
 
-    public static function fromJsonData($jd, array|string $path = []) : static
+    /**
+     * @param string $jd
+     * @param mixed[]|string $path
+     */
+    public static function fromJsonData($jd, array|string $path = []): static
     {
-        return new BigInt($jd);
+        return new static($jd);
     }
 
-    public function toJsonData()
+    public function toJsonData(): string|int
     {
         return $this->getValue();
     }

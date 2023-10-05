@@ -9,7 +9,8 @@ use Square\Pjson\JsonSerialize;
 /**
  * Flush bad transactions / blocks from the cache.
  */
-class FlushCacheResponse extends DaemonBaseResponse
+class FlushCacheResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 }

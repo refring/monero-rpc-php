@@ -12,27 +12,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Provide the necessary data to create a custom block template. They are used by p2pool.
  */
-class GetMinerDataResponse extends DaemonBaseResponse
+class GetMinerDataResponse
 {
     use JsonSerialize;
-
-    /**
-     * coins mined by the network so far.
-     */
-    #[Json('already_generated_coins')]
-    public int $alreadyGeneratedCoins;
-
-    /**
-     * network. difficulty.
-     */
-    #[Json]
-    public HexDifficulty $difficulty;
-
-    /**
-     * current blockheight.
-     */
-    #[Json]
-    public int $height;
+    use DaemonStandardResponseFields;
 
     /**
      * major fork version.
@@ -41,10 +24,10 @@ class GetMinerDataResponse extends DaemonBaseResponse
     public int $majorVersion;
 
     /**
-     * median block weight.
+     * current blockheight.
      */
-    #[Json('median_weight')]
-    public int $medianWeight;
+    #[Json]
+    public int $height;
 
     /**
      * previous block id.
@@ -58,7 +41,25 @@ class GetMinerDataResponse extends DaemonBaseResponse
     #[Json('seed_hash')]
     public string $seedHash;
 
+    /**
+     * network. difficulty.
+     */
+    #[Json]
+    public HexDifficulty $difficulty;
+
+    /**
+     * median block weight.
+     */
+    #[Json('median_weight')]
+    public int $medianWeight;
+
+    /**
+     * coins mined by the network so far.
+     */
+    #[Json('already_generated_coins')]
+    public int $alreadyGeneratedCoins;
+
     /** @var BacklogTransaction[] */
-    #[Json('tx_backlog')]
+    #[Json('tx_backlog', type: BacklogTransaction::class)]
     public array $txBacklog;
 }

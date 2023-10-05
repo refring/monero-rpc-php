@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Easily enable merge mining with Monero without requiring software that manually alters the extra field in the coinbase tx to include the merkle root of the aux blocks.
  */
-class AddAuxPowResponse extends DaemonBaseResponse
+class AddAuxPowResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     #[Json('blocktemplate_blob')]
     public string $blocktemplateBlob;

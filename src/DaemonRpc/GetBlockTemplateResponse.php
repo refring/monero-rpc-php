@@ -10,21 +10,22 @@ use Square\Pjson\JsonSerialize;
 /**
  * Get a block template on which mining a new block.
  */
-class GetBlockTemplateResponse extends DaemonBaseResponse
+class GetBlockTemplateResponse
 {
     use JsonSerialize;
-
-    /**
-     * Blob on which to try to find a valid nonce.
-     */
-    #[Json('blockhashing_blob')]
-    public string $blockhashingBlob;
+    use DaemonStandardResponseFields;
 
     /**
      * Blob on which to try to mine a new block.
      */
     #[Json('blocktemplate_blob')]
     public string $blocktemplateBlob;
+
+    /**
+     * Blob on which to try to find a valid nonce.
+     */
+    #[Json('blockhashing_blob')]
+    public string $blockhashingBlob;
 
     /**
      * Least-significant 64 bits of the 128-bit network difficulty.

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
-use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
@@ -36,8 +35,7 @@ class SetBootstrapDaemonRequest extends OtherRpcRequest
         ?string $username = null,
         ?string $password = null,
         ?string $proxy = null,
-    ): OtherRpcRequest
-    {
+    ): OtherRpcRequest {
         $self = new self();
         $self->address = $address;
         $self->username = $username;

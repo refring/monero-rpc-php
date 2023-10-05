@@ -11,9 +11,10 @@ use Square\Pjson\JsonSerialize;
 /**
  * Retrieve information about incoming and outgoing connections to your node.
  */
-class GetConnectionsResponse extends DaemonBaseResponse
+class GetConnectionsResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 
     /** @var ConnectionInfo[] */
     #[Json(type: ConnectionInfo::class)]

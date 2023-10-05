@@ -9,7 +9,8 @@ use Square\Pjson\JsonSerialize;
 /**
  * Ban another node by IP.
  */
-class SetBansResponse extends DaemonBaseResponse
+class SetBansResponse
 {
     use JsonSerialize;
+    use DaemonStandardResponseFields;
 }
