@@ -26,6 +26,7 @@ use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 use RefRing\MoneroRpcPhp\WalletRpc\CreateAccountResponse;
@@ -448,8 +449,8 @@ class BasicWalletTest extends TestCase
 
     public function testMakeUri(): void
     {
-        $expected = 'monero:43ZdL1Rm65iTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias54xAJXRm?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
-        $result = self::$rpcClient->makeUri(new Address(TestHelper::MAINNET_ADDRESS_1), 1, null, 'Barolo', 'Nebbiolo');
+        $expected = 'monero:43ZdL1Rm65iTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias54xAJXRm?tx_amount=1.100000000000&recipient_name=Barolo&tx_description=Nebbiolo';
+        $result = self::$rpcClient->makeUri(new Address(TestHelper::MAINNET_ADDRESS_1), Amount::fromXmr('1.1'), null, 'Barolo', 'Nebbiolo');
         $this->assertSame($expected, $result->uri);
     }
 

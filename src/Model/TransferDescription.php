@@ -35,8 +35,8 @@ class TransferDescription
     #[Json('unlock_time')]
     public int $unlockTime;
 
-    /** @var Recipient[] list of recipients: */
-    #[Json(type: Recipient::class)]
+    /** @var Destination[] list of recipients: */
+    #[Json(type: Destination::class)]
     public array $recipients;
 
     /**
@@ -76,7 +76,7 @@ class TransferDescription
     public string $extra;
 
     /**
-     * @param Recipient[] $recipients
+     * @param Destination[] $recipients
      */
     public function __construct(int $amountIn, int $amountOut, int $ringSize, int $unlockTime, array $recipients, string $paymentId, int $changeAmount, string $changeAddress, int $fee, int $dummyOutputs, string $extra)
     {

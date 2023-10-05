@@ -66,9 +66,9 @@ class Transfer
     public string $note;
 
     /**
-     * @var Recipient[]  array of JSON objects containing transfer destinations: (only for outgoing transactions):
+     * @var Destination[]  array of JSON objects containing transfer destinations: (only for outgoing transactions):
      */
-    #[Json(type: Recipient::class)]
+    #[Json(type: Destination::class)]
     public array $destinations;
 
     /**
@@ -128,7 +128,7 @@ class Transfer
      * @param int $fee
      * @param int $height
      * @param string $note
-     * @param Recipient[] $destinations
+     * @param Destination[] $destinations
      * @param string $paymentId
      * @param SubAddressIndex $subaddrIndex
      * @param SubAddressIndex[] $subaddrIndices

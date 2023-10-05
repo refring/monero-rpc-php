@@ -5,21 +5,22 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\KeyImageList;
+use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 /**
  * Same as @see WalletRpcClient::transfer(), but can split into more than one tx if necessary..
  */
 class TransferSplitResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * @var int[] The amount transferred for every transaction.
      */
-    #[Json('amount_list')]
+    #[Json('amount_list', type: Amount::class)]
     public array $amountList;
 
     /**

@@ -230,7 +230,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testTransfer()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount":10000000000000000000,"fee":86897600000,"multisig_txset":"","tx_blob":"","tx_hash":"7663438de4f72b25a0e395b770ea9ecf7108cd2f0c4b75be0b14a103d3362be9","tx_key":"25c9d8ec20045c80c93d665c9d3684aab7335f8b2cd02e1ba2638485afd1c70e236c4bdd7a2f1cb511dbf466f13421bdf8df988b7b969c448ca6239d7251490e4bf1bbf9f6ffacffdcdc93b9d1648ec499eada4d6b4e02ce92d4a1c0452e5d009fbbbf15b549df8856205a4c7bda6338d82c823f911acd00cb75850b198c5803","tx_metadata":"","unsigned_txset":""}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount":1,"fee":86897600000,"multisig_txset":"","tx_blob":"","tx_hash":"7663438de4f72b25a0e395b770ea9ecf7108cd2f0c4b75be0b14a103d3362be9","tx_key":"25c9d8ec20045c80c93d665c9d3684aab7335f8b2cd02e1ba2638485afd1c70e236c4bdd7a2f1cb511dbf466f13421bdf8df988b7b969c448ca6239d7251490e4bf1bbf9f6ffacffdcdc93b9d1648ec499eada4d6b4e02ce92d4a1c0452e5d009fbbbf15b549df8856205a4c7bda6338d82c823f911acd00cb75850b198c5803","tx_metadata":"","unsigned_txset":""}}';
         $response = TransferResponse::fromJsonString($jsonResponse, "result", flags: JSON_BIGINT_AS_STRING);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());

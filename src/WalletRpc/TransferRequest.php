@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
-use RefRing\MoneroRpcPhp\Model\Recipient;
+use RefRing\MoneroRpcPhp\Model\Destination;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -18,7 +18,7 @@ class TransferRequest implements ParameterInterface
 {
     use JsonSerialize;
 
-    /** @var Recipient[] */
+    /** @var Destination[] */
     #[Json]
     public array $destinations;
 
@@ -87,7 +87,7 @@ class TransferRequest implements ParameterInterface
 
 
     /**
-     * @param Recipient[] $destinations
+     * @param Destination[] $destinations
      * @param ?int[] $subaddrIndices
      */
     public static function create(

@@ -23,8 +23,9 @@ use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
-use RefRing\MoneroRpcPhp\Model\Recipient;
+use RefRing\MoneroRpcPhp\Model\Destination;
 use RefRing\MoneroRpcPhp\Model\IncomingTransferType;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshRequest;
@@ -436,7 +437,7 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Send monero to a number of recipients.
      *
-     * @param Recipient[]|Recipient $destinations Recipient OR a list of Recipients to receive XMR
+     * @param Destination[]|Destination $destinations Recipient OR a list of Recipients to receive XMR
      * @param ?int $accountIndex Transfer from this account index.
      * @param ?int[] $subaddrIndices Transfer from this set of subaddresses. (Defaults to empty - all indices)
      * @param ?TransferPriority $priority Set a priority for the transaction.
@@ -452,19 +453,19 @@ class WalletRpcClient extends JsonRpcClient
      * @throws InvalidAddressException
      */
     public function transfer(
-        array|Recipient $destinations,
-        ?int $accountIndex = 0,
-        ?array $subaddrIndices = [],
+        array|Destination $destinations,
+        ?int              $accountIndex = 0,
+        ?array            $subaddrIndices = [],
         ?TransferPriority $priority = null,
-        ?int $mixin = null,
-        ?int $ringSize = 16,
-        ?int $unlockTime = null,
-        ?bool $getTxKey = null,
-        ?bool $doNotRelay = false,
-        ?bool $getTxHex = false,
-        ?bool $getTxMetadata = false,
+        ?int              $mixin = null,
+        ?int              $ringSize = 16,
+        ?int              $unlockTime = null,
+        ?bool             $getTxKey = null,
+        ?bool             $doNotRelay = false,
+        ?bool             $getTxHex = false,
+        ?bool             $getTxMetadata = false,
     ): TransferResponse {
-        if ($destinations instanceof Recipient) {
+        if ($destinations instanceof Destination) {
             $destinations = [$destinations];
         }
         return $this->handleRequest(TransferRequest::create($destinations, $accountIndex, $subaddrIndices, $priority, $mixin, $ringSize, $unlockTime, $getTxKey, $doNotRelay, $getTxHex, $getTxMetadata), TransferResponse::class);
@@ -474,7 +475,7 @@ class WalletRpcClient extends JsonRpcClient
     /**
      * Same as transfer, but can split into more than one tx if necessary.
      *
-     * @param Recipient[] $destinations array of destinations to receive XMR:
+     * @param Destination[] $destinations array of destinations to receive XMR:
      * @param ?int $accountIndex Transfer from this account index.
      * @param ?int[] $subaddrIndices Transfer from this set of subaddresses. (Defaults to empty - all indices)
      * @param ?int $ringSize Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
@@ -896,14 +897,14 @@ class WalletRpcClient extends JsonRpcClient
      *
      * @param bool $all Proves all wallet balance to be disposable.
      * @param int $accountIndex Specify the account from which to prove reserve. (ignored if `all` is set to true)
-     * @param int $amount Amount (in piconero) to prove the account has in reserve. (ignored if `all` is set to true)
+     * @param Amount $amount Amount (in piconero) to prove the account has in reserve. (ignored if `all` is set to true)
      * @param ?string $message add a message to the signature to further authenticate the proving process. If a _message_ is added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
      * @throws MoneroRpcException
      */
     public function getReserveProof(
         bool $all,
         int $accountIndex,
-        int $amount,
+        Amount $amount,
         ?string $message = null,
     ): GetReserveProofResponse {
         return $this->handleRequest(GetReserveProofRequest::create($all, $accountIndex, $amount, $message), GetReserveProofResponse::class);
@@ -1068,7 +1069,7 @@ class WalletRpcClient extends JsonRpcClient
      * Create a payment URI using the official URI spec.
      *
      * @param Address $address Wallet address
-     * @param ?int $amount (optional) the integer amount to receive, in **piconero**
+     * @param ?Amount $amount (optional) the integer amount to receive, in **piconero**
      * @param ?string $paymentId defaults to a random ID) 16 characters hex encoded.
      * @param ?string $recipientName (optional) name of the payment recipient
      * @param ?string $txDescription (optional) Description of the reason for the tx
@@ -1076,7 +1077,7 @@ class WalletRpcClient extends JsonRpcClient
      */
     public function makeUri(
         Address $address,
-        ?int $amount = null,
+        ?Amount $amount = null,
         ?string $paymentId = null,
         ?string $recipientName = null,
         ?string $txDescription = null,

@@ -10,10 +10,11 @@ use RefRing\MoneroRpcPhp\ClientBuilder;
 use RefRing\MoneroRpcPhp\DaemonRpcClient;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidDestinationException;
-use RefRing\MoneroRpcPhp\Model\Recipient;
+use RefRing\MoneroRpcPhp\Model\Address;
+use RefRing\MoneroRpcPhp\Model\Destination;
 use RefRing\MoneroRpcPhp\Model\TransferType;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
-//use RefRing\MoneroRpcPhp\Tests\Util\StdOutLogger;
 use RefRing\MoneroRpcPhp\WalletRpc\TransferResponse;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 
@@ -41,10 +42,8 @@ final class TransferTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$daemonRpcClient = (new ClientBuilder(TestHelper::DAEMON_RPC_URL))
-//            ->withLogger(new StdOutLogger())
             ->buildDaemonClient();
         self::$walletRpcClient = (new ClientBuilder(TestHelper::WALLET_RPC_URL))
-//            ->withLogger(new StdOutLogger())
             ->buildWalletClient();
 
         self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[0]);
@@ -78,11 +77,11 @@ final class TransferTest extends TestCase
     {
         self::$walletRpcClient->refresh();
 
-        $result = self::$walletRpcClient->transfer(new Recipient(TestHelper::MAINNET_ADDRESS_1, self::AMOUNT), getTxKey: false, getTxHex: true);
+        $result = self::$walletRpcClient->transfer(new Destination(TestHelper::MAINNET_ADDRESS_1, new Amount(self::AMOUNT)), getTxKey: false, getTxHex: true);
 
         $this->assertSame(64, strlen($result->txHash));
         $this->assertSame(0, strlen($result->txKey));
-        $this->assertGreaterThan(0, $result->amount);
+        $this->assertGreaterThan(0, (int) $result->amount->getAmount());
         $this->assertGreaterThan(0, $result->fee);
         self::$runningBalance -= $result->fee;
 
@@ -149,7 +148,7 @@ final class TransferTest extends TestCase
         $this->assertSame(0, $transfer->amount);
         $this->assertSame('', $transfer->note);
         $this->assertSame(1, count($transfer->destinations));
-        $this->assertSame(TestHelper::MAINNET_ADDRESS_1, $transfer->destinations[0]->address);
+        $this->assertEquals(new Address(TestHelper::MAINNET_ADDRESS_1), $transfer->destinations[0]->address);
         $this->assertEquals(TransferType::OUTGOING, $transfer->type);
         $this->assertSame(0, $transfer->unlockTime);
         $this->assertSame(TestHelper::MAINNET_ADDRESS_1, $transfer->address);
@@ -159,11 +158,11 @@ final class TransferTest extends TestCase
 
     public function testRawTransactions(): void
     {
-        $recipient = new Recipient(TestHelper::MAINNET_ADDRESS_2, 1000000000000);
+        $recipient = new Destination(TestHelper::MAINNET_ADDRESS_2, new Amount(1100000000000));
         $result = self::$walletRpcClient->transfer($recipient, getTxKey: true, doNotRelay: true, getTxHex: true);
         $this->assertSame(64, strlen($result->txHash));
         $this->assertSame(64, strlen($result->txKey));
-        $this->assertSame(1000000000000, $result->amount);
+        $this->assertEquals(Amount::fromXmr('1.1'), $result->amount);
         $this->assertGreaterThan(0, $result->fee);
         $this->assertGreaterThan(0, strlen($result->txBlob));
         $this->assertSame(0, strlen($result->txMetadata));

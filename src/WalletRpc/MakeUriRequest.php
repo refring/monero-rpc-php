@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\Address;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -27,7 +28,7 @@ class MakeUriRequest implements ParameterInterface
      * (optional) the integer amount to receive, in **piconero**
      */
     #[Json(omit_empty: true)]
-    public ?int $amount;
+    public ?Amount $amount;
 
     /**
      * 16 characters hex encoded.
@@ -50,7 +51,7 @@ class MakeUriRequest implements ParameterInterface
 
     public static function create(
         Address $address,
-        ?int $amount = null,
+        ?Amount $amount = null,
         ?string $paymentId = null,
         ?string $recipientName = null,
         ?string $txDescription = null,

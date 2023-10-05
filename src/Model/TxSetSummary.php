@@ -15,9 +15,9 @@ class TxSetSummary
     public int $amountOut;
 
     /**
-     * @var Recipient[]
+     * @var Destination[]
      */
-    #[Json(type: Recipient::class)]
+    #[Json(type: Destination::class)]
     public array $recipients;
 
     #[Json('change_amount')]

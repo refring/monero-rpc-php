@@ -5,21 +5,22 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\KeyImageList;
+use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 /**
  * Send monero to a number of recipients.
  */
 class TransferResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Amount transferred for the transaction.
      */
     #[Json]
-    public int $amount;
+    public Amount $amount;
 
     /**
      * Key images of spent outputs.

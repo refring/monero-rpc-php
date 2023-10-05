@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -32,7 +33,7 @@ class GetReserveProofRequest implements ParameterInterface
      * Amount (in piconero) to prove the account has in reserve. (ignored if `all` is set to true)
      */
     #[Json]
-    public int $amount;
+    public Amount $amount;
 
     /**
      * (Optional) add a message to the signature to further authenticate the proving process. If a _message_ is added to `get_reserve_proof` (optional), this message will be required when using `check_reserve_proof`
@@ -40,7 +41,7 @@ class GetReserveProofRequest implements ParameterInterface
     #[Json(omit_empty: true)]
     public ?string $message;
 
-    public static function create(bool $all, int $accountIndex, int $amount, ?string $message = null): RpcRequest
+    public static function create(bool $all, int $accountIndex, Amount $amount, ?string $message = null): RpcRequest
     {
         $self = new self();
         $self->all = $all;

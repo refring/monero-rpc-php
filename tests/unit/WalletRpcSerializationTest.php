@@ -9,9 +9,10 @@ use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use RefRing\MoneroRpcPhp\Model\QueryKeyType;
 use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
-use RefRing\MoneroRpcPhp\Model\Recipient;
+use RefRing\MoneroRpcPhp\Model\Destination;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\Model\IncomingTransferType;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\ChangeWalletPasswordRequest;
@@ -234,8 +235,8 @@ class WalletRpcSerializationTest extends TestCase
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"transfer","params":{"destinations":[{"amount":100000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"},{"amount":200000000000,"address":"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv"}],"account_index":0,"subaddr_indices":[0],"priority":0,"ring_size":7,"get_tx_key":true}}';
         $destinations = [
-            new Recipient('7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o', 100000000000),
-            new Recipient('75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv', 200000000000)
+            new Destination(new Address('7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o'), new Amount('100000000000')),
+            new Destination('75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv', new Amount('200000000000'))
         ];
         $accountIndex = 0;
         $subaddrIndices = [0];
@@ -253,8 +254,8 @@ class WalletRpcSerializationTest extends TestCase
         $expected = '{"jsonrpc":"2.0","id":"0","method":"transfer_split","params":{"destinations":[{"amount":1000000000000,"address":"7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o"},{"amount":2000000000000,"address":"75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv"}],"account_index":0,"subaddr_indices":[0],"ring_size":7,"get_tx_keys":true,"priority":0}}';
 
         $destinations = [
-            new Recipient('7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o', 1000000000000),
-            new Recipient('75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv', 2000000000000)
+            new Destination('7BnERTpvL5MbCLtj5n9No7J5oE5hHiB3tVCK5cjSvCsYWD2WRJLFuWeKTLiXo5QJqt2ZwUaLy2Vh1Ad51K7FNgqcHgjW85o', new Amount(1000000000000)),
+            new Destination('75sNpRwUtekcJGejMuLSGA71QFuK1qcCVLZnYRTfQLgFU5nJ7xiAHtR5ihioS53KMe8pBhH61moraZHyLoG4G7fMER8xkNv', new Amount(2000000000000))
         ];
         $accountIndex = 0;
         $subaddrIndices = [0];
@@ -263,7 +264,9 @@ class WalletRpcSerializationTest extends TestCase
         $getTxKey = true;
 
         $request = TransferSplitRequest::create($destinations, $accountIndex, $subaddrIndices, $ringSize, null, null, $getTxKey, $priority);
-        $this->assertSame($expected, $request->toJson());
+
+        $json = $request->toJson();
+        $this->assertSame($expected, $json);
     }
 
 
@@ -491,7 +494,7 @@ class WalletRpcSerializationTest extends TestCase
     public function testGetReserveProof()
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"get_reserve_proof","params":{"all":false,"account_index":0,"amount":100000000000}}';
-        $request = GetReserveProofRequest::create(false, 0, 100000000000);
+        $request = GetReserveProofRequest::create(false, 0, new Amount(100000000000));
         $this->assertSame($expected, $request->toJson());
     }
 
@@ -586,13 +589,12 @@ class WalletRpcSerializationTest extends TestCase
 
     public function testMakeUri()
     {
-        $expected = '{"jsonrpc":"2.0","id":"0","method":"make_uri","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","amount":10,"payment_id":"420fa29b2d9a49f5","recipient_name":"el00ruobuob Stagenet wallet","tx_description":"Testing out the make_uri function."}}';
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"make_uri","params":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","amount":1000000000000,"payment_id":"420fa29b2d9a49f5","recipient_name":"el00ruobuob Stagenet wallet","tx_description":"Testing out the make_uri function."}}';
         $address = new Address('55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt');
-        $amount = 10;
         $paymentId = '420fa29b2d9a49f5';
         $txDescription = 'Testing out the make_uri function.';
         $recipientName = 'el00ruobuob Stagenet wallet';
-        $request = MakeUriRequest::create($address, $amount, $paymentId, $recipientName, $txDescription);
+        $request = MakeUriRequest::create($address, Amount::fromXmr('1'), $paymentId, $recipientName, $txDescription);
         $this->assertSame($expected, $request->toJson());
     }
 
