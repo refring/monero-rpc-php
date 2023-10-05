@@ -9,11 +9,12 @@ use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
 /**
- * Block header information for the most recent block is easily retrieved with this method. No inputs are needed.Alias: *getlastblockheader*.
+ * Block header information for the most recent block is easily retrieved with this method. No inputs are needed.
  */
-class GetLastBlockHeaderBaseResponse extends RpcAccessBaseResponse
+class GetLastBlockHeaderResponse
 {
     use JsonSerialize;
+    use DaemonRpcAccessResponseFields;
 
     /**
      * A structure containing block header information.
