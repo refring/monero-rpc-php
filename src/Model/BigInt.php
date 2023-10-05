@@ -21,7 +21,7 @@ class BigInt implements JsonDataSerializable
         return $this->getValue();
     }
 
-    public function getValue(): string
+    public function getValue(): string|int
     {
         return $this->value;
     }
