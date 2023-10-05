@@ -17,6 +17,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\OutPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetBootstrapDaemonResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateResponse;
@@ -182,6 +183,14 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"auto_uri":"","hash":"","path":"","update":false,"user_uri":"","version":"","status":"OK","untrusted":false}';
         $response = UpdateResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testSetBootstrapDaemon()
+    {
+        $jsonResponse = '{"status":"OK"}';
+        $response = SetBootstrapDaemonResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }

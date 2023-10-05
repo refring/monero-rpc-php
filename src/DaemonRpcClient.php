@@ -28,6 +28,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\SetBootstrapDaemonRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetBootstrapDaemonResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesRequest;
@@ -727,5 +729,24 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/update';
         return $this->handleRequest(UpdateRequest::create($command, $path), UpdateResponse::class);
+    }
+
+    /**
+     * Give immediate usability to wallets while syncing by proxying RPC requests.
+     *
+     * @param string $address host:port
+     * @param ?string $username
+     * @param ?string $password
+     * @param ?string $proxy
+     * @throws MoneroRpcException
+     */
+    public function setBootstrapDaemon(
+        string $address,
+        ?string $username = null,
+        ?string $password = null,
+        ?string $proxy = null,
+    ): SetBootstrapDaemonResponse
+    {
+        return $this->handleRequest(SetBootstrapDaemonRequest::create($address, $username, $password, $proxy), SetBootstrapDaemonResponse::class);
     }
 }
