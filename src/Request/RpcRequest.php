@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Request;
 
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 class RpcRequest
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     #[Json]
     private readonly string $jsonrpc;
@@ -29,13 +29,6 @@ class RpcRequest
         $this->jsonrpc = '2.0';
         $this->id = '0';
 
-        if ($parameters instanceof \Traversable) {
-            $this->parameters = $parameters;
-        } elseif ($parameters !== null && method_exists($parameters, 'toJson')) {
-            // @TODO deserialization is done twice now.. this could be done better
-            if($parameters->toJson() != '[]') {
-                $this->parameters = $parameters;
-            }
-        }
+        $this->parameters = $parameters;
     }
 }
