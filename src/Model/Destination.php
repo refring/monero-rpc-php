@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use Square\Pjson\JsonSerialize;
 
-class Recipient
+class Destination
 {
     use JsonSerialize;
 
@@ -15,16 +16,19 @@ class Recipient
      * Amount to send to each destination, in piconero.
      */
     #[Json]
-    public int $amount;
+    public Amount $amount;
 
     /**
      * The public address of the recipient.
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
-    public function __construct(string $address, int $amount)
+    public function __construct(Address|string $address, Amount $amount)
     {
+        if (is_string($address)) {
+            $address = new Address($address);
+        }
         $this->address = $address;
         $this->amount = $amount;
     }
