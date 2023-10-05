@@ -17,6 +17,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\OutPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SendRawTransactionRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\SetBootstrapDaemonRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
@@ -168,6 +169,17 @@ class DaemonOtherSerializationTest extends TestCase
 
         $expected = '{"command":"download","path":"path"}';
         $request = UpdateRequest::create(UpdateCommand::DOWNLOAD, 'path');
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testSetBootstrapDaemon()
+    {
+        $expected = '{"address":"http:\/\/getmonero.org:18081"}';
+        $request = SetBootstrapDaemonRequest::create('http://getmonero.org:18081');
+        $this->assertSame($expected, $request->toJson());
+
+        $expected = '{"address":"http:\/\/getmonero.org:18081","username":"foo","password":"bar"}';
+        $request = SetBootstrapDaemonRequest::create('http://getmonero.org:18081', 'foo', 'bar');
         $this->assertSame($expected, $request->toJson());
     }
 }
