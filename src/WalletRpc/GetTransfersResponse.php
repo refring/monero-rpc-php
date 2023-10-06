@@ -19,19 +19,19 @@ class GetTransfersResponse
     #[Json(type: Transfer::class)]
     public array $in = [];
 
-    /** @var Transfer[] (see above). */
+    /** @var Transfer[] */
     #[Json(type: Transfer::class)]
     public array $out = [];
 
-    /** @var Transfer[] (see above). */
+    /** @var Transfer[] */
     #[Json(type: Transfer::class)]
     public array $pending = [];
 
-    /** @var Transfer[] (see above). */
+    /** @var Transfer[] */
     #[Json(type: Transfer::class)]
     public array $failed = [];
 
-    /** @var Transfer[] (see above). */
+    /** @var Transfer[] */
     #[Json(type: Transfer::class)]
     public array $pool = [];
 }

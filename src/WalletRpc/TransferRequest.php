@@ -23,19 +23,21 @@ class TransferRequest implements ParameterInterface
     public array $destinations;
 
     /**
-     * (Optional) Transfer from this account index. (Defaults to 0)
+     * Transfer from this account index.
+     * When omitted the default value is 0
      */
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
     /**
-     * @var int[] (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
+     * @var ?int[] Transfer from this set of subaddresses.
+     * When omitted the default value is empty - all indices
      */
     #[Json('subaddr_indices', omit_empty: true)]
     public ?array $subaddrIndices;
 
     /**
-     * (Optional) Set a priority for the transaction. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
+     * Set a priority for the transaction. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
      */
     #[Json(omit_empty: true)]
     public ?TransferPriority $priority;
@@ -65,26 +67,25 @@ class TransferRequest implements ParameterInterface
     public ?bool $getTxKey;
 
     /**
-     * If true, the newly created transaction will not be relayed to the monero network. (
+     * If true, the newly created transaction will not be relayed to the monero network.
      * When omitted the default value is false
      */
     #[Json('do_not_relay', omit_empty: true)]
     public ?bool $doNotRelay;
 
     /**
-     * Return the transaction as hex string after sending (
+     * Return the transaction as hex string after sending
      * When omitted the default value is false
      */
     #[Json('get_tx_hex', omit_empty: true)]
     public ?bool $getTxHex;
 
     /**
-     * Return the metadata needed to relay the transaction. (
+     * Return the metadata needed to relay the transaction.
      * When omitted the default value is false
      */
     #[Json('get_tx_metadata', omit_empty: true)]
     public ?bool $getTxMetadata;
-
 
     /**
      * @param Destination[] $destinations
@@ -102,7 +103,8 @@ class TransferRequest implements ParameterInterface
         ?bool $doNotRelay = null,
         ?bool $getTxHex = null,
         ?bool $getTxMetadata = null,
-    ): RpcRequest {
+    ): RpcRequest
+    {
         $self = new self();
         $self->destinations = $destinations;
         $self->accountIndex = $accountIndex;

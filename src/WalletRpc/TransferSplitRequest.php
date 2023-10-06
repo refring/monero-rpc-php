@@ -19,65 +19,69 @@ class TransferSplitRequest implements ParameterInterface
     use JsonSerialize;
 
     /** @var Destination[] */
-    #[Json]
+    #[Json(type: Destination::class)]
     public array $destinations;
 
     /**
-     * (Optional) Transfer from this account index. (Defaults to 0)
+     * Transfer from this account index.
+     * When omitted the default value is 0
      */
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
     /**
-     * @var ?int[] (Optional) Transfer from this set of subaddresses. (Defaults to empty - all indices)
+     * @var ?int[] Transfer from this set of subaddresses.
+     * When omitted the default value is empty - all indices
      */
     #[Json('subaddr_indices', omit_empty: true)]
     public ?array $subaddrIndices;
 
     /**
-     * (Optional) Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
+     * Sets ringsize to n (mixin + 1). (Unless dealing with pre rct outputs, this field is ignored on mainnet).
      */
     #[Json('ring_size', omit_empty: true)]
     public ?int $ringSize;
 
     /**
-     * (Optional) Number of blocks before the monero can be spent (0 to not add a lock).
+     * Number of blocks before the monero can be spent (0 to not add a lock).
      */
     #[Json('unlock_time', omit_empty: true)]
     public ?int $unlockTime;
 
     /**
-     * (Optional, defaults to a random ID) 16 characters hex encoded.
+     * 16 characters hex encoded.
+     * When omitted the default value is a random ID
      */
     #[Json('payment_id', omit_empty: true)]
     public ?string $paymentId;
 
     /**
-     * (Optional) Return the transaction keys after sending.
+     * Return the transaction keys after sending.
      */
     #[Json('get_tx_keys', omit_empty: true)]
     public ?bool $getTxKeys;
 
     /**
-     * (Optional) Set a priority for the transactions. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
+     * Set a priority for the transactions. Accepted Values are: 0-3 for: default, unimportant, normal, elevated, priority.
      */
     #[Json(omit_empty: true)]
     public ?TransferPriority $priority;
 
     /**
-     * (Optional) If true, the newly created transaction will not be relayed to the monero network. (Defaults to false)
+     * If true, the newly created transaction will not be relayed to the monero network.
+     * When omitted the default value is false
      */
     #[Json('do_not_relay', omit_empty: true)]
     public ?bool $doNotRelay;
 
     /**
-     * (Optional) Return the transactions as hex string after sending
+     * Return the transactions as hex string after sending
      */
     #[Json('get_tx_hex', omit_empty: true)]
     public ?bool $getTxHex;
 
     /**
-     * (Optional) Return list of transaction metadata needed to relay the transfer later.
+     * Return list of transaction metadata needed to relay the transfer later.
      */
     #[Json('get_tx_metadata', omit_empty: true)]
     public ?bool $getTxMetadata;
@@ -99,7 +103,8 @@ class TransferSplitRequest implements ParameterInterface
         ?bool $doNotRelay = null,
         ?bool $getTxHex = null,
         ?bool $getTxMetadata = null,
-    ): RpcRequest {
+    ): RpcRequest
+    {
         $self = new self();
         $self->destinations = $destinations;
         $self->accountIndex = $accountIndex;

@@ -17,71 +17,78 @@ class GetTransfersRequest implements ParameterInterface
     use JsonSerialize;
 
     /**
-     * (defaults to false) Include incoming transfers.
+     * When omitted the default value is false
      */
-    #[Json]
-    public bool $in;
+    #[Json(omit_empty: true)]
+    public ?bool $in;
 
     /**
-     * (defaults to false) Include outgoing transfers.
+     * Include outgoing transfers.
+     * When omitted the default value is false
      */
-    #[Json]
-    public bool $out;
+    #[Json(omit_empty: true)]
+    public ?bool $out;
 
     /**
-     * (defaults to false) Include pending transfers.
+     * Include pending transfers.
+     * When omitted the default value is false
      */
-    #[Json]
-    public bool $pending;
+    #[Json(omit_empty: true)]
+    public ?bool $pending;
 
     /**
-     * (defaults to false) Include failed transfers.
+     * Include failed transfers.
+     * When omitted the default value is false
      */
-    #[Json]
-    public bool $failed;
+    #[Json(omit_empty: true)]
+    public ?bool $failed;
 
     /**
-     * (defaults to false) Include transfers from the daemon's transaction pool.
+     * Include transfers from the daemon's transaction pool.
+     * When omitted the default value is false
      */
-    #[Json]
-    public bool $pool;
+    #[Json(omit_empty: true)]
+    public ?bool $pool;
 
     /**
-     * (Optional) Filter transfers by block height.
+     * Filter transfers by block height.
      */
     #[Json('filter_by_height', omit_empty: true)]
     public ?bool $filterByHeight;
 
     /**
-     * (Optional) Minimum block height to scan for transfers, if filtering by height is enabled.
+     * Minimum block height to scan for transfers, if filtering by height is enabled.
      */
     #[Json('min_height', omit_empty: true)]
     public ?int $minHeight;
 
     /**
-     * (Optional) Maximum block height to scan for transfers, if filtering by height is enabled (defaults to max block height).
+     * Maximum block height to scan for transfers, if filtering by height is enabled.
+     * When omitted the default value is max block height
      */
     #[Json('max_height', omit_empty: true)]
     public ?int $maxHeight;
 
     /**
-     * (Optional) Index of the account to query for transfers. (defaults to 0)
+     * Index of the account to query for transfers.
+     * When omitted the default value is 0
      */
     #[Json('account_index', omit_empty: true)]
     public ?int $accountIndex;
 
     /**
-     * @var int[] (Optional) List of subaddress indices to query for transfers. (Defaults to empty - all indices).
+     * @var ?int[] List of subaddress indices to query for transfers. .
+     * When omitted the default value is []
      */
     #[Json('subaddr_indices', omit_empty: true)]
     public ?array $subaddrIndices;
 
     /**
-     * (Optional) (Defaults to false).
+     * .
+     * When omitted the default value is false
      */
     #[Json('all_accounts', omit_empty: true)]
     public ?bool $allAccounts;
-
 
     /**
      * @param ?int[] $subaddrIndices
@@ -98,7 +105,8 @@ class GetTransfersRequest implements ParameterInterface
         ?int $accountIndex = null,
         ?array $subaddrIndices = [],
         ?bool $allAccounts = null,
-    ): RpcRequest {
+    ): RpcRequest
+    {
         $self = new self();
         $self->in = $in;
         $self->out = $out;
