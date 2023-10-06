@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Sign a transaction created on a read-only wallet (in cold-signing process)
  */
 class SignTransferResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Set of signed tx to be used for submitting transfer.

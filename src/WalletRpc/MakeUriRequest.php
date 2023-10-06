@@ -9,14 +9,14 @@ use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Create a payment URI using the official URI spec.
  */
 class MakeUriRequest implements ParameterInterface
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Wallet address

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Submit a previously signed transaction on a read-only wallet (in cold-signing process).
  */
 class SubmitTransferResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * @var string[] The tx hashes of every transaction.

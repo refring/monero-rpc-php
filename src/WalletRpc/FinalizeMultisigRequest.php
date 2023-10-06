@@ -7,14 +7,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Turn this wallet into a multisig wallet, extra step for N-1/N wallets.
  */
 class FinalizeMultisigRequest implements ParameterInterface
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * @var string[] List of multisig string from peers.

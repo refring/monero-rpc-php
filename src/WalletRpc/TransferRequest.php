@@ -8,18 +8,19 @@ use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Model\Destination;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use Square\Pjson\ToJsonData;
 
 /**
  * Send monero to a number of recipients.
  */
-class TransferRequest implements ParameterInterface
+class TransferRequest implements ParameterInterface, ToJsonData
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /** @var Destination[] */
-    #[Json]
+    #[Json(type: Destination::class)]
     public array $destinations;
 
     /**
@@ -103,8 +104,7 @@ class TransferRequest implements ParameterInterface
         ?bool $doNotRelay = null,
         ?bool $getTxHex = null,
         ?bool $getTxMetadata = null,
-    ): RpcRequest
-    {
+    ): RpcRequest {
         $self = new self();
         $self->destinations = $destinations;
         $self->accountIndex = $accountIndex;

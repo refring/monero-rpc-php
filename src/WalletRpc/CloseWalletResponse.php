@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Close the currently opened wallet, after trying to save it.
  */
 class CloseWalletResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 }

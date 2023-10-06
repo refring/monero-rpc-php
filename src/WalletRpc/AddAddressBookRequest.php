@@ -8,14 +8,14 @@ use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Add an entry to the address book.
  */
 class AddAddressBookRequest implements ParameterInterface
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     #[Json]
     public Address $address;

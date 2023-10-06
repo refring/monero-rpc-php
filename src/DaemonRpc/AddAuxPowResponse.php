@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Model\AuxPow;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Easily enable merge mining with Monero without requiring software that manually alters the extra field in the coinbase tx to include the merkle root of the aux blocks.
  */
 class AddAuxPowResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     #[Json('blocktemplate_blob')]

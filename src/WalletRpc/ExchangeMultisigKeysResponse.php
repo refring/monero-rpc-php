@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Performs extra multisig keys exchange rounds. Needed for arbitrary M/N multisig wallets
  */
 class ExchangeMultisigKeysResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     #[Json]
     public Address $address;

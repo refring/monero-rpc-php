@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 /**
  * Get the node's current height.
  */
 class GetHeightResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     /**

@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Model\ConnectionInfo;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Retrieve information about incoming and outgoing connections to your node.
  */
 class GetConnectionsResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     /** @var ConnectionInfo[] */

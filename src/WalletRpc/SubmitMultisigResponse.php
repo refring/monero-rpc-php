@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Submit a signed multisig transaction.
  */
 class SubmitMultisigResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * @var string[] List of transaction Hash.

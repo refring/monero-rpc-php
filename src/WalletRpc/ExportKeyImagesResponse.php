@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\SignedKeyImage;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Export a signed set of key images.
  */
 class ExportKeyImagesResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     #[Json]
     public int $offset;

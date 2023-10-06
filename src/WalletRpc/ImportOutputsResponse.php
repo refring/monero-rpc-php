@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Import outputs in hex format.
  */
 class ImportOutputsResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * number of outputs imported.

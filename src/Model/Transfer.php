@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class Transfer
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Public address of the transfer.

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Make an integrated address from the wallet address and a payment id.
  */
 class MakeIntegratedAddressResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * string

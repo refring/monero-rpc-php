@@ -7,14 +7,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 use RefRing\MoneroRpcPhp\Enum\UpdateCommand;
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Update daemon.
  */
 class UpdateRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * command to use, either `check` or `download`

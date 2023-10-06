@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set the daemon log level.By default, log level is set to `0`.
  */
 class SetLogLevelRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * daemon log level to set from `0` (less verbose) to `4` (most verbose)

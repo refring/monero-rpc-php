@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Generate a signature to prove of an available amount in a wallet.
  */
 class GetReserveProofResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * reserve signature.

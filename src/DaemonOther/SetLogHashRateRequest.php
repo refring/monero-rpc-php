@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set the log hash rate display mode.
  */
 class SetLogHashRateRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * States if hash rate logs should be visible (`true`) or hidden (`false`)

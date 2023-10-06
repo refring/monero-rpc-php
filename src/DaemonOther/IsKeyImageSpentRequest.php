@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Check if outputs have been spent using the key image associated with the output.
  */
 class IsKeyImageSpentRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * @var string[] List of key image hex strings to check.

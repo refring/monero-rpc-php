@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set the daemon log categories.Categories are represented as a comma separated list of `<Category>:<level>`
  */
 class SetLogCategoriesResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     /**

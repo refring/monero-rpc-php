@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Restores a wallet from a given wallet address, view key, and optional spend key.
  */
 class GenerateFromKeysResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * The wallet's address.

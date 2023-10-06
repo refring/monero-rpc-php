@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Model\Histogram;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Get a histogram of output amounts. For all amounts (possibly filtered by parameters), gives the number of outputs on the chain for that amount.RingCT outputs counts as 0 amount.
  */
 class GetOutputHistogramResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;
 
     /** @var Histogram[] */

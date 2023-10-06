@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Retrieve the standard address and payment id corresponding to an integrated address.
  */
 class SplitIntegratedAddressResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * States if the address is a subaddress

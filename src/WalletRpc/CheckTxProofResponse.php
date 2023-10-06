@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Prove a transaction by checking its signature.
  */
 class CheckTxProofResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Number of block mined after the one with the transaction.

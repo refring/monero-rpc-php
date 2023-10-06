@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Create a new account with an optional label.
  */
 class CreateAccountResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Index of the new account.

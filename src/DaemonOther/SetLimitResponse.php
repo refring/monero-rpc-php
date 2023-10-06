@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set daemon bandwidth limits.
  */
 class SetLimitResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     /**

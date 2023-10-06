@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set daemon bandwidth limits.
  */
 class SetLimitRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Download limit in kBytes per second (-1 reset to default, 0 don't change the current limit)

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Check if a wallet is a multisig one.
  */
 class IsMultisigResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * States if the wallet is multisig

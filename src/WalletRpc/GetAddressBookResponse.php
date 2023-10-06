@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\AddressBookEntry;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Retrieves entries from the address book.
  */
 class GetAddressBookResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /** @var AddressBookEntry[] */
     #[Json(type: AddressBookEntry::class)]

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Get string notes for transactions.
  */
 class GetTxNotesResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * @var string[] notes for the transactions

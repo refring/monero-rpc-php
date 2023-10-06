@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class PruneBlockchainResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     #[Json]

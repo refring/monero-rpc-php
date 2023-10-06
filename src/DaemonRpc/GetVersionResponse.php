@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Model\HardforkInformation;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Give the node current version
  */
 class GetVersionResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     /**

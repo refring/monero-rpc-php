@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Check a transaction in the blockchain with its secret key.
  */
 class CheckTxKeyResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Number of block mined after the one with the transaction.

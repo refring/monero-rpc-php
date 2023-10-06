@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Save the blockchain. The blockchain does not need saving and is always saved when modified,
@@ -13,6 +13,6 @@ use Square\Pjson\JsonSerialize;
  */
 class SaveBlockchainResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 }

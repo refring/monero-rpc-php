@@ -6,7 +6,7 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set the daemon log categories.Categories are represented as a comma separated list of `<Category>:<level>`
@@ -14,7 +14,7 @@ use Square\Pjson\JsonSerialize;
  */
 class SetLogCategoriesRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Daemon log categories to enable

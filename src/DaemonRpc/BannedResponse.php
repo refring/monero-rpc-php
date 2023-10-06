@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Check if an IP address is banned and for how long.
  */
 class BannedResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     #[Json]
     public bool $banned;

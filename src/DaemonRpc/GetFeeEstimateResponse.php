@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Gives an estimation on fees per byte.
  */
 class GetFeeEstimateResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;
 
     /**

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class Node
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Host to ban (IP in A.B.C.D form - will support I2P address in the future).

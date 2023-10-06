@@ -6,11 +6,11 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Model\Distribution;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class GetOutputDistributionResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;
 
     /** @var Distribution[] */

@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\SubAddressInformation;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Return the wallet's balance.Alias: *getbalance*.
  */
 class GetBalanceResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * The total balance of the current monero-wallet-rpc in session.

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Get transaction secret key from transaction id.
  */
 class GetTxKeyResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Amount of the transaction.

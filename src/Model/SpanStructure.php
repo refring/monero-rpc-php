@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class SpanStructure
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     public function __construct()
     {

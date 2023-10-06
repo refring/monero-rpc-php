@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use RefRing\MoneroRpcPhp\Model\SubAddressAccountInformation;
 
 /**
@@ -13,7 +13,7 @@ use RefRing\MoneroRpcPhp\Model\SubAddressAccountInformation;
  */
 class GetAccountsResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * @var SubAddressAccountInformation[] subaddress account information:

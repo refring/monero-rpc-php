@@ -6,11 +6,11 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class Destination
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Amount to send to each destination, in piconero.

@@ -7,14 +7,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Returns a list of transfers.<p style="color:red;"><b>WARNING</b> Verify that the transfer has a sane <code>unlock_time</code> otherwise the funds might be inaccessible.</p>
  */
 class GetTransfersRequest implements ParameterInterface
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * When omitted the default value is false
@@ -105,8 +105,7 @@ class GetTransfersRequest implements ParameterInterface
         ?int $accountIndex = null,
         ?array $subaddrIndices = [],
         ?bool $allAccounts = null,
-    ): RpcRequest
-    {
+    ): RpcRequest {
         $self = new self();
         $self->in = $in;
         $self->out = $out;

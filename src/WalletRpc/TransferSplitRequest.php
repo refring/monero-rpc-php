@@ -8,15 +8,16 @@ use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Model\Destination;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Same as transfer, but can split into more than one tx if necessary.
  */
-class TransferSplitRequest implements ParameterInterface
+class TransferSplitRequest implements ParameterInterface, JsonDataSerializable
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /** @var Destination[] */
     #[Json(type: Destination::class)]
@@ -103,8 +104,7 @@ class TransferSplitRequest implements ParameterInterface
         ?bool $doNotRelay = null,
         ?bool $getTxHex = null,
         ?bool $getTxMetadata = null,
-    ): RpcRequest
-    {
+    ): RpcRequest {
         $self = new self();
         $self->destinations = $destinations;
         $self->accountIndex = $accountIndex;

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Add an entry to the address book.
  */
 class AddAddressBookResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * The index of the address book entry.

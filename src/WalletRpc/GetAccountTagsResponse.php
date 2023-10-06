@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\AccountTagInformation;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Get a list of user-defined account tags.
  */
 class GetAccountTagsResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /** @var AccountTagInformation[] */
     #[Json('account_tags', type:AccountTagInformation::class)]

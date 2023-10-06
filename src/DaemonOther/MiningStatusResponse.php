@@ -7,14 +7,14 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Get the mining status of the daemon.
  */
 class MiningStatusResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 
     /**

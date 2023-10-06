@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Enum\NetType;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Analyzes a string to determine whether it is a valid monero wallet address and returns the result and the address specifications.
  */
 class ValidateAddressResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * True if the given address is an [integrated address]({{ site.baseurl }}/resources/moneropedia/address.html).

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Delete an entry from the address book.
  */
 class DeleteAddressBookResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 }

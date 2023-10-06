@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 trait DaemonStandardResponseFields
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Block submit status.

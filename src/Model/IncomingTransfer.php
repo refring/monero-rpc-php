@@ -6,11 +6,11 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class IncomingTransfer
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Amount of this transfer.

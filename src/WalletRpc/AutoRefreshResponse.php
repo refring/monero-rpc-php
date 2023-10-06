@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set whether and how often to automatically refresh the current wallet.
  */
 class AutoRefreshResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 }

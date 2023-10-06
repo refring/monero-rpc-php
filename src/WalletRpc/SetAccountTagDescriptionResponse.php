@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Set description for an account tag.
  */
 class SetAccountTagDescriptionResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 }

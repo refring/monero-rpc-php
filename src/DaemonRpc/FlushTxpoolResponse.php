@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Flush tx ids from transaction pool
  */
 class FlushTxpoolResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
     use DaemonStandardResponseFields;
 }

@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Create a new address for an account. Optionally, label the new address.
  */
 class CreateAddressResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Newly created address. Base58 representation of the public keys.

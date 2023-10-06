@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Get attribute value by name.
  */
 class GetAttributeResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * attribute value

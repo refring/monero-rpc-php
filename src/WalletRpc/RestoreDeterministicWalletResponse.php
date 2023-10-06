@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Create and open a wallet on the RPC server from an existing mnemonic phrase and close the currently open wallet.
  */
 class RestoreDeterministicWalletResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * 95-character hexadecimal address of the restored wallet as a string.

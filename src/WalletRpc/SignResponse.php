@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Sign a string.
  */
 class SignResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * Signature generated against the "data" and the account public address.

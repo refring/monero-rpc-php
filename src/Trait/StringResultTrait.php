@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Trait;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 trait StringResultTrait
 {
-    use JsonSerialize{
+    use JsonSerializeBigInt{
         fromJsonData as protected traitFromJsonData;
     }
 

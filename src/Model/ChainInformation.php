@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 class ChainInformation
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * the block hash of the first diverging block of this alternative chain.

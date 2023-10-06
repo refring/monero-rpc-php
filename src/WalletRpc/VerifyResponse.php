@@ -6,14 +6,14 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Enum\SignatureType;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Verify a signature on a string.
  */
 class VerifyResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     #[Json]
     public bool $good;

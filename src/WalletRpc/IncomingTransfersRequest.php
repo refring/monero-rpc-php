@@ -8,14 +8,14 @@ use RefRing\MoneroRpcPhp\Model\IncomingTransferType;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Return a list of incoming transfers to the wallet.
  */
 class IncomingTransfersRequest implements ParameterInterface
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * "all": all the transfers, "available": only transfers which are not yet spent, OR "unavailable": only transfers which are already spent.

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
-use Square\Pjson\JsonSerialize;
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
 /**
  * Label an account.
  */
 class LabelAccountResponse
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 }
