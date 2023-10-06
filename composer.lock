@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb56655c8932909e1d602dcf235a8917",
+    "content-hash": "e9aac229bdd20fb4df8b33f3c48a1a19",
     "packages": [
         {
             "name": "php-http/discovery",
@@ -241,16 +241,16 @@
         },
         {
             "name": "square/pjson",
-            "version": "dev-backend-enum-arrays",
+            "version": "dev-allow-nested-trait",
             "source": {
                 "type": "git",
                 "url": "https://github.com/refactor-ring/pjson.git",
-                "reference": "f5468000da06d7c416d3825c0e42424610e61f74"
+                "reference": "829aba08e5ce424e0a414e6a2cee300ddab32779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/refactor-ring/pjson/zipball/f5468000da06d7c416d3825c0e42424610e61f74",
-                "reference": "f5468000da06d7c416d3825c0e42424610e61f74",
+                "url": "https://api.github.com/repos/refactor-ring/pjson/zipball/829aba08e5ce424e0a414e6a2cee300ddab32779",
+                "reference": "829aba08e5ce424e0a414e6a2cee300ddab32779",
                 "shasum": ""
             },
             "require": {
@@ -281,9 +281,9 @@
             ],
             "description": "Library for JSON <=> PHP model serialization / deserialization. Deserialize JSON directly into your object model PHP classes.",
             "support": {
-                "source": "https://github.com/refactor-ring/pjson/tree/backend-enum-arrays"
+                "source": "https://github.com/refactor-ring/pjson/tree/allow-nested-trait"
             },
-            "time": "2023-10-04T07:07:23+00:00"
+            "time": "2023-10-06T16:46:31+00:00"
         }
     ],
     "packages-dev": [
