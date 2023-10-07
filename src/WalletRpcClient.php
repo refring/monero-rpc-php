@@ -946,11 +946,11 @@ class WalletRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      */
     public function getTransfers(
-        bool $in = false,
-        bool $out = false,
-        bool $pending = false,
-        bool $failed = false,
-        bool $pool = false,
+        bool $in = true,
+        bool $out = true,
+        bool $pending = true,
+        bool $failed = true,
+        bool $pool = true,
         ?bool $filterByHeight = null,
         ?int $minHeight = null,
         ?int $maxHeight = null,
