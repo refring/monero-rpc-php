@@ -103,10 +103,10 @@ final class TransferTest extends TestCase
         $txWeight = $transferResponse->weight;
 
         $result = self::$daemonRpcClient->getFeeEstimate(10);
-        $this->assertGreaterThan(0, $result->fee);
+        $this->assertGreaterThan(0, (int) $result->fee->getAmount());
         $this->assertGreaterThan(0, $result->quantizationMask);
 
-        $expectedFee = ($result->fee * 1 * $txWeight + $result->quantizationMask - 1);
+        $expectedFee = ($result->fee->getAmount() * 1 * $txWeight + $result->quantizationMask - 1);
         $this->assertLessThan(0.01, abs(1 - $fee / $expectedFee));
     }
 
@@ -145,7 +145,7 @@ final class TransferTest extends TestCase
         $this->assertSame($transferResponse->txHash, $transfer->txid);
         $this->assertSame('0000000000000000', $transfer->paymentId);
         $this->assertGreaterThan(0, $transfer->timestamp);
-        $this->assertSame(0, $transfer->amount);
+        $this->assertSame(0, (int) $transfer->amount->getAmount());
         $this->assertSame('', $transfer->note);
         $this->assertSame(1, count($transfer->destinations));
         $this->assertEquals(new Address(TestHelper::MAINNET_ADDRESS_1), $transfer->destinations[0]->address);

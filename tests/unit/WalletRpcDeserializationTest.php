@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
+use RefRing\MoneroRpcPhp\Model\Address;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\ChangeWalletPasswordResponse;
@@ -491,10 +493,9 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testGetTransfers()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"in":[{"address":"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp","amount":200000000000,"amounts":[200000000000],"confirmations":1,"double_spend_seen":false,"fee":21650200000,"height":153624,"locked":false,"note":"","payment_id":"0000000000000000","subaddr_index":{"major":1,"minor":0},"subaddr_indices":[{"major":1,"minor":0}],"suggested_confirmations_threshold":1,"timestamp":1535918400,"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a","type":"in","unlock_time":0}],"out":[],"pending":[],"failed":[],"pool":[]}}';
-        $response = GetTransfersResponse::fromJsonString($jsonResponse, "result");
-        $responseFlat = $this->comparableJson($jsonResponse);
-        $this->assertSame($responseFlat, $response->toJson());
+        $jsonResponse = '{"in":[{"address":"77Vx9cs1VPicFndSVgYUvTdLCJEZw9h81hXLMYsjBCXSJfUehLa9TDW3Ffh45SQa7xb6dUs18mpNxfUhQGqfwXPSMrvKhVp","amount":200000000000,"amounts":[19223372036854775807,2,3],"confirmations":1,"double_spend_seen":false,"fee":21650200000,"height":153624,"locked":false,"note":"","payment_id":"0000000000000000","subaddr_index":{"major":1,"minor":0},"subaddr_indices":[{"major":1,"minor":0}],"suggested_confirmations_threshold":1,"timestamp":1535918400,"txid":"c36258a276018c3a4bc1f195a7fb530f50cd63a4fa765fb7c6f7f49fc051762a","type":"in","unlock_time":0}],"out":[],"pending":[],"failed":[],"pool":[]}';
+        $response = GetTransfersResponse::fromJsonString($jsonResponse, flags: JSON_BIGINT_AS_STRING);
+        $this->assertSame($jsonResponse, $response->toJson());
     }
 
 
@@ -583,6 +584,8 @@ class WalletRpcDeserializationTest extends TestCase
     {
         $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"uri":{"address":"55LTR8KniP4LQGJSPtbYDacR7dz8RBFnsfAKMaMuwUNYX6aQbBcovzDPyrQF9KXF9tVU6Xk3K8no1BywnJX6GvZX8yJsXvt","amount":10,"payment_id":"420fa29b2d9a49f5","recipient_name":"el00ruobuob Stagenet wallet","tx_description":"Testing out the make_uri function."}}}';
         $response = ParseUriResponse::fromJsonString($jsonResponse, "result");
+        $this->assertInstanceOf(Address::class, $response->uri->address);
+        $this->assertInstanceOf(Amount::class, $response->uri->amount);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }

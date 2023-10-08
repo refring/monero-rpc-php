@@ -18,6 +18,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 use RefRing\MoneroRpcPhp\Model\BlockHeader;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class NonEmptyBlockchainTest extends TestCase
@@ -227,7 +228,7 @@ final class NonEmptyBlockchainTest extends TestCase
             false,
             '',
             $secondLastBlockHash,
-            35183734559807,
+            new Amount(35183734559807),
             0,
             '0xb',
             '0x1'

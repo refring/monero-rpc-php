@@ -458,8 +458,8 @@ class BasicWalletTest extends TestCase
     {
         $uri = 'monero:43ZdL1Rm65iTPMCwxaHWPWHS39F3rVjM5a3EN78fSYc3VwCpZ7XTreJg98FU5EmMJi1XE6bjxXH9EMjsF7KBias54xAJXRm?tx_amount=0.000000000001&recipient_name=Barolo&tx_description=Nebbiolo';
         $result = self::$rpcClient->parseUri($uri);
-        $this->assertSame(TestHelper::MAINNET_ADDRESS_1, $result->uri->address);
-        $this->assertSame(1, $result->uri->amount);
+        $this->assertSame(TestHelper::MAINNET_ADDRESS_1, (string) $result->uri->address);
+        $this->assertSame(1, (int) $result->uri->amount->getAmount());
         $this->assertSame('Barolo', $result->uri->recipientName);
         $this->assertSame('Nebbiolo', $result->uri->txDescription);
     }

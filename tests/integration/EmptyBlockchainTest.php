@@ -18,6 +18,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Model\BlockHeader;
 use RefRing\MoneroRpcPhp\DaemonRpcClient;
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class EmptyBlockchainTest extends TestCase
@@ -114,7 +115,7 @@ final class EmptyBlockchainTest extends TestCase
             false,
             '',
             '0000000000000000000000000000000000000000000000000000000000000000',
-            17592186044415,
+            new Amount(17592186044415),
             0,
             '0x1',
             '0x1'
