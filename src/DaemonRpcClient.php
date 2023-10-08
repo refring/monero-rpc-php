@@ -14,6 +14,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
@@ -746,6 +748,18 @@ class DaemonRpcClient extends JsonRpcClient
         ?string $password = null,
         ?string $proxy = null,
     ): SetBootstrapDaemonResponse {
+        $this->endPointPath = '/set_bootstrap_daemon';
         return $this->handleRequest(SetBootstrapDaemonRequest::create($address, $username, $password, $proxy), SetBootstrapDaemonResponse::class);
+    }
+
+    /**
+     * Get the transaction pool statistics.
+     *
+     * @throws MoneroRpcException
+     */
+    public function getTransactionPoolStats(): GetTransactionPoolStatsResponse
+    {
+        $this->endPointPath = '/get_transaction_pool_stats';
+        return $this->handleRequest(GetTransactionPoolStatsRequest::create(), GetTransactionPoolStatsResponse::class);
     }
 }

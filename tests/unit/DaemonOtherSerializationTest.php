@@ -10,6 +10,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
@@ -180,6 +181,13 @@ class DaemonOtherSerializationTest extends TestCase
 
         $expected = '{"address":"http:\/\/getmonero.org:18081","username":"foo","password":"bar"}';
         $request = SetBootstrapDaemonRequest::create('http://getmonero.org:18081', 'foo', 'bar');
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetTransactionPoolStats()
+    {
+        $expected = '';
+        $request = GetTransactionPoolStatsRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }

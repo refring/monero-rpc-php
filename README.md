@@ -110,7 +110,6 @@ After that, run `composer test:integration` to run the integration tests.
 - [ ] Implement remaining 'Other Daemon RPC Calls'
     - [ ] /get_transactions
     - [ ] /get_transaction_pool
-    - [ ] /get_transaction_pool_stats
     - [ ] /stop_daemon
     - [ ] /get_outs
 

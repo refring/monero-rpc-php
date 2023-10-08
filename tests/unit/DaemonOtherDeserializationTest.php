@@ -10,6 +10,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
@@ -191,6 +192,14 @@ class DaemonOtherDeserializationTest extends TestCase
         $jsonResponse = '{"status":"OK"}';
         $response = SetBootstrapDaemonResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testGetTransactionPoolStats()
+    {
+        $jsonResponse = '{"pool_stats":{"bytes_max":4481,"bytes_med":2215,"bytes_min":1530,"bytes_total":61659,"fee_total":1658860000,"histo":[{"txs":5,"bytes":12670},{"txs":0,"bytes":0},{"txs":1,"bytes":1534},{"txs":1,"bytes":1534},{"txs":3,"bytes":5289}],"histo_98pc":0,"num_10m":0,"num_double_spends":0,"num_failing":0,"num_not_relayed":0,"oldest":1696764439,"txs_total":28},"credits":0,"top_hash":"","status":"OK","untrusted":false}';
+        $response = GetTransactionPoolStatsResponse::fromJsonString($jsonResponse);
+        $responseFlat = json_encode(json_decode($jsonResponse));
         $this->assertSame($responseFlat, $response->toJson());
     }
 
