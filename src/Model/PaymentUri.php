@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
@@ -15,13 +16,13 @@ class PaymentUri
      * Wallet address
      */
     #[Json]
-    public string $address;
+    public Address $address;
 
     /**
      * Integer amount to receive, in **piconero** (0 if not provided)
      */
     #[Json]
-    public int $amount;
+    public Amount $amount;
 
     /**
      * (Optional, defaults to a random ID) 16 characters hex encoded.
@@ -42,12 +43,16 @@ class PaymentUri
     public string $txDescription;
 
     public function __construct(
-        string $address,
-        int $amount,
+        Address|string $address,
+        Amount $amount,
         string $recipientName,
         string $txDescription,
         ?string $paymentId = null,
     ) {
+        if (is_string($address)) {
+            $address = new Address($address);
+        }
+
         $this->address = $address;
         $this->amount = $amount;
         $this->paymentId = $paymentId;

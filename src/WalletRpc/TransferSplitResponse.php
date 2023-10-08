@@ -18,15 +18,15 @@ class TransferSplitResponse
     use JsonSerializeBigInt;
 
     /**
-     * @var int[] The amount transferred for every transaction.
+     * @var Amount[] The amount transferred for every transaction.
      */
     #[Json('amount_list', type: Amount::class)]
     public array $amountList;
 
     /**
-     * @var int[] The amount of fees paid for every transaction.
+     * @var Amount[] The amount of fees paid for every transaction.
      */
-    #[Json('fee_list')]
+    #[Json('fee_list', type: Amount::class)]
     public array $feeList;
 
     /**

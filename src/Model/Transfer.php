@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
@@ -21,12 +22,12 @@ class Transfer
      * Amount transferred.
      */
     #[Json]
-    public int $amount;
+    public Amount $amount;
 
     /**
-     * @var int[] If multiple amounts where recived they are individually listed.
+     * @var Amount[] If multiple amounts where received they are individually listed.
      */
-    #[Json]
+    #[Json(type: Amount::class)]
     public array $amounts;
 
     /**
@@ -121,8 +122,8 @@ class Transfer
 
     /**
      * @param string $address
-     * @param int $amount
-     * @param int[] $amounts
+     * @param Amount $amount
+     * @param Amount[] $amounts
      * @param int $confirmations
      * @param bool $doubleSpendSeen
      * @param int $fee
@@ -139,7 +140,7 @@ class Transfer
      * @param bool $locked
      * @param TransferType $type
      */
-    public function __construct(string $address, int $amount, array $amounts, int $confirmations, bool $doubleSpendSeen, int $fee, int $height, string $note, array $destinations, string $paymentId, SubAddressIndex $subaddrIndex, array $subaddrIndices, int $suggestedConfirmationsThreshold, int $timestamp, string $txid, int $unlockTime, bool $locked, TransferType $type)
+    public function __construct(string $address, Amount $amount, array $amounts, int $confirmations, bool $doubleSpendSeen, int $fee, int $height, string $note, array $destinations, string $paymentId, SubAddressIndex $subaddrIndex, array $subaddrIndices, int $suggestedConfirmationsThreshold, int $timestamp, string $txid, int $unlockTime, bool $locked, TransferType $type)
     {
         $this->address = $address;
         $this->amount = $amount;

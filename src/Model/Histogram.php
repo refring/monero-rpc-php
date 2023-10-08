@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
@@ -15,7 +16,7 @@ class Histogram
      * Output amount in piconero
      */
     #[Json]
-    public int $amount;
+    public Amount $amount;
 
     #[Json('total_instances')]
     public int $totalInstances;
@@ -26,7 +27,7 @@ class Histogram
     #[Json('recent_instances')]
     public int $recentInstances;
 
-    public function __construct(int $amount, int $totalInstances, int $unlockedInstances, int $recentInstances)
+    public function __construct(Amount $amount, int $totalInstances, int $unlockedInstances, int $recentInstances)
     {
         $this->amount = $amount;
         $this->totalInstances = $totalInstances;

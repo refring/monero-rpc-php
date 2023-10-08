@@ -32,7 +32,6 @@ class GetCoinbaseTxSumResponse
      * Most significant 64 bits for 128 bit integer representing the sum of fees in piconero.
      */
     #[Json('fee_amount')]
-    #[BigInt]
     public Amount $feeAmount;
 
     /**

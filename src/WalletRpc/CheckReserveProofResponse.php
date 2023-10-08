@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
@@ -24,11 +25,11 @@ class CheckReserveProofResponse
      * Amount (in piconero) of the total that has been spent.
      */
     #[Json]
-    public int $spent;
+    public Amount $spent;
 
     /**
      * Total amount (in piconero) of the reserve that was proven.
      */
     #[Json]
-    public int $total;
+    public Amount $total;
 }

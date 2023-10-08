@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
@@ -123,7 +124,7 @@ class BlockHeader
      * The amount of new piconero generated in this block and rewarded to the miner. Note: 1 XMR = 1e12 piconero.
      */
     #[Json]
-    public int $reward;
+    public Amount $reward;
 
     /**
      * The unix time at which the block was recorded into the blockchain.
@@ -162,7 +163,7 @@ class BlockHeader
         bool $orphanStatus,
         string $powHash,
         string $prevHash,
-        int $reward,
+        Amount $reward,
         int $timestamp,
         string $wideCumulativeDifficulty,
         string $wideDifficulty,

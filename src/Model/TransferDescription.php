@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
@@ -15,13 +16,13 @@ class TransferDescription
      * The sum of the inputs spent by the transaction in piconero.
      */
     #[Json('amount_in')]
-    public int $amountIn;
+    public Amount $amountIn;
 
     /**
      * The sum of the outputs created by the transaction in piconero.
      */
     #[Json('amount_out')]
-    public int $amountOut;
+    public Amount $amountOut;
 
     /**
      * The number of inputs in the ring (1 real output + the number of decoys from the blockchain) (Unless dealing with pre rct outputs, this field is ignored on mainnet).
@@ -78,7 +79,7 @@ class TransferDescription
     /**
      * @param Destination[] $recipients
      */
-    public function __construct(int $amountIn, int $amountOut, int $ringSize, int $unlockTime, array $recipients, string $paymentId, int $changeAmount, string $changeAddress, int $fee, int $dummyOutputs, string $extra)
+    public function __construct(Amount $amountIn, Amount $amountOut, int $ringSize, int $unlockTime, array $recipients, string $paymentId, int $changeAmount, string $changeAddress, int $fee, int $dummyOutputs, string $extra)
     {
         $this->amountIn = $amountIn;
         $this->amountOut = $amountOut;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
+use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 
@@ -19,7 +20,7 @@ class GetFeeEstimateResponse
      * Amount of fees estimated per byte in piconero
      */
     #[Json]
-    public int $fee;
+    public Amount $fee;
 
     /**
      * @var int[] Represents the base fees at different priorities [slow, normal, fast, fastest].
