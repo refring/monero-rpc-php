@@ -136,8 +136,6 @@ final class TransferTest extends TestCase
         $height = self::$walletRpcClient->getHeight()->height;
         $result = self::$walletRpcClient->getTransferByTxid($transferResponse->txHash);
 
-        //        print_r(self::$daemonRpcClient->getTx)
-
         $this->assertSame(1, count($result->transfers));
         $this->assertEquals($result->transfer, $result->transfers[0]);
 

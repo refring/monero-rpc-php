@@ -2,10 +2,10 @@ parameters:
     level: 9
     paths:
         - src
-    excludePaths:
-            analyse:
-                - src/Testing
+    ignoreErrors:
+        - '#^Method RefRing\\MoneroRpcPhp\\Serialization\\BigIntPropertyFinder\:\:findProperties\(\) should return array\{properties\: array\<string\>, listProperties\: array\<string\>\} but returns array\.$#'
 
+    checkGenericClassInNonGenericObjectType: false
     reportUnmatchedIgnoredErrors: true
 
 includes:

@@ -174,7 +174,6 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"gray_list":[{"host":"192.168.1.1","id":17665230065909172000,"ip":99,"last_seen":1696410658,"port":18080}],"white_list":[{"host":"192.168.1.2","id":16359908073923625000,"ip":100,"last_seen":1696394328,"port":18080,"pruning_seed":388,"rpc_port":18089},{"host":"192.168.1.3","id":6115959747526569000,"ip":101,"last_seen":1696407082,"port":18080,"rpc_credits_per_hash":4194304,"rpc_port":18089}]}';
         $response = GetPeerListResponse::fromJsonString($jsonResponse, flags: JSON_BIGINT_AS_STRING);
-        print_r($response);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }

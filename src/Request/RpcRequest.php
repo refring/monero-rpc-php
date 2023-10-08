@@ -21,7 +21,7 @@ class RpcRequest
     private readonly string $method;
 
     #[Json('params', omit_empty: true)]
-    private ?ParameterInterface $parameters;
+    public ?ParameterInterface $parameters;
 
     public function __construct(string $method, ParameterInterface $parameters = null)
     {

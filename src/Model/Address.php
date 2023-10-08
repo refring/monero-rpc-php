@@ -24,6 +24,11 @@ final class Address implements JsonDataSerializable
 
     public function toJsonData(): string
     {
+        return $this->__toString();
+    }
+
+    public function __toString(): string
+    {
         return $this->address;
     }
 }
