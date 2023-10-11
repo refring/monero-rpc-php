@@ -1,12 +1,12 @@
 {
-    "name": "refactor_ring/monero-rpc-php",
+    "name": "refring/monero-rpc-php",
     "description": "A modern fully strong-typed library for using the Monero daemon rpc and wallet rpc APIs",
     "keywords": ["monero", "monero-wallet-rpc", "monero daemon","sdk", "api", "client"],
     "license": "MIT",
     "authors": [
         {
-            "name": "refactor_ring",
-            "email": "refactor_ring0@proton.me"
+            "name": "refring",
+            "email": "refring@proton.me"
         }
     ],
     "require": {
@@ -71,7 +71,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/refactor-ring/monerophp.git"
+            "url": "https://github.com/refring/monerophp.git"
         }
     ]
 }

@@ -1,9 +1,9 @@
 # Monero Daemon & Wallet RPC client
-[![Latest Stable Version](http://poser.pugx.org/refactor_ring/monero-rpc-php/v)](https://packagist.org/packages/refactor_ring/monero-rpc-php)
+[![Latest Stable Version](http://poser.pugx.org/refring/monero-rpc-php/v)](https://packagist.org/packages/refring/monero-rpc-php)
 [![Tests](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml)
 [![PHPStan](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml)
 [![codecov](https://codecov.io/gh/refactor-ring/monero-rpc-php/graph/badge.svg?token=P8K26M8W6N)](https://codecov.io/gh/refactor-ring/monero-rpc-php)
-[![PHP Version Require](http://poser.pugx.org/refactor_ring/monero-rpc-php/require/php)](https://packagist.org/packages/refactor_ring/monero-rpc-php)
+[![PHP Version Require](http://poser.pugx.org/refring/monero-rpc-php/require/php)](https://packagist.org/packages/refactor_ring/monero-rpc-php)
 
 Monero daemon and wallet RPC client library written in modern PHP.
 
@@ -22,7 +22,7 @@ Monero daemon and wallet RPC client library written in modern PHP.
 You can install the package with Composer:
 
 ```bash
-composer require refactor_ring/monero-rpc-php
+composer require refring/monero-rpc-php
 ```
 
 When your project does not have a http client available yet, you should require one as well.

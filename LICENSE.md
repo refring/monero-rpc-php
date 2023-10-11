@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023 refactor_ring
+Copyright (c) 2023 refring
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
