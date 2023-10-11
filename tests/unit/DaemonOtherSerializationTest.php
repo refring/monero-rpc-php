@@ -12,6 +12,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetOutsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
@@ -197,6 +198,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '';
         $request = GetTransactionPoolStatsRequest::create();
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetTransactions()
+    {
+        $expected = '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"],"decode_as_json":true}';
+        $request = GetTransactionsRequest::create(['d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408']);
         $this->assertSame($expected, $request->toJson());
     }
 }

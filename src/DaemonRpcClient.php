@@ -18,6 +18,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionsRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
@@ -777,5 +779,24 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/get_outs';
         return $this->handleRequest(GetOutsRequest::create($outputs, $getTxid), GetOutsResponse::class);
+    }
+
+    /**
+     * Look up one or more transactions by hash.
+     *
+     * @param string[] $txsHashes List of transaction hashes to look up.
+     * @param bool $decodeAsJson If set `true`, the returned transaction information will be decoded rather than binary.
+     * @param bool $prune Optional (`false` by default).
+     * @param bool $split Optional (`false` by default).
+     * @throws MoneroRpcException
+     */
+    public function getTransactions(
+        array $txsHashes,
+        bool $decodeAsJson = true,
+        ?bool $prune = null,
+        ?bool $split = null,
+    ): GetTransactionsResponse {
+        $this->endPointPath = '/get_transactions';
+        return $this->handleRequest(GetTransactionsRequest::create($txsHashes, $decodeAsJson, $prune, $split), GetTransactionsResponse::class);
     }
 }
