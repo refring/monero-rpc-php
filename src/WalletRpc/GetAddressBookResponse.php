@@ -17,5 +17,5 @@ class GetAddressBookResponse
 
     /** @var AddressBookEntry[] */
     #[Json(type: AddressBookEntry::class)]
-    public array $entries;
+    public array $entries = [];
 }

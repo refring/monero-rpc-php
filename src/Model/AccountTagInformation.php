@@ -14,7 +14,7 @@ class AccountTagInformation
      * @var int[] List of tagged account indices.
      */
     #[Json]
-    public array $accounts;
+    public array $accounts = [];
 
     /**
      * Label for the tag.

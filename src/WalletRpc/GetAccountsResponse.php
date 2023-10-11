@@ -19,7 +19,7 @@ class GetAccountsResponse
      * @var SubAddressAccountInformation[] subaddress account information:
      */
     #[Json('subaddress_accounts', SubAddressAccountInformation::class)]
-    public array $subaddressAccounts;
+    public array $subaddressAccounts = [];
 
     /**
      * Total balance of the selected accounts (locked or unlocked).

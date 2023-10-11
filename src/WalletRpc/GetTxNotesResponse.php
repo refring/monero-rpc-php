@@ -18,5 +18,5 @@ class GetTxNotesResponse
      * @var string[] notes for the transactions
      */
     #[Json]
-    public array $notes;
+    public array $notes = [];
 }

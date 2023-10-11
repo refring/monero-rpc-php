@@ -19,7 +19,7 @@ class GenerateblocksResponse
      * @var OnGetBlockHashResponse[]
      */
     #[Json]
-    public array $blocks;
+    public array $blocks = [];
 
     #[Json]
     public int $height;

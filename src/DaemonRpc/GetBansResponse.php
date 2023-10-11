@@ -18,5 +18,5 @@ class GetBansResponse
 
     /** @var BannedNode[] */
     #[Json(type: BannedNode::class)]
-    public array $bans;
+    public array $bans = [];
 }

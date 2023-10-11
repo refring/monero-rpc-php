@@ -20,5 +20,5 @@ class ExportKeyImagesResponse
 
     /** @var SignedKeyImage[] */
     #[Json('signed_key_images', type: SignedKeyImage::class)]
-    public array $signedKeyImages;
+    public array $signedKeyImages = [];
 }

@@ -17,5 +17,5 @@ class GetAccountTagsResponse
 
     /** @var AccountTagInformation[] */
     #[Json('account_tags', type:AccountTagInformation::class)]
-    public array $accountTags;
+    public array $accountTags = [];
 }

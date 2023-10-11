@@ -15,5 +15,5 @@ class GetOutputDistributionResponse
 
     /** @var Distribution[] */
     #[Json(type: Distribution::class)]
-    public array $distributions;
+    public array $distributions = [];
 }

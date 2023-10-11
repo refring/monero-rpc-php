@@ -12,6 +12,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetOutsRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetOutsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
@@ -117,6 +119,7 @@ use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
 use RefRing\MoneroRpcPhp\Model\AuxPow;
 use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Model\BlockHeight;
+use RefRing\MoneroRpcPhp\Model\GetOutputsOut;
 use RefRing\MoneroRpcPhp\Model\Node;
 
 class DaemonRpcClient extends JsonRpcClient
@@ -761,5 +764,18 @@ class DaemonRpcClient extends JsonRpcClient
     {
         $this->endPointPath = '/get_transaction_pool_stats';
         return $this->handleRequest(GetTransactionPoolStatsRequest::create(), GetTransactionPoolStatsResponse::class);
+    }
+
+    /**
+     * Get outputs.
+     *
+     * @param GetOutputsOut[] $outputs
+     * @param bool $getTxid If `true`, a *txid* will be included for each output in the response.
+     * @throws MoneroRpcException
+     */
+    public function getOuts(array $outputs, bool $getTxid): GetOutsResponse
+    {
+        $this->endPointPath = '/get_outs';
+        return $this->handleRequest(GetOutsRequest::create($outputs, $getTxid), GetOutsResponse::class);
     }
 }

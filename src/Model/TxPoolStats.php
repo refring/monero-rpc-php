@@ -44,7 +44,7 @@ class TxPoolStats
 
     /** @var TxPoolHisto[] @var TxPoolHisto[] as follows: */
     #[Json(type: TxPoolHisto::class)]
-    public array $histo;
+    public array $histo = [];
 
     /**
      * the time 98% of txes are "younger" than

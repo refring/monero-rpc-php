@@ -18,7 +18,7 @@ class TxSetSummary
      * @var Destination[]
      */
     #[Json(type: Destination::class)]
-    public array $recipients;
+    public array $recipients = [];
 
     #[Json('change_amount')]
     public int $changeAmount;

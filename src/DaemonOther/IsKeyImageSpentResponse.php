@@ -21,5 +21,5 @@ class IsKeyImageSpentResponse
      * @var SpentStatus[] List of statuses for each image checked. Statuses are follows: 0 = unspent, 1 = spent in blockchain, 2 = spent in transaction pool
      */
     #[Json('spent_status', type: SpentStatus::class)]
-    public array $spentStatus;
+    public array $spentStatus  = [];
 }

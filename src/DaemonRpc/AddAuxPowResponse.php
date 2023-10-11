@@ -30,5 +30,5 @@ class AddAuxPowResponse
 
     /** @var AuxPow[] */
     #[Json('aux_pow', type: AuxPow::class)]
-    public array $auxPow;
+    public array $auxPow = [];
 }

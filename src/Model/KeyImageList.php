@@ -15,5 +15,5 @@ class KeyImageList
      * @var string[]
      */
     #[Json('key_images')]
-    public array $keyImages;
+    public array $keyImages = [];
 }

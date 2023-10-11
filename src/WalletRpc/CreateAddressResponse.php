@@ -31,12 +31,12 @@ class CreateAddressResponse
      * @var int[] List of address indices.
      */
     #[Json('address_indices')]
-    public array $addressIndices;
+    public array $addressIndices = [];
 
     /**
      * list of addresses.
      * @var Address[]
      */
     #[Json(type: Address::class)]
-    public array $addresses;
+    public array $addresses = [];
 }

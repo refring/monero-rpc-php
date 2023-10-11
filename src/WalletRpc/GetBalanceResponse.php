@@ -35,7 +35,7 @@ class GetBalanceResponse
 
     /** @var SubAddressInformation[] */
     #[Json('per_subaddress', type: SubAddressInformation::class)]
-    public array $perSubaddress;
+    public array $perSubaddress = [];
 
     /**
      * Time (in seconds) before balance is safe to spend.

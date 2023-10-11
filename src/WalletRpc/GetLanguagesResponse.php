@@ -18,11 +18,11 @@ class GetLanguagesResponse
      * @var string[] List of available languages
      */
     #[Json]
-    public array $languages;
+    public array $languages = [];
 
     /**
      * @var string[]
      */
-    #[Json('languages_local')]
-    public array $languagesLocal;
+    #[Json('languages_local', omit_empty: true)]
+    public array $languagesLocal = [];
 }

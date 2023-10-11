@@ -18,5 +18,5 @@ class GetConnectionsResponse
 
     /** @var ConnectionInfo[] */
     #[Json(type: ConnectionInfo::class)]
-    public array $connections;
+    public array $connections = [];
 }

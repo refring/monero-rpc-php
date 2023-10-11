@@ -18,7 +18,7 @@ class DescribeTransferResponse
 
     /** @var TransferDescription[] */
     #[Json(type: TransferDescription::class)]
-    public array $desc;
+    public array $desc = [];
 
     #[Json]
     public TxSetSummary $summary;

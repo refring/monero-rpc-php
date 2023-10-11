@@ -28,7 +28,7 @@ class Transfer
      * @var Amount[] If multiple amounts where received they are individually listed.
      */
     #[Json(type: Amount::class)]
-    public array $amounts;
+    public array $amounts = [];
 
     /**
      * Number of block mined since the block containing this transaction (or block height at which the transaction should be added to a block if not yet confirmed).
@@ -70,7 +70,7 @@ class Transfer
      * @var Destination[]  array of JSON objects containing transfer destinations: (only for outgoing transactions):
      */
     #[Json(type: Destination::class)]
-    public array $destinations;
+    public array $destinations = [];
 
     /**
      * Payment ID for this transfer.
@@ -88,7 +88,7 @@ class Transfer
      * @var SubAddressIndex[] list of indices if multiple where requested.
      */
     #[Json('subaddr_indices', type: SubAddressIndex::class)]
-    public array $subaddrIndices;
+    public array $subaddrIndices = [];
 
     /**
      * Number of confirmations needed for the amount received to be lower than the accumulated block reward (or close to that).

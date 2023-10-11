@@ -17,5 +17,5 @@ class GetPaymentsResponse
 
     /** @var Payment[] */
     #[Json(type: Payment::class)]
-    public array $payments;
+    public array $payments = [];
 }

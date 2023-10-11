@@ -241,7 +241,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testTransferSplit()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[3000000000000],"fee_list":[473710000],"multisig_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}],"tx_hash_list":["4adcdc1af3f665770cdf8fb7a380887cd07ac53c2b771bd18df5ca375d5e7540"],"tx_key_list":["5b455c0f97168be652a2c03c5c68a064bb84cdae4ddef01b5c48d73a0bbb27075fb714f2ca19ea6c8ff592417e606addea6deb1d6530e2969f75681ffcbfc4075677b94a8c9197963ae38fa6f543ee68f0a4c4bbda4c453f39538f00b28e980ea08509730b51c004960101ba2f3adbc34cbbdff0d5af9dba061b523090debd06"],"unsigned_txset":"","weight_list":[51456]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[3000000000000],"fee_list":[473710000],"multisig_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}],"tx_hash_list":["4adcdc1af3f665770cdf8fb7a380887cd07ac53c2b771bd18df5ca375d5e7540"],"tx_key_list":["5b455c0f97168be652a2c03c5c68a064bb84cdae4ddef01b5c48d73a0bbb27075fb714f2ca19ea6c8ff592417e606addea6deb1d6530e2969f75681ffcbfc4075677b94a8c9197963ae38fa6f543ee68f0a4c4bbda4c453f39538f00b28e980ea08509730b51c004960101ba2f3adbc34cbbdff0d5af9dba061b523090debd06"],"tx_blob_list":[],"tx_metadata_list":[],"unsigned_txset":"","weight_list":[51456]}}';
         $response = TransferSplitResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
@@ -250,7 +250,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testSignTransfer()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"signed_txset":"...long_hex...","tx_hash_list":["ff2e2d49fbfb1c9a55754f786576e171c8bf21b463a74438df604b7fa6cebc6d"]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"signed_txset":"...long_hex...","tx_hash_list":["ff2e2d49fbfb1c9a55754f786576e171c8bf21b463a74438df604b7fa6cebc6d"],"tx_raw_list":[],"tx_key_list":[]}}';
         $response = SignTransferResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
@@ -268,7 +268,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testSweepDust()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"multisig_txset":"","unsigned_txset":""}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[],"fee_list":[],"multisig_txset":"","spent_key_images_list":[],"tx_hash_list":[],"tx_key_list":[],"tx_blob_list":[],"tx_metadata_list":[],"unsigned_txset":"","weight_list":[]}}';
         $response = SweepDustResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
@@ -277,7 +277,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testSweepAll()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[9985885770000],"fee_list":[14114230000],"multisig_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}],"tx_hash_list":["ab4b6b65cc8cd8c9dd317d0b90d97582d68d0aa1637b0065b05b61f9a66ea5c5"],"tx_key_list":["b9b4b39d3bb3062ddb85ec0266d4df39058f4c86077d99309f218ce4d76af607"],"unsigned_txset":"","weight_list":[6414]}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"amount_list":[9985885770000],"fee_list":[14114230000],"multisig_txset":"","spent_key_images_list":[{"key_images":["cea4f54494d4cc28c006af7551b57a49eb6e8aac966ffa7b169f32298213c6ca"]}],"tx_hash_list":["ab4b6b65cc8cd8c9dd317d0b90d97582d68d0aa1637b0065b05b61f9a66ea5c5"],"tx_key_list":["b9b4b39d3bb3062ddb85ec0266d4df39058f4c86077d99309f218ce4d76af607"],"tx_blob_list":[],"tx_metadata_list":[],"unsigned_txset":"","weight_list":[6414]}}';
         $response = SweepAllResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());

@@ -18,5 +18,5 @@ class GetOutputHistogramResponse
 
     /** @var Histogram[] */
     #[Json(type: Histogram::class)]
-    public array $histogram;
+    public array $histogram = [];
 }

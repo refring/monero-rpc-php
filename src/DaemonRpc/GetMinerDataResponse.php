@@ -61,5 +61,5 @@ class GetMinerDataResponse
 
     /** @var BacklogTransaction[] */
     #[Json('tx_backlog', type: BacklogTransaction::class)]
-    public array $txBacklog;
+    public array $txBacklog = [];
 }

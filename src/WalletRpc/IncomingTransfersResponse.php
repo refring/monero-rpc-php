@@ -17,5 +17,5 @@ class IncomingTransfersResponse
 
     /** @var IncomingTransfer[] */
     #[Json(type: IncomingTransfer::class)]
-    public array $transfers;
+    public array $transfers = [];
 }

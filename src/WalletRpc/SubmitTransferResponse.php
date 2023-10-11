@@ -18,5 +18,5 @@ class SubmitTransferResponse
      * @var string[] The tx hashes of every transaction.
      */
     #[Json('tx_hash_list')]
-    public array $txHashList;
+    public array $txHashList = [];
 }

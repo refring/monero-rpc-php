@@ -20,5 +20,5 @@ class GetAltBlocksHashesResponse
      * @var string[] list of alternative blocks hashes to main chain
      */
     #[Json('blks_hashes')]
-    public array $blockHashes;
+    public array $blockHashes = [];
 }

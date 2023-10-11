@@ -32,5 +32,5 @@ class GetVersionResponse
      * @var HardforkInformation[]
      */
     #[Json('hard_forks', type: HardforkInformation::class)]
-    public array $hardForks;
+    public array $hardForks = [];
 }

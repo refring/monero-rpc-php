@@ -34,11 +34,11 @@ class SyncInfoResponse
 
     /** @var SyncPeer[] */
     #[Json(type: SyncPeer::class)]
-    public array $peers;
+    public array $peers = [];
 
     /** @var SpanStructure[] */
     #[Json(omit_empty: true, type: SpanStructure::class)]
-    public array $spans;
+    public array $spans = [];
 
     /**
      * target height the node is syncing from (will be 0 if node is fully synced)

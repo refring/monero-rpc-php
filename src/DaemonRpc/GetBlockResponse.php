@@ -44,5 +44,5 @@ class GetBlockResponse
      * @var string[] List of hashes of non-coinbase transactions in the block. If there are no other transactions, this will be an empty list.
      */
     #[Json('tx_hashes', omit_empty: true)]
-    public array $txHashes;
+    public array $txHashes = [];
 }

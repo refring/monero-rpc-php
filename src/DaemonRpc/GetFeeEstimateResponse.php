@@ -26,7 +26,7 @@ class GetFeeEstimateResponse
      * @var int[] Represents the base fees at different priorities [slow, normal, fast, fastest].
      */
     #[Json]
-    public array $fees;
+    public array $fees = [];
 
     /**
      * Final fee should be rounded up to an even multiple of this value

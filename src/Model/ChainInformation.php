@@ -21,7 +21,7 @@ class ChainInformation
      * @var BlockHash[] An array of all block hashes in the alternative chain that are not in the main chain.
      */
     #[Json('block_hashes', type: BlockHash::class)]
-    public array $blockHashes;
+    public array $blockHashes = [];
 
     /**
      * Least-significant 64 bits of 128-bit integer for the cumulative difficulty of all blocks in the alternative chain.

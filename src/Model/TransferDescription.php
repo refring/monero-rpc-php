@@ -38,7 +38,7 @@ class TransferDescription
 
     /** @var Destination[] list of recipients: */
     #[Json(type: Destination::class)]
-    public array $recipients;
+    public array $recipients = [];
 
     /**
      * payment ID for this transfer.

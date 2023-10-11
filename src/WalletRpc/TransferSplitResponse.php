@@ -21,13 +21,13 @@ class TransferSplitResponse
      * @var Amount[] The amount transferred for every transaction.
      */
     #[Json('amount_list', type: Amount::class)]
-    public array $amountList;
+    public array $amountList = [];
 
     /**
      * @var Amount[] The amount of fees paid for every transaction.
      */
     #[Json('fee_list', type: Amount::class)]
-    public array $feeList;
+    public array $feeList = [];
 
     /**
      * string. The set of signing keys used in a multisig transaction (empty for non-multisig).
@@ -39,31 +39,31 @@ class TransferSplitResponse
      * @var KeyImageList[] Key images of spent outputs.
      */
     #[Json('spent_key_images_list', type:KeyImageList::class)]
-    public array $spentKeyImagesList;
+    public array $spentKeyImagesList = [];
 
     /**
      * @var string[] The tx hashes of every transaction.
      */
     #[Json('tx_hash_list')]
-    public array $txHashList;
+    public array $txHashList = [];
 
     /**
      * @var string[] The transaction keys for every transaction.
      */
     #[Json('tx_key_list')]
-    public array $txKeyList;
+    public array $txKeyList = [];
 
     /**
      * @var string[] The tx as hex string for every transaction.
      */
     #[Json('tx_blob_list')]
-    public array $txBlobList;
+    public array $txBlobList = [];
 
     /**
      * @var string[] List of transaction metadata needed to relay the transactions later.
      */
     #[Json('tx_metadata_list')]
-    public array $txMetadataList;
+    public array $txMetadataList = [];
 
     /**
      * string. Set of unsigned tx for cold-signing purposes.
@@ -75,5 +75,5 @@ class TransferSplitResponse
      * @var int[] Metric used to calculate transaction fee.
      */
     #[Json('weight_list')]
-    public array $weightList;
+    public array $weightList = [];
 }

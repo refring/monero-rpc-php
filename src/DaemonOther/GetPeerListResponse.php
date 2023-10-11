@@ -19,9 +19,9 @@ class GetPeerListResponse
 
     /** @var Peer[] Offline peers */
     #[Json('gray_list', type: Peer::class)]
-    public array $grayList;
+    public array $grayList = [];
 
     /** @var Peer[] Online peers. */
     #[Json('white_list', type: Peer::class)]
-    public array $whiteList;
+    public array $whiteList = [];
 }

@@ -18,5 +18,5 @@ class GetAlternateChainsResponse
 
     /** @var ChainInformation[] */
     #[Json(type: ChainInformation::class)]
-    public array $chains;
+    public array $chains = [];
 }
