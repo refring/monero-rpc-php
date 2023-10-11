@@ -111,7 +111,6 @@ After that, run `composer test:integration` to run the integration tests.
     - [ ] /get_transactions
     - [ ] /get_transaction_pool
     - [ ] /stop_daemon
-    - [ ] /get_outs
 
 ##  Contributing
 

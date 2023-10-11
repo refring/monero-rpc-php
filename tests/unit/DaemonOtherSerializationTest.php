@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetOutsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
@@ -27,6 +28,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\UpdateRequest;
 use RefRing\MoneroRpcPhp\Enum\UpdateCommand;
+use RefRing\MoneroRpcPhp\Model\GetOutputsOut;
 
 class DaemonOtherSerializationTest extends TestCase
 {
@@ -181,6 +183,13 @@ class DaemonOtherSerializationTest extends TestCase
 
         $expected = '{"address":"http:\/\/getmonero.org:18081","username":"foo","password":"bar"}';
         $request = SetBootstrapDaemonRequest::create('http://getmonero.org:18081', 'foo', 'bar');
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetOuts()
+    {
+        $expected = '{"outputs":[{"amount":0,"index":58246335}],"get_txid":true}';
+        $request = GetOutsRequest::create([new GetOutputsOut(0, 58246335)], true);
         $this->assertSame($expected, $request->toJson());
     }
 

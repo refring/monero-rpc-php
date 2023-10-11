@@ -9,6 +9,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetAltBlocksHashesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetLimitResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetOutsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
@@ -199,10 +200,17 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"pool_stats":{"bytes_max":4481,"bytes_med":2215,"bytes_min":1530,"bytes_total":61659,"fee_total":1658860000,"histo":[{"txs":5,"bytes":12670},{"txs":0,"bytes":0},{"txs":1,"bytes":1534},{"txs":1,"bytes":1534},{"txs":3,"bytes":5289}],"histo_98pc":0,"num_10m":0,"num_double_spends":0,"num_failing":0,"num_not_relayed":0,"oldest":1696764439,"txs_total":28},"credits":0,"top_hash":"","status":"OK","untrusted":false}';
         $response = GetTransactionPoolStatsResponse::fromJsonString($jsonResponse);
-        $responseFlat = json_encode(json_decode($jsonResponse));
+        $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }
 
+    public function testGetOuts()
+    {
+        $jsonResponse = '{"outs":[{"height":2676286,"key":"f901129b1f78e5e69290cb4ad1f279b4b4a8044bbc2d205816ce7bb6e0d1c3ca","mask":"df1c18803ec819e32726cc2c3e779dc637d48c204b9750050c15711edd4f7dc0","txid":"281f6ccbf3026c2b9a9346677cdd5547c5a414a24c48735ccfb1c4d05f04a555","unlocked":true}],"credits":0,"top_hash":"","status":"OK","untrusted":false}';
+        $response = GetOutsResponse::fromJsonString($jsonResponse);
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
     public static function comparableJson(string $json): string
     {
         return json_encode(json_decode($json, flags: JSON_BIGINT_AS_STRING));
