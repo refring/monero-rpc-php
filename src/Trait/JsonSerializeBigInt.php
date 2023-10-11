@@ -58,7 +58,7 @@ trait JsonSerializeBigInt
     private function buildRegexWithFields(array $fields): string
     {
         if (count($fields) > 0) {
-            $pattern = '/"(%s)":"(\d+)"/';
+            $pattern = '/"(%s)": ?"(\d+)"/ms';
             $pattern = sprintf($pattern, implode('|', array_keys($fields)));
             return $pattern;
         }
@@ -72,7 +72,7 @@ trait JsonSerializeBigInt
     private function buildListRegexWithFields(array $fields): string
     {
         if (count($fields) > 0) {
-            $pattern = '/"(%s)":\[(.*?)\]/s';
+            $pattern = '/"(%s)":\[(.*?)\]/ms';
             $pattern = sprintf($pattern, implode('|', array_keys($fields)));
             return $pattern;
         }
