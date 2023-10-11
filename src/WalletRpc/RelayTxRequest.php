@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Relay a transaction previously created with `"do_not_relay":true`.
  */
-class RelayTxRequest implements ParameterInterface
+class RelayTxRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

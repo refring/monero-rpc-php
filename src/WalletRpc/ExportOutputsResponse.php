@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Export outputs in hex format.
  */
-class ExportOutputsResponse
+class ExportOutputsResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

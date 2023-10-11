@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get a block template on which mining a new block.
  */
-class GetBlockTemplateResponse
+class GetBlockTemplateResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

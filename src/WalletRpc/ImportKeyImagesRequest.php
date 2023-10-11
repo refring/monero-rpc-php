@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Import signed key images list and verify their spent status.
  */
-class ImportKeyImagesRequest implements ParameterInterface
+class ImportKeyImagesRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

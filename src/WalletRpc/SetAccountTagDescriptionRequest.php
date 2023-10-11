@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Set description for an account tag.
  */
-class SetAccountTagDescriptionRequest implements ParameterInterface
+class SetAccountTagDescriptionRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

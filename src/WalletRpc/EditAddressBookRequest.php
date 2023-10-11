@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Edit an existing address book entry.Alias: *None*
  */
-class EditAddressBookRequest implements ParameterInterface
+class EditAddressBookRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

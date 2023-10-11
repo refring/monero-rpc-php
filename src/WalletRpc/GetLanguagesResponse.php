@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get a list of available languages for your wallet's seed.
  */
-class GetLanguagesResponse
+class GetLanguagesResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

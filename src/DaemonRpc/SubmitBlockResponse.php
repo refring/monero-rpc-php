@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Submit a mined block to the network.
  */
-class SubmitBlockResponse
+class SubmitBlockResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

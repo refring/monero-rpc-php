@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Return the spend or view private key.
  */
-class QueryKeyResponse
+class QueryKeyResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

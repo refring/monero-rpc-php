@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Sign a transaction created on a read-only wallet (in cold-signing process)
  */
-class SignTransferResponse
+class SignTransferResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

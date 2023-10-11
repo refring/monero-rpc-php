@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get account and address indexes from a specific (sub)address
  */
-class GetAddressIndexRequest implements ParameterInterface
+class GetAddressIndexRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

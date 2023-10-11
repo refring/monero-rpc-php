@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Enum\NetType;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Retrieve general information about the state of your node and the network.
  */
-class GetInfoResponse
+class GetInfoResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

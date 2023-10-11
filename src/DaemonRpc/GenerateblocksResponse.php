@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Generate a block and specify the address to receive the coinbase reward.
  */
-class GenerateblocksResponse
+class GenerateblocksResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

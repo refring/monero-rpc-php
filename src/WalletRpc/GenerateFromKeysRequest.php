@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Restores a wallet from a given wallet address, view key, and optional spend key.
  */
-class GenerateFromKeysRequest implements ParameterInterface
+class GenerateFromKeysRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

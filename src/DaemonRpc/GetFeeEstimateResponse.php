@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Gives an estimation on fees per byte.
  */
-class GetFeeEstimateResponse
+class GetFeeEstimateResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

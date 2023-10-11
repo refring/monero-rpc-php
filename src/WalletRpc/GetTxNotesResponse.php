@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get string notes for transactions.
  */
-class GetTxNotesResponse
+class GetTxNotesResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

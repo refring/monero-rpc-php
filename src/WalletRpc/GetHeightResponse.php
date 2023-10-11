@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Returns the wallet's current block height.
  */
-class GetHeightResponse
+class GetHeightResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

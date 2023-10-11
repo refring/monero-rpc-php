@@ -10,11 +10,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Send monero to a number of recipients.
  */
-class TransferRequest implements ParameterInterface
+class TransferRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

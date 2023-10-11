@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Prove a transaction by checking its signature.
  */
-class CheckTxProofRequest implements ParameterInterface
+class CheckTxProofRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

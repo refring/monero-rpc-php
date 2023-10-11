@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Make a wallet multisig by importing peers multisig string.
  */
-class MakeMultisigRequest implements ParameterInterface
+class MakeMultisigRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

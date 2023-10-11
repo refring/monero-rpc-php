@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Freeze a single output by key image so it will not be used
  */
-class FreezeRequest implements ParameterInterface
+class FreezeRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

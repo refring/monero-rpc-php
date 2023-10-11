@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Make an integrated address from the wallet address and a payment id.
  */
-class MakeIntegratedAddressRequest implements ParameterInterface
+class MakeIntegratedAddressRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

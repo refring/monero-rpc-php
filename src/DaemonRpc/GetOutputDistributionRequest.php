@@ -8,8 +8,9 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
-class GetOutputDistributionRequest implements ParameterInterface
+class GetOutputDistributionRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

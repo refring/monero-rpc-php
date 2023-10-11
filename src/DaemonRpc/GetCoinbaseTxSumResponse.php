@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get the coinbase amount and the fees amount for n last blocks starting at particular height
  */
-class GetCoinbaseTxSumResponse
+class GetCoinbaseTxSumResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

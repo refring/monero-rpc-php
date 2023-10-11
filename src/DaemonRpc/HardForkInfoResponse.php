@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Look up information regarding hard fork voting and readiness.
  */
-class HardForkInfoResponse
+class HardForkInfoResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

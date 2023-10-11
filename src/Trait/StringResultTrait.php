@@ -23,7 +23,7 @@ trait StringResultTrait
      * @param mixed[]|string $path
      * @return static
      */
-    public static function fromJsonData(array $jd, array|string $path = []): static
+    public static function fromJsonData($jd, array|string $path = []): static
     {
         return self::traitFromJsonData($jd);
     }

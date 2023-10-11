@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Retrieves entries from the address book.
  */
-class GetAddressBookRequest implements ParameterInterface
+class GetAddressBookRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

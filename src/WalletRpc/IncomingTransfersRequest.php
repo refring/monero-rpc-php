@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Return a list of incoming transfers to the wallet.
  */
-class IncomingTransfersRequest implements ParameterInterface
+class IncomingTransfersRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

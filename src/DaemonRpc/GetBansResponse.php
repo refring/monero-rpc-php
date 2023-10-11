@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 use RefRing\MoneroRpcPhp\Model\BannedNode;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get list of banned IPs.
  */
-class GetBansResponse
+class GetBansResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Make a wallet multisig by importing peers multisig string.
  */
-class MakeMultisigResponse
+class MakeMultisigResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

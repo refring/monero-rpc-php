@@ -18,7 +18,7 @@
         "psr/http-factory-implementation": "*",
         "psr/http-message": "^1.1.0|^2.0.0",
         "psr/log": "^3.0",
-        "square/pjson": "dev-allow-nested-trait"
+        "square/pjson": "dev-main"
     },
     "require-dev": {
         "ext-sockets": "*",
@@ -72,10 +72,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/refactor-ring/monerophp.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/refactor-ring/pjson.git"
         }
     ]
 }

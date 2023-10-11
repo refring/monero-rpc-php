@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Import multisig info from other participants.
  */
-class ImportMultisigInfoResponse
+class ImportMultisigInfoResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

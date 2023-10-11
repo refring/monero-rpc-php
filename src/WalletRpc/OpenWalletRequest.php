@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Open a wallet. You need to have set the argument "--wallet-dir" when launching monero-wallet-rpc to make this work.
  */
-class OpenWalletRequest implements ParameterInterface
+class OpenWalletRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

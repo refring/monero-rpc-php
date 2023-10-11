@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Model\PaymentUri;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Parse a payment URI to get payment information.
  */
-class ParseUriResponse
+class ParseUriResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

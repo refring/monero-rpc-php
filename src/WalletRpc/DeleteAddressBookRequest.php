@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Delete an entry from the address book.
  */
-class DeleteAddressBookRequest implements ParameterInterface
+class DeleteAddressBookRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

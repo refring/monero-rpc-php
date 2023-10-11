@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Add an entry to the address book.
  */
-class AddAddressBookResponse
+class AddAddressBookResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

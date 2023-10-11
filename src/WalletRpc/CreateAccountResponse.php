@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Create a new account with an optional label.
  */
-class CreateAccountResponse
+class CreateAccountResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\AddressInformation;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Return the wallet's addresses for an account. Optionally filter for specific set of subaddresses.
  */
-class GetAddressResponse
+class GetAddressResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

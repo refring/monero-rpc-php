@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Retrieve the standard address and payment id corresponding to an integrated address.
  */
-class SplitIntegratedAddressRequest implements ParameterInterface
+class SplitIntegratedAddressRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

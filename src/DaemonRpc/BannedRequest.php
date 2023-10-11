@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Check if an IP address is banned and for how long.
  */
-class BannedRequest implements ParameterInterface
+class BannedRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

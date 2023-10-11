@@ -7,8 +7,9 @@ namespace RefRing\MoneroRpcPhp\Model;
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
+use Square\Pjson\JsonDataSerializable;
 
-class TxPoolStats
+class TxPoolStats implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 
@@ -88,14 +89,17 @@ class TxPoolStats
     #[Json('txs_total')]
     public int $txsTotal;
 
+
+    /**
+     * @param TxPoolHisto[] $histo
+     */
     public function __construct(
         int $bytesMax,
         int $bytesMed,
         int $bytesMin,
         int $bytesTotal,
-        int $feeTotal,
+        Amount $feeTotal,
         array $histo,
-        TxPoolHisto $txPoolHisto,
         int $histo98pc,
         int $num10m,
         int $numDoubleSpends,
@@ -110,7 +114,6 @@ class TxPoolStats
         $this->bytesTotal = $bytesTotal;
         $this->feeTotal = $feeTotal;
         $this->histo = $histo;
-        $this->txPoolHisto = $txPoolHisto;
         $this->histo98pc = $histo98pc;
         $this->num10m = $num10m;
         $this->numDoubleSpends = $numDoubleSpends;

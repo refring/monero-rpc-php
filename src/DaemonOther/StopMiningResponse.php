@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Stop mining on the daemon.
  */
-class StopMiningResponse
+class StopMiningResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

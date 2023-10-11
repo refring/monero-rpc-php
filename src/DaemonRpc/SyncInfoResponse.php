@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Model\SpanStructure;
 use RefRing\MoneroRpcPhp\Model\SyncPeer;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get synchronisation informations
  */
-class SyncInfoResponse
+class SyncInfoResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

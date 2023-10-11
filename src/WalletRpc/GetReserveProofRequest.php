@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Generate a signature to prove of an available amount in a wallet.
  */
-class GetReserveProofRequest implements ParameterInterface
+class GetReserveProofRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

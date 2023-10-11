@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Send all of a specific unlocked output to an address.
  */
-class SweepSingleRequest implements ParameterInterface
+class SweepSingleRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

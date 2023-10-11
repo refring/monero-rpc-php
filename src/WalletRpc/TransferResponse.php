@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Model\KeyImageList;
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Send monero to a number of recipients.
  */
-class TransferResponse
+class TransferResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

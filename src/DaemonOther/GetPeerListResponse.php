@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use RefRing\MoneroRpcPhp\Model\Peer;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get the known peers list.
  */
-class GetPeerListResponse
+class GetPeerListResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

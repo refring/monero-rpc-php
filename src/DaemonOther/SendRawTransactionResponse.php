@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonRpcAccessResponseFields;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Broadcast a raw transaction to the network.
  */
-class SendRawTransactionResponse
+class SendRawTransactionResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

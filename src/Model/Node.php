@@ -6,8 +6,9 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
-class Node
+class Node implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

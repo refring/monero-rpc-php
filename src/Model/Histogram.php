@@ -7,8 +7,9 @@ namespace RefRing\MoneroRpcPhp\Model;
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
-class Histogram
+class Histogram implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

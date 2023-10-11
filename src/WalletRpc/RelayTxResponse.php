@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Relay a transaction previously created with `"do_not_relay":true`.
  */
-class RelayTxResponse
+class RelayTxResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

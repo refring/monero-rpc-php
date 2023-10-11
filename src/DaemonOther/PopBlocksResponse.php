@@ -7,8 +7,9 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
-class PopBlocksResponse
+class PopBlocksResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

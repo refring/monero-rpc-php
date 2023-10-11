@@ -7,8 +7,9 @@ namespace RefRing\MoneroRpcPhp\Model;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
-class IncomingTransfer
+class IncomingTransfer implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

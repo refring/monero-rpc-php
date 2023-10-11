@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Submit a signed multisig transaction.
  */
-class SubmitMultisigRequest implements ParameterInterface
+class SubmitMultisigRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

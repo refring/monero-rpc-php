@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Generate a signature to prove a spend. Unlike proving a transaction, it does not requires the destination public address.
  */
-class GetSpendProofRequest implements ParameterInterface
+class GetSpendProofRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

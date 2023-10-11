@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get the coinbase amount and the fees amount for n last blocks starting at particular height
  */
-class GetCoinbaseTxSumRequest implements ParameterInterface
+class GetCoinbaseTxSumRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

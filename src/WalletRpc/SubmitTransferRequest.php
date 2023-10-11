@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Submit a previously signed transaction on a read-only wallet (in cold-signing process).
  */
-class SubmitTransferRequest implements ParameterInterface
+class SubmitTransferRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

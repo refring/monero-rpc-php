@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Set arbitrary string notes for transactions.
  */
-class SetTxNotesRequest implements ParameterInterface
+class SetTxNotesRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

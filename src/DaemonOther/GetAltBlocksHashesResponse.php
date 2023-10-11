@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonRpcAccessResponseFields;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get the known blocks hashes which are not on the main chain.
  */
-class GetAltBlocksHashesResponse
+class GetAltBlocksHashesResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

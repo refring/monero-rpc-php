@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Check a transaction in the blockchain with its secret key.
  */
-class CheckTxKeyRequest implements ParameterInterface
+class CheckTxKeyRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

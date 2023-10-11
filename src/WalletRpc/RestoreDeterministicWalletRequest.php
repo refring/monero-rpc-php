@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Create and open a wallet on the RPC server from an existing mnemonic phrase and close the currently open wallet.
  */
-class RestoreDeterministicWalletRequest implements ParameterInterface
+class RestoreDeterministicWalletRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

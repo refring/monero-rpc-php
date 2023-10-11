@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Remove filtering tag from a list of accounts.
  */
-class UntagAccountsRequest implements ParameterInterface
+class UntagAccountsRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

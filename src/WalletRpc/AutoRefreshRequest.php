@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Set whether and how often to automatically refresh the current wallet.
  */
-class AutoRefreshRequest implements ParameterInterface
+class AutoRefreshRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

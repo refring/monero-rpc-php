@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Export a signed set of key images.
  */
-class ExportKeyImagesRequest implements ParameterInterface
+class ExportKeyImagesRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

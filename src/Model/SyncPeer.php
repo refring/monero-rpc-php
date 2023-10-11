@@ -6,8 +6,9 @@ namespace RefRing\MoneroRpcPhp\Model;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
-class SyncPeer
+class SyncPeer implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

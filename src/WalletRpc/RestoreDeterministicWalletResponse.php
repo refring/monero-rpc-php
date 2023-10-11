@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Model\Address;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Create and open a wallet on the RPC server from an existing mnemonic phrase and close the currently open wallet.
  */
-class RestoreDeterministicWalletResponse
+class RestoreDeterministicWalletResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

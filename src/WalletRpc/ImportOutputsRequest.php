@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Import outputs in hex format.
  */
-class ImportOutputsRequest implements ParameterInterface
+class ImportOutputsRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

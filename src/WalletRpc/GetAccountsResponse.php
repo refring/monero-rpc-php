@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use RefRing\MoneroRpcPhp\Model\SubAddressAccountInformation;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get all accounts for a wallet. Optionally filter accounts by tag.
  */
-class GetAccountsResponse
+class GetAccountsResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

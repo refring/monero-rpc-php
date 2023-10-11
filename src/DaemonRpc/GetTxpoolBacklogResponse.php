@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get all transaction pool backlog
  */
-class GetTxpoolBacklogResponse
+class GetTxpoolBacklogResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

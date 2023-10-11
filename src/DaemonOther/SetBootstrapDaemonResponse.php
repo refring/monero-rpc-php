@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Give immediate usability to wallets while syncing by proxying RPC requests.
  */
-class SetBootstrapDaemonResponse
+class SetBootstrapDaemonResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

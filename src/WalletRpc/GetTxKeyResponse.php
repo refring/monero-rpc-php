@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get transaction secret key from transaction id.
  */
-class GetTxKeyResponse
+class GetTxKeyResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

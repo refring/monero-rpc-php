@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Send all dust outputs back to the wallet's, to make them easier to spend (and mix).
  */
-class SweepDustRequest implements ParameterInterface
+class SweepDustRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

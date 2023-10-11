@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\DaemonRpc\DaemonRpcAccessResponseFields;
 use RefRing\MoneroRpcPhp\Enum\SpentStatus;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Check if outputs have been spent using the key image associated with the output.
  */
-class IsKeyImageSpentResponse
+class IsKeyImageSpentResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonRpcAccessResponseFields;

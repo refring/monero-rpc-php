@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Enum\SignatureType;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Verify a signature on a string.
  */
-class VerifyResponse
+class VerifyResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

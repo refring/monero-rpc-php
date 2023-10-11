@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Import signed key images list and verify their spent status.
  */
-class ImportKeyImagesResponse
+class ImportKeyImagesResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

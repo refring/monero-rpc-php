@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Flush tx ids from transaction pool
  */
-class FlushTxpoolRequest implements ParameterInterface
+class FlushTxpoolRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

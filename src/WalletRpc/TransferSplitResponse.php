@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Monero\Amount;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 use Square\Pjson\Json;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Same as @see WalletRpcClient::transfer(), but can split into more than one tx if necessary..
  */
-class TransferSplitResponse
+class TransferSplitResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

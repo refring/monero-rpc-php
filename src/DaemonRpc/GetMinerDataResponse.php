@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Model\BacklogTransaction;
 use RefRing\MoneroRpcPhp\Model\HexDifficulty;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Provide the necessary data to create a custom block template. They are used by p2pool.
  */
-class GetMinerDataResponse
+class GetMinerDataResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
     use DaemonStandardResponseFields;

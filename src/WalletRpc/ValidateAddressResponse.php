@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Enum\NetType;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Analyzes a string to determine whether it is a valid monero wallet address and returns the result and the address specifications.
  */
-class ValidateAddressResponse
+class ValidateAddressResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

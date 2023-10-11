@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Retrieve the standard address and payment id corresponding to an integrated address.
  */
-class SplitIntegratedAddressResponse
+class SplitIntegratedAddressResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

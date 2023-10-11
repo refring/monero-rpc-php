@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Prove a transaction by checking its signature.
  */
-class CheckTxProofResponse
+class CheckTxProofResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

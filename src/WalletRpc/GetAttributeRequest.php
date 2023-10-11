@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Get attribute value by name.
  */
-class GetAttributeRequest implements ParameterInterface
+class GetAttributeRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

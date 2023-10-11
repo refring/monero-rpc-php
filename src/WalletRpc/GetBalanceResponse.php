@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Model\SubAddressInformation;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Return the wallet's balance.Alias: *getbalance*.
  */
-class GetBalanceResponse
+class GetBalanceResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

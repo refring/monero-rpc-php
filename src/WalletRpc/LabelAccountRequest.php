@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Label an account.
  */
-class LabelAccountRequest implements ParameterInterface
+class LabelAccountRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

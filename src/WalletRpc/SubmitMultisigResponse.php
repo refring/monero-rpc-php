@@ -6,11 +6,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Submit a signed multisig transaction.
  */
-class SubmitMultisigResponse
+class SubmitMultisigResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

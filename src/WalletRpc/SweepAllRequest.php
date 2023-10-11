@@ -9,11 +9,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Send all unlocked balance to an address.
  */
-class SweepAllRequest implements ParameterInterface
+class SweepAllRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

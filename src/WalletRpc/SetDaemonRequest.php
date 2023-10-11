@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Connect the RPC server to a Monero daemon.
  */
-class SetDaemonRequest implements ParameterInterface
+class SetDaemonRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

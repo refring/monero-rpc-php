@@ -6,8 +6,9 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
-class EstimateTxSizeAndWeightResponse
+class EstimateTxSizeAndWeightResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

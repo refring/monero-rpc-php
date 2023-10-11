@@ -8,11 +8,12 @@ use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Generate a block and specify the address to receive the coinbase reward.
  */
-class GenerateblocksRequest implements ParameterInterface
+class GenerateblocksRequest implements ParameterInterface, JsonDataSerializable
 {
     use JsonSerializeBigInt;
 

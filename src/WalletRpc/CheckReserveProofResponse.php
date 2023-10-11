@@ -7,11 +7,12 @@ namespace RefRing\MoneroRpcPhp\WalletRpc;
 use RefRing\MoneroRpcPhp\Monero\Amount;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\JsonDataSerializable;
 
 /**
  * Proves a wallet has a disposable reserve using a signature.
  */
-class CheckReserveProofResponse
+class CheckReserveProofResponse implements JsonDataSerializable
 {
     use JsonSerializeBigInt;
 
