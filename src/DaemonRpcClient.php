@@ -16,6 +16,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetOutsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetOutsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionsRequest;
@@ -809,6 +811,19 @@ class DaemonRpcClient extends JsonRpcClient
      */
     public function stopDaemon(): StopDaemonResponse
     {
+        $this->endPointPath = '/stop_daemon';
         return $this->handleRequest(StopDaemonRequest::create(), StopDaemonResponse::class);
+    }
+
+    /**
+     * Show information about valid transactions seen by the node but not yet mined into a block,
+     * as well as spent key image information for the txpool in the node's memory.
+     *
+     * @throws MoneroRpcException
+     */
+    public function getTransactionPool(): GetTransactionPoolResponse
+    {
+        $this->endPointPath = '/get_transaction_pool';
+        return $this->handleRequest(GetTransactionPoolRequest::create(), GetTransactionPoolResponse::class);
     }
 }

@@ -25,9 +25,9 @@ class GetTransactionsEntry
     public string $asJson;
 
     /**
-     * @var Transaction The transaction information as an object
+     * @var TransactionData The transaction information as an object
      */
-    public Transaction $transaction;
+    public TransactionData $transaction;
 
     /**
      * block height including the transaction
@@ -128,7 +128,7 @@ class GetTransactionsEntry
     {
         $data = self::fromJsonDataOriginal($jd, $path);
 
-        $transaction = Transaction::fromJsonString($jd['as_json']);
+        $transaction = TransactionData::fromJsonString($jd['as_json']);
         $data->transaction = $transaction;
 
         return $data;

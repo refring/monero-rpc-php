@@ -6,15 +6,12 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 /**
  * Look up one or more transactions by hash.
  */
 class GetTransactionsRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
-
     /**
      * @var string[] List of transaction hashes to look up.
      */

@@ -107,8 +107,6 @@ After that, run `composer test:integration` to run the integration tests.
 ## Roadmap
 - [ ] More integration tests
 - [ ] Improve documentation and add examples
-- [ ] Implement remaining 'Other Daemon RPC Calls'
-    - [ ] /get_transaction_pool
 
 ##  Contributing
 

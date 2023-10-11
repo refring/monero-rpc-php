@@ -8,9 +8,11 @@ use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
 
-class Transaction implements JsonDataSerializable
+class TransactionData implements JsonDataSerializable
 {
-    use JsonSerializeBigInt;
+    use JsonSerializeBigInt{
+        fromJsonData as fromJsonDataOriginal;
+    }
 
     /**
      * Transaction version

@@ -7,15 +7,12 @@ namespace RefRing\MoneroRpcPhp\DaemonOther;
 use RefRing\MoneroRpcPhp\Model\GetOutputsOut;
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
-use Square\Pjson\JsonSerialize;
 
 /**
  * Get outputs.
  */
 class GetOutsRequest extends OtherRpcRequest
 {
-    use JsonSerialize;
-
     /** @var GetOutputsOut[] */
     #[Json]
     public array $outputs;

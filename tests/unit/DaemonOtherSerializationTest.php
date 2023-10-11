@@ -11,6 +11,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetLimitRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetNetStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetOutsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetPeerListRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionPoolStatsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
@@ -213,6 +214,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '';
         $request = StopDaemonRequest::create();
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetTransactionPool()
+    {
+        $expected = '';
+        $request = GetTransactionPoolRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }

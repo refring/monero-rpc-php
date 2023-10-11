@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Model;
 
+use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
-use Square\Pjson\JsonSerialize;
 
 class OutputKey implements JsonDataSerializable
 {
-    use JsonSerialize;
+    use JsonSerializeBigInt;
 
     /**
      * block height of the output

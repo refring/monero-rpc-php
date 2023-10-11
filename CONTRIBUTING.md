@@ -12,7 +12,7 @@ Please review these guidelines before submitting any pull requests.
 
 ## Guidelines
 
-* Please ensure the coding style running `composer lint`.
+* Please ensure the coding style running `composer lint` and running phpstan `composer test:phpstan`.
 * Send a coherent commit history, making sure each individual commit in your pull request is meaningful.
 * You may need to [rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) to avoid merge conflicts.
 * Please remember that we follow [SemVer](http://semver.org/).
@@ -22,13 +22,6 @@ Please review these guidelines before submitting any pull requests.
 Clone your fork, then install the dev dependencies:
 ```bash
 composer install
-```
-
-## Refactor
-
-Refactor your code:
-```bash
-composer refactor
 ```
 
 ## Lint
@@ -47,15 +40,15 @@ composer test
 
 Check code quality:
 ```bash
-composer test:refactor
-```
-
-Check types:
-```bash
-composer test:types
+composer test:phpstan
 ```
 
 Unit tests:
 ```bash
 composer test:unit
+```
+
+Integration tests:
+```bash
+composer test:integration
 ```
