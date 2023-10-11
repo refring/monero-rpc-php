@@ -26,6 +26,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\StopDaemonResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\UpdateResponse;
 use RefRing\MoneroRpcPhp\Model\Output;
@@ -291,6 +292,13 @@ class DaemonOtherDeserializationTest extends TestCase
 
         $this->assertSame([ 1, 176, 230, 60, 229, 234, 126, 152, 131, 133, 70, 71, 240, 116, 137, 146, 21, 113, 162, 252, 227, 214, 230, 20, 90, 210, 72, 112, 220, 220, 129, 0, 223, 2, 9, 1, 15, 188, 94, 228, 56, 176, 243, 234], $response->txs[0]->transaction->extra);
         $this->assertEmpty($response->txs[0]->transaction->signatures);
+    }
+
+    public function testStopDaemon()
+    {
+        $jsonResponse = '{"status":"OK","untrusted":false}';
+        $response = StopDaemonResponse::fromJsonString($jsonResponse);
+        $this->assertSame($jsonResponse, $response->toJson());
     }
 
     public static function comparableJson(string $json): string

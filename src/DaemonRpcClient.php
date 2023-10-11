@@ -46,6 +46,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\StopDaemonRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\StopDaemonResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\UpdateRequest;
@@ -798,5 +800,15 @@ class DaemonRpcClient extends JsonRpcClient
     ): GetTransactionsResponse {
         $this->endPointPath = '/get_transactions';
         return $this->handleRequest(GetTransactionsRequest::create($txsHashes, $decodeAsJson, $prune, $split), GetTransactionsResponse::class);
+    }
+
+    /**
+     * Send a command to the daemon to safely disconnect and shut down.
+     *
+     * @throws MoneroRpcException
+     */
+    public function stopDaemon(): StopDaemonResponse
+    {
+        return $this->handleRequest(StopDaemonRequest::create(), StopDaemonResponse::class);
     }
 }

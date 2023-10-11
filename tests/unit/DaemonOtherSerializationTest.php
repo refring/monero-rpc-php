@@ -26,6 +26,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\SetLogCategoriesRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogHashRateRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SetLogLevelRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StartMiningRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\StopDaemonRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\UpdateRequest;
 use RefRing\MoneroRpcPhp\Enum\UpdateCommand;
@@ -205,6 +206,13 @@ class DaemonOtherSerializationTest extends TestCase
     {
         $expected = '{"txs_hashes":["d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408"],"decode_as_json":true}';
         $request = GetTransactionsRequest::create(['d6e48158472848e6687173a91ae6eebfa3e1d778e65252ee99d7515d63090408']);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testStopDaemon()
+    {
+        $expected = '';
+        $request = StopDaemonRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }
