@@ -259,7 +259,7 @@ class WalletRpcClient extends JsonRpcClient
      * @throws AccountIndexOutOfBoundException
      * @throws AddressIndexOutOfBoundException
      */
-    public function getAddress(int $accountIndex, ?array $addressIndex = null): GetAddressResponse
+    public function getAddress(int $accountIndex = 0, ?array $addressIndex = null): GetAddressResponse
     {
         return $this->handleRequest(GetAddressRequest::create($accountIndex, $addressIndex), GetAddressResponse::class);
     }
@@ -286,7 +286,7 @@ class WalletRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      * @throws AccountIndexOutOfBoundException
      */
-    public function createAddress(int $accountIndex, ?string $label = null, ?int $count = 1): CreateAddressResponse
+    public function createAddress(int $accountIndex = 0, ?string $label = null, ?int $count = 1): CreateAddressResponse
     {
         return $this->handleRequest(CreateAddressRequest::create($accountIndex, $label, $count), CreateAddressResponse::class);
     }
