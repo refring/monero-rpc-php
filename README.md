@@ -7,8 +7,6 @@
 
 Monero daemon and wallet RPC client library written in modern PHP.
 
-**WARNING:** The API might still undergo significant changes so use at own risk
-
 ## Features
 * Implements Monero wallet and daemon json-rpc methods
 * Support authentication for the wallet and daemon rpc servers
@@ -58,28 +56,28 @@ composer php-http/curl-client
 For the wallet rpc client:
 
 ```php
-$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
+$walletClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
     ->buildWalletClient();
 
-echo $client->getVersion()->version;
+echo $walletClient->getVersion()->version;
 ```
 Daemon rpc client:
 
 ```php
-$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
+$daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
     ->buildDaemonClient();
 
-echo $client->getVersion()->version;
+echo $daemonClient->getVersion()->version;
 ```
 
 With authentication:
 
 ```php
-$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
+$daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
     ->withAuthentication('foo', 'bar')
     ->buildDaemonClient();
 
-echo $client->getVersion()->version;
+echo $daemonClient->getVersion()->version;
 ```
 
 The client builder also supports injecting a logger and/or a http client: 
@@ -87,12 +85,35 @@ The client builder also supports injecting a logger and/or a http client:
 $httpClient = new \Symfony\Component\HttpClient\Psr18Client();
 $logger = new \Psr\Log\NullLogger();
 
-$client = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))    
+$daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))    
     ->withHttpClient($httpClient)
     ->withLogger($logger)
     ->buildDaemonClient();
 ```
 
+### Creating a wallet and account
+```php
+// Try to create a wallet, or open it when it already exists
+try{
+    $walletClient->createWallet('testwallet', 'English', 'password');
+} catch (WalletExistsException $e) {
+    $walletClient->openWallet('testwallet', 'password');
+} catch(MoneroRpcException $e) {
+    echo 'An error occured: '.$e->getMessage();
+}
+
+$baseAddressData = $walletClient->getAddress();
+$subAddressData = $walletClient->createAddress();
+
+printf("BaseAddress: %s\nSubAddress: %s\n", $baseAddressData->address, $subAddressData->address);
+
+// Create another account
+$newAccountData = $walletClient->createAccount('another account');
+$newAccountSubAddress = $walletClient->createAddress($newAccountData->accountIndex);
+
+printf("Account %d\nBaseAddress: %s\nSubAddress: %s", $newAccountData->accountIndex, $newAccountData->address, $newAccountSubAddress->address);
+
+```
 
 ## Testing
 
@@ -123,6 +144,6 @@ See [CHANGELOG.md](CHANGELOG.md)
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 ## Acknowledgments
-* [monero-rpc-rs](https://github.com/monero-rs/monero-rpc-rs) - The project's extensive testsuite was used for setting up this project's testuite
+* [monero-rpc-rs](https://github.com/monero-rs/monero-rpc-rs) - Parts of this project served as inspiration.
 * [monero-php](https://github.com/monero-integrations/monerophp) - Thanks for providing the php ecosystem with a Monero library during all these years!
 * [Monero](https://getmonero.org) - Thanks to everybody involved!
