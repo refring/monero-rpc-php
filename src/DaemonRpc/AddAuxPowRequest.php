@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use RefRing\MoneroRpcPhp\Model\AuxPow;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\AuxPow;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
-use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
 
 /**

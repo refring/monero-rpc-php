@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Model\Address;
-use RefRing\MoneroRpcPhp\Model\AddressInformation;
-use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use RefRing\MoneroRpcPhp\WalletRpc\Model\AddressInformation;
+use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
 
 /**

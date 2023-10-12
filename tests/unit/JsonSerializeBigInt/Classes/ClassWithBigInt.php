@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Tests\unit\JsonSerializeBigInt\Classes;
 
-use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 

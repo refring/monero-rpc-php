@@ -10,15 +10,15 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockHeaderByHeightResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetBlockTemplateResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetLastBlockHeaderResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\BlockHeader;
+use RefRing\MoneroRpcPhp\DaemonRpcClient;
 use RefRing\MoneroRpcPhp\Enum\ResponseStatus;
 use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHashException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
-use RefRing\MoneroRpcPhp\Model\BlockHeader;
-use RefRing\MoneroRpcPhp\DaemonRpcClient;
-use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class EmptyBlockchainTest extends TestCase

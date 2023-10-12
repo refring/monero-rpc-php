@@ -6,7 +6,7 @@ namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\Model\Address;
-use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\WalletRpc\AddAddressBookResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\AutoRefreshResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\ChangeWalletPasswordResponse;

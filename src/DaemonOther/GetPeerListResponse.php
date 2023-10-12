@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
+use RefRing\MoneroRpcPhp\DaemonOther\Model\Peer;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonStandardResponseFields;
-use RefRing\MoneroRpcPhp\Model\Peer;
-use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
 
 /**

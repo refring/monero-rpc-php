@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
+use RefRing\MoneroRpcPhp\DaemonOther\Model\TxPoolStats;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonRpcAccessResponseFields;
-use RefRing\MoneroRpcPhp\Model\TxPoolStats;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;

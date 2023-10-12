@@ -17,6 +17,8 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionsResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\Model\Output;
+use RefRing\MoneroRpcPhp\DaemonOther\Model\TransactionData;
 use RefRing\MoneroRpcPhp\DaemonOther\OutPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainResponse;
@@ -30,9 +32,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\StartMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopDaemonResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\UpdateResponse;
-use RefRing\MoneroRpcPhp\Model\Output;
-use RefRing\MoneroRpcPhp\Model\TransactionData;
-use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Model\Amount;
 
 class DaemonOtherDeserializationTest extends TestCase
 {

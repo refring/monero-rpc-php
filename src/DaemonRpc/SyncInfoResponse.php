@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use RefRing\MoneroRpcPhp\Model\SpanStructure;
-use RefRing\MoneroRpcPhp\Model\SyncPeer;
-use Square\Pjson\Json;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\SpanStructure;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\SyncPeer;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
 
 /**
@@ -37,7 +37,7 @@ class SyncInfoResponse implements JsonDataSerializable
     #[Json(type: SyncPeer::class)]
     public array $peers = [];
 
-    /** @var SpanStructure[] */
+    /** @var SpanStructure[] Absent if node is fully synced */
     #[Json(omit_empty: true, type: SpanStructure::class)]
     public array $spans = [];
 

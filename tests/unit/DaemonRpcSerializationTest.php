@@ -30,16 +30,16 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GetOutputHistogramRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetTxpoolBacklogRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetVersionRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\HardForkInfoRequest;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\AuxPow;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\Node;
 use RefRing\MoneroRpcPhp\DaemonRpc\OnGetBlockHashRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\PruneBlockchainRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\RelayTxRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SetBansRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoRequest;
-use RefRing\MoneroRpcPhp\Model\AuxPow;
 use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Model\BlockHeight;
-use RefRing\MoneroRpcPhp\Model\Node;
 
 class DaemonRpcSerializationTest extends TestCase
 {

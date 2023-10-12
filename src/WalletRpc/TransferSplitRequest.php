@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
-use RefRing\MoneroRpcPhp\Model\Destination;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use RefRing\MoneroRpcPhp\WalletRpc\Model\Destination;
 use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
 

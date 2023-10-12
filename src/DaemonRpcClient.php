@@ -28,6 +28,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusResponse;
+use RefRing\MoneroRpcPhp\DaemonOther\Model\GetOutputsOut;
 use RefRing\MoneroRpcPhp\DaemonOther\OutPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\OutPeersResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
@@ -104,6 +105,8 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GetVersionRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetVersionResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\HardForkInfoRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\HardForkInfoResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\AuxPow;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\Node;
 use RefRing\MoneroRpcPhp\DaemonRpc\OnGetBlockHashRequest;
 use RefRing\MoneroRpcPhp\DaemonRpc\OnGetBlockHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\PruneBlockchainRequest;
@@ -122,11 +125,8 @@ use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
-use RefRing\MoneroRpcPhp\Model\AuxPow;
 use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Model\BlockHeight;
-use RefRing\MoneroRpcPhp\Model\GetOutputsOut;
-use RefRing\MoneroRpcPhp\Model\Node;
 
 class DaemonRpcClient extends JsonRpcClient
 {

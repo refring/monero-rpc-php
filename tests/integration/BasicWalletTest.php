@@ -24,14 +24,14 @@ use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
-use RefRing\MoneroRpcPhp\Model\QueryKeyType;
-use RefRing\MoneroRpcPhp\Model\SubAddressIndex;
-use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 use RefRing\MoneroRpcPhp\WalletRpc\CreateAccountResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\CreateAddressResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GenerateFromKeysResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\Model\QueryKeyType;
+use RefRing\MoneroRpcPhp\WalletRpc\Model\SubAddressIndex;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 
 class BasicWalletTest extends TestCase

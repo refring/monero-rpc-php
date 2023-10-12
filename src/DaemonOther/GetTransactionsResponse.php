@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
-use RefRing\MoneroRpcPhp\Model\GetTransactionsEntry;
+use RefRing\MoneroRpcPhp\DaemonOther\Model\GetTransactionsEntry;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 

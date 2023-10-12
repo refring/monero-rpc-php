@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
-use RefRing\MoneroRpcPhp\Model\GetOutputsOut;
+use RefRing\MoneroRpcPhp\DaemonOther\Model\GetOutputsOut;
 use RefRing\MoneroRpcPhp\Request\OtherRpcRequest;
 use Square\Pjson\Json;
 

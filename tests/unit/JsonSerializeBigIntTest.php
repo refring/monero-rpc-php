@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
-use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Tests\unit\JsonSerializeBigInt\Classes\ClassWithBigInt;
 
 class JsonSerializeBigIntTest extends TestCase

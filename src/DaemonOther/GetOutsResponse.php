@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
+use RefRing\MoneroRpcPhp\DaemonOther\Model\OutputKey;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonRpcAccessResponseFields;
-use RefRing\MoneroRpcPhp\Model\OutputKey;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 

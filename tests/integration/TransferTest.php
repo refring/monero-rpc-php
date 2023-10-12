@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\Tests\integration;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\ClientBuilder;
 use RefRing\MoneroRpcPhp\DaemonRpcClient;
-use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidDestinationException;
 use RefRing\MoneroRpcPhp\Model\Address;
-use RefRing\MoneroRpcPhp\Model\Destination;
-use RefRing\MoneroRpcPhp\Model\TransferType;
-use RefRing\MoneroRpcPhp\Monero\Amount;
+use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
+use RefRing\MoneroRpcPhp\WalletRpc\Model\Destination;
+use RefRing\MoneroRpcPhp\WalletRpc\Model\TransferType;
 use RefRing\MoneroRpcPhp\WalletRpc\TransferResponse;
 use RefRing\MoneroRpcPhp\WalletRpcClient;
 

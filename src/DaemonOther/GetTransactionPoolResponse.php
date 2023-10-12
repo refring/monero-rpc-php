@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonOther;
 
+use RefRing\MoneroRpcPhp\DaemonOther\Model\MemPoolTransaction;
+use RefRing\MoneroRpcPhp\DaemonOther\Model\SpentOutputKeyImages;
 use RefRing\MoneroRpcPhp\DaemonRpc\DaemonRpcAccessResponseFields;
-use RefRing\MoneroRpcPhp\Model\MemPoolTransaction;
-use RefRing\MoneroRpcPhp\Model\SpentOutputKeyImages;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
-use RefRing\MoneroRpcPhp\Model\BacklogTransaction;
-use RefRing\MoneroRpcPhp\Model\HexDifficulty;
-use Square\Pjson\Json;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\BacklogTransaction;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\HexDifficulty;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
+use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
 
 /**

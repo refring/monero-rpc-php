@@ -30,13 +30,13 @@ use RefRing\MoneroRpcPhp\DaemonRpc\GetOutputHistogramResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetTxpoolBacklogResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\GetVersionResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\HardForkInfoResponse;
+use RefRing\MoneroRpcPhp\DaemonRpc\Model\BacklogTransaction;
 use RefRing\MoneroRpcPhp\DaemonRpc\OnGetBlockHashResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\PruneBlockchainResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\RelayTxResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SetBansResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SubmitBlockResponse;
 use RefRing\MoneroRpcPhp\DaemonRpc\SyncInfoResponse;
-use RefRing\MoneroRpcPhp\Model\BacklogTransaction;
 
 class DaemonRpcDeserializationTest extends TestCase
 {

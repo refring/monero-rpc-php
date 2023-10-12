@@ -17,6 +17,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\GetTransactionsRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\InPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\IsKeyImageSpentRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\MiningStatusRequest;
+use RefRing\MoneroRpcPhp\DaemonOther\Model\GetOutputsOut;
 use RefRing\MoneroRpcPhp\DaemonOther\OutPeersRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\PopBlocksRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\SaveBlockchainRequest;
@@ -31,7 +32,6 @@ use RefRing\MoneroRpcPhp\DaemonOther\StopDaemonRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningRequest;
 use RefRing\MoneroRpcPhp\DaemonOther\UpdateRequest;
 use RefRing\MoneroRpcPhp\Enum\UpdateCommand;
-use RefRing\MoneroRpcPhp\Model\GetOutputsOut;
 
 class DaemonOtherSerializationTest extends TestCase
 {
