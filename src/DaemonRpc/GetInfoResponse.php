@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
 use RefRing\MoneroRpcPhp\Enum\NetType;
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\JsonDataSerializable;
@@ -198,7 +199,7 @@ class GetInfoResponse implements JsonDataSerializable
      * Hash of the highest block in the chain.
      */
     #[Json('top_block_hash')]
-    public string $topBlockHash;
+    public BlockHash $topBlockHash;
 
     /**
      * Total number of non-coinbase transaction in the chain.

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonRpc\Model;
 
 use RefRing\MoneroRpcPhp\Model\Amount;
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
@@ -59,7 +60,7 @@ class BlockHeader implements JsonDataSerializable
      * The hash of this block.
      */
     #[Json]
-    public string $hash;
+    public BlockHash $hash;
 
     /**
      * The number of blocks preceding this block on the blockchain.
@@ -119,7 +120,7 @@ class BlockHeader implements JsonDataSerializable
      * The hash of the block immediately preceding this block in the chain.
      */
     #[Json('prev_hash')]
-    public string $prevHash;
+    public BlockHash $prevHash;
 
     /**
      * The amount of new piconero generated in this block and rewarded to the miner. Note: 1 XMR = 1e12 piconero.
@@ -153,7 +154,7 @@ class BlockHeader implements JsonDataSerializable
         int $depth,
         int $difficulty,
         int $difficultyTop64,
-        string $hash,
+        BlockHash $hash,
         int $height,
         int $longTermWeight,
         int $majorVersion,
@@ -163,7 +164,7 @@ class BlockHeader implements JsonDataSerializable
         int $numTxes,
         bool $orphanStatus,
         string $powHash,
-        string $prevHash,
+        BlockHash $prevHash,
         Amount $reward,
         int $timestamp,
         string $wideCumulativeDifficulty,

@@ -19,6 +19,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Model\Amount;
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class EmptyBlockchainTest extends TestCase
@@ -58,11 +59,11 @@ final class EmptyBlockchainTest extends TestCase
         $expectedBlockTemplate->difficulty = 1;
         $expectedBlockTemplate->height = 1;
         $expectedBlockTemplate->expectedReward = 35184338534400;
-        $expectedBlockTemplate->prevHash = TestHelper::GENESIS_BLOCK_HASH;
+        $expectedBlockTemplate->prevHash = new BlockHash(TestHelper::GENESIS_BLOCK_HASH);
         $expectedBlockTemplate->untrusted = false;
         $expectedBlockTemplate->difficultyTop64 = 0;
-        $expectedBlockTemplate->nextSeedHash = '';
-        $expectedBlockTemplate->seedHash = TestHelper::GENESIS_BLOCK_HASH;
+        $expectedBlockTemplate->nextSeedHash = new BlockHash('');
+        $expectedBlockTemplate->seedHash = new BlockHash(TestHelper::GENESIS_BLOCK_HASH);
         $expectedBlockTemplate->seedHeight = 0;
         $expectedBlockTemplate->status = ResponseStatus::OK;
         $expectedBlockTemplate->wideDifficulty = '0x1';
@@ -104,7 +105,7 @@ final class EmptyBlockchainTest extends TestCase
             0,
             1,
             0,
-            TestHelper::GENESIS_BLOCK_HASH,
+            new BlockHash(TestHelper::GENESIS_BLOCK_HASH),
             0,
             80,
             1,
@@ -114,7 +115,7 @@ final class EmptyBlockchainTest extends TestCase
             0,
             false,
             '',
-            '0000000000000000000000000000000000000000000000000000000000000000',
+            new BlockHash('0000000000000000000000000000000000000000000000000000000000000000'),
             new Amount(17592186044415),
             0,
             '0x1',

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\JsonDataSerializable;
@@ -17,9 +18,9 @@ class GenerateblocksResponse implements JsonDataSerializable
     use DaemonStandardResponseFields;
 
     /**
-     * @var OnGetBlockHashResponse[]
+     * @var BlockHash[]
      */
-    #[Json]
+    #[Json(type: BlockHash::class)]
     public array $blocks = [];
 
     #[Json]

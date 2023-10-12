@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use Square\Pjson\Json;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\JsonDataSerializable;
@@ -56,13 +57,13 @@ class GetBlockTemplateResponse implements JsonDataSerializable
      * Hash of the next block to use as seed for Random-X proof-of-work.
      */
     #[Json('next_seed_hash')]
-    public string $nextSeedHash;
+    public BlockHash $nextSeedHash;
 
     /**
      * Hash of the most recent block on which to mine the next block.
      */
     #[Json('prev_hash')]
-    public string $prevHash;
+    public BlockHash $prevHash;
 
     /**
      * Reserved offset.
@@ -74,7 +75,7 @@ class GetBlockTemplateResponse implements JsonDataSerializable
      * Hash of block to use as seed for Random-X proof-of-work.
      */
     #[Json('seed_hash')]
-    public string $seedHash;
+    public BlockHash $seedHash;
 
     /**
      * Height of block to use as seed for Random-X proof-of-work.

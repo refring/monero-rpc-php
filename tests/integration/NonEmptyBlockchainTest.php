@@ -19,6 +19,7 @@ use RefRing\MoneroRpcPhp\Exception\InvalidAddressException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 use RefRing\MoneroRpcPhp\Model\Amount;
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
 final class NonEmptyBlockchainTest extends TestCase
@@ -97,7 +98,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
         $blockHeight = self::$daemonRpcClient->getBlockCount()->count - 1;
-        $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
+        $blockHeader = $this->getLastBlockHeaderMock($lastBlockHashResult, $blockHeight, $secondLastBlockHash);
 
         $expected = new GetLastBlockHeaderResponse();
         $expected->untrusted = false;
@@ -121,7 +122,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
         $blockHeight = self::$daemonRpcClient->getBlockCount()->count - 1;
-        $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
+        $blockHeader = $this->getLastBlockHeaderMock($lastBlockHashResult, $blockHeight, $secondLastBlockHash);
 
         $expected = new GetBlockHeaderByHashResponse();
         $expected->untrusted = false;
@@ -145,7 +146,7 @@ final class NonEmptyBlockchainTest extends TestCase
         $lastBlockHashResult = end($result->blocks);
         $secondLastBlockHash = prev($result->blocks);
         $blockHeight = self::$daemonRpcClient->getBlockCount()->count - 1;
-        $blockHeader = $this->getLastBlockHeaderMock((string)$lastBlockHashResult, $blockHeight, (string)$secondLastBlockHash);
+        $blockHeader = $this->getLastBlockHeaderMock($lastBlockHashResult, $blockHeight, $secondLastBlockHash);
 
         $expected = new GetBlockHeaderByHeightResponse();
         $expected->untrusted = false;
@@ -207,7 +208,7 @@ final class NonEmptyBlockchainTest extends TestCase
         return $height + $amountOfBlocks;
     }
 
-    private function getLastBlockHeaderMock(string $lastBlockHashResult, int $blockHeight, string $secondLastBlockHash): BlockHeader
+    private function getLastBlockHeaderMock(BlockHash $lastBlockHashResult, int $blockHeight, BlockHash $secondLastBlockHash): BlockHeader
     {
         return new BlockHeader(
             85,

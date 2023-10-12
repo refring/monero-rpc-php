@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\DaemonOther\Model;
 
 use RefRing\MoneroRpcPhp\Model\Amount;
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Trait\JsonSerializeBigInt;
 use Square\Pjson\Json;
 use Square\Pjson\JsonDataSerializable;
@@ -76,7 +77,7 @@ class MemPoolTransaction implements JsonDataSerializable
      * Tells the hash of the most recent block with an output used in this transaction.
      */
     #[Json('max_used_block_id_hash')]
-    public string $maxUsedBlockIdHash;
+    public BlockHash $maxUsedBlockIdHash;
 
     /**
      * The Unix time that the transaction was first seen on the network by the node.
@@ -120,7 +121,7 @@ class MemPoolTransaction implements JsonDataSerializable
         string $lastFailedIdHash,
         int $lastRelayedTime,
         int $maxUsedBlockHeight,
-        string $maxUsedBlockIdHash,
+        BlockHash $maxUsedBlockIdHash,
         int $receiveTime,
         bool $relayed,
         string $txBlob,

@@ -33,6 +33,7 @@ use RefRing\MoneroRpcPhp\DaemonOther\StopDaemonResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\StopMiningResponse;
 use RefRing\MoneroRpcPhp\DaemonOther\UpdateResponse;
 use RefRing\MoneroRpcPhp\Model\Amount;
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 
 class DaemonOtherDeserializationTest extends TestCase
 {
@@ -40,6 +41,7 @@ class DaemonOtherDeserializationTest extends TestCase
     {
         $jsonResponse = '{"hash":"7e23a28cfa6df925d5b63940baf60b83c0cbb65da95f49b19e7cf0ce7dd709ce","height":2287217,"status":"OK","untrusted":false}';
         $response = GetHeightResponse::fromJsonString($jsonResponse);
+        $this->assertEquals(new BlockHash('7e23a28cfa6df925d5b63940baf60b83c0cbb65da95f49b19e7cf0ce7dd709ce'), $response->hash);
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }
@@ -73,6 +75,7 @@ class DaemonOtherDeserializationTest extends TestCase
         $jsonResponse = '{"blks_hashes":["dd4998cfe92a959a5a0e4ed72432cf23d7dfc4179cbea871ee2a705d71fb5e25","f36c3856ffde6a7d06fc832c80ede4ad5b6c8f702c9736dae1e2140d86504db9","8d0c1f806817259d213c8829ea3356334e0d8fdd3b118e1243756e12dce767bb"],"credits":0,"top_hash":"","status":"OK","untrusted":false}';
         $response = GetAltBlocksHashesResponse::fromJsonString($jsonResponse);
         $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertEquals(new BlockHash('dd4998cfe92a959a5a0e4ed72432cf23d7dfc4179cbea871ee2a705d71fb5e25'), $response->blockHashes[0]);
         $this->assertSame($responseFlat, $response->toJson());
     }
 
@@ -324,7 +327,7 @@ class DaemonOtherDeserializationTest extends TestCase
         $this->assertSame('0000000000000000000000000000000000000000000000000000000000000000', $tx->lastFailedIdHash);
         $this->assertSame(1697049076, $tx->lastRelayedTime);
         $this->assertSame(2993717, $tx->maxUsedBlockHeight);
-        $this->assertSame('645680ac1816e39026039776f90476697ffc1c708cc8fb0f60ad5d17b9437d65', $tx->maxUsedBlockIdHash);
+        $this->assertSame('645680ac1816e39026039776f90476697ffc1c708cc8fb0f60ad5d17b9437d65', (string) $tx->maxUsedBlockIdHash);
         $this->assertSame(1697049076, $tx->receiveTime);
         $this->assertTrue($tx->relayed);
         $this->assertSame(1525, $tx->weight);

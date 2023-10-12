@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\DaemonRpc;
 
+use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
 use Square\Pjson\Json;
@@ -21,7 +22,7 @@ class GetBlockHeaderByHashRequest implements ParameterInterface, JsonDataSeriali
      * The block's sha256 hash.
      */
     #[Json]
-    public string $hash;
+    public BlockHash $hash;
 
     /**
      * Add PoW hash to block_header response.
@@ -30,8 +31,11 @@ class GetBlockHeaderByHashRequest implements ParameterInterface, JsonDataSeriali
     #[Json('fill_pow_hash', omit_empty: true)]
     public ?bool $fillPowHash;
 
-    public static function create(string $hash, ?bool $fillPowHash = null): RpcRequest
+    public static function create(BlockHash|string $hash, ?bool $fillPowHash = null): RpcRequest
     {
+        if (is_string($hash)) {
+            $hash = new BlockHash($hash);
+        }
         $self = new self();
         $self->hash = $hash;
         $self->fillPowHash = $fillPowHash;

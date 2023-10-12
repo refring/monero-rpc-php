@@ -148,12 +148,14 @@ class DaemonRpcClient extends JsonRpcClient
      * @throws MoneroRpcException
      * @throws InvalidBlockHeightException
      */
-    public function onGetBlockHash(int $blockHeight): OnGetBlockHashResponse
+    public function onGetBlockHash(int $blockHeight): BlockHash
     {
         $result = $this->handleRequest(OnGetBlockHashRequest::create($blockHeight), OnGetBlockHashResponse::class);
         if ((string) $result === '0000000000000000000000000000000000000000000000000000000000000000') {
             throw ErrorCode::InvalidBlockHeight->toException($blockHeight);
         }
+
+        $result = new BlockHash($result->value);
 
         return $result;
     }
