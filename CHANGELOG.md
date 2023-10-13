@@ -4,6 +4,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## v0.7.0 (2023-10-13)
+### Added
+- Amount class for representing piconeros
+- Renamed Recipient to Destination and it now requires an Amount object
+- Better handling of bigint (de)serialization 
+- DaemonRpcClient:: sendRawTransaction()
+- DaemonRpcClient::getAltBlocksHashes()
+- DaemonRpcClient::isKeyImageSpent()
+- DaemonRpcClient::startMining()
+- DaemonRpcClient::stopMining()
+- DaemonRpcClient::miningStatus()
+- DaemonRpcClient::saveBlockchain()
+- DaemonRpcClient::setLogHashRate()
+- DaemonRpcClient::setLogLevel()
+- DaemonRpcClient::setLogCategories()
+- DaemonRpcClient::setLimit()
+- DaemonRpcClient::getLimit()
+- DaemonRpcClient::outPeers()
+- DaemonRpcClient::inPeers()
+- DaemonRpcClient::getPeerList()
+- DaemonRpcClient::update()
+- DaemonRpcClient::setBootstrapDaemon()
+- DaemonRpcClient::getTransactionPoolStats()
+- DaemonRpcClient::getOuts()
+- DaemonRpcClient::getTransactions()
+- DaemonRpcClient::stopDaemon()
+- DaemonRpcClient::getTransactionPool()
+- InvalidDestinationException
+- BigInt class
+- Peer class
+- TransferType::BLOCK
+- REGTEST/fakechain nettype
+- SpentStatus enum
+### Changed
+- Packagist package name is now refring/monero-rpc-php
+- WalletRpcClient::getTransfers() will now return all types of transfer by default
+- Made accountIndex 0 the default for various methods
+- Many Model classes have been moved into wallet/daemon specific namespaces
+- Always initialize Response class array properties with an empty array
+- Renamed PeerStructure class to SyncPeer
+- Renamed DaemonBaseResponse trait to DaemonBaseResponse
+- Renamed RpcAccessBaseResponse trait to DaemonStandardResponseFields
+- Renamed GetLastBlockHeaderBaseResponse to GetLastBlockHeaderResponse
+### Fixed
+- Set default ringsize to 16 for WalletRpcClient::transfer()
+- Reset endpoint after callign an 'other' daemon rpc method
+
 ## v0.6.0 (2023-09-28)
 ### Added
 - DaemonRpcClient::getHeight()
@@ -85,3 +132,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## v0.0.1 (2023-07-27)
 ### Added
 - First version
+
+[unreleased]: https://github.com/refring/monero-rpc-php/compare/0.7.0...main
+[0.7.0]: https://github.com/refring/monero-rpc-php/compare/0.6.0...0.7.0
+[0.6.0]: https://github.com/refring/monero-rpc-php/compare/0.5.0...0.6.0
+[0.5.0]: https://github.com/refring/monero-rpc-php/compare/0.4.0...0.5.0
+[0.4.0]: https://github.com/refring/monero-rpc-php/compare/0.3.0...0.4.0
+[0.3.0]: https://github.com/refring/monero-rpc-php/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/refring/monero-rpc-php/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/refring/monero-rpc-php/releases/tag/0.1.0

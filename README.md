@@ -8,7 +8,7 @@
 Monero daemon and wallet RPC client library written in modern PHP.
 
 ## Features
-* Implements Monero wallet and daemon json-rpc methods
+* Implements Monero wallet and daemon rpc methods
 * Support authentication for the wallet and daemon rpc servers
 * Fully strongly typed and strict_types enabled
 * Minimal dependencies
@@ -51,8 +51,9 @@ composer php-http/curl-client
 ```
 </details>
 
-## Usage
+## Setup
 
+### Creating a client
 For the wallet rpc client:
 
 ```php
@@ -70,7 +71,7 @@ $daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081
 echo $daemonClient->getVersion()->version;
 ```
 
-With authentication:
+### Using authentication
 
 ```php
 $daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081/json_rpc'))
@@ -80,6 +81,22 @@ $daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081
 echo $daemonClient->getVersion()->version;
 ```
 
+### Connecting through a proxy
+Configuring a proxy is specific to the http client library.
+
+Below is a Symfony Http Client example for a socks5 proxy:
+```php
+$httpClient = new Psr18Client(new CurlHttpClient([
+    'http_version' => '2.0',
+    'proxy' => 'socks5://username:password@127.0.0.1:9999',
+]));
+
+$daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://examplenode/json_rpc'))
+    ->withHttpClient($httpClient)
+    ->buildDaemonClient();
+```
+
+### Injecting a logger
 The client builder also supports injecting a logger and/or a http client: 
 ```php
 $httpClient = new \Symfony\Component\HttpClient\Psr18Client();
@@ -91,6 +108,7 @@ $daemonClient = (new \RefRing\MoneroRpcPhp\ClientBuilder('http://127.0.0.1:18081
     ->buildDaemonClient();
 ```
 
+## Usage
 ### Creating a wallet and account
 ```php
 // Try to create a wallet, or open it when it already exists
