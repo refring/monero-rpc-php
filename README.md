@@ -19,8 +19,6 @@ Monero daemon and wallet RPC client library written in modern PHP.
 
 You can install the package with Composer, at this this time minimum-stability has to be set to dev:
 ```bash
-composer config minimum-stability dev
-composer config prefer-stable true
 composer require refring/monero-rpc-php
 ```
 
