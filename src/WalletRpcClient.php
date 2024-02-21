@@ -578,7 +578,7 @@ class WalletRpcClient extends JsonRpcClient
         ?int $accountIndex = null,
         ?array $subaddrIndices = null,
         ?bool $subaddrIndicesAll = false,
-        ?int $priority = null,
+        TransferPriority|int|null $priority = null,
         ?int $outputs = null,
         ?int $ringSize = null,
         ?int $unlockTime = null,
@@ -612,7 +612,7 @@ class WalletRpcClient extends JsonRpcClient
     public function sweepSingle(
         Address $address,
         string $keyImage,
-        ?int $priority = null,
+        TransferPriority|int|null $priority = null,
         ?int $outputs = null,
         ?int $ringSize = null,
         ?int $unlockTime = null,

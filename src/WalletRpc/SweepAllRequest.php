@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp\WalletRpc;
 
+use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Request\ParameterInterface;
 use RefRing\MoneroRpcPhp\Request\RpcRequest;
@@ -47,7 +48,7 @@ class SweepAllRequest implements ParameterInterface, JsonDataSerializable
      * Priority for sending the sweep transfer, partially determines fee.
      */
     #[Json(omit_empty: true)]
-    public ?int $priority;
+    public TransferPriority|int|null $priority;
 
     /**
      * specify the number of separate outputs of smaller denomination that will be created by sweep operation.
@@ -114,7 +115,7 @@ class SweepAllRequest implements ParameterInterface, JsonDataSerializable
         ?int $accountIndex = null,
         ?array $subaddrIndices = null,
         ?bool $subaddrIndicesAll = null,
-        ?int $priority = null,
+        TransferPriority|int|null $priority = null,
         ?int $outputs = null,
         ?int $ringSize = null,
         ?int $unlockTime = null,
