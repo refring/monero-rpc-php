@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     env:
-      PHP_EXTENSIONS: none, bcmath, curl, dom, json, gmp, mbstring, opcache, simplexml, sockets, tokenizer, xml, xmlwriter
+      PHP_EXTENSIONS: none, bcmath, ctype, curl, dom, json, gmp, mbstring, opcache, simplexml, sockets, tokenizer, xml, xmlwriter
       PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
 
     strategy:
@@ -70,7 +70,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-          extensions: none, bcmath, curl, dom, json, gmp, mbstring, opcache, simplexml, sockets, tokenizer, xml, xmlwriter
+          extensions: none, bcmath, ctype, curl, dom, json, gmp, mbstring, opcache, simplexml, sockets, tokenizer, xml, xmlwriter
           coverage: xdebug3
           tools: none
 
