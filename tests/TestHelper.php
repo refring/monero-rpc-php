@@ -9,12 +9,6 @@ class TestHelper
     /**
      * @var string
      */
-    final public const WALLET_RPC_URL = 'http://127.0.0.1:18083/json_rpc';
-    final public const DAEMON_RPC_URL = 'http://127.0.0.1:18081/json_rpc';
-
-    /**
-     * @var string
-     */
     final public const GENESIS_BLOCK_HASH = '418015bb9ae982a1975da7d79277c2705727a56894ba0fb246adaabb1f4632e3';
 
     /**

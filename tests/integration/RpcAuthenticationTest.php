@@ -11,16 +11,6 @@ use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 
 class RpcAuthenticationTest extends TestCase
 {
-    /**
-     * @var string
-     */
-    final public const WALLET_RPC_URL = 'http://127.0.0.1:18084/json_rpc';
-
-    /**
-     * @var string
-     */
-    final public const DAEMON_RPC_URL = 'http://127.0.0.1:18085/json_rpc';
-
     public function testConnectionError(): void
     {
         $client = (new ClientBuilder('http://127.0.0.1:'.$this->findFreePort()))
@@ -33,7 +23,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testWalletAuthFailure(): void
     {
-        $client = (new ClientBuilder(self::WALLET_RPC_URL))
+        $client = (new ClientBuilder(getenv('WALLET_RPC_URL_AUTH')))
             ->buildWalletClient();
 
         $this->expectException(AuthenticationException::class);
@@ -42,7 +32,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testWalletAuth(): void
     {
-        $client = (new ClientBuilder(self::WALLET_RPC_URL))
+        $client = (new ClientBuilder(getenv('WALLET_RPC_URL_AUTH')))
             ->withAuthentication('foo', 'bar')
             ->buildWalletClient();
 
@@ -51,7 +41,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testDaemonAuthFailure(): void
     {
-        $client = (new ClientBuilder(self::DAEMON_RPC_URL))
+        $client = (new ClientBuilder(getenv('DAEMON_RPC_URL_AUTH')))
             ->buildDaemonClient();
 
         $this->expectException(AuthenticationException::class);
@@ -60,7 +50,7 @@ class RpcAuthenticationTest extends TestCase
 
     public function testDaemonAuth(): void
     {
-        $client = (new ClientBuilder(self::DAEMON_RPC_URL))
+        $client = (new ClientBuilder(getenv('DAEMON_RPC_URL_AUTH')))
             ->withAuthentication('foo', 'bar')
             ->buildDaemonClient();
 

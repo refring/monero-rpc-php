@@ -16,7 +16,7 @@ final class DaemonOtherTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         $httpClient = Psr18ClientDiscovery::find();
-        self::$rpcClient = new DaemonRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
+        self::$rpcClient = new DaemonRpcClient($httpClient, getenv('DAEMON_RPC_URL'));
     }
 
     public function testGetNetStats(): void

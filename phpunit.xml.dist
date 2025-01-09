@@ -20,4 +20,10 @@
           <directory>tests/integration</directory>
       </testsuite>
   </testsuites>
+    <php>
+        <env name="WALLET_RPC_URL" value="http://127.0.0.1:18083/json_rpc"/>
+        <env name="WALLET_RPC_URL_AUTH" value="http://127.0.0.1:18084/json_rpc"/>
+        <env name="DAEMON_RPC_URL" value="http://127.0.0.1:18081/json_rpc"/>
+        <env name="DAEMON_RPC_URL_AUTH" value="http://127.0.0.1:18085/json_rpc"/>
+    </php>
 </phpunit>

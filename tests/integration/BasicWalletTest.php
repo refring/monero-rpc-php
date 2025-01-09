@@ -52,9 +52,9 @@ class BasicWalletTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$rpcClient = (new ClientBuilder(TestHelper::WALLET_RPC_URL))
+        self::$rpcClient = (new ClientBuilder(getenv('WALLET_RPC_URL')))
             ->buildWalletClient();
-        self::$daemonRpcClient = (new ClientBuilder(TestHelper::DAEMON_RPC_URL))->buildDaemonClient();
+        self::$daemonRpcClient = (new ClientBuilder(getenv('DAEMON_RPC_URL')))->buildDaemonClient();
     }
 
     public function testGetVersion(): void
