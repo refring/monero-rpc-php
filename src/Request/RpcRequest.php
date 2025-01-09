@@ -23,7 +23,7 @@ class RpcRequest
     #[Json('params', omit_empty: true)]
     public ?ParameterInterface $parameters;
 
-    public function __construct(string $method, ParameterInterface $parameters = null)
+    public function __construct(string $method, ?ParameterInterface $parameters = null)
     {
         $this->method = $method;
         $this->jsonrpc = '2.0';

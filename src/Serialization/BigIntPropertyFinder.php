@@ -26,7 +26,7 @@ class BigIntPropertyFinder
      * @param \ReflectionProperty[] $properties
      * @return array{'properties': string[], 'listProperties': string[]}
      */
-    public function findProperties(object $instance, array $properties = null): array
+    public function findProperties(object $instance, ?array $properties = null): array
     {
         $propertiesToMatch = ['properties' => [], 'listProperties' => []];
 
