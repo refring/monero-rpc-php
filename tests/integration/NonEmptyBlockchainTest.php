@@ -42,7 +42,7 @@ final class NonEmptyBlockchainTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         $httpClient = Psr18ClientDiscovery::find();
-        self::$daemonRpcClient = new DaemonRpcClient($httpClient, 'http://127.0.0.1:18081/json_rpc');
+        self::$daemonRpcClient = new DaemonRpcClient($httpClient, getenv('DAEMON_RPC_URL'));
     }
 
     // STEP 1: we use a testnet address; however,

@@ -26,7 +26,7 @@ class BigIntPropertyFinder
      * @param \ReflectionProperty[] $properties
      * @return array{'properties': string[], 'listProperties': string[]}
      */
-    public function findProperties(object $instance, array $properties = null): array
+    public function findProperties(object $instance, ?array $properties = null): array
     {
         $propertiesToMatch = ['properties' => [], 'listProperties' => []];
 
@@ -107,7 +107,7 @@ class BigIntPropertyFinder
     private function getPathFromAttributes(array $attributes): string
     {
         foreach ($attributes as $attribute) {
-            foreach($attribute->getArguments() as $attrArgumentIndex => $attrArgumentValue) {
+            foreach ($attribute->getArguments() as $attrArgumentIndex => $attrArgumentValue) {
                 // The path argument we're looking for is the first positional argument
                 // When it's supplied as a named argument the key will be 'path'
                 if ($attrArgumentIndex === 0 || $attrArgumentIndex === 'path') {
@@ -125,7 +125,7 @@ class BigIntPropertyFinder
     private function getClassFromAttributes(array $attributes): string
     {
         foreach ($attributes as $attribute) {
-            foreach($attribute->getArguments() as $attrArgumentIndex => $attrArgumentValue) {
+            foreach ($attribute->getArguments() as $attrArgumentIndex => $attrArgumentValue) {
                 // The type argument we're looking for is the second positional argument
                 // When it's supplied as a named argument the key will be 'type'
                 if ($attrArgumentIndex === 1 || $attrArgumentIndex === 'type') {
