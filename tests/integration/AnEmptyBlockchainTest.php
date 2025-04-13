@@ -22,7 +22,7 @@ use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Model\BlockHash;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
 
-final class EmptyBlockchainTest extends TestCase
+final class AnEmptyBlockchainTest extends TestCase
 {
     private static DaemonRpcClient $daemonRpcClient;
 
