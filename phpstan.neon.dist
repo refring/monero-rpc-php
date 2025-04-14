@@ -4,8 +4,8 @@ parameters:
         - src
     ignoreErrors:
         - '#^Method RefRing\\MoneroRpcPhp\\Serialization\\BigIntPropertyFinder\:\:findProperties\(\) should return array\{properties\: array\<string\>, listProperties\: array\<string\>\} but returns array\.$#'
+        - identifier: missingType.generics
 
-    checkGenericClassInNonGenericObjectType: false
     reportUnmatchedIgnoredErrors: true
 
 includes:

@@ -29,6 +29,11 @@ final class Amount implements JsonDataSerializable
 
         return $value;
     }
+
+    /**
+     * @param numeric-string $xmrAmount
+     * @return self
+     */
     public static function fromXmr(string $xmrAmount): self
     {
         $piconero = bcmul($xmrAmount, (string) self::MONERO, 0);
