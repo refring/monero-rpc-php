@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp;
 use Http\Discovery\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RefRing\MoneroRpcPhp\Enum\ErrorCode;
@@ -42,7 +43,6 @@ abstract class JsonRpcClient
     public function createRequest(string $json): RequestInterface
     {
         $psr17Factory = new Psr17Factory();
-
         $body = $psr17Factory->createStream($json);
 
         $request = $psr17Factory->createRequest('POST', $this->url);
@@ -51,13 +51,13 @@ abstract class JsonRpcClient
             $request = $request->withUri($newUri);
         }
 
+        $request = $request->withHeader('Content-type', 'application/json');
+
         foreach ($this->headers as $name => $value) {
-            $request->withHeader($name, $value);
+            $request = $request->withHeader($name, $value);
         }
 
-        $request = $request->withBody($body);
-
-        return $request;
+        return $request->withBody($body);
     }
 
     /**
@@ -68,37 +68,23 @@ abstract class JsonRpcClient
     protected function handleRequest(RpcRequest|OtherRpcRequest $rpcRequest, string $className): mixed
     {
         $requestBody = $rpcRequest->toJson();
+
         $request = $this->createRequest($requestBody);
-
-
-        $this->logger->debug(
-            'Request',
-            [
-                'method' => $request->getMethod(),
-                'path' => $request->getUri()->getPath(),
-                'request_headers' => $request->getHeaders(),
-                'body' => $requestBody
-            ]
-        );
+        $this->logRequest($request, $requestBody);
 
         $response = $this->httpClient->sendRequest($request);
+        $this->logResponse($response);
 
-        // When the www-authenticate header is present we try to authenticate in an additional request
-        if ($response->hasHeader('www-authenticate')) {
-            $uri = (string) $request->getUri()->getPath();
-            $digestAuthenticator = new DigestAuthentication($this->username, $this->password, $uri, 'POST');
-            $digest = $digestAuthenticator->getDigestResponse($response->getHeader('www-authenticate')[0]);
+        // Handle authentication if needed
+        if ($response->hasHeader('WWW-authenticate')) {
+            $request = $this->authenticateRequest($request, $response);
+            $this->logRequest($request, $requestBody);
 
-            $request = $request->withAddedHeader('Authorization', $digest);
             $response = $this->httpClient->sendRequest($request);
+            $this->logResponse($response);
         }
 
         $body = $response->getBody()->__toString();
-
-        $this->logger->debug('Response', [
-            'body' => $body,
-            'response_headers' => $response->getHeaders()
-        ]);
 
         if (($e = $this->getExceptionForInvalidResponse($body)) !== null) {
             throw $e;
@@ -114,6 +100,36 @@ abstract class JsonRpcClient
         }
 
         return $className::fromJsonString($body, $jsonResultPath, flags: JSON_BIGINT_AS_STRING);
+    }
+
+    private function logRequest(RequestInterface $request, string $requestBody): void
+    {
+        $this->logger->debug(
+            'Request',
+            [
+                'method' => $request->getMethod(),
+                'path' => $request->getUri()->getPath(),
+                'request_headers' => $request->getHeaders(),
+                'body' => $requestBody
+            ]
+        );
+    }
+
+    private function logResponse(ResponseInterface $response): void
+    {
+        $this->logger->debug('Response', [
+            'body' => $response->getBody()->__toString(),
+            'response_headers' => $response->getHeaders()
+        ]);
+    }
+
+    private function authenticateRequest(RequestInterface $request, ResponseInterface $response): RequestInterface
+    {
+        $uri = (string) $request->getUri()->getPath();
+        $digestAuthenticator = new DigestAuthentication($this->username, $this->password, $uri, 'POST');
+        $digest = $digestAuthenticator->getDigestResponse($response->getHeader('WWW-authenticate')[0]);
+
+        return $request->withAddedHeader('Authorization', $digest);
     }
 
     protected function getExceptionForInvalidResponse(string $responseBody): ?MoneroRpcException
@@ -134,7 +150,7 @@ abstract class JsonRpcClient
     }
 
     /**
-     * @param string[] $headers
+     * @param array<string, string> $headers
      */
     public function setHeaders(array $headers): void
     {
