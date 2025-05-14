@@ -143,9 +143,9 @@ If you have the docker stack installed, go to the `tests` folder and run `docker
 
 After that, run `composer test:integration` to run the integration tests.
 
-## Roadmap
-- [ ] More integration tests
-- [ ] Improve documentation and add examples
+## Compatibility
+
+Only the latest 3 point releases of Monero are actively supported and covered by integration tests.
 
 ##  Contributing
 
