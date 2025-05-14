@@ -76,6 +76,7 @@ enum ErrorCode: string
             'account index is out of bound' => self::AccountIndexOutOfBound,
             'Invalid address' => self::InvalidAddress,
             'WALLET_RPC_ERROR_CODE_WRONG_ADDRESS' => self::InvalidAddress,
+            'Failed to open wallet' => self::OpenWalletFailure,
         ];
 
         // If an exact match was not found try to find a partial match
