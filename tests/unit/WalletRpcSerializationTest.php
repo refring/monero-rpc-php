@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace RefRing\MoneroRpcPhp\Tests\unit;
 
 use PHPUnit\Framework\TestCase;
+use RefRing\MoneroRpcPhp\Enum\SignatureType;
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\Amount;
@@ -534,8 +535,8 @@ class WalletRpcSerializationTest extends TestCase
 
     public function testSign()
     {
-        $expected = '{"jsonrpc":"2.0","id":"0","method":"sign","params":{"data":"This is sample data to be signed"}}';
-        $request = SignRequest::create('This is sample data to be signed');
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"sign","params":{"data":"test","account_index":0,"address_index":0,"signature_type":"spend"}}';
+        $request = SignRequest::create('test', 0, 0, SignatureType::SPEND);
         $this->assertSame($expected, $request->toJson());
     }
 

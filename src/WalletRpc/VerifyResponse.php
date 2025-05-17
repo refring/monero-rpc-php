@@ -20,10 +20,11 @@ class VerifyResponse implements JsonDataSerializable
     public bool $good;
 
     #[Json]
-    public int $version;
+    public bool $old;
+
+    #[Json('signature_type')]
+    public SignatureType $signatureType;
 
     #[Json]
-    public bool $old;
-    #[Json]
-    public SignatureType $signatureType;
+    public int $version;
 }
