@@ -76,6 +76,12 @@ class SetDaemonRequest implements ParameterInterface, JsonDataSerializable
     public ?string $password;
 
     /**
+     * Daemon-specific proxy (v0.18.4.0+)
+     */
+    #[Json(omit_empty: true)]
+    public ?string $proxy;
+
+    /**
      * @param ?string[] $sslAllowedFingerprints
      */
     public static function create(
@@ -89,6 +95,7 @@ class SetDaemonRequest implements ParameterInterface, JsonDataSerializable
         ?bool $sslAllowAnyCert = null,
         ?string $username = null,
         ?string $password = null,
+        ?string $proxy = null,
     ): RpcRequest {
         $self = new self();
         $self->address = $address;
@@ -101,6 +108,7 @@ class SetDaemonRequest implements ParameterInterface, JsonDataSerializable
         $self->sslAllowAnyCert = $sslAllowAnyCert;
         $self->username = $username;
         $self->password = $password;
+        $self->proxy = $proxy;
         return new RpcRequest('set_daemon', $self);
     }
 }

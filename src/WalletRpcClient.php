@@ -213,6 +213,7 @@ class WalletRpcClient extends JsonRpcClient
      * @param bool $sslAllowAnyCert If false, the certificate must be signed by a trusted certificate authority.
      * @param ?string $username
      * @param ?string $password
+     * @param ?string $proxy Daemon-specific proxy (v0.18.4.0+)
      * @throws MoneroRpcException
      */
     public function setDaemon(
@@ -226,8 +227,9 @@ class WalletRpcClient extends JsonRpcClient
         ?bool $sslAllowAnyCert = false,
         ?string $username = null,
         ?string $password = null,
+        ?string $proxy = null,
     ): SetDaemonResponse {
-        return $this->handleRequest(SetDaemonRequest::create($address, $trusted, $sslSupport, $sslPrivateKeyPath, $sslCertificatePath, $sslCaFile, $sslAllowedFingerprints, $sslAllowAnyCert, $username, $password), SetDaemonResponse::class);
+        return $this->handleRequest(SetDaemonRequest::create($address, $trusted, $sslSupport, $sslPrivateKeyPath, $sslCertificatePath, $sslCaFile, $sslAllowedFingerprints, $sslAllowAnyCert, $username, $password, $proxy), SetDaemonResponse::class);
     }
 
 

@@ -104,7 +104,7 @@ class WalletRpcSerializationTest extends TestCase
 {
     public function testSetDaemon()
     {
-        $expected = '{"jsonrpc":"2.0","id":"0","method":"set_daemon","params":{"address":"http:\/\/localhost:18081","trusted":true,"ssl_support":"enabled","ssl_private_key_path":"path\/to\/ssl\/key","ssl_certificate_path":"path\/to\/ssl\/certificate","ssl_ca_file":"path\/to\/ssl\/ca\/file","ssl_allowed_fingerprints":["85:A7:68:29:BE:73:49:80:84:91:7A:BB:1F:F1:AD:7E:43:FE:CC:B8"],"ssl_allow_any_cert":true}}';
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"set_daemon","params":{"address":"http:\/\/localhost:18081","trusted":true,"ssl_support":"enabled","ssl_private_key_path":"path\/to\/ssl\/key","ssl_certificate_path":"path\/to\/ssl\/certificate","ssl_ca_file":"path\/to\/ssl\/ca\/file","ssl_allowed_fingerprints":["85:A7:68:29:BE:73:49:80:84:91:7A:BB:1F:F1:AD:7E:43:FE:CC:B8"],"ssl_allow_any_cert":true,"proxy":"myproxy"}}';
         $address = 'http://localhost:18081';
         $trusted = true;
         $sslSupport = 'enabled';
@@ -113,7 +113,8 @@ class WalletRpcSerializationTest extends TestCase
         $sslCaFile = 'path/to/ssl/ca/file';
         $sslAllowedFingerprints = ["85:A7:68:29:BE:73:49:80:84:91:7A:BB:1F:F1:AD:7E:43:FE:CC:B8"];
         $sslAllowAnyCert = true;
-        $request = SetDaemonRequest::create($address, $trusted, $sslSupport, $sslPrivateKeyPath, $sslCertificatePath, $sslCaFile, $sslAllowedFingerprints, $sslAllowAnyCert);
+        $proxy = "myproxy";
+        $request = SetDaemonRequest::create($address, $trusted, $sslSupport, $sslPrivateKeyPath, $sslCertificatePath, $sslCaFile, $sslAllowedFingerprints, $sslAllowAnyCert, null, null, $proxy);
         $this->assertSame($expected, $request->toJson());
     }
 
