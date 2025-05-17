@@ -528,7 +528,7 @@ class WalletRpcDeserializationTest extends TestCase
 
     public function testVerify()
     {
-        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"good":true}}';
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"good":true,"old":false,"signature_type":"spend","version":2}}';
         $response = VerifyResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());

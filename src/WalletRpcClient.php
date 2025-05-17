@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace RefRing\MoneroRpcPhp;
 
+use RefRing\MoneroRpcPhp\Enum\SignatureType;
 use RefRing\MoneroRpcPhp\Enum\TransferPriority;
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
@@ -994,11 +995,14 @@ class WalletRpcClient extends JsonRpcClient
      * Sign a string.
      *
      * @param string $data Anything you need to sign.
+     * @param int $accountIndex Account index to sign for.
+     * @param int $addressIndex Subaddress index to sign for.
+     * @param SignatureType $signatureType Type of signature to generate.
      * @throws MoneroRpcException
      */
-    public function sign(string $data): SignResponse
+    public function sign(string $data, int $accountIndex = 0, int $addressIndex = 0, SignatureType $signatureType = SignatureType::SPEND): SignResponse
     {
-        return $this->handleRequest(SignRequest::create($data), SignResponse::class);
+        return $this->handleRequest(SignRequest::create($data, $accountIndex, $addressIndex, $signatureType), SignResponse::class);
     }
 
 
