@@ -18,11 +18,13 @@ use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockHeightRangeException;
 use RefRing\MoneroRpcPhp\Exception\InvalidBlockTemplateBlobException;
 use RefRing\MoneroRpcPhp\Exception\InvalidDestinationException;
+use RefRing\MoneroRpcPhp\Exception\InvalidHostOrSubnetException;
 use RefRing\MoneroRpcPhp\Exception\InvalidLanguageException;
 use RefRing\MoneroRpcPhp\Exception\InvalidOriginalPasswordException;
 use RefRing\MoneroRpcPhp\Exception\InvalidPaymentIdException;
 use RefRing\MoneroRpcPhp\Exception\InvalidReservedSizeException;
 use RefRing\MoneroRpcPhp\Exception\MoneroRpcException;
+use RefRing\MoneroRpcPhp\Exception\NoIpOrHostSuppliedException;
 use RefRing\MoneroRpcPhp\Exception\NoWalletFileException;
 use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
@@ -52,6 +54,8 @@ enum ErrorCode: string
     case InvalidPaymentId = "Invalid payment ID";
     case InvalidOriginalPassword = "Invalid original password.";
     case TransactionHasNoDestination = "Transaction has no destination";
+    case InvalidHostOrSubnet = "Unsupported host/subnet type";
+    case NoIpOrHostSupplied = "No ip/host supplied";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -123,6 +127,8 @@ enum ErrorCode: string
             self::InvalidPaymentId => new InvalidPaymentIdException($message),
             self::InvalidOriginalPassword => new InvalidOriginalPasswordException($message),
             self::TransactionHasNoDestination => new InvalidDestinationException($message),
+            self::InvalidHostOrSubnet => new InvalidHostOrSubnetException($message),
+            self::NoIpOrHostSupplied => new NoIpOrHostSuppliedException($message),
         };
 
         return $exception;
