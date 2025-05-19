@@ -149,6 +149,8 @@ use RefRing\MoneroRpcPhp\WalletRpc\RescanSpentRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\RescanSpentResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\RestoreDeterministicWalletRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\RestoreDeterministicWalletResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\ScanTxRequest;
+use RefRing\MoneroRpcPhp\WalletRpc\ScanTxResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAttributeRequest;
@@ -1520,5 +1522,17 @@ class WalletRpcClient extends JsonRpcClient
         bool $rct,
     ): EstimateTxSizeAndWeightResponse {
         return $this->handleRequest(EstimateTxSizeAndWeightRequest::create($nInputs, $nOutputs, $ringSize, $rct), EstimateTxSizeAndWeightResponse::class);
+    }
+
+    /**
+     * Given list of txids, scan each for outputs belonging to your wallet.
+     * Note that the node will see these specific requests and may be a privacy concern.
+     *
+     * @param string[] $txids transaction ids
+     * @throws MoneroRpcException
+     */
+    public function scanTx(array $txids): ScanTxResponse
+    {
+        return $this->handleRequest(ScanTxRequest::create($txids), ScanTxResponse::class);
     }
 }

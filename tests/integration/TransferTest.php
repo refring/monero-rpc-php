@@ -191,4 +191,11 @@ final class TransferTest extends TestCase
         $this->assertCount(1, $result->pool);
         $this->assertCount(0, $result->failed);
     }
+
+    #[Depends('testTransfer')]
+    public function testScanTx(TransferResponse $transferResponse): void
+    {
+        $this->expectNotToPerformAssertions();
+        $result = self::$walletRpcClient->scanTx([$transferResponse->txHash]);
+    }
 }
