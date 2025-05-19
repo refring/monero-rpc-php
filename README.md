@@ -2,7 +2,7 @@
 [![Packagist Version](https://img.shields.io/packagist/v/refring/monero-rpc-php)](https://packagist.org/packages/refring/monero-rpc-php)
 [![Tests](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/tests.yml)
 [![PHPStan](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml/badge.svg)](https://github.com/refactor-ring/monero-rpc-php/actions/workflows/phpstan.yml)
-[![codecov](https://codecov.io/gh/refactor-ring/monero-rpc-php/graph/badge.svg?token=P8K26M8W6N)](https://codecov.io/gh/refactor-ring/monero-rpc-php)
+[![codecov](https://codecov.io/gh/refring/monero-rpc-php/graph/badge.svg?token=P8K26M8W6N)](https://codecov.io/gh/refring/monero-rpc-php)
 [![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/refring/monero-rpc-php/php)](https://packagist.org/packages/refring/monero-rpc-php)
 
 
