@@ -84,6 +84,8 @@ use RefRing\MoneroRpcPhp\WalletRpc\GetBalanceRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetBalanceResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetBulkPaymentsRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetBulkPaymentsResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\GetDefaultFeePriorityRequest;
+use RefRing\MoneroRpcPhp\WalletRpc\GetDefaultFeePriorityResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetHeightRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetHeightResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetLanguagesRequest;
@@ -1534,5 +1536,15 @@ class WalletRpcClient extends JsonRpcClient
     public function scanTx(array $txids): ScanTxResponse
     {
         return $this->handleRequest(ScanTxRequest::create($txids), ScanTxResponse::class);
+    }
+
+    /**
+     * Returns the adjusted fee priority(1-4) that the auto/default(0) tier will be mapped to.
+     *
+     * @throws MoneroRpcException
+     */
+    public function getDefaultFeePriority(): GetDefaultFeePriorityResponse
+    {
+        return $this->handleRequest(GetDefaultFeePriorityRequest::create(), GetDefaultFeePriorityResponse::class);
     }
 }

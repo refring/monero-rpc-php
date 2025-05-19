@@ -38,6 +38,7 @@ use RefRing\MoneroRpcPhp\WalletRpc\GetAddressResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetAttributeResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetBalanceResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetBulkPaymentsResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\GetDefaultFeePriorityResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetHeightResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetLanguagesResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\GetPaymentsResponse;
@@ -68,6 +69,7 @@ use RefRing\MoneroRpcPhp\WalletRpc\RelayTxResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\RescanBlockchainResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\RescanSpentResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\RestoreDeterministicWalletResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\ScanTxResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAttributeResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetDaemonResponse;
@@ -856,6 +858,22 @@ class WalletRpcDeserializationTest extends TestCase
     {
         $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"size":1630,"weight":1630}}';
         $response = EstimateTxSizeAndWeightResponse::fromJsonString($jsonResponse, "result");
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testScanTx()
+    {
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{}}';
+        $response = ScanTxResponse::fromJsonString($jsonResponse, "result");
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson(JSON_FORCE_OBJECT));
+    }
+
+    public function testGetDefaultFeePriority()
+    {
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{"priority": 2}}';
+        $response = GetDefaultFeePriorityResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
     }
