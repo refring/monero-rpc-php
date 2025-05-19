@@ -40,6 +40,7 @@ use RefRing\MoneroRpcPhp\WalletRpc\GetAddressRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetAttributeRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetBalanceRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetBulkPaymentsRequest;
+use RefRing\MoneroRpcPhp\WalletRpc\GetDefaultFeePriorityRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetHeightRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetLanguagesRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\GetPaymentsRequest;
@@ -75,6 +76,7 @@ use RefRing\MoneroRpcPhp\WalletRpc\RelayTxRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\RescanBlockchainRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\RescanSpentRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\RestoreDeterministicWalletRequest;
+use RefRing\MoneroRpcPhp\WalletRpc\ScanTxRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAttributeRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetDaemonRequest;
@@ -880,6 +882,20 @@ class WalletRpcSerializationTest extends TestCase
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"estimate_tx_size_and_weight","params":{"n_inputs":1,"n_outputs":2,"ring_size":16,"rct":true}}';
         $request = EstimateTxSizeAndWeightRequest::create(1, 2, 16, true);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testScanTx()
+    {
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"scan_tx","params":{"txids":["7313fb7f9d26454866abacc98d17662bea468421178ec577661610003bf0193e"]}}';
+        $request = ScanTxRequest::create(['7313fb7f9d26454866abacc98d17662bea468421178ec577661610003bf0193e']);
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testGetDefaultFeePriority()
+    {
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"get_default_fee_priority"}';
+        $request = GetDefaultFeePriorityRequest::create();
         $this->assertSame($expected, $request->toJson());
     }
 }
