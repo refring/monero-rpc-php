@@ -27,7 +27,7 @@ class GetAccountsRequest implements ParameterInterface, JsonDataSerializable
      * allow regular expression filters if set to true (.
      * When omitted the default value is false
      */
-    #[Json(omit_empty: true)]
+    #[Json('regexp', omit_empty: true)]
     public ?bool $regex;
 
     /**
