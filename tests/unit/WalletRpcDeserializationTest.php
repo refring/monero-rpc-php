@@ -73,6 +73,7 @@ use RefRing\MoneroRpcPhp\WalletRpc\ScanTxResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAttributeResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetDaemonResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\SetSubaddressLookaheadResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetTxNotesResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SignMultisigResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SignResponse;
@@ -876,6 +877,14 @@ class WalletRpcDeserializationTest extends TestCase
         $response = GetDefaultFeePriorityResponse::fromJsonString($jsonResponse, "result");
         $responseFlat = $this->comparableJson($jsonResponse);
         $this->assertSame($responseFlat, $response->toJson());
+    }
+
+    public function testSetSubaddressLookahead()
+    {
+        $jsonResponse = '{"id":"0","jsonrpc":"2.0","result":{}}';
+        $response = SetSubaddressLookaheadResponse::fromJsonString($jsonResponse, "result");
+        $responseFlat = $this->comparableJson($jsonResponse);
+        $this->assertSame($responseFlat, $response->toJson(JSON_FORCE_OBJECT));
     }
 
     public static function comparableJson(string $json): string

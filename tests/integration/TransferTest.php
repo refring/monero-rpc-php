@@ -8,10 +8,12 @@ use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 use RefRing\MoneroRpcPhp\ClientBuilder;
 use RefRing\MoneroRpcPhp\DaemonRpcClient;
+use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
 use RefRing\MoneroRpcPhp\Exception\InvalidDestinationException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
+use RefRing\MoneroRpcPhp\Tests\Util\StdOutLogger;
 use RefRing\MoneroRpcPhp\WalletRpc\Model\Destination;
 use RefRing\MoneroRpcPhp\WalletRpc\Model\TransferType;
 use RefRing\MoneroRpcPhp\WalletRpc\TransferResponse;
@@ -197,5 +199,73 @@ final class TransferTest extends TestCase
     {
         $this->expectNotToPerformAssertions();
         $result = self::$walletRpcClient->scanTx([$transferResponse->txHash]);
+    }
+
+    public function testSubaddressLookahead(): void
+    {
+        // Restore wallet 1 for this test
+        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[0]);
+        self::$walletRpcClient->refresh();
+
+        // The subaddress at index (0, 999) should not be accessible with default lookahead
+        $address0_999 = new Address(TestHelper::MAINNET_SUBADDRESS_0_999);
+
+        // Verify the address is not in the current lookahead table
+        $addressNotFound = false;
+        try {
+            self::$walletRpcClient->getAddressIndex($address0_999);
+        } catch (AddressNotInWalletException) {
+            $addressNotFound = true;
+        }
+        $this->assertTrue($addressNotFound, 'Address at index (0, 999) should not be in the lookahead table before extending it');
+
+        // Extend the lookahead to include index 999
+        self::$walletRpcClient->setSubaddressLookahead(50, 1000, "");
+
+        // Now the address should be accessible
+        $result = self::$walletRpcClient->getAddressIndex($address0_999);
+        $this->assertSame(0, $result->index->major);
+        $this->assertSame(999, $result->index->minor);
+
+        // Transfer to the subaddress at index (0, 999)
+        $transferAmount = 454545454545;
+        $destination = new Destination($address0_999, new Amount($transferAmount));
+
+        // Use wallet 2 to transfer (restore it first)
+        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[1]);
+        self::$daemonRpcClient->generateBlocks(100, TestHelper::MAINNET_ADDRESS_2);
+        self::$walletRpcClient->refresh();
+
+        $balance = self::$walletRpcClient->getBalance();
+        $this->assertGreaterThan($transferAmount, $balance->balance, 'Wallet 2 should have enough balance for transfer');
+
+        self::$walletRpcClient->transfer($destination);
+
+        // Mine a block to confirm the transaction
+        self::$daemonRpcClient->generateBlocks(1, TestHelper::MAINNET_ADDRESS_1);
+
+        // Switch back to wallet 1 and verify the balance
+        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[0]);
+        // Re-apply lookahead since wallet was restored
+        self::$walletRpcClient->setSubaddressLookahead(50, 1000);
+        self::$walletRpcClient->refresh();
+
+        $balanceResult = self::$walletRpcClient->getBalance(0, [999]);
+        $this->assertNotEmpty($balanceResult->perSubaddress, 'Balance info for subaddress should exist');
+
+        $balanceInfo0_999 = null;
+        foreach ($balanceResult->perSubaddress as $balanceInfo) {
+            if ($balanceInfo->accountIndex === 0 && $balanceInfo->addressIndex === 999) {
+                $balanceInfo0_999 = $balanceInfo;
+                break;
+            }
+        }
+
+        $this->assertNotNull($balanceInfo0_999, 'Balance info for address (0, 999) not found');
+        $this->assertSame(TestHelper::MAINNET_SUBADDRESS_0_999, (string) $balanceInfo0_999->address);
+        $this->assertSame($transferAmount, $balanceInfo0_999->balance);
+        $this->assertSame(0, $balanceInfo0_999->unlockedBalance);
+        $this->assertSame('', $balanceInfo0_999->label);
+        $this->assertSame(1, $balanceInfo0_999->numUnspentOutputs);
     }
 }

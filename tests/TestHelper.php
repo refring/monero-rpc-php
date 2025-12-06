@@ -43,6 +43,12 @@ class TestHelper
     final public const WALLET_PWD_1 = 'b4r0l0';
     final public const WALLET_PWD_2 = 'b4r0l0-2';
 
+    /**
+     * Subaddress at index (0, 999) for WALLET_1_MNEMONIC
+     * Used to test set_subaddress_lookahead functionality
+     */
+    final public const MAINNET_SUBADDRESS_0_999 = '8A6tQYX2JX2CSvEZAEtPpMa3NwFNDLtRFCaSEcigzNQn53H8H5dkPFHHYwaTxjVw4NFV9xuahPqjmDbnVfhbFb3T1pKv6xH';
+
     public static function getRandomWalletName(): string
     {
         return hash('sha256', (string) random_int(0, PHP_INT_MAX));
