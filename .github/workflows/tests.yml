@@ -64,7 +64,7 @@ jobs:
       - name: Spin up containers
         run: docker compose -f tests/docker-compose.yml up -d
         env:
-          MONERO_VERSION: "0.18.4.0"
+          MONERO_VERSION: "0.18.4.4"
 
       - name: Install PHP
         uses: shivammathur/setup-php@v2
