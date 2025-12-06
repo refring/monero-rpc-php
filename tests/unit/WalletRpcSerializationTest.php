@@ -80,6 +80,7 @@ use RefRing\MoneroRpcPhp\WalletRpc\ScanTxRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAttributeRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetDaemonRequest;
+use RefRing\MoneroRpcPhp\WalletRpc\SetSubaddressLookaheadRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetTxNotesRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SignMultisigRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SignRequest;
@@ -896,6 +897,20 @@ class WalletRpcSerializationTest extends TestCase
     {
         $expected = '{"jsonrpc":"2.0","id":"0","method":"get_default_fee_priority"}';
         $request = GetDefaultFeePriorityRequest::create();
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testSetSubaddressLookahead()
+    {
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"set_subaddress_lookahead","params":{"password":"testpassword","major_idx":50,"minor_idx":200}}';
+        $request = SetSubaddressLookaheadRequest::create(50, 200, 'testpassword');
+        $this->assertSame($expected, $request->toJson());
+    }
+
+    public function testSetSubaddressLookaheadWithoutPassword()
+    {
+        $expected = '{"jsonrpc":"2.0","id":"0","method":"set_subaddress_lookahead","params":{"major_idx":50,"minor_idx":200}}';
+        $request = SetSubaddressLookaheadRequest::create(50, 200);
         $this->assertSame($expected, $request->toJson());
     }
 }

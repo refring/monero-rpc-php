@@ -157,6 +157,8 @@ use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAccountTagDescriptionResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAttributeRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetAttributeResponse;
+use RefRing\MoneroRpcPhp\WalletRpc\SetSubaddressLookaheadRequest;
+use RefRing\MoneroRpcPhp\WalletRpc\SetSubaddressLookaheadResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetDaemonRequest;
 use RefRing\MoneroRpcPhp\WalletRpc\SetDaemonResponse;
 use RefRing\MoneroRpcPhp\WalletRpc\SetTxNotesRequest;
@@ -1546,5 +1548,18 @@ class WalletRpcClient extends JsonRpcClient
     public function getDefaultFeePriority(): GetDefaultFeePriorityResponse
     {
         return $this->handleRequest(GetDefaultFeePriorityRequest::create(), GetDefaultFeePriorityResponse::class);
+    }
+
+    /**
+     * Set the subaddress lookahead depth for scanning.
+     *
+     * @param int $major The number of accounts to look ahead.
+     * @param int $minor The number of subaddresses to look ahead per account.
+     * @param ?string $password Wallet password.
+     * @throws MoneroRpcException
+     */
+    public function setSubaddressLookahead(int $major, int $minor, ?string $password = null): SetSubaddressLookaheadResponse
+    {
+        return $this->handleRequest(SetSubaddressLookaheadRequest::create($major, $minor, $password), SetSubaddressLookaheadResponse::class);
     }
 }
