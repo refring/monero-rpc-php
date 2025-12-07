@@ -12,8 +12,9 @@ use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
 use RefRing\MoneroRpcPhp\Exception\InvalidDestinationException;
 use RefRing\MoneroRpcPhp\Model\Address;
 use RefRing\MoneroRpcPhp\Model\Amount;
+use RefRing\MoneroRpcPhp\Tests\Attribute\RequiresMoneroVersion;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
-use RefRing\MoneroRpcPhp\Tests\Util\StdOutLogger;
+use RefRing\MoneroRpcPhp\Tests\Trait\RequiresMoneroVersionTrait;
 use RefRing\MoneroRpcPhp\WalletRpc\Model\Destination;
 use RefRing\MoneroRpcPhp\WalletRpc\Model\TransferType;
 use RefRing\MoneroRpcPhp\WalletRpc\TransferResponse;
@@ -21,12 +22,15 @@ use RefRing\MoneroRpcPhp\WalletRpcClient;
 
 final class TransferTest extends TestCase
 {
+    use RequiresMoneroVersionTrait;
+
     public static array $seeds = [TestHelper::WALLET_1_MNEMONIC, TestHelper::WALLET_2_MNEMONIC];
 
     public static array $wallets = [];
 
     private static DaemonRpcClient $daemonRpcClient;
     private static WalletRpcClient $walletRpcClient;
+    private static WalletRpcClient $walletRpcClient2;
 
     public static int $runningBalance = 0;
 
@@ -46,9 +50,22 @@ final class TransferTest extends TestCase
             ->buildDaemonClient();
         self::$walletRpcClient = (new ClientBuilder(getenv('WALLET_RPC_URL')))
             ->buildWalletClient();
+        self::$walletRpcClient2 = (new ClientBuilder(getenv('WALLET_RPC_URL_2')))
+            ->buildWalletClient();
 
         self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[0]);
+        self::$walletRpcClient2->restoreDeterministicWallet('', '', self::$seeds[1]);
         self::$daemonRpcClient->generateBlocks(100, TestHelper::MAINNET_ADDRESS_1);
+    }
+
+    protected function setUp(): void
+    {
+        $this->checkMoneroVersionRequirements();
+    }
+
+    protected static function getDaemonRpcClient(): DaemonRpcClient
+    {
+        return self::$daemonRpcClient;
     }
 
     public function testWallet(): void
@@ -183,10 +200,9 @@ final class TransferTest extends TestCase
         $this->assertFalse($result->overspend);
         $this->assertFalse($result->feeTooLow);
 
-        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[1]);
-        self::$walletRpcClient->refresh();
+        self::$walletRpcClient2->refresh();
 
-        $result = self::$walletRpcClient->getTransfers(true, true, true, true, true);
+        $result = self::$walletRpcClient2->getTransfers(true, true, true, true, true);
         $this->assertCount(0, $result->in);
         $this->assertCount(0, $result->out);
         $this->assertCount(0, $result->pending);
@@ -201,12 +217,9 @@ final class TransferTest extends TestCase
         $result = self::$walletRpcClient->scanTx([$transferResponse->txHash]);
     }
 
+    #[RequiresMoneroVersion('0.18.4.1')]
     public function testSubaddressLookahead(): void
     {
-        // Restore wallet 1 for this test
-        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[0]);
-        self::$walletRpcClient->refresh();
-
         // The subaddress at index (0, 999) should not be accessible with default lookahead
         $address0_999 = new Address(TestHelper::MAINNET_SUBADDRESS_0_999);
 
@@ -232,25 +245,20 @@ final class TransferTest extends TestCase
         $destination = new Destination($address0_999, new Amount($transferAmount));
 
         // Use wallet 2 to transfer (restore it first)
-        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[1]);
         self::$daemonRpcClient->generateBlocks(100, TestHelper::MAINNET_ADDRESS_2);
-        self::$walletRpcClient->refresh();
 
-        $balance = self::$walletRpcClient->getBalance();
+        self::$walletRpcClient2->refresh();
+        $balance = self::$walletRpcClient2->getBalance();
         $this->assertGreaterThan($transferAmount, $balance->balance, 'Wallet 2 should have enough balance for transfer');
 
-        self::$walletRpcClient->transfer($destination);
+        self::$walletRpcClient2->transfer($destination);
 
         // Mine a block to confirm the transaction
-        self::$daemonRpcClient->generateBlocks(1, TestHelper::MAINNET_ADDRESS_1);
+        self::$daemonRpcClient->generateBlocks(5, TestHelper::MAINNET_ADDRESS_1);
 
-        // Switch back to wallet 1 and verify the balance
-        self::$walletRpcClient->restoreDeterministicWallet('', '', self::$seeds[0]);
-        // Re-apply lookahead since wallet was restored
-        self::$walletRpcClient->setSubaddressLookahead(50, 1000);
         self::$walletRpcClient->refresh();
 
-        $balanceResult = self::$walletRpcClient->getBalance(0, [999]);
+        $balanceResult = self::$walletRpcClient->getBalance(0);
         $this->assertNotEmpty($balanceResult->perSubaddress, 'Balance info for subaddress should exist');
 
         $balanceInfo0_999 = null;
