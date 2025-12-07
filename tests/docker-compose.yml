@@ -21,6 +21,17 @@ services:
     ports:
       - "18083:18083"
 
+  monero-wallet-rpc-2:
+    image: ghcr.io/refring/monero-containers/monero-wallet-rpc:${MONERO_VERSION:-0.18.4.4}
+    environment:
+      MONERO_DAEMON_ADDRESS: monerod:18081
+      MONERO_DAEMON_HOST: monerod:18081
+      WALLET_RPC_PORT: 18086
+    depends_on:
+      - "monerod"
+    ports:
+      - "18086:18086"
+
   monerod-rpc-authentication:
     image: ghcr.io/refring/monero-containers/monerod:${MONERO_VERSION:-0.18.4.4}
     depends_on:
