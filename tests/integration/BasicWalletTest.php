@@ -24,6 +24,8 @@ use RefRing\MoneroRpcPhp\Exception\OpenWalletException;
 use RefRing\MoneroRpcPhp\Exception\TagNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\WalletExistsException;
 use RefRing\MoneroRpcPhp\Model\Address;
+use RefRing\MoneroRpcPhp\Tests\Attribute\RequiresMoneroVersion;
+use RefRing\MoneroRpcPhp\Tests\Trait\RequiresMoneroVersionTrait;
 use RefRing\MoneroRpcPhp\Model\Amount;
 use RefRing\MoneroRpcPhp\Tests\KeyPairHelper;
 use RefRing\MoneroRpcPhp\Tests\TestHelper;
@@ -36,6 +38,8 @@ use RefRing\MoneroRpcPhp\WalletRpcClient;
 
 class BasicWalletTest extends TestCase
 {
+    use RequiresMoneroVersionTrait;
+
     private static WalletRpcClient $rpcClient;
     private static DaemonRpcClient $daemonRpcClient;
 
@@ -55,6 +59,16 @@ class BasicWalletTest extends TestCase
         self::$rpcClient = (new ClientBuilder(getenv('WALLET_RPC_URL')))
             ->buildWalletClient();
         self::$daemonRpcClient = (new ClientBuilder(getenv('DAEMON_RPC_URL')))->buildDaemonClient();
+    }
+
+    protected function setUp(): void
+    {
+        $this->checkMoneroVersionRequirements();
+    }
+
+    protected static function getDaemonRpcClient(): DaemonRpcClient
+    {
+        return self::$daemonRpcClient;
     }
 
     public function testGetVersion(): void
@@ -557,4 +571,31 @@ class BasicWalletTest extends TestCase
         $result = self::$rpcClient->queryKey(QueryKeyType::MNEMONIC);
         $this->assertSame($seed, $result->key);
     }
+
+    #[RequiresMoneroVersion('0.18.4.1')]
+    public function testUpdateLookahead(): void
+    {
+        // Restore the test wallet
+        self::$rpcClient->restoreDeterministicWallet('', '', TestHelper::WALLET_1_MNEMONIC);
+
+        // The subaddress at index (0, 999) should not be accessible with default lookahead
+        $address0_999 = new Address(TestHelper::MAINNET_SUBADDRESS_0_999);
+
+        // Verify the address is not in the current lookahead table
+        $addressNotFound = false;
+        try {
+            self::$rpcClient->getAddressIndex($address0_999);
+        } catch (AddressNotInWalletException) {
+            $addressNotFound = true;
+        }
+        $this->assertTrue($addressNotFound, 'Address at index (0, 999) should not be in the lookahead table before extending it');
+
+        // Update the lookahead and verify the high index address is now in the table
+        self::$rpcClient->setSubaddressLookahead(50, 1000);
+
+        $result = self::$rpcClient->getAddressIndex($address0_999);
+        $this->assertSame(0, $result->index->major);
+        $this->assertSame(999, $result->index->minor);
+    }
+
 }
