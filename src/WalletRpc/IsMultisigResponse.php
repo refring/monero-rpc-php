@@ -24,6 +24,9 @@ class IsMultisigResponse implements JsonDataSerializable
     #[Json]
     public bool $ready;
 
+    #[Json('kex_is_done')]
+    public bool $kexIsDone;
+
     /**
      * Amount of signature needed to sign a transfer.
      */
