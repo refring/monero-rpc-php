@@ -55,6 +55,12 @@
             "php": "8.1.0"
         }
     },
+    "funding": [
+        {
+            "type": "Donations",
+            "url": "https://github.com/refring/monero-rpc-php#donations"
+        }
+    ],
     "scripts": {
         "lint": "pint --preset psr12 -v",
         "refactor": "rector --debug",

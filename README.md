@@ -165,3 +165,10 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 * [monero-rpc-rs](https://github.com/monero-rs/monero-rpc-rs) - Parts of this project served as inspiration.
 * [monero-php](https://github.com/monero-integrations/monerophp) - Thanks for providing the php ecosystem with a Monero library during all these years!
 * [Monero](https://getmonero.org) - Thanks to everybody involved!
+
+## Donations
+If this library has been valuable to you, please consider donating some XMR to support its continued development.
+<p align="center">
+	<img src="donate.png" width="115" height="115"/><br>
+	<code>87EXWd4R8SwDZqx3wdtHoygSX6iEtY5geQxksy7dK6Kb91h3Rb195PbXKqFQcAezP3UbXD5pxPrtQcd2V3t8962U9MFJaWQ</code>
+</p>
