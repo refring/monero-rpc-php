@@ -572,6 +572,21 @@ class BasicWalletTest extends TestCase
         $this->assertSame($seed, $result->key);
     }
 
+    public function testGetLanguages(): void
+    {
+        $result = self::$rpcClient->getLanguages();
+
+        // Assert standard language names are present
+        $this->assertContains('English', $result->languages);
+        $this->assertContains('Dutch', $result->languages);
+        $this->assertContains('Japanese', $result->languages);
+
+        // Assert local language names are present
+        $this->assertContains('English', $result->languagesLocal);
+        $this->assertContains('Nederlands', $result->languagesLocal);
+        $this->assertContains('日本語', $result->languagesLocal);
+    }
+
     #[RequiresMoneroVersion('0.18.4.1')]
     public function testUpdateLookahead(): void
     {
@@ -597,5 +612,6 @@ class BasicWalletTest extends TestCase
         $this->assertSame(0, $result->index->major);
         $this->assertSame(999, $result->index->minor);
     }
+
 
 }
