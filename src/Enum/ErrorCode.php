@@ -7,6 +7,7 @@ namespace RefRing\MoneroRpcPhp\Enum;
 use RefRing\MoneroRpcPhp\Exception\AccountIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressIndexOutOfBoundException;
 use RefRing\MoneroRpcPhp\Exception\AddressNotInWalletException;
+use RefRing\MoneroRpcPhp\Exception\AlreadyIntegratedAddressException;
 use RefRing\MoneroRpcPhp\Exception\AttributeNotFoundException;
 use RefRing\MoneroRpcPhp\Exception\AuthenticationException;
 use RefRing\MoneroRpcPhp\Exception\BlockNotAcceptedException;
@@ -56,6 +57,7 @@ enum ErrorCode: string
     case TransactionHasNoDestination = "Transaction has no destination";
     case InvalidHostOrSubnet = "Unsupported host/subnet type";
     case NoIpOrHostSupplied = "No ip/host supplied";
+    case AlreadyIntegratedAddress = "Already integrated address";
 
     public static function getErrorCodeFromString(string $error): self
     {
@@ -129,6 +131,7 @@ enum ErrorCode: string
             self::TransactionHasNoDestination => new InvalidDestinationException($message),
             self::InvalidHostOrSubnet => new InvalidHostOrSubnetException($message),
             self::NoIpOrHostSupplied => new NoIpOrHostSuppliedException($message),
+            self::AlreadyIntegratedAddress => new AlreadyIntegratedAddressException($message),
         };
 
         return $exception;
